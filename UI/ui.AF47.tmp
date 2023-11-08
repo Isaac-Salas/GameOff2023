@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8uiphfwfgnq2"]
+
+[sub_resource type="GDScript" id="GDScript_exuw8"]
+script/source = "extends ProgressBar
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	value = GlobalVar.sizefactor
+"
+
+[sub_resource type="GDScript" id="GDScript_sg4ql"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = GlobalVar.CURRENT
+"
+
+[sub_resource type="GDScript" id="GDScript_fnnm4"]
+script/source = "extends TextEdit
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text =GlobalVar.state
+
+"
+
+[sub_resource type="GDScript" id="GDScript_l2tm2"]
+script/source = "extends TextEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = GlobalVar.pick
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_right = 280.0
+offset_bottom = 27.0
+min_value = 0.1
+max_value = 2.0
+value = 0.1
+show_percentage = false
+script = SubResource("GDScript_exuw8")
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1.0
+offset_right = 140.0
+offset_bottom = 24.0
+script = SubResource("GDScript_sg4ql")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 10.0
+offset_top = 41.0
+offset_right = 130.0
+offset_bottom = 83.0
+text = "Si"
+script = SubResource("GDScript_fnnm4")
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 147.0
+offset_top = 41.0
+offset_right = 230.0
+offset_bottom = 83.0
+text = "Si"
+script = SubResource("GDScript_l2tm2")

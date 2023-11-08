@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfesb1kbd4d35"]
+
+[ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4k456"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfddy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gjb1e"]
+size = Vector3(1.01, 1.01, 1.01)
+
+[sub_resource type="Animation" id="Animation_rfsis"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.5, 1, 0, 0.1, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t7p7"]
+_data = {
+"new_animation": SubResource("Animation_rfsis")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4g88"]
+animation = &"new_animation"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ijabr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6mnum"]
+states/Idle/node = SubResource("AnimationNodeAnimation_t4g88")
+states/Idle/position = Vector2(423, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ijabr")]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_20tws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4k456")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yfddy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_gjb1e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3t7p7")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_6mnum")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
