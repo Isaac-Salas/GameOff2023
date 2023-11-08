@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bncg5hbxeuy1y"]
+
+[ext_resource type="Script" path="res://NPCs/Boxtessss.gd" id="1_db2y7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cb6aw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_60kg8"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_db2y7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cb6aw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_60kg8")
