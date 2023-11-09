@@ -18,8 +18,9 @@ func _process(delta):
 
 
 func _on_area_3d_body_entered(body):
-	GlobalVar.pick = \"DOWN\"
-	queue_free()
+	if body.name == \"Player\":
+		GlobalVar.pick = \"DOWN\"
+		queue_free()
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cd48p"]
