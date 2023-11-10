@@ -6,6 +6,10 @@
 
 [node name="Node3D" type="Node3D"]
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+layers = 3
+size = Vector3(0.9945, 0.999673, 0.989895)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 3
 collision_mask = 3
