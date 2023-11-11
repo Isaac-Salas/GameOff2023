@@ -6,6 +6,7 @@
 size = Vector3(2, 2, 2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b827x"]
+radius = 1.0
 
 [sub_resource type="Animation" id="Animation_rfsis"]
 resource_name = "new_animation"
