@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rate = 0.02
 
 func _physics_process(delta):
+	print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z == 0
 	var pos = get_node(".").position
 	#Updating the label
@@ -19,12 +20,8 @@ func _physics_process(delta):
 		GlobalVar.CURRENT = "NORMAL"
 	else:
 		GlobalVar.CURRENT = "BIG"
-			
-			
-	if not GlobalVar.state == "static" and GlobalVar.sizefactor <= 1:
-		GlobalVar.SPEED = 10 / (0.44 + GlobalVar.sizefactor)
-		GlobalVar.JUMP_VELOCITY = 20 / (0.44 + GlobalVar.sizefactor)
-		
+
+
 
 	#Peruvian Scaling
 	if Input.is_key_pressed(KEY_Z):
@@ -59,8 +56,12 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = GlobalVar.JUMP_VELOCITY
-		if GlobalVar.sizefactor>3:
-			velocity.y = GlobalVar.JUMP_VELOCITY
+	
+	# Speed and Jump velocity tweaks when shrinking or getting big
+	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < 1:
+		GlobalVar.SPEED = snapped(10 / (0.4 + GlobalVar.sizefactor), 1)
+		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.4 + GlobalVar.sizefactor),1 )
+
 
 
 	# Get the input direction and handle the movement/deceleration.
