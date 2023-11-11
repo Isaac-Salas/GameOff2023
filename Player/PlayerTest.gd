@@ -14,7 +14,8 @@ func _physics_process(delta):
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
-	if GlobalVar.sizefactor<=GlobalVar.MinCap: 
+	if GlobalVar.sizefactor<=(GlobalVar.MinCap+GlobalVar.MaxCap)/3: 
+		print ((GlobalVar.MinCap+GlobalVar.MaxCap)/3)
 		GlobalVar.CURRENT = "SMALL"
 	elif GlobalVar.sizefactor<=(GlobalVar.MaxCap/2)*1.5:
 		GlobalVar.CURRENT = "NORMAL"
