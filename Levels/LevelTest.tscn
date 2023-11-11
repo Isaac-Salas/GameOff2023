@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8e6aidugfhc2"]
+[gd_scene load_steps=12 format=3 uid="uid://c8e6aidugfhc2"]
 
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="2_7uenw"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="7_evqv3"]
 [ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Pickups/Smallone.tscn" id="7_l28wy"]
 [ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Pickups/PickObject.tscn" id="8_tplic"]
+[ext_resource type="PackedScene" uid="uid://bkbo43qhp4xes" path="res://Pickups/PermaSmall.tscn" id="9_22t10"]
+[ext_resource type="PackedScene" uid="uid://cmy05tnwvu6v7" path="res://Pickups/PermaBig.tscn" id="9_yg4ue"]
+[ext_resource type="PackedScene" uid="uid://cedr33iddb4uf" path="res://Pickups/ScalerateUP.tscn" id="11_a8cvn"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -41,14 +44,50 @@ script = ExtResource("2_7uenw")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_koge0")]
 
-[node name="Node3D" parent="." instance=ExtResource("7_evqv3")]
+[node name="Floor" parent="." instance=ExtResource("7_evqv3")]
 transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 
-[node name="Node3D2" parent="." instance=ExtResource("6_yptst")]
+[node name="Big" parent="." instance=ExtResource("6_yptst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
 
-[node name="Node3D3" parent="." instance=ExtResource("7_l28wy")]
+[node name="Small" parent="." instance=ExtResource("7_l28wy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
 
 [node name="Pickable" parent="." instance=ExtResource("8_tplic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1165, 2.44469, 0)
+
+[node name="Pequeños" type="Node3D" parent="."]
+
+[node name="PermaSmall" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7619, 3.4507, 0)
+
+[node name="PermaSmall2" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7619, 6.62142, 0)
+
+[node name="PermaSmall3" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.3435, 4.29417, 0)
+
+[node name="Grandes" type="Node3D" parent="."]
+
+[node name="PermaBIG" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6798, 8.11075, 0)
+
+[node name="PermaBIG3" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0102, 8.11075, 0)
+
+[node name="PermaBIG2" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.989, 9.87295, 0)
+
+[node name="Scaleboost" type="Node3D" parent="."]
+
+[node name="SR+" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 7.24366, 0)
+
+[node name="SR+2" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 9.42593, 0)
+
+[node name="SR+3" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 5.42664, 0)
+
+[node name="SR+4" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 9.09468, 0)
