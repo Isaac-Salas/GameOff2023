@@ -19,9 +19,9 @@ func _physics_process(delta):
 	if GlobalVar.sizefactor==1:
 		GlobalVar.CURRENT = "NORMAL"
 
-	if not GlobalVar.state == "static":
-		GlobalVar.SPEED = 10/(0.5+GlobalVar.sizefactor)
-		GlobalVar.JUMP_VELOCITY = 20/(0.5+GlobalVar.sizefactor)
+	if not GlobalVar.state == "static" and GlobalVar.CURRENT == "SMALL":
+		GlobalVar.SPEED = 10 / (0.44 + GlobalVar.sizefactor)
+		GlobalVar.JUMP_VELOCITY = 20 / (0.44 + GlobalVar.sizefactor)
 		
 
 	#Peruvian Scaling
