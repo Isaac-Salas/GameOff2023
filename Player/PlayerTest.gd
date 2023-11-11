@@ -13,19 +13,14 @@ func _physics_process(delta):
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
-	if GlobalVar.sizefactor==1:
+	if GlobalVar.sizefactor<=0.5:
+		GlobalVar.CURRENT = "SMALL"
+	elif GlobalVar.sizefactor<=1.5:
 		GlobalVar.CURRENT = "NORMAL"
 	else:
-		if GlobalVar.sizefactor>1.5:
-			GlobalVar.CURRENT = "BIG"
-		else: 
-			GlobalVar.CURRENT = "NORMAL"
-		if GlobalVar.sizefactor<0.5:
-			GlobalVar.CURRENT = "SMALL"
+		GlobalVar.CURRENT = "BIG"
 			
-
-		
-
+			
 	if not GlobalVar.state == "static" and GlobalVar.sizefactor <= 1:
 		GlobalVar.SPEED = 10 / (0.44 + GlobalVar.sizefactor)
 		GlobalVar.JUMP_VELOCITY = 20 / (0.44 + GlobalVar.sizefactor)
