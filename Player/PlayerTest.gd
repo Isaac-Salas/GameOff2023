@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rate = 0.02
 
 func _physics_process(delta):
-	print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
+	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z == 0
 	var pos = get_node(".").position
 	#Updating the label
@@ -80,7 +80,7 @@ func _physics_process(delta):
 		
 	if Input.is_key_pressed(KEY_X) and pickup == true:
 		
-		print(pos)
+		#print(pos)
 	
 		pickinst.transform.origin = (Vector3(0,2,0))
 		pickinst.get_node("Pickup").freeze = true
