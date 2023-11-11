@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://lwadxgbqcjhn"]
+[gd_scene load_steps=5 format=3 uid="uid://cedr33iddb4uf"]
 
-[ext_resource type="Texture2D" uid="uid://bddnwchdhvntm" path="res://icon.svg" id="1_sdcat"]
-[ext_resource type="Script" path="res://Levels/Sprite.gd" id="2_vcy4b"]
+[ext_resource type="Texture2D" uid="uid://bddnwchdhvntm" path="res://icon.svg" id="1_xgjoq"]
 
 [sub_resource type="GDScript" id="GDScript_cqgcv"]
 script/source = "extends Node3D
@@ -19,13 +18,28 @@ func _process(delta):
 
 func _on_area_3d_body_entered(body):
 	if body.name == \"Player\":
-		GlobalVar.pick = \"DOWN\"
+		GlobalVar.pick = \"FASTERSCALE\"
+		GlobalVar.Scalerate +=0.02
 		queue_free()
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cd48p"]
 
-[node name="Small" type="Node3D"]
+[sub_resource type="GDScript" id="GDScript_rtg14"]
+script/source = "extends Sprite3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	rotate_x(deg_to_rad(15))
+"
+
+[node name="SR+" type="Node3D"]
 script = SubResource("GDScript_cqgcv")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -34,8 +48,8 @@ script = SubResource("GDScript_cqgcv")
 shape = SubResource("BoxShape3D_cd48p")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-modulate = Color(0.466667, 0.670588, 1, 1)
-texture = ExtResource("1_sdcat")
-script = ExtResource("2_vcy4b")
+modulate = Color(0.713726, 0.67451, 0.317647, 1)
+texture = ExtResource("1_xgjoq")
+script = SubResource("GDScript_rtg14")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -25,7 +25,7 @@ func _on_area_3d_body_entered(body):
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cd48p"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Big" type="Node3D"]
 script = SubResource("GDScript_cqgcv")
 
 [node name="Area3D" type="Area3D" parent="."]

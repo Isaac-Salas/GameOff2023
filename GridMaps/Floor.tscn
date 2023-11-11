@@ -4,7 +4,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_a3yfy"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Floor" type="Node3D"]
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 layers = 3

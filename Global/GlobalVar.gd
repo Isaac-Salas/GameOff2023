@@ -10,5 +10,5 @@ var pick = "NONE"
 var ProgBar = 1;
 var CURRENT = "NORMAL"
 var MaxCap=2
-var MinCap=0.1
+var MinCap=0.5
 var Scalerate = 0.02
