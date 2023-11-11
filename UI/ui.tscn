@@ -11,12 +11,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	min_value = GlobalVar.MinCap-0.1
+	max_value = GlobalVar.MaxCap
+	
 	if GlobalVar.CURRENT == \"SMALL\":
-		value = 0
+		value = min_value
 	if GlobalVar.CURRENT == \"NORMAL\":
-		value = 1
+		value = max_value/2
 	if GlobalVar.CURRENT == \"BIG\":
-		value = 2
+		value = max_value
 "
 
 [sub_resource type="GDScript" id="GDScript_sg4ql"]
