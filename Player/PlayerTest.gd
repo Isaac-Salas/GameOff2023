@@ -12,12 +12,19 @@ func _physics_process(delta):
 	var pos = get_node(".").position
 	#Updating the label
 	#print(GlobalVar.sizefactor)
-	if GlobalVar.sizefactor>=1.5:
-		GlobalVar.CURRENT = "BIG"
-	if GlobalVar.sizefactor<=0.5:
-		GlobalVar.CURRENT = "SMALL"
+
 	if GlobalVar.sizefactor==1:
 		GlobalVar.CURRENT = "NORMAL"
+	else:
+		if GlobalVar.sizefactor>1.5:
+			GlobalVar.CURRENT = "BIG"
+		else: 
+			GlobalVar.CURRENT = "NORMAL"
+		if GlobalVar.sizefactor<0.5:
+			GlobalVar.CURRENT = "SMALL"
+			
+
+		
 
 	if not GlobalVar.state == "static" and GlobalVar.sizefactor <= 1:
 		GlobalVar.SPEED = 10 / (0.44 + GlobalVar.sizefactor)
@@ -43,9 +50,11 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_X):
+		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
 	
 	if Input.is_key_pressed(KEY_C):
+		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
 		
 	# Add the gravity.
@@ -88,7 +97,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func grow():
-	if GlobalVar.sizefactor <= 2:
+	if GlobalVar.sizefactor < 2:
 		get_node("MeshInstance3D").scale += Vector3(rate,rate,0)
 		get_node("CollisionShape3D").scale += Vector3(rate,rate,0)
 		get_node("ColisionperuanaDer2").position.x += rate
@@ -102,7 +111,7 @@ func grow():
 		get_node("ColisionperuanaDer2").position.y = 0
 		get_node("ColisionperuanaIzq").position.y = 0
 		GlobalVar.sizeM = get_node("CollisionShape3D").scale
-		GlobalVar.sizefactor = GlobalVar.sizeM.x
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1)
 		GlobalVar.state = "growing"
 		
 		$GPUParticles3D.process_material.set_collision_mode(2)
@@ -112,7 +121,7 @@ func grow():
 		#GlobalVar.ProgBar += rate
 
 func shrink():
-	if GlobalVar.sizefactor >= 0.1:
+	if GlobalVar.sizefactor > 0.1:
 		get_node("MeshInstance3D").scale -= Vector3(rate,rate,0)
 		get_node("CollisionShape3D").scale -= Vector3(rate,rate,0)
 		get_node("ColisionperuanaDer2").position.x -= rate
@@ -126,7 +135,7 @@ func shrink():
 		get_node("ColisionperuanaDer2").position.y = 0
 		get_node("ColisionperuanaIzq").position.y = 0
 		GlobalVar.sizeM = get_node("CollisionShape3D").scale
-		GlobalVar.sizefactor = GlobalVar.sizeM.x
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1) 
 		GlobalVar.state = "shrinking"
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
