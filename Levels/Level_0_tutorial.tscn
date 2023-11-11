@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://gfqikhbbes3c"]
+
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_j3s68"]
+[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="3_vkrly"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="4_hnf06"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_kexi1"]
+
+[sub_resource type="GDScript" id="GDScript_j1kna"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	GlobalVar.MinCap = 1
+	GlobalVar.MaxCap = 1
+	$Player.gravity = 8
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="TutorialLevel" type="Node3D"]
+script = SubResource("GDScript_j1kna")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.988756, 0.145525, 0.0344005, 0, -0.23005, 0.973179, 0.149535, 0.962237, 0.227463, 0, 7.68146, 5.66573)
+visible = false
+shadow_enabled = true
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("1_e423e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3601, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_e423e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9063, 12.5496, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_j3s68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98, 6.127, 0)
+axis_lock_linear_z = true
+
+[node name="Camera3D2" type="Camera3D" parent="Player"]
+transform = Transform3D(0.992546, -0.0148521, 0.120961, 3.46187e-16, 0.992546, 0.121869, -0.121869, -0.120961, 0.985148, 0, 5, 15)
+projection = 1
+current = true
+fov = 157.0
+size = 30.0
+near = 0.001
+script = ExtResource("3_vkrly")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D2"]
+light_energy = 0.05
+shadow_enabled = true
+shadow_transmittance_bias = -0.07
+shadow_blur = 0.5
+sky_mode = 1
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D2"]
+transform = Transform3D(0.996195, -0.00759612, -0.0868241, -1.61953e-09, 0.996195, -0.0871557, 0.0871557, 0.0868241, 0.992404, -2.437, -2.419, 25)
+light_color = Color(1, 1, 0.709804, 1)
+light_energy = 16.0
+light_indirect_energy = 3.83
+light_volumetric_fog_energy = 16.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 62.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_hnf06")]
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Floor" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(204, 0, 0, 0, 3, 0, 0, 0, 20, 2.08165e-12, -1, 2.08165e-12)
+
+[node name="Wall_Left" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(4, 0, 0, 0, 50, 0, 0, 0, 20, -100, 25, 2.08165e-12)
+
+[node name="Ceil" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(204, 0, 0, 0, 4, 0, 0, 0, 20, 2.08165e-12, 50, 2.08165e-12)
+
+[node name="Wall_Right" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(4, 0, 0, 0, 50, 0, 0, 0, 20, 100, 25, 2.08165e-12)
+
+[node name="Background" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, 2.08165e-12, 25, -10)
+
+[node name="Foreground" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(200, 0, 0, 0, 46, 0, 0, 0, 2, 2.08165e-12, 25, 10)
+
+[node name="MeshInstance3D" parent="Terrain/Foreground/StaticBody3D" index="1"]
+visible = false
+
+[node name="platforms" type="Node3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Platform" parent="Terrain/platforms" instance=ExtResource("5_kexi1")]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 20, -78.248, 15.2786, -1)
+
+[node name="Platform2" parent="Terrain/platforms" instance=ExtResource("5_kexi1")]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 20, -39.1569, 9.61485, 2.08165e-12)
+
+[node name="Platform3" parent="Terrain/platforms" instance=ExtResource("5_kexi1")]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 20, -4.9156, 15.2786, -1)
+
+[node name="Floor2" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(204, 0, 0, 0, 2, 0, 0, 0, 20, 2.08165e-12, -2, 2.08165e-12)
+
+[node name="Floor3" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 20, -81, 1, 2.08165e-12)
+
+[node name="Floor4" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(204, 0, 0, 0, 2, 0, 0, 0, 20, 2.08165e-12, -2, 2.08165e-12)
+
+[node name="Floor5" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(155, 0, 0, 0, 2, 0, 0, 0, 20, 20, 1, 2.08165e-12)
+
+[editable path="Terrain/Foreground"]

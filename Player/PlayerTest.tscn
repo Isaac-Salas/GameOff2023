@@ -39,7 +39,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 size = Vector3(0.1, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qpuui"]
-size = Vector3(1.9, 0.1, 1)
+size = Vector3(2, 0.1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u7xq5"]
 radius = 1.82538
@@ -76,12 +76,9 @@ bind/0/bone = -1
 bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Player" type="CharacterBody3D"]
-axis_lock_linear_z = true
-axis_lock_angular_z = true
 script = ExtResource("1_20tws")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_wml4e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -140,7 +137,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 can_sleep = false
 freeze = true
-linear_velocity = Vector3(5, 0, 0)
+linear_velocity = Vector3(-5, 5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionArriba"]
 shape = SubResource("BoxShape3D_qpuui")
@@ -152,7 +149,6 @@ shape = SubResource("SphereShape3D_u7xq5")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
-visible = false
 layers = 3
 sorting_use_aabb_center = false
 material_overlay = SubResource("StandardMaterial3D_a0527")
