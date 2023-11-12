@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsj08cx3cp1kf"
-path.s3tc="res://.godot/imported/(Jump-Animation)Prot-Slime 3d_Fingerprints_01_1K_1.png-e8829f3f1918c211d6d6eb72cfee4b04.s3tc.ctex"
+uid="uid://doc670qq1f5pr"
+path.s3tc="res://.godot/imported/Prot-Slime 3d_Fingerprints_01_1K.png-035aa407e582ed60b9fcd10bf76f1be4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Models/Player/(Jump-Animation)Prot-Slime 3d_Fingerprints_01_1K_1.png"
-dest_files=["res://.godot/imported/(Jump-Animation)Prot-Slime 3d_Fingerprints_01_1K_1.png-e8829f3f1918c211d6d6eb72cfee4b04.s3tc.ctex"]
+source_file="res://Models/Player/Prot-Slime 3d_Fingerprints_01_1K.png"
+dest_files=["res://.godot/imported/Prot-Slime 3d_Fingerprints_01_1K.png-035aa407e582ed60b9fcd10bf76f1be4.s3tc.ctex"]
 
 [params]
 
@@ -21,12 +21,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Models/Player/Prot-Slime 3d_Fingerprints_01_1K.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
