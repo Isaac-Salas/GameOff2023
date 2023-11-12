@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfesb1kbd4d35"]
+[gd_scene load_steps=17 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
+[ext_resource type="PackedScene" uid="uid://bi41fhe1dahtb" path="res://Models/Player/(Jump-Animation)Prot-Slime 3d.glb" id="2_x6n6i"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_wml4e"]
-size = Vector3(2, 2, 2)
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b827x"]
 radius = 1.0
@@ -81,8 +81,10 @@ axis_lock_angular_z = true
 script = ExtResource("1_20tws")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_wml4e")
+mesh = SubResource("PlaceholderMesh_7qnl7")
+
+[node name="(Jump-Animation)Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_x6n6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b827x")
