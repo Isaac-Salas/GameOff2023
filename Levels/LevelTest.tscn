@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="7_evqv3"]
 [ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Pickups/Smallone.tscn" id="7_l28wy"]
 [ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Pickups/PickObject.tscn" id="8_tplic"]
-[ext_resource type="PackedScene" path="res://Pickups/PermaSmall.tscn" id="9_22t10"]
-[ext_resource type="PackedScene" path="res://Pickups/PermaBig.tscn" id="9_yg4ue"]
-[ext_resource type="PackedScene" path="res://Pickups/ScalerateUP.tscn" id="11_a8cvn"]
+[ext_resource type="PackedScene" uid="uid://dpj53n3yti1ua" path="res://Pickups/PermaSmall.tscn" id="9_22t10"]
+[ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Pickups/PermaBig.tscn" id="9_yg4ue"]
+[ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Pickups/ScalerateUP.tscn" id="11_a8cvn"]
 
 [node name="Node3D" type="Node3D"]
 

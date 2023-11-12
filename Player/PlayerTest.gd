@@ -1,9 +1,9 @@
 extends CharacterBody3D
-
+var pickname
 var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
 var pickinst = pickupinst.instantiate()
-var globalinst = pickupinst.instantiate()
+
 var objectPicked = null
 var pickup
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -16,6 +16,9 @@ func _input(event):
 			release_pickup()
 		else:
 			try_pickup()
+	if Input.is_key_pressed(KEY_Q):
+		if objectPicked == true:
+			throw()
 
 
 func _physics_process(delta):
@@ -99,10 +102,16 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+
+func  throw():
+	pass
+	
+
 func grow():
 	if GlobalVar.sizefactor < GlobalVar.MaxCap:
-		get_node("MeshInstance3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("MeshInstance3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
 		get_node("CollisionShape3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("ObjectDetect").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
 		get_node("ColisionperuanaDer2").position.x += GlobalVar.Scalerate
 		get_node("ColisionperuanaIzq").position.x -= GlobalVar.Scalerate
 		get_node("ColisionArriba").position.y += GlobalVar.Scalerate
@@ -125,8 +134,9 @@ func grow():
 
 func shrink():
 	if GlobalVar.sizefactor > GlobalVar.MinCap:
-		get_node("MeshInstance3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("MeshInstance3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
 		get_node("CollisionShape3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("ObjectDetect").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
 		get_node("ColisionperuanaDer2").position.x -= GlobalVar.Scalerate
 		get_node("ColisionperuanaIzq").position.x += GlobalVar.Scalerate
 		get_node("ColisionArriba").position.y -= GlobalVar.Scalerate
@@ -146,43 +156,48 @@ func shrink():
 		$GPUParticles3D.emitting = true
 
 
-		
 func try_pickup():
 	if pickup == true:
+
 		print("espacio del jugador" + str(pos))
 		print("Espacio del objeto" + str(pickinst.transform.origin))
 		print("pickup desde el player")
-		pickinst.transform.origin = Vector3(0,2,0)
+		pickinst.transform.origin = Vector3(0,(1.5*GlobalVar.sizefactor),0)
 		pickinst.get_node("Pickup").freeze = true
 		pickinst.get_node("Pickup/CollisionShape3D").disabled = true
 		pickinst.get_node("Pickup/Area3D").monitoring = false
 		pickup = false
-		add_child(pickinst)
 		objectPicked = true
+		$MeshInstance3D.add_child(pickinst)
+		get_parent_node_3d().remove_child(pickname)
+		
 
 func release_pickup():
 	print("release desde el player")
 	if objectPicked:
-		globalinst = pickupinst.instantiate()
-		remove_child(pickinst)
-		globalinst.transform.origin = Vector3(0,2,0)
-		globalinst.get_node("Pickup").freeze = false
-		globalinst.get_node("Pickup/CollisionShape3D").disabled = false
-		globalinst.get_node("Pickup/Area3D").monitoring = true
+		$MeshInstance3D.remove_child(pickinst)
+		
+		pickinst.transform.origin = Vector3(0,2,0)
+		pickinst.get_node("Pickup").freeze = false
+		pickinst.get_node("Pickup/CollisionShape3D").disabled = false
+		pickinst.get_node("Pickup/Area3D").monitoring = true
 		pickup = false
-		globalinst.transform.origin = global_position+Vector3(2,0,0)
-		var mundotest = get_parent_node_3d()
-		mundotest.add_child(globalinst)
 		objectPicked = false
-
+		pickinst.transform.origin = global_position+Vector3(2,0,0)
+		var mundotest = get_parent_node_3d()
+		mundotest.add_child(pickinst)
 
 
 func _on_object_detect_body_entered(body):
 	if body.name == "Pickup":
+		pickname = body.get_parent_node_3d()
+		print (pickname.name)
 		print("Assin")
 		pickup = true
 
 func _on_object_detect_body_exited(body):
 	if body.name == "Pickup":
+		pickname = body.get_parent_node_3d()
+		print (pickname.name)
 		print("Assout")
 		pickup = false

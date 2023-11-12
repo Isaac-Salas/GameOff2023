@@ -14,7 +14,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
 	if Input.is_key_pressed(KEY_V) and pickup == true:
-		queue_free()
 		print(\"pickup desde el objeto\")
 		
 	if Input.is_key_pressed(KEY_V) and pickup == false:
