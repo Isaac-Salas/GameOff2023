@@ -16,6 +16,9 @@ func _input(event):
 			release_pickup()
 		else:
 			try_pickup()
+	if Input.is_key_pressed(KEY_Q):
+		if objectPicked == true:
+			throw()
 
 
 func _physics_process(delta):
@@ -99,6 +102,11 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+
+func  throw():
+	pass
+	
+
 func grow():
 	if GlobalVar.sizefactor < GlobalVar.MaxCap:
 		get_node("MeshInstance3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
@@ -168,17 +176,16 @@ func release_pickup():
 	print("release desde el player")
 	if objectPicked:
 		$MeshInstance3D.remove_child(pickinst)
-		var globalinst = pickupinst.instantiate()
-		globalinst = pickupinst.instantiate()
-		globalinst.transform.origin = Vector3(0,2,0)
-		globalinst.get_node("Pickup").freeze = false
-		globalinst.get_node("Pickup/CollisionShape3D").disabled = false
-		globalinst.get_node("Pickup/Area3D").monitoring = true
+		
+		pickinst.transform.origin = Vector3(0,2,0)
+		pickinst.get_node("Pickup").freeze = false
+		pickinst.get_node("Pickup/CollisionShape3D").disabled = false
+		pickinst.get_node("Pickup/Area3D").monitoring = true
 		pickup = false
 		objectPicked = false
-		globalinst.transform.origin = global_position+Vector3(2,0,0)
+		pickinst.transform.origin = global_position+Vector3(2,0,0)
 		var mundotest = get_parent_node_3d()
-		mundotest.add_child(globalinst)
+		mundotest.add_child(pickinst)
 
 
 func _on_object_detect_body_entered(body):
