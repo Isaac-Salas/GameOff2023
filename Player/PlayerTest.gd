@@ -107,7 +107,7 @@ func grow():
 		get_node("ColisionperuanaDer2").position.x += GlobalVar.Scalerate
 		get_node("ColisionperuanaIzq").position.x -= GlobalVar.Scalerate
 		get_node("ColisionArriba").position.y += GlobalVar.Scalerate
-		get_node("ObjectDetect").scale 
+		
 		get_node("ColisionperuanaDer2").scale.y += GlobalVar.Scalerate
 		get_node("ColisionperuanaIzq").scale.y += GlobalVar.Scalerate
 		get_node("ColisionArriba").scale.x += GlobalVar.Scalerate
@@ -148,7 +148,6 @@ func shrink():
 		$GPUParticles3D.emitting = true
 
 
-		
 func try_pickup():
 	if pickup == true:
 
