@@ -4,7 +4,7 @@
 script/source = "extends Node3D
 var pickup = false
 
-var player 
+var player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,10 +14,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
 	if Input.is_key_pressed(KEY_V) and pickup == true:
-		#queue_free()
+		queue_free()
 		print(\"pickup desde el objeto\")
+		
 	if Input.is_key_pressed(KEY_V) and pickup == false:
 		#queue_free()
+		#transform.origin = get_node(\"Player\").transform.origin + Vector3(0,-2,-2)
 		print(\"release desde el objeto\")
 
 
@@ -27,14 +29,6 @@ func _on_area_3d_body_entered(body):
 		new_color.albedo_color = Color(0, 0, 255) 
 		pickup = true
 		player = body
-<<<<<<< HEAD
-=======
-
-
-		
->>>>>>> 3b17d333440746e9eb732870f0ae069b494e6162
-	
-
 
 func _on_area_3d_body_exited(body):
 	if body.name == \"Player\":
@@ -42,7 +36,6 @@ func _on_area_3d_body_exited(body):
 		new_color.albedo_color = Color(255, 0, 0)
 		pickup = false
 		player = body 
-	
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcodq"]
