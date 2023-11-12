@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
-[ext_resource type="PackedScene" path="res://Player/SlimewAnim.tscn" id="2_lepl1"]
+[ext_resource type="PackedScene" uid="uid://vyuurvfh16o7" path="res://Player/SlimewAnim.tscn" id="2_lepl1"]
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
 
