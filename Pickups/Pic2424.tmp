@@ -12,13 +12,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _input(event):
+func _process(delta):
 	if Input.is_key_pressed(KEY_V) and pickup == true:
 		#queue_free()
-		print(\"pickup desde el objeto\")
-	if Input.is_key_pressed(KEY_V) and pickup == false:
-		#queue_free()
-		print(\"release desde el objeto\")
+		print(\"yoooo\")
 
 
 func _on_area_3d_body_entered(body):

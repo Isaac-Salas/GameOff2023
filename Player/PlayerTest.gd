@@ -1,15 +1,24 @@
 extends CharacterBody3D
 
+var pos = get_node(".").position
 var pickup
 var pickupinst = preload("res://Pickups/PickObject.tscn")
 var pickinst = pickupinst.instantiate()
+var globalinst = pickupinst.instantiate()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rate = 0.02
 
+func _input(event):
+	if Input.is_key_pressed(KEY_V) and pickup == true:
+		try_pickup()
+	if Input.is_key_pressed(KEY_V) and pickup == false:
+		release_pickup()
+
+
 func _physics_process(delta):
 	position.z == 0
-	var pos = get_node(".").position
+	
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 	if GlobalVar.sizefactor>=1.5:
@@ -73,17 +82,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, (GlobalVar.SPEED))
 		velocity.z = 0
 		
-	if Input.is_key_pressed(KEY_X) and pickup == true:
-		
-		print(pos)
 	
-		pickinst.transform.origin = (Vector3(0,2,0))
-		pickinst.get_node("Pickup").freeze = true
-		pickinst.get_node("Pickup/Area3D").monitoring = false
-		add_child(pickinst)
-	if Input.is_key_pressed(KEY_X):
-		pickinst.get_node("Pickup").freeze = false
-		
 		
 	move_and_slide()
 
@@ -132,6 +131,28 @@ func shrink():
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
 		$GPUParticles3D.emitting = true
+
+func toggle_pickup():
+	if !find_child("pickinst"):
+		try_pickup()
+		print("trying pickup")
+		
+	else:
+		print(pickup)
+		print("releasing pickup")
+		release_pickup()
+		
+func try_pickup():
+	print(pos)
+	pickinst.transform.origin = Vector3(0,2,0)
+	pickinst.get_node("Pickup").freeze = true
+	pickinst.get_node("Pickup/CollisionShape3D").disabled = true
+	pickinst.get_node("Pickup/Area3D").monitoring = false
+	pickup = false
+	add_child(pickinst)
+
+func release_pickup():
+	print("release desde el player")
 	
 func _on_object_detect_body_entered(body):
 	if body.name == "Pickup":
