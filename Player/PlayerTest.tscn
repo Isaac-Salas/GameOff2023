@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
-[ext_resource type="PackedScene" uid="uid://bi41fhe1dahtb" path="res://Models/Player/(Jump-Animation)Prot-Slime 3d.glb" id="2_x6n6i"]
+[ext_resource type="PackedScene" uid="uid://vyuurvfh16o7" path="res://Player/SlimewAnim.tscn" id="2_lepl1"]
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
 
@@ -56,8 +56,8 @@ script = ExtResource("1_20tws")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaceholderMesh_7qnl7")
 
-[node name="(Jump-Animation)Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_x6n6i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="(Jump-Animation)Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_lepl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b827x")
@@ -106,7 +106,8 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 can_sleep = false
 freeze = true
-linear_velocity = Vector3(5, 0, 0)
+linear_velocity = Vector3(0, 8, 0)
+linear_damp = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionArriba"]
 shape = SubResource("BoxShape3D_qpuui")
