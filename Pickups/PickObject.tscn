@@ -27,6 +27,12 @@ func _on_area_3d_body_entered(body):
 		new_color.albedo_color = Color(0, 0, 255) 
 		pickup = true
 		player = body
+<<<<<<< HEAD
+=======
+
+
+		
+>>>>>>> 3b17d333440746e9eb732870f0ae069b494e6162
 	
 
 

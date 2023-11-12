@@ -7,7 +7,7 @@ var pickinst = pickupinst.instantiate()
 var globalinst = pickupinst.instantiate()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var rate = 0.02
+
 
 func _input(event):
 	if Input.is_key_pressed(KEY_V) and pickup == true:
@@ -17,21 +17,21 @@ func _input(event):
 
 
 func _physics_process(delta):
+	print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z == 0
 	
 	#Updating the label
 	#print(GlobalVar.sizefactor)
-	if GlobalVar.sizefactor>=1.5:
-		GlobalVar.CURRENT = "BIG"
-	if GlobalVar.sizefactor<=0.5:
-		GlobalVar.CURRENT = "SMALL"
-	if GlobalVar.sizefactor==1:
-		GlobalVar.CURRENT = "NORMAL"
 
-	if not GlobalVar.state == "static":
-		GlobalVar.SPEED = 10/(0.5+GlobalVar.sizefactor)
-		GlobalVar.JUMP_VELOCITY = 20/(0.5+GlobalVar.sizefactor)
-		
+	if GlobalVar.sizefactor<=(GlobalVar.MinCap+GlobalVar.MaxCap)/3: 
+		print ((GlobalVar.MinCap+GlobalVar.MaxCap)/3)
+		GlobalVar.CURRENT = "SMALL"
+	elif GlobalVar.sizefactor<=(GlobalVar.MaxCap/2)*1.5:
+		GlobalVar.CURRENT = "NORMAL"
+	else:
+		GlobalVar.CURRENT = "BIG"
+
+
 
 	#Peruvian Scaling
 	if Input.is_key_pressed(KEY_Z):
@@ -52,9 +52,11 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_X):
+		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
 	
 	if Input.is_key_pressed(KEY_C):
+		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
 		
 	# Add the gravity.
@@ -63,9 +65,18 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		var jumpanim = get_node("MeshInstance3D/(Jump-Animation)Prot-Slime 3d").find_child("AnimationPlayer")
+		jumpanim.play("Action")
 		velocity.y = GlobalVar.JUMP_VELOCITY
-		if GlobalVar.sizefactor>3:
-			velocity.y = GlobalVar.JUMP_VELOCITY
+	
+	# Speed and Jump velocity tweaks when shrinking or getting bigv
+	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < 1:
+		GlobalVar.SPEED = snapped(10 / (0.3 + GlobalVar.sizefactor), 1)
+		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.3 + GlobalVar.sizefactor),1 )
+	else:
+		GlobalVar.SPEED = 10
+		GlobalVar.JUMP_VELOCITY = 20
+
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -81,51 +92,51 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, (GlobalVar.SPEED))
 		velocity.z = 0
-		
+
 	
 		
 	move_and_slide()
 
 func grow():
-	if GlobalVar.sizefactor <= 2:
-		get_node("MeshInstance3D").scale += Vector3(rate,rate,0)
-		get_node("CollisionShape3D").scale += Vector3(rate,rate,0)
-		get_node("ColisionperuanaDer2").position.x += rate
-		get_node("ColisionperuanaIzq").position.x -= rate
-		get_node("ColisionArriba").position.y += rate
+	if GlobalVar.sizefactor < GlobalVar.MaxCap:
+		get_node("MeshInstance3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("CollisionShape3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("ColisionperuanaDer2").position.x += GlobalVar.Scalerate
+		get_node("ColisionperuanaIzq").position.x -= GlobalVar.Scalerate
+		get_node("ColisionArriba").position.y += GlobalVar.Scalerate
 		
-		get_node("ColisionperuanaDer2").scale.y += rate
-		get_node("ColisionperuanaIzq").scale.y += rate
-		get_node("ColisionArriba").scale.x += rate
+		get_node("ColisionperuanaDer2").scale.y += GlobalVar.Scalerate
+		get_node("ColisionperuanaIzq").scale.y += GlobalVar.Scalerate
+		get_node("ColisionArriba").scale.x += GlobalVar.Scalerate
 		
 		get_node("ColisionperuanaDer2").position.y = 0
 		get_node("ColisionperuanaIzq").position.y = 0
 		GlobalVar.sizeM = get_node("CollisionShape3D").scale
-		GlobalVar.sizefactor = GlobalVar.sizeM.x
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1)
 		GlobalVar.state = "growing"
 		
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.emitting = true
-		#GlobalVar.ProgBar += rate
+		#GlobalVar.ProgBar += GlobalVar.Scalerate
 
 func shrink():
-	if GlobalVar.sizefactor >= 0.1:
-		get_node("MeshInstance3D").scale -= Vector3(rate,rate,0)
-		get_node("CollisionShape3D").scale -= Vector3(rate,rate,0)
-		get_node("ColisionperuanaDer2").position.x -= rate
-		get_node("ColisionperuanaIzq").position.x += rate
-		get_node("ColisionArriba").position.y -= rate
+	if GlobalVar.sizefactor > GlobalVar.MinCap:
+		get_node("MeshInstance3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("CollisionShape3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
+		get_node("ColisionperuanaDer2").position.x -= GlobalVar.Scalerate
+		get_node("ColisionperuanaIzq").position.x += GlobalVar.Scalerate
+		get_node("ColisionArriba").position.y -= GlobalVar.Scalerate
 		
-		get_node("ColisionperuanaDer2").scale.y -= rate
-		get_node("ColisionperuanaIzq").scale.y -= rate
-		get_node("ColisionArriba").scale.x -= rate
+		get_node("ColisionperuanaDer2").scale.y -= GlobalVar.Scalerate
+		get_node("ColisionperuanaIzq").scale.y -= GlobalVar.Scalerate
+		get_node("ColisionArriba").scale.x -= GlobalVar.Scalerate
 		
 		get_node("ColisionperuanaDer2").position.y = 0
 		get_node("ColisionperuanaIzq").position.y = 0
 		GlobalVar.sizeM = get_node("CollisionShape3D").scale
-		GlobalVar.sizefactor = GlobalVar.sizeM.x
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1) 
 		GlobalVar.state = "shrinking"
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
