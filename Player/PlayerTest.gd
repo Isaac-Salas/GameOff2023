@@ -1,21 +1,32 @@
 extends CharacterBody3D
 
-var pickup
+var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
 var pickinst = pickupinst.instantiate()
+var globalinst = pickupinst.instantiate()
+var objectPicked = null
+var pickup
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+
+func _input(event):
+	if Input.is_key_pressed(KEY_V):
+		if objectPicked == true:
+			release_pickup()
+		else:
+			try_pickup()
 
 
 func _physics_process(delta):
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z == 0
-	var pos = get_node(".").position
+	
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
 	if GlobalVar.sizefactor<=(GlobalVar.MinCap+GlobalVar.MaxCap)/3: 
-		print ((GlobalVar.MinCap+GlobalVar.MaxCap)/3)
+		#print ((GlobalVar.MinCap+GlobalVar.MaxCap)/3)
 		GlobalVar.CURRENT = "SMALL"
 	elif GlobalVar.sizefactor<=(GlobalVar.MaxCap/2)*1.5:
 		GlobalVar.CURRENT = "NORMAL"
@@ -43,11 +54,11 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_X):
-		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
+		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
 	
 	if Input.is_key_pressed(KEY_C):
-		print(GlobalVar.CURRENT, GlobalVar.sizefactor)
+		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
 		
 	# Add the gravity.
@@ -56,12 +67,17 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		var jumpanim = get_node("MeshInstance3D/(Jump-Animation)Prot-Slime 3d").find_child("AnimationPlayer")
+		jumpanim.play("Action")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
-	# Speed and Jump velocity tweaks when shrinking or getting big
+	# Speed and Jump velocity tweaks when shrinking or getting bigv
 	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < 1:
-		GlobalVar.SPEED = snapped(10 / (0.4 + GlobalVar.sizefactor), 1)
-		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.4 + GlobalVar.sizefactor),1 )
+		GlobalVar.SPEED = snapped(10 / (0.3 + GlobalVar.sizefactor), 1)
+		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.3 + GlobalVar.sizefactor),1 )
+	else:
+		GlobalVar.SPEED = 10
+		GlobalVar.JUMP_VELOCITY = 20
 
 
 
@@ -78,18 +94,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, (GlobalVar.SPEED))
 		velocity.z = 0
-		
-	if Input.is_key_pressed(KEY_X) and pickup == true:
-		
-		#print(pos)
+
 	
-		pickinst.transform.origin = (Vector3(0,2,0))
-		pickinst.get_node("Pickup").freeze = true
-		pickinst.get_node("Pickup/Area3D").monitoring = false
-		add_child(pickinst)
-	if Input.is_key_pressed(KEY_X):
-		pickinst.get_node("Pickup").freeze = false
-		
 		
 	move_and_slide()
 
@@ -138,13 +144,43 @@ func shrink():
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
 		$GPUParticles3D.emitting = true
-	
+
+
+		
+func try_pickup():
+	if pickup == true:
+		print("espacio del jugador" + str(pos))
+		print("Espacio del objeto" + str(pickinst.transform.origin))
+		print("pickup desde el player")
+		pickinst.transform.origin = Vector3(0,2,0)
+		pickinst.get_node("Pickup").freeze = true
+		pickinst.get_node("Pickup/CollisionShape3D").disabled = true
+		pickinst.get_node("Pickup/Area3D").monitoring = false
+		pickup = false
+		add_child(pickinst)
+		objectPicked = true
+
+func release_pickup():
+	print("release desde el player")
+	if objectPicked:
+		globalinst = pickupinst.instantiate()
+		remove_child(pickinst)
+		globalinst.transform.origin = Vector3(0,2,0)
+		globalinst.get_node("Pickup").freeze = false
+		globalinst.get_node("Pickup/CollisionShape3D").disabled = false
+		globalinst.get_node("Pickup/Area3D").monitoring = true
+		pickup = false
+		globalinst.transform.origin = global_position+Vector3(2,0,0)
+		var mundotest = get_parent_node_3d()
+		mundotest.add_child(globalinst)
+		objectPicked = false
+
+
+
 func _on_object_detect_body_entered(body):
 	if body.name == "Pickup":
 		print("Assin")
 		pickup = true
-
-
 
 func _on_object_detect_body_exited(body):
 	if body.name == "Pickup":
