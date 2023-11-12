@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _physics_process(delta):
-	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
+	print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z == 0
 	var pos = get_node(".").position
 	#Updating the label
@@ -56,12 +56,17 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		var jumpanim = get_node("MeshInstance3D/(Jump-Animation)Prot-Slime 3d").find_child("AnimationPlayer")
+		jumpanim.play("Action")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
-	# Speed and Jump velocity tweaks when shrinking or getting big
+	# Speed and Jump velocity tweaks when shrinking or getting bigv
 	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < 1:
-		GlobalVar.SPEED = snapped(10 / (0.4 + GlobalVar.sizefactor), 1)
-		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.4 + GlobalVar.sizefactor),1 )
+		GlobalVar.SPEED = snapped(10 / (0.3 + GlobalVar.sizefactor), 1)
+		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.3 + GlobalVar.sizefactor),1 )
+	else:
+		GlobalVar.SPEED = 10
+		GlobalVar.JUMP_VELOCITY = 20
 
 
 
