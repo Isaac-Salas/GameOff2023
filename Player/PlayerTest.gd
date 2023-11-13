@@ -2,8 +2,8 @@ extends CharacterBody3D
 var pickname
 var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
-var pickinst = pickupinst.instantiate()
-
+var pickinst 
+var mundotest
 var objectPicked = null
 var pickup
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,7 +24,7 @@ func _input(event):
 func _physics_process(delta):
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z = 0
-	
+
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
@@ -158,7 +158,7 @@ func shrink():
 
 func try_pickup():
 	if pickup == true:
-
+		pickinst =  pickupinst.instantiate()
 		print("espacio del jugador" + str(pos))
 		print("Espacio del objeto" + str(pickinst.transform.origin))
 		print("pickup desde el player")
@@ -170,13 +170,15 @@ func try_pickup():
 		objectPicked = true
 		$MeshInstance3D.add_child(pickinst)
 		get_parent_node_3d().remove_child(pickname)
+		if mundotest != null:
+			mundotest.remove_child(pickinst)
 		
 
 func release_pickup():
 	print("release desde el player")
 	if objectPicked:
+		mundotest = get_parent_node_3d()
 		$MeshInstance3D.remove_child(pickinst)
-		
 		pickinst.transform.origin = Vector3(0,2,0)
 		pickinst.get_node("Pickup").freeze = false
 		pickinst.get_node("Pickup/CollisionShape3D").disabled = false
@@ -184,8 +186,8 @@ func release_pickup():
 		pickup = false
 		objectPicked = false
 		pickinst.transform.origin = global_position+Vector3(2,0,0)
-		var mundotest = get_parent_node_3d()
 		mundotest.add_child(pickinst)
+
 
 
 func _on_object_detect_body_entered(body):
