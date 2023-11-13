@@ -56,8 +56,8 @@ script = ExtResource("1_20tws")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaceholderMesh_7qnl7")
 
-[node name="(Jump-Animation)Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_lepl1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -1, 0)
+[node name="Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_lepl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b827x")

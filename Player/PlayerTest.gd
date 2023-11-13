@@ -23,7 +23,7 @@ func _input(event):
 
 func _physics_process(delta):
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
-	position.z == 0
+	position.z = 0
 	
 	#Updating the label
 	#print(GlobalVar.sizefactor)
@@ -70,8 +70,8 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		var jumpanim = get_node("MeshInstance3D/(Jump-Animation)Prot-Slime 3d").find_child("AnimationPlayer")
-		jumpanim.play("Action")
+		var jumpanim = get_node("MeshInstance3D/Prot-Slime 3d").find_child("AnimationPlayer")
+		jumpanim.play("Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
 	# Speed and Jump velocity tweaks when shrinking or getting bigv

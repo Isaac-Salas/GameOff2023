@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bi41fhe1dahtb"
-path="res://.godot/imported/(Jump-Animation)Prot-Slime 3d.glb-082170d58a949cc8e2ecbd2793ed64d7.scn"
+uid="uid://cc6yeqk40s80w"
+path="res://.godot/imported/Prot-Slime 3d.glb-32623d6249eb142d5efeefab97a4e69e.scn"
 
 [deps]
 
-source_file="res://Models/Player/(Jump-Animation)Prot-Slime 3d.glb"
-dest_files=["res://.godot/imported/(Jump-Animation)Prot-Slime 3d.glb-082170d58a949cc8e2ecbd2793ed64d7.scn"]
+source_file="res://Models/Player/Prot-Slime 3d.glb"
+dest_files=["res://.godot/imported/Prot-Slime 3d.glb-32623d6249eb142d5efeefab97a4e69e.scn"]
 
 [params]
 
