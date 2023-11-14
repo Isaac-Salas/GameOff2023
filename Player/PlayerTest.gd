@@ -70,8 +70,8 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		var jumpanim = get_node("MeshInstance3D/Prot-Slime 3d").find_child("AnimationPlayer")
-		jumpanim.play("Jump Animation")
+		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
+		jumpanim.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
 	# Speed and Jump velocity tweaks when shrinking or getting bigv
