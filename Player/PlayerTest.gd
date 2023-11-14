@@ -12,12 +12,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _input(event):
-	if Input.is_key_pressed(KEY_V):
-		if objectPicked:
+	if Input.is_action_just_pressed("Interact"):
+		if objectPicked == true:
 			release_pickup()
 		else:
 			try_pickup()
-	if Input.is_key_pressed(KEY_Q):
+	if Input.is_action_just_pressed("Throw"):
 		if objectPicked == true:
 			throw()
 
@@ -40,7 +40,7 @@ func _physics_process(delta):
 
 
 	#Peruvian Scaling
-	if Input.is_key_pressed(KEY_Z):
+	if Input.is_action_pressed('Item'):
 		#print (scale)
 		
 		#Upscaling until sizefactor <2
@@ -57,11 +57,11 @@ func _physics_process(delta):
 		$GPUParticles3D.emitting = false
 	
 	
-	if Input.is_key_pressed(KEY_X):
+	if Input.is_action_pressed('Shrink'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
 	
-	if Input.is_key_pressed(KEY_C):
+	if Input.is_action_pressed('Grow'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
 		
@@ -70,7 +70,7 @@ func _physics_process(delta):
 		velocity.y -= (gravity*4) * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 		jumpanim.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
@@ -87,7 +87,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with ass gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, input_dir.y,0)).normalized()
 	
 	
