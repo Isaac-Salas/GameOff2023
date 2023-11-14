@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
-[ext_resource type="PackedScene" uid="uid://n52x7g2txmi3" path="res://Player/PlayerAnim.tscn" id="2_yjpc4"]
+[ext_resource type="PackedScene" uid="uid://vyuurvfh16o7" path="res://Player/SlimewAnim.tscn" id="2_lepl1"]
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
 
@@ -56,7 +56,7 @@ script = ExtResource("1_20tws")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaceholderMesh_7qnl7")
 
-[node name="Prot-Slime" parent="MeshInstance3D" instance=ExtResource("2_yjpc4")]
+[node name="Prot-Slime 3d" parent="MeshInstance3D" instance=ExtResource("2_lepl1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
