@@ -6,13 +6,14 @@ var pickinst
 var mundotest
 var objectPicked = null
 var pickup
+var lastSide = "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _input(event):
 	if Input.is_key_pressed(KEY_V):
-		if objectPicked == true:
+		if objectPicked:
 			release_pickup()
 		else:
 			try_pickup()
@@ -89,6 +90,12 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, input_dir.y,0)).normalized()
 	
+	
+	if direction:
+		if direction.x > 0: 
+			lastSide = "right" 
+		else: 
+			lastSide = "left"
 	#-------------------------------------------------------------------------------------------------------
 	#Perfect example of peruvian solutions c:
 	if direction:
@@ -104,7 +111,22 @@ func _physics_process(delta):
 
 
 func  throw():
-	pass
+	mundotest = get_parent_node_3d()
+	$MeshInstance3D.remove_child(pickinst)
+	pickinst.transform.origin = Vector3(0,2,0)
+	if lastSide == "right":		
+		pickinst.get_node("Pickup").linear_velocity = Vector3(20,0,0)
+		pickinst.transform.origin = global_position+Vector3(2,0,0)
+	else:
+		pickinst.get_node("Pickup").linear_velocity = Vector3(-20,0,0)
+		pickinst.transform.origin = global_position+Vector3(-2,0,0)
+	pickinst.get_node("Pickup").freeze = false
+	pickinst.get_node("Pickup/CollisionShape3D").disabled = false
+	pickinst.get_node("Pickup/Area3D").monitoring = true
+	pickup = false
+	objectPicked = false
+	mundotest.add_child(pickinst)
+	
 	
 
 func grow():
@@ -185,7 +207,10 @@ func release_pickup():
 		pickinst.get_node("Pickup/Area3D").monitoring = true
 		pickup = false
 		objectPicked = false
-		pickinst.transform.origin = global_position+Vector3(2,0,0)
+		if lastSide == "right":
+			pickinst.transform.origin = global_position+Vector3(2,0,0)
+		else:
+			pickinst.transform.origin = global_position+Vector3(-2,0,0)
 		mundotest.add_child(pickinst)
 
 
