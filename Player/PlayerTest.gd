@@ -2,29 +2,30 @@ extends CharacterBody3D
 var pickname
 var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
-var pickinst = pickupinst.instantiate()
-
+var pickinst 
+var mundotest
 var objectPicked = null
 var pickup
+var lastSide = "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _input(event):
-	if Input.is_key_pressed(KEY_V):
+	if Input.is_action_just_pressed("Interact"):
 		if objectPicked == true:
 			release_pickup()
 		else:
 			try_pickup()
-	if Input.is_key_pressed(KEY_Q):
+	if Input.is_action_just_pressed("Throw"):
 		if objectPicked == true:
 			throw()
 
 
 func _physics_process(delta):
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
-	position.z == 0
-	
+	position.z = 0
+
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
@@ -39,7 +40,7 @@ func _physics_process(delta):
 
 
 	#Peruvian Scaling
-	if Input.is_key_pressed(KEY_Z):
+	if Input.is_action_pressed('Item'):
 		#print (scale)
 		
 		#Upscaling until sizefactor <2
@@ -56,11 +57,11 @@ func _physics_process(delta):
 		$GPUParticles3D.emitting = false
 	
 	
-	if Input.is_key_pressed(KEY_X):
+	if Input.is_action_pressed('Shrink'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
 	
-	if Input.is_key_pressed(KEY_C):
+	if Input.is_action_pressed('Grow'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
 		
@@ -69,9 +70,9 @@ func _physics_process(delta):
 		velocity.y -= (gravity*4) * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		var jumpanim = get_node("MeshInstance3D/(Jump-Animation)Prot-Slime 3d").find_child("AnimationPlayer")
-		jumpanim.play("Action")
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
+		jumpanim.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
 	# Speed and Jump velocity tweaks when shrinking or getting bigv
@@ -86,9 +87,15 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with ass gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, input_dir.y,0)).normalized()
 	
+	
+	if direction:
+		if direction.x > 0: 
+			lastSide = "right" 
+		else: 
+			lastSide = "left"
 	#-------------------------------------------------------------------------------------------------------
 	#Perfect example of peruvian solutions c:
 	if direction:
@@ -104,7 +111,22 @@ func _physics_process(delta):
 
 
 func  throw():
-	pass
+	mundotest = get_parent_node_3d()
+	$MeshInstance3D.remove_child(pickinst)
+	pickinst.transform.origin = Vector3(0,2,0)
+	if lastSide == "right":		
+		pickinst.get_node("Pickup").linear_velocity = Vector3(20,0,0)
+		pickinst.transform.origin = global_position+Vector3(2,0,0)
+	else:
+		pickinst.get_node("Pickup").linear_velocity = Vector3(-20,0,0)
+		pickinst.transform.origin = global_position+Vector3(-2,0,0)
+	pickinst.get_node("Pickup").freeze = false
+	pickinst.get_node("Pickup/CollisionShape3D").disabled = false
+	pickinst.get_node("Pickup/Area3D").monitoring = true
+	pickup = false
+	objectPicked = false
+	mundotest.add_child(pickinst)
+	
 	
 
 func grow():
@@ -158,7 +180,7 @@ func shrink():
 
 func try_pickup():
 	if pickup == true:
-
+		pickinst =  pickupinst.instantiate()
 		print("espacio del jugador" + str(pos))
 		print("Espacio del objeto" + str(pickinst.transform.origin))
 		print("pickup desde el player")
@@ -170,22 +192,27 @@ func try_pickup():
 		objectPicked = true
 		$MeshInstance3D.add_child(pickinst)
 		get_parent_node_3d().remove_child(pickname)
+		if mundotest != null:
+			mundotest.remove_child(pickinst)
 		
 
 func release_pickup():
 	print("release desde el player")
 	if objectPicked:
+		mundotest = get_parent_node_3d()
 		$MeshInstance3D.remove_child(pickinst)
-		
 		pickinst.transform.origin = Vector3(0,2,0)
 		pickinst.get_node("Pickup").freeze = false
 		pickinst.get_node("Pickup/CollisionShape3D").disabled = false
 		pickinst.get_node("Pickup/Area3D").monitoring = true
 		pickup = false
 		objectPicked = false
-		pickinst.transform.origin = global_position+Vector3(2,0,0)
-		var mundotest = get_parent_node_3d()
+		if lastSide == "right":
+			pickinst.transform.origin = global_position+Vector3(2,0,0)
+		else:
+			pickinst.transform.origin = global_position+Vector3(-2,0,0)
 		mundotest.add_child(pickinst)
+
 
 
 func _on_object_detect_body_entered(body):
