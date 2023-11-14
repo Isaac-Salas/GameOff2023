@@ -48,7 +48,6 @@ freeze_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_j3s68")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98, 6.127, 0)
-axis_lock_linear_z = true
 
 [node name="Camera3D3" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.999982, 0.00607368, 0, -0.00607368, 0.999982, 0, 4.16689, 15.2937)
@@ -132,14 +131,19 @@ transform = Transform3D(204, 0, 0, 0, 2, 0, 0, 0, 10, 2.08165e-12, -2, 2.08165e-
 [node name="Floor9" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(155, 0, 0, 0, 2, 0.00226893, 0, -0.000453786, 10, 20, 1, 2.08165e-12)
 
-[node name="Door" parent="." instance=ExtResource("6_n8a4u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.545, 13.778, 5)
-
 [node name="Button" parent="." instance=ExtResource("7_q3wgi")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -85.7361, 15.9423, 0)
 
 [node name="Pickable" parent="." instance=ExtResource("8_7dfna")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -33.008, 17.851, 0)
 
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.545, 13.778, -5)
+
+[node name="Door" parent="Door" instance=ExtResource("6_n8a4u")]
+
+[connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
+
 [editable path="Terrain/Foreground"]
 [editable path="Button"]
+[editable path="Door/Door"]
