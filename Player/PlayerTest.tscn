@@ -49,6 +49,7 @@ bind/0/bone = -1
 bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 script = ExtResource("1_20tws")
