@@ -78,6 +78,8 @@ _data = {
 
 [node name="Door" type="StaticBody3D"]
 transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_2pxd8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
