@@ -10,7 +10,6 @@ var lastSide = "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
 func _input(event):
 	if Input.is_key_pressed(KEY_V):
 		if objectPicked:
@@ -25,7 +24,6 @@ func _input(event):
 func _physics_process(delta):
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z = 0
-
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
@@ -195,6 +193,11 @@ func try_pickup():
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
 		
+		var direction_to_object = (pickinst.global_position - global_position).normalized()
+		var distance_to_object = (pickinst.global_position - global_position).length()
+		var desired_distance = 1.6
+		var adjusted_distance = desired_distance * GlobalVar.sizefactor
+		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
 	print("release desde el player")
