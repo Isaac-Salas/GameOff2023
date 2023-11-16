@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsg7odw1y5gtq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at6lh"]
+albedo_color = Color(0.913725, 0.247059, 0.207843, 1)
+emission_enabled = true
+emission = Color(0.780392, 0, 0, 1)
+emission_energy_multiplier = 4.78
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rqfkl"]
+material = SubResource("StandardMaterial3D_at6lh")
+uv2_padding = 2.54
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkeym"]
+albedo_color = Color(0.509804, 0.286275, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ban8v"]
+material = SubResource("StandardMaterial3D_wkeym")
+inner_radius = 0.45
+outer_radius = 0.54
+rings = 8
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qi8e"]
+material = SubResource("StandardMaterial3D_wkeym")
+size = Vector3(1.5, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4w3h3"]
+material = SubResource("StandardMaterial3D_wkeym")
+size = Vector3(0.2, 1.5, 0.2)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wf2et"]
+material = SubResource("StandardMaterial3D_wkeym")
+radius = 0.1
+height = 0.4
+radial_segments = 4
+rings = 1
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+
+[node name="LampBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rqfkl")
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.444, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 7.58352e-13, -0.44403, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Support" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 0.855098, -3.73754e-08, -0.688423)
+mesh = SubResource("BoxMesh_3qi8e")
+
+[node name="Cable" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.641)
+mesh = SubResource("BoxMesh_4w3h3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+layers = 3
+light_color = Color(0.984314, 0, 0.0666667, 1)
+light_energy = 6.841
+light_bake_mode = 1
+shadow_enabled = true
+shadow_normal_bias = 2.212
+shadow_transmittance_bias = 8.454
+shadow_blur = 0.39
+distance_fade_enabled = true
+omni_range = 60.0
+omni_attenuation = 0.812252
+
+[node name="LongRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.17939e-08, 1, 4.18544e-16, -2.1, -4.37114e-08, -4.18544e-16, -7.32452e-16, -3.48787e-16, 1.2, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Cableties" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.770977, -3.37005e-08, -0.68594)
+mesh = SubResource("CapsuleMesh_wf2et")
