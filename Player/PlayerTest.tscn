@@ -120,7 +120,6 @@ shape = SubResource("SphereShape3D_u7xq5")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
-visible = false
 layers = 3
 sorting_use_aabb_center = false
 material_overlay = SubResource("StandardMaterial3D_a0527")
