@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=11 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_j3s68"]
-[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="3_vkrly"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="4_hnf06"]
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_kexi1"]
 [ext_resource type="PackedScene" uid="uid://i3q7kyt2yprg" path="res://level_design_objects/Door.tscn" id="6_n8a4u"]
@@ -58,7 +57,6 @@ current = true
 fov = 82.1
 size = 30.0
 near = 0.001
-script = ExtResource("3_vkrly")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D3"]
 transform = Transform3D(1, 0, 0, 0, 0.999982, -0.00607368, 0, 0.00607368, 0.999982, 0, 0, 0)
@@ -158,6 +156,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -65.0082, 17.851, 0)
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 15.545, 13.778, -2.40876)
 
 [node name="Door" parent="Door" instance=ExtResource("6_n8a4u")]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
 
 [node name="MeshInstance3D" parent="Door/Door" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66225, 6, -0.406929)
