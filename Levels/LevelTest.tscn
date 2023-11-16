@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8e6aidugfhc2"]
+[gd_scene load_steps=14 format=3 uid="uid://c8e6aidugfhc2"]
 
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="2_7uenw"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dpj53n3yti1ua" path="res://Pickups/PermaSmall.tscn" id="9_22t10"]
 [ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Pickups/PermaBig.tscn" id="9_yg4ue"]
 [ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Pickups/ScalerateUP.tscn" id="11_a8cvn"]
+[ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
+[ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -31,16 +33,7 @@ inertia = Vector3(3.75, 0, 0)
 freeze_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_xc5vm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.98, 6.127, 0)
-
-[node name="Camera3D2" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 5, 15)
-projection = 1
-current = true
-fov = 157.0
-size = 30.0
-near = 0.001
-script = ExtResource("2_7uenw")
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -39.98, 6.127, 0)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_koge0")]
 
@@ -91,3 +84,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 5.42664, 0)
 
 [node name="SR+4" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 9.09468, 0)
+
+[node name="Musicota" type="Node3D" parent="."]
+
+[node name="UPPER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("12_cm8v7")
+autoplay = true
+max_polyphony = 2
+bus = &"SMALL"
+
+[node name="LOWER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("13_dl0m7")
+autoplay = true
+max_polyphony = 2
+bus = &"BIG"
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, -39.98, 16.127, 30)
+projection = 1
+current = true
+fov = 157.0
+size = 30.0
+near = 0.001
+script = ExtResource("2_7uenw")

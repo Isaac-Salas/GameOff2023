@@ -8,6 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	campos = get_position()
+	position.x = $"../Player".global_position.x
+	position.y = $"../Player".global_position.y+8
+	
 
 		
