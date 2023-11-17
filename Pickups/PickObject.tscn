@@ -29,31 +29,37 @@ func resize():
 	$Pickup/Area3D.scale = $Pickup/Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 
 
-func _on_area_3d_body_entered(body):
-	if body.name == \"Player\":
+func colorchange(value):
+	if value == 1:
 		var new_color = $Pickup/MeshInstance3D.mesh.material
 		new_color.albedo_color = Color(0, 0, 255) 
-		pickup = true
-		player = body
-
-func _on_area_3d_body_exited(body):
-	if body.name == \"Player\":
+	if value == 2:
 		var new_color = $Pickup/MeshInstance3D.mesh.material
 		new_color.albedo_color = Color(255, 0, 0)
-		pickup = false
-		player = body 
+
+
+func _on_area_3d_area_entered(area):
+	if area.name == \"ObjectDetect\":
+		colorchange(1)
+
+
+func _on_area_3d_area_exited(area):
+	if area.name == \"ObjectDetect\":
+		colorchange(2)
+
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcodq"]
+resource_local_to_scene = true
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_30mcy"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_jcodq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_33od2"]
-radius = 3.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2n3i"]
 
 [node name="Pickable" type="Node3D"]
 script = SubResource("GDScript_fibc4")
@@ -72,7 +78,7 @@ shape = SubResource("BoxShape3D_vhp8x")
 [node name="Area3D" type="Area3D" parent="Pickup"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup/Area3D"]
-shape = SubResource("SphereShape3D_33od2")
+shape = SubResource("BoxShape3D_y2n3i")
 
-[connection signal="body_entered" from="Pickup/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Pickup/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="area_entered" from="Pickup/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Pickup/Area3D" to="." method="_on_area_3d_area_exited"]

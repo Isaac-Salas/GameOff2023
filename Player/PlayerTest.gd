@@ -118,17 +118,17 @@ func sizecheck():
 		GlobalVar.CURRENT = "NORMAL"
 	
 
-func  throw():
+func throw():
 	mundotest = get_parent_node_3d()
 	$MeshInstance3D.remove_child(pickinst)
 	pickinst.transform.origin = Vector3(0,2,0)
 	pickinst.resize()
 	if lastSide == "right":		
 		pickinst.get_node("Pickup").linear_velocity = Vector3(20,0,0)
-		pickinst.transform.origin = global_position+Vector3(2,0,0)
+		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 	else:
 		pickinst.get_node("Pickup").linear_velocity = Vector3(-20,0,0)
-		pickinst.transform.origin = global_position+Vector3(-2,0,0)
+		pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
 	pickinst.get_node("Pickup").freeze = false
 	pickinst.get_node("Pickup/CollisionShape3D").disabled = false
 	pickinst.get_node("Pickup/Area3D").monitoring = true
@@ -232,10 +232,10 @@ func release_pickup():
 		pickinst.resize()
 		GlobalVar.objectPicked = false
 		if lastSide == "right":
-			pickinst.transform.origin = global_position+Vector3(2,0,0)
+			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 		else:
-			pickinst.transform.origin = global_position+Vector3(-2,0,0)
-		
+			pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
+
 		mundotest.add_child(pickinst)
 
 
@@ -243,13 +243,13 @@ func release_pickup():
 func _on_object_detect_body_entered(body):
 	if body.name == "Pickup":
 		pickname = body.get_parent_node_3d()
-		print (pickname.name)
-		print("Assin")
+		#print (pickname.name)
+		#print("Assin")
 		pickup = true
 
 func _on_object_detect_body_exited(body):
 	if body.name == "Pickup":
 		pickname = body.get_parent_node_3d()
-		print (pickname.name)
-		print("Assout")
+		#print (pickname.name)
+		#print("Assout")
 		pickup = false

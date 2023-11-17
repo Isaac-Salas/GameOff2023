@@ -106,6 +106,10 @@ near = 0.001
 script = ExtResource("2_7uenw")
 
 [node name="Pickable" parent="." instance=ExtResource("8_tplic")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1165, 2.44469, 0)
+
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
 
 [node name="Pickable2" parent="." instance=ExtResource("8_tplic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67718, 1.74248, 0)
+
+
