@@ -455,10 +455,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00945213, 0, 1.15443)
 [node name="RootNode" type="Node3D" parent="."]
 
 [node name="Armature" type="Node3D" parent="RootNode"]
-transform = Transform3D(-4.37114e-06, 100, 7.61387e-06, 0, -4.37114e-06, 174.185, 100, 4.37114e-06, 3.32813e-13, 0.00704765, 0.0831833, 0.00812137)
+transform = Transform3D(-4.37114e-06, 100, 8.50995e-06, 0, -4.37114e-06, 194.685, 100, 4.37114e-06, 3.71982e-13, 0.00704765, 0.0831833, 0.00812137)
 
 [node name="Sphere" type="MeshInstance3D" parent="RootNode/Armature"]
-transform = Transform3D(1, -3.55271e-15, -2.026e-31, 3.55271e-15, 1, 1.75808e-24, 3.9443e-31, -3.4227e-24, 0.513653, -7.0476e-05, -1.87864e-05, 0.00680843)
+transform = Transform3D(1, -3.55272e-15, -2.026e-31, 3.55272e-15, 1, 1.75808e-24, 3.9443e-31, -3.4227e-24, 0.513653, -7.0476e-05, -1.87864e-05, 0.00680843)
 mesh = SubResource("ArrayMesh_jngt1")
 skeleton = NodePath("")
 
@@ -479,6 +479,7 @@ bones/1/rotation = Quaternion(-2.49158e-23, 9.92617e-24, -7.88861e-31, 1)
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_hnmxe")
 }

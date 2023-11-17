@@ -4,38 +4,36 @@ var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
 var pickinst 
 var mundotest
-var objectPicked = null
+
 var pickup
 var lastSide = "right"
+
+var stateC = snapped(GlobalVar.MaxCap/6, 0.01)
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var itemsize
+@onready var SMALL = AudioServer.get_bus_index("SMALL")
+@onready var BIG = AudioServer.get_bus_index("BIG")
 
 func _input(event):
 	if Input.is_action_just_pressed("Interact"):
-		if objectPicked == true:
+		if GlobalVar.objectPicked == true:
 			release_pickup()
 		else:
 			try_pickup()
 	if Input.is_action_just_pressed("Throw"):
-		if objectPicked == true:
+		if GlobalVar.objectPicked == true:
 			throw()
 
 
 func _physics_process(delta):
+	#print("size: ", GlobalVar.sizefactor, "comparative to:", stateC)
+	sizecheck()
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z = 0
-
 	#Updating the label
 	#print(GlobalVar.sizefactor)
 
-	if GlobalVar.sizefactor<=(GlobalVar.MinCap+GlobalVar.MaxCap)/3: 
-		#print ((GlobalVar.MinCap+GlobalVar.MaxCap)/3)
-		GlobalVar.CURRENT = "SMALL"
-	elif GlobalVar.sizefactor<=(GlobalVar.MaxCap/2)*1.5:
-		GlobalVar.CURRENT = "NORMAL"
-	else:
-		GlobalVar.CURRENT = "BIG"
 
 
 
@@ -76,9 +74,10 @@ func _physics_process(delta):
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
 	# Speed and Jump velocity tweaks when shrinking or getting bigv
-	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < 1:
-		GlobalVar.SPEED = snapped(10 / (0.3 + GlobalVar.sizefactor), 1)
-		GlobalVar.JUMP_VELOCITY =snapped( 20 / (0.3 + GlobalVar.sizefactor),1 )
+	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < GlobalVar.sizestandard:
+		GlobalVar.SPEED = snapped(100 / (2.5 + GlobalVar.sizefactor), 1)
+		GlobalVar.JUMP_VELOCITY =snapped( 200 / (4.5 + GlobalVar.sizefactor),1 )
+		#pr int("Velocidad: ", GlobalVar.SPEED, "Vel. Salto: ",GlobalVar.JUMP_VELOCITY )
 	else:
 		GlobalVar.SPEED = 10
 		GlobalVar.JUMP_VELOCITY = 20
@@ -110,41 +109,40 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func  throw():
+func sizecheck():
+	if GlobalVar.sizefactor < (stateC*3):
+		GlobalVar.CURRENT = "SMALL"
+	elif GlobalVar.sizefactor > (stateC*5):
+		GlobalVar.CURRENT = "BIG"
+	else:
+		GlobalVar.CURRENT = "NORMAL"
+	
+
+func throw():
 	mundotest = get_parent_node_3d()
 	$MeshInstance3D.remove_child(pickinst)
 	pickinst.transform.origin = Vector3(0,2,0)
+	pickinst.resize()
 	if lastSide == "right":		
 		pickinst.get_node("Pickup").linear_velocity = Vector3(20,0,0)
-		pickinst.transform.origin = global_position+Vector3(2,0,0)
+		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 	else:
 		pickinst.get_node("Pickup").linear_velocity = Vector3(-20,0,0)
-		pickinst.transform.origin = global_position+Vector3(-2,0,0)
+		pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
 	pickinst.get_node("Pickup").freeze = false
 	pickinst.get_node("Pickup/CollisionShape3D").disabled = false
 	pickinst.get_node("Pickup/Area3D").monitoring = true
 	pickup = false
-	objectPicked = false
+	GlobalVar.objectPicked = false
 	mundotest.add_child(pickinst)
 	
 	
 
 func grow():
 	if GlobalVar.sizefactor < GlobalVar.MaxCap:
-		get_node("MeshInstance3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
-		get_node("CollisionShape3D").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
-		get_node("ObjectDetect").scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
-		get_node("ColisionperuanaDer2").position.x += GlobalVar.Scalerate
-		get_node("ColisionperuanaIzq").position.x -= GlobalVar.Scalerate
-		get_node("ColisionArriba").position.y += GlobalVar.Scalerate
-		
-		get_node("ColisionperuanaDer2").scale.y += GlobalVar.Scalerate
-		get_node("ColisionperuanaIzq").scale.y += GlobalVar.Scalerate
-		get_node("ColisionArriba").scale.x += GlobalVar.Scalerate
-		
-		get_node("ColisionperuanaDer2").position.y = 0
-		get_node("ColisionperuanaIzq").position.y = 0
-		GlobalVar.sizeM = get_node("CollisionShape3D").scale
+		dyn_music()
+		scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate) 
+		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1)
 		GlobalVar.state = "growing"
 		
@@ -155,27 +153,43 @@ func grow():
 		#GlobalVar.ProgBar += GlobalVar.Scalerate
 
 func shrink():
-	if GlobalVar.sizefactor > GlobalVar.MinCap:
-		get_node("MeshInstance3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
-		get_node("CollisionShape3D").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,0)
-		get_node("ObjectDetect").scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate)
-		get_node("ColisionperuanaDer2").position.x -= GlobalVar.Scalerate
-		get_node("ColisionperuanaIzq").position.x += GlobalVar.Scalerate
-		get_node("ColisionArriba").position.y -= GlobalVar.Scalerate
+	if GlobalVar.sizefactor > GlobalVar.MinCap and GlobalVar.sizefactor > 0 :
 		
-		get_node("ColisionperuanaDer2").scale.y -= GlobalVar.Scalerate
-		get_node("ColisionperuanaIzq").scale.y -= GlobalVar.Scalerate
-		get_node("ColisionArriba").scale.x -= GlobalVar.Scalerate
-		
-		get_node("ColisionperuanaDer2").position.y = 0
-		get_node("ColisionperuanaIzq").position.y = 0
-		GlobalVar.sizeM = get_node("CollisionShape3D").scale
+		dyn_music()
+		scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate) 
+		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1) 
 		GlobalVar.state = "shrinking"
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
 		$GPUParticles3D.emitting = true
+		
+
+func dyn_music():
+	
+	if GlobalVar.CURRENT == "NORMAL":
+		AudioServer.set_bus_volume_db(SMALL,0)
+		AudioServer.set_bus_volume_db(SMALL,0)
+	
+	if GlobalVar.CURRENT == "SMALL":
+		GlobalVar.VolBig -= 0.05
+		AudioServer.set_bus_volume_db(BIG,GlobalVar.VolBig)
+		
+		if AudioServer.get_bus_volume_db(SMALL) < 0:
+			GlobalVar.VolSmall += 0.05
+			AudioServer.set_bus_volume_db(SMALL, GlobalVar.VolSmall)
+		
+	if GlobalVar.CURRENT == "BIG":
+		GlobalVar.VolSmall -= 0.05
+		AudioServer.set_bus_volume_db(SMALL,GlobalVar.VolSmall)
+		
+		if AudioServer.get_bus_volume_db(BIG) < 0:
+			GlobalVar.VolBig += 0.05
+			AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
+					
+	
+
 
 
 func try_pickup():
@@ -189,28 +203,39 @@ func try_pickup():
 		pickinst.get_node("Pickup/CollisionShape3D").disabled = true
 		pickinst.get_node("Pickup/Area3D").monitoring = false
 		pickup = false
-		objectPicked = true
+		GlobalVar.objectPicked = true
 		$MeshInstance3D.add_child(pickinst)
 		get_parent_node_3d().remove_child(pickname)
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
 		
+		var direction_to_object = (pickinst.global_position - global_position).normalized()
+		var distance_to_object = (pickinst.global_position - global_position).length()
+		var desired_distance = 1.6
+		var adjusted_distance = desired_distance * GlobalVar.sizefactor
+		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
 	print("release desde el player")
-	if objectPicked:
+	if GlobalVar.objectPicked:
 		mundotest = get_parent_node_3d()
+		#Itemsize*sizefactor
 		$MeshInstance3D.remove_child(pickinst)
+		pickupinst = preload("res://Pickups/PickObject.tscn")
+		pickinst =  pickupinst.instantiate()
+		#Itemsize*sizefactor
 		pickinst.transform.origin = Vector3(0,2,0)
 		pickinst.get_node("Pickup").freeze = false
 		pickinst.get_node("Pickup/CollisionShape3D").disabled = false
 		pickinst.get_node("Pickup/Area3D").monitoring = true
 		pickup = false
-		objectPicked = false
+		pickinst.resize()
+		GlobalVar.objectPicked = false
 		if lastSide == "right":
-			pickinst.transform.origin = global_position+Vector3(2,0,0)
+			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 		else:
-			pickinst.transform.origin = global_position+Vector3(-2,0,0)
+			pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
+
 		mundotest.add_child(pickinst)
 
 
@@ -218,13 +243,13 @@ func release_pickup():
 func _on_object_detect_body_entered(body):
 	if body.name == "Pickup":
 		pickname = body.get_parent_node_3d()
-		print (pickname.name)
-		print("Assin")
+		#print (pickname.name)
+		#print("Assin")
 		pickup = true
 
 func _on_object_detect_body_exited(body):
 	if body.name == "Pickup":
 		pickname = body.get_parent_node_3d()
-		print (pickname.name)
-		print("Assout")
+		#print (pickname.name)
+		#print("Assout")
 		pickup = false
