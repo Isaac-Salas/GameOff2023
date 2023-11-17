@@ -9,16 +9,19 @@
 radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rhgy"]
-size = Vector3(0.1, 2, 2)
+size = Vector3(0.1, 1.8, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qpuui"]
 size = Vector3(1.9, 0.1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u7xq5"]
-radius = 1.82538
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0527"]
 albedo_color = Color(0, 0.501961, 0.0431373, 1)
+rim_enabled = true
+rim = 0.15
+clearcoat_roughness = 0.13
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a7bid"]
 lifetime_randomness = 1.0
@@ -64,7 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("CapsuleShape3D_b827x")
 
 [node name="ColisionperuanaIzq" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.15, 0)
 collision_layer = 2
 collision_mask = 2
 axis_lock_linear_x = true
@@ -80,7 +83,7 @@ freeze = true
 shape = SubResource("BoxShape3D_2rhgy")
 
 [node name="ColisionperuanaDer2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0.15, 0)
 collision_layer = 2
 collision_mask = 2
 axis_lock_linear_x = true
