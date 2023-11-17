@@ -46,9 +46,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
 [node name="Small" parent="." instance=ExtResource("7_l28wy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
 
-[node name="Pickable" parent="." instance=ExtResource("8_tplic")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1165, 2.44469, 0)
-
 [node name="Pequeños" type="Node3D" parent="."]
 
 [node name="PermaSmall" parent="Pequeños" instance=ExtResource("9_22t10")]
@@ -107,3 +104,8 @@ fov = 157.0
 size = 30.0
 near = 0.001
 script = ExtResource("2_7uenw")
+
+[node name="Pickable" parent="." instance=ExtResource("8_tplic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1165, 2.44469, 0)
+
+[node name="Pickable2" parent="." instance=ExtResource("8_tplic")]

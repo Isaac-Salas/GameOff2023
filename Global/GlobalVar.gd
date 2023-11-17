@@ -2,7 +2,7 @@ extends Node
 
 var VolBig = 0.0
 var VolSmall = 0.0
-
+var objectPicked = null
 var sizeM = Vector3()
 var sizestandard = 2
 var sizefactor = 2
