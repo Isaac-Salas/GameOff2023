@@ -28,6 +28,7 @@ func resize():
 	$Pickup/CollisionShape3D.scale = $Pickup/CollisionShape3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 	$Pickup/Area3D.scale = $Pickup/Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 
+
 func colorchange(value):
 	if value == 1:
 		var new_color = $Pickup/MeshInstance3D.mesh.material

@@ -235,7 +235,7 @@ func release_pickup():
 			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 		else:
 			pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
-		
+
 		mundotest.add_child(pickinst)
 
 
