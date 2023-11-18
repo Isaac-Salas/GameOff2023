@@ -68,6 +68,7 @@ script = SubResource("GDScript_fibc4")
 collision_layer = 3
 collision_mask = 3
 axis_lock_linear_z = true
+linear_velocity = Vector3(10, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pickup"]
 mesh = SubResource("BoxMesh_30mcy")
