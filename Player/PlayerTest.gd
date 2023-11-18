@@ -4,7 +4,8 @@ var pos = get_node(".").position
 var pickupinst = preload("res://Pickups/PickObject.tscn")
 var pickinst 
 var mundotest
-
+var startspeed = GlobalVar.SPEED
+var startjump = GlobalVar.JUMP_VELOCITY
 var pickup
 var lastSide = "right"
 
@@ -79,8 +80,8 @@ func _physics_process(delta):
 		GlobalVar.JUMP_VELOCITY =snapped( 200 / (4.5 + GlobalVar.sizefactor),1 )
 		#pr int("Velocidad: ", GlobalVar.SPEED, "Vel. Salto: ",GlobalVar.JUMP_VELOCITY )
 	else:
-		GlobalVar.SPEED = 10
-		GlobalVar.JUMP_VELOCITY = 20
+		GlobalVar.SPEED = startspeed
+		GlobalVar.JUMP_VELOCITY = startjump
 
 
 
@@ -253,3 +254,8 @@ func _on_object_detect_body_exited(body):
 		#print (pickname.name)
 		#print("Assout")
 		pickup = false
+
+
+func _on_rigid_body_3d_body_entered(body):
+	print(body.name)
+	
