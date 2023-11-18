@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfesb1kbd4d35"]
+[gd_scene load_steps=11 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
 [ext_resource type="PackedScene" uid="uid://n52x7g2txmi3" path="res://Player/PlayerAnim.tscn" id="2_yjpc4"]
@@ -7,12 +7,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b827x"]
 radius = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2rhgy"]
-size = Vector3(0.1, 1.8, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qpuui"]
-size = Vector3(1.9, 0.1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u7xq5"]
 radius = 2.0
@@ -51,6 +45,10 @@ bind/0/name = &""
 bind/0/bone = -1
 bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6xv47"]
+radius = 0.986652
+height = 2.1338
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 axis_lock_linear_z = true
@@ -61,60 +59,10 @@ script = ExtResource("1_20tws")
 mesh = SubResource("PlaceholderMesh_7qnl7")
 
 [node name="Prot-Slime" parent="MeshInstance3D" instance=ExtResource("2_yjpc4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -1.05, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b827x")
-
-[node name="ColisionperuanaIzq" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.15, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionperuanaIzq"]
-shape = SubResource("BoxShape3D_2rhgy")
-
-[node name="ColisionperuanaDer2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0.15, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionperuanaDer2"]
-shape = SubResource("BoxShape3D_2rhgy")
-
-[node name="ColisionArriba" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-linear_velocity = Vector3(0, 8, 0)
-linear_damp = 3.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionArriba"]
-shape = SubResource("BoxShape3D_qpuui")
 
 [node name="ObjectDetect" type="Area3D" parent="."]
 
@@ -140,5 +88,27 @@ draw_skin = SubResource("Skin_3ldfs")
 layers = 3
 radius = 0.997958
 
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+inertia = Vector3(5, 5, 5)
+max_contacts_reported = 3
+contact_monitor = true
+can_sleep = false
+freeze = true
+constant_force = Vector3(1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0721899, 0)
+shape = SubResource("CapsuleShape3D_6xv47")
+
 [connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
 [connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
