@@ -25,7 +25,6 @@ func _input(event):
 		if GlobalVar.objectPicked == true:
 			throw()
 
-
 func _physics_process(delta):
 	#print("size: ", GlobalVar.sizefactor, "comparative to:", stateC)
 	sizecheck()
@@ -33,9 +32,6 @@ func _physics_process(delta):
 	position.z = 0
 	#Updating the label
 	#print(GlobalVar.sizefactor)
-
-
-
 
 	#Peruvian Scaling
 	if Input.is_action_pressed('Item'):
@@ -82,8 +78,6 @@ func _physics_process(delta):
 		GlobalVar.SPEED = startspeed
 		GlobalVar.JUMP_VELOCITY = startjump
 
-
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with ass gameplay actions.
 	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "ui_up", "ui_down")
@@ -113,7 +107,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-
 func sizecheck():
 	if GlobalVar.sizefactor < (stateC*3):
 		GlobalVar.CURRENT = "SMALL"
@@ -121,27 +114,7 @@ func sizecheck():
 		GlobalVar.CURRENT = "BIG"
 	else:
 		GlobalVar.CURRENT = "NORMAL"
-	
 
-func throw():
-	$RigidBody3D/CollisionShape3D.disabled = true
-	mundotest = get_parent_node_3d()
-	$MeshInstance3D.remove_child(pickinst)
-	pickinst.transform.origin = Vector3(0,2,0)
-	pickinst.resize()
-	if lastSide == "right":
-		pickinst.linear_velocity = Vector3(20,0,0)
-		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
-	else:
-		pickinst.linear_velocity = Vector3(-20,0,0)
-		pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
-	pickinst.freeze = false
-	pickinst.get_node("CollisionShape3D").disabled = false
-	pickinst.get_node("Area3D").monitoring = true
-	GlobalVar.objectPicked = false
-	mundotest.add_child(pickinst)
-	
-	
 
 func grow():
 	if GlobalVar.sizefactor < GlobalVar.MaxCap:
@@ -169,7 +142,6 @@ func shrink():
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
 		$GPUParticles3D.emitting = true
-		
 
 func dyn_music():
 	
@@ -192,15 +164,11 @@ func dyn_music():
 		if AudioServer.get_bus_volume_db(BIG) < 0:
 			GlobalVar.VolBig += 0.05
 			AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
-					
-	
-
-
 
 func try_pickup():
 	$RigidBody3D/CollisionShape3D.disabled = true
 	if pickedobject.size() > 0:
-		pickupinst = load(GlobalVar.pickedpath)
+		pickupinst = load(String(pickedobject[0].scene_file_path))
 		pickinst =  pickupinst.instantiate()
 		print("espacio del jugador" + str(pos))
 		print("Espacio del objeto" + str(pickinst.transform.origin))
@@ -241,11 +209,26 @@ func release_pickup():
 			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 		else:
 			pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
-
 		mundotest.add_child(pickinst)
 
+func throw():
+	$RigidBody3D/CollisionShape3D.disabled = true
+	mundotest = get_parent_node_3d()
+	$MeshInstance3D.remove_child(pickinst)
+	pickinst.transform.origin = Vector3(0,2,0)
+	pickinst.resize()
+	if lastSide == "right":
+		pickinst.linear_velocity = Vector3(20,0,0)
+		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
+	else:
+		pickinst.linear_velocity = Vector3(-20,0,0)
+		pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
+	pickinst.freeze = false
+	pickinst.get_node("CollisionShape3D").disabled = false
+	pickinst.get_node("Area3D").monitoring = true
+	GlobalVar.objectPicked = false
+	mundotest.add_child(pickinst)
 
-var inside_count = 0
 func _on_object_detect_body_entered(body):
 	pickedobject.push_front(body)
 
@@ -253,7 +236,5 @@ func _on_object_detect_body_exited(body):
 	body.get_child(1).hide()
 	pickedobject.erase(body)
 
-
 func _on_rigid_body_3d_body_entered(body):
 	print(body.name)
-	
