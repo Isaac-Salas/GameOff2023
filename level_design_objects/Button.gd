@@ -9,7 +9,7 @@ func _ready():
 func _on_button_hitbox_body_entered(body):
 	if body.name != "ButCol":
 		n_inside += 1
-		if  not state:	
+		if  not state:
 			state = true
 			emit_signal("pressed", state, body)
 			anim.play("Pressed Down")
