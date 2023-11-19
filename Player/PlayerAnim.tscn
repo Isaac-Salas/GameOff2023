@@ -6,6 +6,15 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.291669, 0.853623, 0.277235, 1)
 metallic = 0.4
 roughness = 0.272166
+emission = Color(0, 0.952941, 0, 1)
+emission_energy_multiplier = 1.5
+emission_operator = 1
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.75
+subsurf_scatter_transmittance_enabled = true
+subsurf_scatter_transmittance_depth = 3.25
+subsurf_scatter_transmittance_boost = 0.25
+refraction_scale = 0.79
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cb5u"]
 resource_name = "Material.002"
