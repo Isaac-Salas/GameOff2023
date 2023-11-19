@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfesb1kbd4d35"]
+
+[ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
+[ext_resource type="PackedScene" uid="uid://n52x7g2txmi3" path="res://Player/PlayerAnim.tscn" id="2_yjpc4"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b827x"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u7xq5"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0527"]
+albedo_color = Color(0, 0.501961, 0.0431373, 1)
+rim_enabled = true
+rim = 0.15
+clearcoat_roughness = 0.13
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a7bid"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1.5)
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -10, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.5
+color = Color(0, 0.713726, 0.192157, 1)
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 0.2
+sub_emitter_keep_velocity = true
+collision_mode = 1
+collision_friction = 0.1
+collision_bounce = 0.28
+collision_use_scale = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_a1oa1"]
+
+[sub_resource type="Skin" id="Skin_3ldfs"]
+bind_count = 1
+bind/0/name = &""
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6xv47"]
+radius = 0.986652
+height = 2.1338
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+axis_lock_linear_z = true
+axis_lock_angular_z = true
+script = ExtResource("1_20tws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaceholderMesh_7qnl7")
+
+[node name="Prot-Slime" parent="MeshInstance3D" instance=ExtResource("2_yjpc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -1.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b827x")
+
+[node name="ObjectDetect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectDetect"]
+shape = SubResource("SphereShape3D_u7xq5")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
+layers = 3
+sorting_use_aabb_center = false
+material_overlay = SubResource("StandardMaterial3D_a0527")
+amount = 40
+sub_emitter = NodePath(".")
+lifetime = 3.0
+fixed_fps = 60
+collision_base_size = 0.5
+visibility_aabb = AABB(-77.6112, -20.6767, -25.9344, 155.222, 41.3534, 51.8688)
+process_material = SubResource("ParticleProcessMaterial_a7bid")
+draw_pass_1 = SubResource("TubeTrailMesh_a1oa1")
+draw_skin = SubResource("Skin_3ldfs")
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+layers = 3
+radius = 0.997958
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+inertia = Vector3(5, 5, 5)
+max_contacts_reported = 3
+contact_monitor = true
+can_sleep = false
+freeze = true
+constant_force = Vector3(1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0721899, 0)
+shape = SubResource("CapsuleShape3D_6xv47")
+
+[connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
+[connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

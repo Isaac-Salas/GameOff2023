@@ -1,7 +1,7 @@
 extends CharacterBody3D
 var pickedobject = []
 var pos = get_node(".").position
-var pickupinst = preload("res://Pickups/PickObject.tscn")
+var pickupinst
 var pickinst 
 var mundotest
 var startspeed = GlobalVar.SPEED
@@ -93,8 +93,10 @@ func _physics_process(delta):
 	if direction:
 		if direction.x > 0: 
 			lastSide = "right" 
+			GlobalVar.direction = "right" 
 		else: 
 			lastSide = "left"
+			GlobalVar.direction = "left" 
 	#-------------------------------------------------------------------------------------------------------
 	#Perfect example of peruvian solutions c:
 	if direction:
@@ -222,7 +224,7 @@ func release_pickup():
 		mundotest = get_parent_node_3d()
 		#Itemsize*sizefactor
 		$MeshInstance3D.remove_child(pickinst)
-		pickupinst = preload("res://Pickups/PickObject.tscn")
+		#pickupinst = load(GlobalVar.pickedpath)
 		pickinst =  pickupinst.instantiate()
 		#Itemsize*sizefactor
 		pickinst.transform.origin = Vector3(0,2,0)
