@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx46mlukul3fs"]
 
-[ext_resource type="Script" path="res://Pickups/PickObject.gd" id="1_u35hg"]
+[ext_resource type="Script" path="res://Items(Grabbable)/PickObject.gd" id="1_u35hg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nagn"]
 resource_local_to_scene = true

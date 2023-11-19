@@ -1,7 +1,7 @@
 extends CharacterBody3D
 var pickedobject = []
 var pos = get_node(".").position
-var pickupinst
+var pickupinst = preload("res://Items(Grabbable)/PickObject.tscn")
 var pickinst 
 var mundotest
 var startspeed = GlobalVar.SPEED
