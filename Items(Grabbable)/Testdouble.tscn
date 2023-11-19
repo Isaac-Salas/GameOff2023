@@ -2,20 +2,6 @@
 
 [sub_resource type="GDScript" id="GDScript_1eluv"]
 script/source = "extends Node3D
-var pickup = false
-
-var player = null
-var root
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _input(event):
-	if Input.is_action_just_pressed(\"Interact\") and pickup == true:
-		GlobalVar.pickedpath = String(scene_file_path)
-		
-	if Input.is_key_pressed(KEY_V) and pickup == false:
-		#queue_free()
-		#transform.origin = get_node(\"Player\").transform.origin + Vector3(0,-2,-2)
-		print(\"release desde el objeto\")
 
 func resize():
 #	$.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
@@ -23,38 +9,6 @@ func resize():
 	$MeshInstance3D.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
 	$CollisionShape3D.scale = $CollisionShape3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 	$Area3D.scale = $Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
-
-
-#func colorchange(value):
-#	if value == 1:
-#		var new_color = $MeshInstance3D.mesh.material
-#		#new_color.albedo_color = Color(0, 0, 255)
-		#$Outline.show()
-#	if value == 2:
-#		var new_color = $MeshInstance3D.mesh.material
-#		#new_color.albedo_color = Color(255, 0, 0)
-#		$Outline.hide()
-
-func toggle_outline():
-	if visible:
-		$Outline.hide()
-	else:
-		$Outline.show()
-		
-func _on_area_3d_area_entered(area):
-	pickup = true
-	toggle_outline()
-#	if area.name == 'ObjectDetect':
-#		$Outline.show()
-	pass	
-
-
-func _on_area_3d_area_exited(area):
-	pickup = false
-	toggle_outline()
-#	if area.name == 'ObjectDetect':
-#		$Outline.hide()
-	pass
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nagn"]
@@ -108,6 +62,3 @@ collision_mask = 4
 shape = SubResource("BoxShape3D_y2n3i")
 
 [node name="Pickable" type="Node3D" parent="."]
-
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
