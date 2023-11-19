@@ -1,5 +1,7 @@
 extends Node 
 
+var pickedpath = ""
+var direction 
 var VolBig = 0.0
 var VolSmall = 0.0
 var objectPicked = null
