@@ -4,7 +4,7 @@ var pickedpath = ""
 var direction 
 var VolBig = 0.0
 var VolSmall = 0.0
-var objectPicked = null
+var objectPicked = false
 var sizeM = Vector3()
 var sizestandard = 2
 var sizefactor = 2

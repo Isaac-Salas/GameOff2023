@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ba2o75pcxd4fo"]
+[gd_scene load_steps=17 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_ygb08"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="12_jnya8"]
 [ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="13_rwrtm"]
 [ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="14_lnitm"]
-[ext_resource type="PackedScene" uid="uid://c2g1afqcfss4k" path="res://Items(Grabbable)/Asstest.tscn" id="15_a1r8h"]
+[ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="15_a1r8h"]
 
 [sub_resource type="Environment" id="Environment_a0845"]
 background_mode = 1

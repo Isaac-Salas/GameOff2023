@@ -1,7 +1,7 @@
 extends CharacterBody3D
 var pickedobject = []
 var pos = get_node(".").position
-var pickupinst = preload("res://Items(Grabbable)/PickObject.tscn")
+var pickupinst
 var pickinst 
 var mundotest
 var startspeed = GlobalVar.SPEED
@@ -124,11 +124,12 @@ func sizecheck():
 	
 
 func throw():
+	$RigidBody3D/CollisionShape3D.disabled = true
 	mundotest = get_parent_node_3d()
 	$MeshInstance3D.remove_child(pickinst)
 	pickinst.transform.origin = Vector3(0,2,0)
 	pickinst.resize()
-	if lastSide == "right":		
+	if lastSide == "right":
 		pickinst.linear_velocity = Vector3(20,0,0)
 		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
 	else:
@@ -197,7 +198,9 @@ func dyn_music():
 
 
 func try_pickup():
+	$RigidBody3D/CollisionShape3D.disabled = true
 	if pickedobject.size() > 0:
+		pickupinst = load(GlobalVar.pickedpath)
 		pickinst =  pickupinst.instantiate()
 		print("espacio del jugador" + str(pos))
 		print("Espacio del objeto" + str(pickinst.transform.origin))
@@ -219,6 +222,7 @@ func try_pickup():
 		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
+	$RigidBody3D/CollisionShape3D.disabled = false
 	print("release desde el player")
 	if GlobalVar.objectPicked:
 		mundotest = get_parent_node_3d()
