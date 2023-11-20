@@ -166,7 +166,7 @@ func dyn_music():
 			AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
 
 func try_pickup():
-	$RigidBody3D/CollisionShape3D.disabled = true
+	#$RigidBody3D/CollisionShape3D.disabled = true
 	if pickedobject.size() > 0:
 		pickupinst = load(String(pickedobject[0].scene_file_path))
 		pickinst =  pickupinst.instantiate()
@@ -190,7 +190,7 @@ func try_pickup():
 		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
-	$RigidBody3D/CollisionShape3D.disabled = false
+	#$RigidBody3D/CollisionShape3D.disabled = false
 	print("release desde el player")
 	if GlobalVar.objectPicked:
 		mundotest = get_parent_node_3d()
@@ -212,7 +212,7 @@ func release_pickup():
 		mundotest.add_child(pickinst)
 
 func throw():
-	$RigidBody3D/CollisionShape3D.disabled = true
+	#$RigidBody3D/CollisionShape3D.disabled = true
 	mundotest = get_parent_node_3d()
 	$MeshInstance3D.remove_child(pickinst)
 	pickinst.transform.origin = Vector3(0,2,0)

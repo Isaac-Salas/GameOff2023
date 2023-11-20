@@ -34,9 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6161, 8.56582, 0)
 inertia = Vector3(3.75, 0, 0)
 freeze_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("2_xc5vm")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -39.98, 6.127, 0)
-
 [node name="CanvasLayer" parent="." instance=ExtResource("6_koge0")]
 
 [node name="Floor" parent="." instance=ExtResource("7_evqv3")]
@@ -134,3 +131,6 @@ environment = SubResource("Environment_a0845")
 
 [node name="Pickup" parent="." instance=ExtResource("15_go5ma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_xc5vm")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -42.3737, 6.443, 0)
