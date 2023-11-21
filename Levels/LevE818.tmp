@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8e6aidugfhc2"]
+[gd_scene load_steps=16 format=3 uid="uid://c8e6aidugfhc2"]
 
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="2_7uenw"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
@@ -7,14 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Power-Ups/Bigone.tscn" id="6_yptst"]
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="7_evqv3"]
 [ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Power-Ups/Smallone.tscn" id="7_l28wy"]
-[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="8_tplic"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Power-Ups/PickObject.tscn" id="8_tplic"]
 [ext_resource type="PackedScene" uid="uid://dpj53n3yti1ua" path="res://Power-Ups/PermaSmall.tscn" id="9_22t10"]
 [ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Power-Ups/PermaBig.tscn" id="9_yg4ue"]
 [ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Power-Ups/ScalerateUP.tscn" id="11_a8cvn"]
 [ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
 [ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
 [ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="14_mxkbp"]
-[ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="15_go5ma"]
 
 [sub_resource type="Environment" id="Environment_a0845"]
 background_mode = 1
@@ -131,6 +130,3 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -32.07
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a0845")
-
-[node name="Pickup" parent="." instance=ExtResource("15_go5ma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
