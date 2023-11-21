@@ -7,7 +7,9 @@ var mundotest
 
 var pickup
 var lastSide = "right"
-
+@onready var corner_direction = $Check_Corner
+@onready var wall_cast = $Check_Corner/RayCast3D_wall
+@onready var floor_cast = $Check_Corner/RayCast3D_floor
 var stateC = snapped(GlobalVar.MaxCap/6, 0.01)
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -31,11 +33,6 @@ func _physics_process(delta):
 	sizecheck()
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
 	position.z = 0
-	#Updating the label
-	#print(GlobalVar.sizefactor)
-
-
-
 
 	#Peruvian Scaling
 	if Input.is_action_pressed('Item'):
@@ -54,7 +51,6 @@ func _physics_process(delta):
 		GlobalVar.state = "static"
 		$GPUParticles3D.emitting = false
 	
-	
 	if Input.is_action_pressed('Shrink'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		shrink()
@@ -62,17 +58,27 @@ func _physics_process(delta):
 	if Input.is_action_pressed('Grow'):
 		#print(GlobalVar.CURRENT, GlobalVar.sizefactor)
 		grow()
-		
-	# Add the gravity.
-	if not is_on_floor():                     
-		velocity.y -= (gravity*4) * delta
+	
+	#Add the gravity
+	if not is_on_floor():
+		if velocity.y <= 0:
+			floor_cast.enabled = true
+			wall_cast.enabled = true
+		if near_ledge() and touching_wall():
+			velocity.y = 0
+			velocity.x = 0
+		elif velocity.y < 100:
+			velocity.y -= (gravity*4) * delta
+	else:
+		floor_cast.enabled = false
+		wall_cast.enabled = false
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and (is_on_floor() or (near_ledge() and touching_wall())):
 		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 		jumpanim.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
-	
+
 	# Speed and Jump velocity tweaks when shrinking or getting bigv
 	if not GlobalVar.CURRENT == "NORMAL" and GlobalVar.sizefactor < GlobalVar.sizestandard:
 		GlobalVar.SPEED = snapped(100 / (2.5 + GlobalVar.sizefactor), 1)
@@ -81,20 +87,19 @@ func _physics_process(delta):
 	else:
 		GlobalVar.SPEED = 10
 		GlobalVar.JUMP_VELOCITY = 20
-
-
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with ass gameplay actions.
 	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, input_dir.y,0)).normalized()
-	
-	
+		
 	if direction:
 		if direction.x > 0: 
+			corner_direction.scale.x = 1
 			lastSide = "right" 
-		else: 
+		else:
+			corner_direction.scale.x = -1
 			lastSide = "left"
+			
 	#-------------------------------------------------------------------------------------------------------
 	#Perfect example of peruvian solutions c:
 	if direction:
@@ -108,7 +113,12 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func near_ledge():
+	return floor_cast.is_colliding()
 
+func touching_wall():
+	return wall_cast.is_colliding()
+		
 func sizecheck():
 	if GlobalVar.sizefactor < (stateC*3):
 		GlobalVar.CURRENT = "SMALL"

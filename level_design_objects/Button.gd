@@ -7,7 +7,7 @@ func _ready():
 	anim.play("Pressed Up")
 	
 func _on_button_hitbox_body_entered(body):
-	if body.name != "ButCol":
+	if body.name != "ButtonHitbox" and body.name != 'BaseHitbox':
 		n_inside += 1
 		if  not state:	
 			state = true
@@ -15,7 +15,7 @@ func _on_button_hitbox_body_entered(body):
 			anim.play("Pressed Down")
 			
 func _on_button_hitbox_body_exited(body):
-	if body.name != "ButCol":
+	if body.name != "ButtonHitbox" and body.name != 'BaseHitbox':
 		n_inside -= 1
 		if state and n_inside == 0:	
 			state = false

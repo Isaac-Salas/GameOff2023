@@ -126,6 +126,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
 layers = 3
 sorting_use_aabb_center = false
 material_overlay = SubResource("StandardMaterial3D_a0527")
+emitting = false
 amount = 40
 sub_emitter = NodePath(".")
 lifetime = 3.0
@@ -139,6 +140,18 @@ draw_skin = SubResource("Skin_3ldfs")
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
 layers = 3
 radius = 0.997958
+
+[node name="Check_Corner" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RayCast3D_floor" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06969, 1.10539, 0.000232697)
+enabled = false
+
+[node name="RayCast3D_wall" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894642, 0.680496, 0)
+enabled = false
+target_position = Vector3(1, 0, 0)
 
 [connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
 [connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
