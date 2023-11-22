@@ -1,6 +1,5 @@
 [gd_scene load_steps=17 format=3 uid="uid://c8e6aidugfhc2"]
 
-[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="2_7uenw"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="3_vqgsn"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="6_koge0"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dpj53n3yti1ua" path="res://Power-Ups/PermaSmall.tscn" id="9_22t10"]
 [ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Power-Ups/PermaBig.tscn" id="9_yg4ue"]
 [ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Power-Ups/ScalerateUP.tscn" id="11_a8cvn"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="11_jls5r"]
 [ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
 [ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
 [ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="14_mxkbp"]
@@ -95,24 +95,12 @@ autoplay = true
 max_polyphony = 2
 bus = &"BIG"
 
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(0.996195, 0.0106216, -0.0865061, 0, 0.992546, 0.121869, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 30)
-projection = 1
-current = true
-fov = 157.0
-size = 30.0
-near = 0.001
-script = ExtResource("2_7uenw")
+[node name="Camera3D2" parent="." instance=ExtResource("11_jls5r")]
+transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 24.9603)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D2"]
-transform = Transform3D(0.996195, -0.0392776, 0.0778035, 0.0106216, 0.940755, 0.338922, -0.086506, -0.336806, 0.937592, -1.48866, -2.57879, -17.4599)
-light_color = Color(0.490196, 0.960784, 0.388235, 1)
-light_energy = 16.0
-light_indirect_energy = 2.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_blur = 10.0
-spot_range = 20.0
+[node name="SpotLight3D" parent="Camera3D2" index="0"]
+transform = Transform3D(1, -9.31323e-10, 7.45058e-09, 9.31323e-10, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+spot_range = 30.0
 
 [node name="Pickable" parent="." instance=ExtResource("8_tplic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
@@ -134,3 +122,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_xc5vm")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -42.3737, 6.443, 0)
+
+[editable path="Camera3D2"]

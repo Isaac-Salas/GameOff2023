@@ -67,6 +67,8 @@ func _process(delta):
 "
 
 [node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_right = 280.0
@@ -87,7 +89,7 @@ script = SubResource("GDScript_sg4ql")
 [node name="TextEdit" type="TextEdit" parent="."]
 offset_left = 10.0
 offset_top = 41.0
-offset_right = 130.0
+offset_right = 144.0
 offset_bottom = 83.0
 text = "Si"
 script = SubResource("GDScript_fnnm4")
