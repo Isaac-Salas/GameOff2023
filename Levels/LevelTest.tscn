@@ -37,7 +37,7 @@ freeze_mode = 1
 [node name="CanvasLayer" parent="." instance=ExtResource("6_koge0")]
 
 [node name="Floor" parent="." instance=ExtResource("7_evqv3")]
-transform = Transform3D(400, 0, 0, 0, 2, 0, 0, 0, 40, 0, 0, 0)
+transform = Transform3D(400, 0, 0, 0, 4.006, 0, 0, 0, 100, 0, -3.82546, 0)
 
 [node name="Big" parent="." instance=ExtResource("6_yptst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
@@ -109,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67718, 1.74248, 0)
 
 [node name="Pickable3" parent="." instance=ExtResource("8_tplic")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.8146, 11.8126, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.521, 13.0167, 0)
 
 [node name="Breakable" parent="." instance=ExtResource("14_mxkbp")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -32.075, 8.519, 0)
