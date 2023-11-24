@@ -105,6 +105,7 @@ max_contacts_reported = 3
 contact_monitor = true
 can_sleep = false
 freeze = true
+linear_velocity = Vector3(0, 8, 0)
 constant_force = Vector3(1, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]

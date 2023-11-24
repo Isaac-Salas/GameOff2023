@@ -31,7 +31,7 @@ freeze_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7286, 17.2697, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.137469)
+transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 0.137469)
 light_color = Color(0, 1, 0, 1)
 light_energy = 3.18
 light_size = 2.0
@@ -40,6 +40,13 @@ light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 0.05
 omni_range = 31.747
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.41785)
+light_energy = 2.0
+light_indirect_energy = 0.0
+light_size = 1.0
+light_specular = 0.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_hnf06")]
 
@@ -55,7 +62,7 @@ transform = Transform3D(204, 0, 0, 0, 4, 0, 0, 0, 10, 2.08165e-12, 50, 2.08165e-
 transform = Transform3D(4, 0, 0, 0, 50, 0, 0, 0, 10, 100, 25, 2.08165e-12)
 
 [node name="Background" parent="Terrain" instance=ExtResource("5_kexi1")]
-transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, 0, 25, -6)
+transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, -2.13084, 22.7261, -6.06567)
 
 [node name="Foreground" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, 0, 25, 6)

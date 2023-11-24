@@ -21,8 +21,8 @@ GlobalVar="*res://Global/GlobalVar.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=480
+window/size/viewport_height=270
 window/size/mode=2
 window/size/initial_position_type=0
 window/stretch/mode="viewport"
@@ -79,3 +79,9 @@ Item={
 [physics]
 
 3d/physics_engine="GodotPhysics3D"
+
+[rendering]
+
+occlusion_culling/bvh_build_quality=1
+textures/canvas_textures/default_texture_filter=0
+driver/threads/thread_model=2
