@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqequc68kck03"]
+
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_kitbp"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_uynqd"]
+[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="3_x6fmb"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="4_6arpd"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_5b3l6"]
+[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Pickups/Bigone.tscn" id="6_lkq63"]
+[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Pickups/Smallone.tscn" id="7_njq5f"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Pickups/PickObject.tscn" id="8_fyf8q"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.988756, 0.145525, 0.0344005, 0, -0.23005, 0.973179, 0.149535, 0.962237, 0.227463, 0, 7.68146, 5.66573)
+shadow_enabled = true
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("1_kitbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3601, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_kitbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9063, 12.5496, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_uynqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.98, 6.127, 0)
+
+[node name="Camera3D2" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 5, 15)
+projection = 1
+current = true
+fov = 157.0
+size = 30.0
+near = 0.001
+script = ExtResource("3_x6fmb")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_6arpd")]
+
+[node name="Node3D" parent="." instance=ExtResource("5_5b3l6")]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="Node3D2" parent="." instance=ExtResource("6_lkq63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
+
+[node name="Node3D3" parent="." instance=ExtResource("7_njq5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
+
+[node name="Pickable" parent="." instance=ExtResource("8_fyf8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1165, 2.44469, 0)
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Terrain" parent="Terrain" instance=ExtResource("5_5b3l6")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -90, 3, 0)
+
+[node name="Terrain2" parent="Terrain" instance=ExtResource("5_5b3l6")]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 20, -100, 8, 0)
+
+[node name="Terrain3" parent="Terrain" instance=ExtResource("5_5b3l6")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, 0, 3, 0)
+
+[node name="Terrain4" parent="Terrain" instance=ExtResource("5_5b3l6")]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 20, 0, 8, 0)
