@@ -8,6 +8,10 @@ var startspeed = GlobalVar.SPEED
 var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
 
+@onready var corner_direction = $Check_Corner
+@onready var wall_cast = $Check_Corner/RayCast3D_wall
+@onready var floor_cast = $Check_Corner/RayCast3D_floor
+
 var stateC = snapped(GlobalVar.MaxCap/6, 0.01)
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -60,11 +64,21 @@ func _physics_process(delta):
 		grow()
 		
 	# Add the gravity.
-	if not is_on_floor():                     
-		velocity.y -= (gravity*4) * delta
+	if not is_on_floor():
+		if velocity.y <= 0:
+			floor_cast.enabled = true
+			wall_cast.enabled = true
+		if near_ledge() and touching_wall():
+			velocity.y = 0
+			velocity.x = 0
+		elif velocity.y < 100:
+			velocity.y -= (gravity*4) * delta
+	else:
+		floor_cast.enabled = false
+		wall_cast.enabled = false
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and (is_on_floor() or (near_ledge() and touching_wall())):
 		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 		jumpanim.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
@@ -87,10 +101,12 @@ func _physics_process(delta):
 	if direction:
 		if direction.x > 0: 
 			lastSide = "right" 
-			GlobalVar.direction = "right" 
+			GlobalVar.direction = "right"
+			corner_direction.scale.x = 1
 		else: 
 			lastSide = "left"
-			GlobalVar.direction = "left" 
+			GlobalVar.direction = "left"
+			corner_direction.scale.x = -1
 	#-------------------------------------------------------------------------------------------------------
 	#Perfect example of peruvian solutions c:
 	if direction:
@@ -143,6 +159,12 @@ func shrink():
 		$GPUParticles3D.process_material.set_collision_mode(1)
 		$GPUParticles3D.emitting = true
 
+func near_ledge():
+	return floor_cast.is_colliding()
+
+func touching_wall():
+	return wall_cast.is_colliding()
+
 func dyn_music():
 	
 	if GlobalVar.CURRENT == "NORMAL":
@@ -166,7 +188,6 @@ func dyn_music():
 			AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
 
 func try_pickup():
-	#$RigidBody3D/CollisionShape3D.disabled = true
 	if pickedobject.size() > 0:
 		pickupinst = load(String(pickedobject[0].scene_file_path))
 		pickinst =  pickupinst.instantiate()
@@ -190,7 +211,6 @@ func try_pickup():
 		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
-	#$RigidBody3D/CollisionShape3D.disabled = false
 	print("release desde el player")
 	if GlobalVar.objectPicked:
 		mundotest = get_parent_node_3d()
@@ -212,7 +232,6 @@ func release_pickup():
 		mundotest.add_child(pickinst)
 
 func throw():
-	#$RigidBody3D/CollisionShape3D.disabled = true
 	mundotest = get_parent_node_3d()
 	$MeshInstance3D.remove_child(pickinst)
 	pickinst.transform.origin = Vector3(0,2,0)

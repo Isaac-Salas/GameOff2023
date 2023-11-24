@@ -66,7 +66,6 @@ transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, -2.13084, 22.7261, -6.0656
 
 [node name="Foreground" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 2, 0, 25, 6)
-visible = false
 
 [node name="MeshInstance3D" parent="Terrain/Foreground/StaticBody3D" index="1"]
 visible = false

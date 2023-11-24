@@ -105,11 +105,24 @@ max_contacts_reported = 3
 contact_monitor = true
 can_sleep = false
 freeze = true
+linear_velocity = Vector3(0, 8, 0)
 constant_force = Vector3(1, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0721899, 0)
 shape = SubResource("CapsuleShape3D_6xv47")
+
+[node name="Check_Corner" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RayCast3D_floor" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06969, 1.10539, 0.000232697)
+enabled = false
+
+[node name="RayCast3D_wall" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894642, 0.680496, 0)
+enabled = false
+target_position = Vector3(1, 0, 0)
 
 [connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
 [connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
