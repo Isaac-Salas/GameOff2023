@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="11_jls5r"]
 [ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
 [ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
-[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="14_mxkbp"]
+[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken-Wall.tscn" id="14_mxkbp"]
 [ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="15_go5ma"]
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -97,6 +97,7 @@ bus = &"BIG"
 
 [node name="Camera3D2" parent="." instance=ExtResource("11_jls5r")]
 transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 24.9603)
+size = 50.0
 
 [node name="SpotLight3D" parent="Camera3D2" index="0"]
 transform = Transform3D(1, -9.31323e-10, 7.45058e-09, 9.31323e-10, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)

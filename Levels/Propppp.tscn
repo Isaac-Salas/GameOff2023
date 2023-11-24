@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ksq2r4vkbwh"]
+[gd_scene load_steps=16 format=3 uid="uid://ksq2r4vkbwh"]
 
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_pjb16"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="2_xrrod"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="11_jot3g"]
 [ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="12_la2n1"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="13_mkpb1"]
-[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="13_xp306"]
+[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken-Wall.tscn" id="13_xp306"]
+[ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="14_l8dj2"]
 [ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="14_umy1e"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="15_cgq6g"]
 
@@ -87,5 +88,8 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -42.3737, 6.443, 0)
 
 [node name="Matraz Var-1" parent="." instance=ExtResource("13_mkpb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5733, 12.1443, 0)
+
+[node name="Cajita" parent="." instance=ExtResource("14_l8dj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0782, 11.0461, 0)
 
 [editable path="Camera3D2"]
