@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkkcm61r271qe"]
+
+[resource]
+resource_local_to_scene = true
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.658824, 0.117647, 1)
+grow_amount = 3.33067e-16

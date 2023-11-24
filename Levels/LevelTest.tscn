@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8e6aidugfhc2"]
+[gd_scene load_steps=17 format=3 uid="uid://1nyqqnws6rgq"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="3_vqgsn"]

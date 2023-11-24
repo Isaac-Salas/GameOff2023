@@ -7,6 +7,7 @@ var mundotest
 var startspeed = GlobalVar.SPEED
 var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
+@onready var Animate = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 
 @onready var corner_direction = $Check_Corner
 @onready var wall_cast = $Check_Corner/RayCast3D_wall
@@ -79,8 +80,7 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("Jump") and (is_on_floor() or (near_ledge() and touching_wall())):
-		var jumpanim = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
-		jumpanim.play("Armature|Jump Animation")
+		Animate.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
 	# Speed and Jump velocity tweaks when shrinking or getting bigv
@@ -99,6 +99,9 @@ func _physics_process(delta):
 	
 	
 	if direction:
+		velocity.x = direction.x * (GlobalVar.SPEED)
+		velocity.z = 0
+		
 		if direction.x > 0: 
 			lastSide = "right" 
 			GlobalVar.direction = "right"
@@ -108,13 +111,11 @@ func _physics_process(delta):
 			GlobalVar.direction = "left"
 			corner_direction.scale.x = -1
 	#-------------------------------------------------------------------------------------------------------
-	#Perfect example of peruvian solutions c:
-	if direction:
-		velocity.x = direction.x * (GlobalVar.SPEED)
-		velocity.z = 0
+
 	else:
 		velocity.x = move_toward(velocity.x, 0, (GlobalVar.SPEED))
 		velocity.z = 0
+		
 		
 	if pickedobject.size() > 0:
 		pickedobject[0].get_child(1).show()
