@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://vmorumv4db5f"]
+
+[ext_resource type="Texture2D" uid="uid://bddnwchdhvntm" path="res://icon.svg" id="1_djsos"]
+
+[sub_resource type="GDScript" id="GDScript_cqgcv"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_area_3d_body_entered(body):
+	if body.name == \"Player\":
+		GlobalVar.pick = \"UP\"
+		queue_free()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cd48p"]
+
+[sub_resource type="GDScript" id="GDScript_uim6x"]
+script/source = "extends Node3D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	rotate_y(deg_to_rad(15))
+
+
+"
+
+[node name="Big" type="Node3D"]
+script = SubResource("GDScript_cqgcv")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cd48p")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+modulate = Color(1, 0.109804, 0.180392, 1)
+texture = ExtResource("1_djsos")
+script = SubResource("GDScript_uim6x")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

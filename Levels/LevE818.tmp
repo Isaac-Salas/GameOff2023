@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8e6aidugfhc2"]
+
+[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="2_7uenw"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="3_vqgsn"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="6_koge0"]
+[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Power-Ups/Bigone.tscn" id="6_yptst"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="7_evqv3"]
+[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Power-Ups/Smallone.tscn" id="7_l28wy"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Power-Ups/PickObject.tscn" id="8_tplic"]
+[ext_resource type="PackedScene" uid="uid://dpj53n3yti1ua" path="res://Power-Ups/PermaSmall.tscn" id="9_22t10"]
+[ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Power-Ups/PermaBig.tscn" id="9_yg4ue"]
+[ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Power-Ups/ScalerateUP.tscn" id="11_a8cvn"]
+[ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
+[ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
+[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken.tscn" id="14_mxkbp"]
+
+[sub_resource type="Environment" id="Environment_a0845"]
+background_mode = 1
+background_color = Color(0.054902, 0, 0.164706, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("3_vqgsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0332, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("3_vqgsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6161, 8.56582, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_xc5vm")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -39.98, 6.127, 0)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_koge0")]
+
+[node name="Floor" parent="." instance=ExtResource("7_evqv3")]
+transform = Transform3D(400, 0, 0, 0, 2, 0, 0, 0, 40, 0, 0, 0)
+
+[node name="Big" parent="." instance=ExtResource("6_yptst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
+
+[node name="Small" parent="." instance=ExtResource("7_l28wy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
+
+[node name="Pequeños" type="Node3D" parent="."]
+
+[node name="PermaSmall" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7619, 3.4507, 0)
+
+[node name="PermaSmall2" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7619, 6.62142, 0)
+
+[node name="PermaSmall3" parent="Pequeños" instance=ExtResource("9_22t10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.3435, 4.29417, 0)
+
+[node name="Grandes" type="Node3D" parent="."]
+
+[node name="PermaBIG" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6798, 8.11075, 0)
+
+[node name="PermaBIG3" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0102, 8.11075, 0)
+
+[node name="PermaBIG2" parent="Grandes" instance=ExtResource("9_yg4ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.989, 9.87295, 0)
+
+[node name="Scaleboost" type="Node3D" parent="."]
+
+[node name="SR+" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 7.24366, 0)
+
+[node name="SR+2" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 9.42593, 0)
+
+[node name="SR+3" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 5.42664, 0)
+
+[node name="SR+4" parent="Scaleboost" instance=ExtResource("11_a8cvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 9.09468, 0)
+
+[node name="Musicota" type="Node3D" parent="."]
+
+[node name="UPPER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("12_cm8v7")
+autoplay = true
+max_polyphony = 2
+bus = &"SMALL"
+
+[node name="LOWER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("13_dl0m7")
+autoplay = true
+max_polyphony = 2
+bus = &"BIG"
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.996195, 0.0106216, -0.0865061, 0, 0.992546, 0.121869, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 30)
+projection = 1
+current = true
+fov = 157.0
+size = 30.0
+near = 0.001
+script = ExtResource("2_7uenw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D2"]
+transform = Transform3D(0.996195, -0.0392776, 0.0778035, 0.0106216, 0.940755, 0.338922, -0.086506, -0.336806, 0.937592, -1.48866, -2.57879, -17.4599)
+light_color = Color(0.490196, 0.960784, 0.388235, 1)
+light_energy = 16.0
+light_indirect_energy = 2.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+spot_range = 20.0
+
+[node name="Pickable" parent="." instance=ExtResource("8_tplic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
+
+[node name="Pickable2" parent="." instance=ExtResource("8_tplic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67718, 1.74248, 0)
+
+[node name="Pickable3" parent="." instance=ExtResource("8_tplic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.8146, 11.8126, 0)
+
+[node name="Breakable" parent="." instance=ExtResource("14_mxkbp")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -32.075, 8.519, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0845")

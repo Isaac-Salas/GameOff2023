@@ -1,51 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfesb1kbd4d35"]
+[gd_scene load_steps=11 format=3 uid="uid://dfesb1kbd4d35"]
 
 [ext_resource type="Script" path="res://Player/PlayerTest.gd" id="1_20tws"]
+[ext_resource type="PackedScene" uid="uid://n52x7g2txmi3" path="res://Player/PlayerAnim.tscn" id="2_yjpc4"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_wml4e"]
-size = Vector3(2, 2, 2)
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_7qnl7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b827x"]
 radius = 1.0
 
-[sub_resource type="Animation" id="Animation_rfsis"]
-resource_name = "new_animation"
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.5, 1, 0, 0.1, 0)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t7p7"]
-_data = {
-"new_animation": SubResource("Animation_rfsis")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4g88"]
-animation = &"new_animation"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ijabr"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6mnum"]
-states/Idle/node = SubResource("AnimationNodeAnimation_t4g88")
-states/Idle/position = Vector2(423, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ijabr")]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2rhgy"]
-size = Vector3(0.1, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qpuui"]
-size = Vector3(1.9, 0.1, 1)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_u7xq5"]
-radius = 1.82538
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0527"]
 albedo_color = Color(0, 0.501961, 0.0431373, 1)
+rim_enabled = true
+rim = 0.15
+clearcoat_roughness = 0.13
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a7bid"]
 lifetime_randomness = 1.0
@@ -75,84 +45,34 @@ bind/0/name = &""
 bind/0/bone = -1
 bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6xv47"]
+radius = 0.986652
+height = 2.1338
+
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 script = ExtResource("1_20tws")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_wml4e")
+mesh = SubResource("PlaceholderMesh_7qnl7")
+
+[node name="Prot-Slime" parent="MeshInstance3D" instance=ExtResource("2_yjpc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -1.05, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_b827x")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_3t7p7")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_6mnum")
-anim_player = NodePath("../AnimationPlayer")
-
-[node name="ColisionperuanaIzq" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionperuanaIzq"]
-shape = SubResource("BoxShape3D_2rhgy")
-
-[node name="ColisionperuanaDer2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionperuanaDer2"]
-shape = SubResource("BoxShape3D_2rhgy")
-
-[node name="ColisionArriba" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-linear_velocity = Vector3(5, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionArriba"]
-shape = SubResource("BoxShape3D_qpuui")
-
 [node name="ObjectDetect" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectDetect"]
 shape = SubResource("SphereShape3D_u7xq5")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
-visible = false
 layers = 3
 sorting_use_aabb_center = false
 material_overlay = SubResource("StandardMaterial3D_a0527")
@@ -170,5 +90,40 @@ draw_skin = SubResource("Skin_3ldfs")
 layers = 3
 radius = 0.997958
 
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+inertia = Vector3(5, 5, 5)
+max_contacts_reported = 3
+contact_monitor = true
+can_sleep = false
+freeze = true
+linear_velocity = Vector3(0, 8, 0)
+constant_force = Vector3(1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0721899, 0)
+shape = SubResource("CapsuleShape3D_6xv47")
+
+[node name="Check_Corner" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RayCast3D_floor" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06969, 1.10539, 0.000232697)
+enabled = false
+
+[node name="RayCast3D_wall" type="RayCast3D" parent="Check_Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894642, 0.680496, 0)
+enabled = false
+target_position = Vector3(1, 0, 0)
+
 [connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
 [connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

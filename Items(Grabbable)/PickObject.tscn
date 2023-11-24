@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://cx46mlukul3fs"]
+
+[sub_resource type="GDScript" id="GDScript_1eluv"]
+script/source = "extends Node3D
+	
+func resize():
+#	$.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
+	$Outline.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
+	$MeshInstance3D.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
+	$CollisionShape3D.scale = $CollisionShape3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
+	$Area3D.scale = $Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nagn"]
+resource_local_to_scene = true
+albedo_color = Color(0.227451, 0.176471, 0.0705882, 1)
+grow_amount = 3.33067e-16
+
+[sub_resource type="BoxMesh" id="BoxMesh_30mcy"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_3nagn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcodq"]
+resource_local_to_scene = true
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.658824, 0.117647, 1)
+grow_amount = 3.33067e-16
+
+[sub_resource type="BoxMesh" id="BoxMesh_4di73"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_jcodq")
+size = Vector3(1.07, 1.07, 1.07)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]
+custom_solver_bias = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2n3i"]
+
+[node name="Pickup" type="RigidBody3D"]
+collision_layer = 7
+collision_mask = 7
+axis_lock_linear_z = true
+can_sleep = false
+script = SubResource("GDScript_1eluv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_30mcy")
+
+[node name="Outline" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_4di73")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vhp8x")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_y2n3i")
+
+[node name="Pickable" type="Node3D" parent="."]

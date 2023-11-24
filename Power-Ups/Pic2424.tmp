@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx46mlukul3fs"]
+
+[sub_resource type="GDScript" id="GDScript_fibc4"]
+script/source = "extends Node3D
+var pickup = false
+
+var player 
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_key_pressed(KEY_V) and pickup == true:
+		#queue_free()
+		print(\"yoooo\")
+
+
+func _on_area_3d_body_entered(body):
+	if body.name == \"Player\":
+		var new_color = $Pickup/MeshInstance3D.mesh.material
+		new_color.albedo_color = Color(0, 0, 255) 
+		pickup = true
+		player = body
+	
+
+
+func _on_area_3d_body_exited(body):
+	if body.name == \"Player\":
+		var new_color = $Pickup/MeshInstance3D.mesh.material
+		new_color.albedo_color = Color(255, 0, 0)
+		pickup = false
+		player = body 
+	
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcodq"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_30mcy"]
+material = SubResource("StandardMaterial3D_jcodq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_33od2"]
+radius = 3.0
+
+[node name="Pickable" type="Node3D"]
+script = SubResource("GDScript_fibc4")
+
+[node name="Pickup" type="RigidBody3D" parent="."]
+collision_layer = 3
+collision_mask = 2
+axis_lock_linear_z = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pickup"]
+mesh = SubResource("BoxMesh_30mcy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup"]
+shape = SubResource("BoxShape3D_vhp8x")
+
+[node name="Area3D" type="Area3D" parent="Pickup"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup/Area3D"]
+shape = SubResource("SphereShape3D_33od2")
+
+[connection signal="body_entered" from="Pickup/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Pickup/Area3D" to="." method="_on_area_3d_body_exited"]
