@@ -48,6 +48,7 @@ script = SubResource("GDScript_1eluv")
 mesh = SubResource("BoxMesh_30mcy")
 
 [node name="Outline" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_4di73")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -83,7 +83,7 @@ environment = SubResource("Environment_a0845")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
 
 [node name="Player" parent="." instance=ExtResource("15_cgq6g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -42.3737, 6.443, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -42.3737, 6.443, 0)
 
 [node name="Matraz Var-1" parent="." instance=ExtResource("13_mkpb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5733, 12.1443, 0)

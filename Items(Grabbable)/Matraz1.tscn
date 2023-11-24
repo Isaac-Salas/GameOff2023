@@ -6,12 +6,15 @@
 [sub_resource type="GDScript" id="GDScript_ap5s1"]
 script/source = "extends Node3D
 
+@onready var resizeable = false
+
 func resize():
 #	$.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
-	$Outline.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
-	$MeshInstance3D.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
+	$Outline.scale = ($Matraz1.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
+	$Matraz1.scale = ($Matraz1.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
 	$CollisionShape3D.scale = $CollisionShape3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 	$Area3D.scale = $Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
+
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0eed"]
@@ -71,30 +74,32 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t4s3s"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xpko5"]
 points = PackedVector3Array(0, -0.000245988, 1, -0.587801, -0.000245988, 0.808927, -0.276492, -0.447266, 0.850626, 0.262714, -0.525796, 0.808927, 0.587615, -0.000245988, 0.808927, 0.276306, 0.447151, 0.850626, 0.0930949, 2.85706, 0.452036, -0.0932811, 2.85706, 0.452036, -0.397329, 2.85706, 0.248825, -0.72372, 0.447151, 0.525646, -0.951058, -0.000245988, 0.308927, -0.688344, -0.525796, 0.499804, -0.162544, -0.850868, 0.499804, 0.425258, -0.850868, 0.308927, 0.723534, -0.447266, 0.525646, 0.951058, -0.000245988, 0.308927, 0.397143, 2.85706, 0.248825, -0.46864, 2.85706, -0.109828, -0.951058, -0.000245988, -0.309123, -0.894456, -0.447266, -5.96046e-08, -0.5258, -0.850868, -5.96046e-08, 0, -1, -5.96046e-08, 0.425258, -0.850868, -0.309123, 0.850515, -0.525796, -5.96046e-08, 0.89427, 0.447151, -5.96046e-08, 0.468454, 2.85706, -0.109828, 0.951058, -0.000245988, -0.309123, -0.265507, 2.85706, -0.413861, -0.72372, 0.447151, -0.525842, -0.587801, -0.000245988, -0.809123, -0.688344, -0.525796, -0.5, -0.162544, -0.850868, -0.5, 0.262714, -0.525796, -0.809123, 0.723534, -0.447266, -0.525842, 0.26532, 2.85706, -0.413861, 0.587615, -0.000245988, -0.809123, 0, -0.000245988, -1, -0.276492, -0.447266, -0.850822, 0.276306, 0.447151, -0.850822)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5t0x"]
 
-[node name="Matraz Var-1" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 2
+[node name="Pickup" type="RigidBody3D"]
+collision_layer = 7
+collision_mask = 7
 axis_lock_linear_z = true
 script = SubResource("GDScript_ap5s1")
 
 [node name="Matraz1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transparency = 0.5
 cast_shadow = 2
 mesh = SubResource("ArrayMesh_pb5x3")
 skeleton = NodePath("")
 
 [node name="Outline" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_40lqu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_t4s3s")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_xpko5")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 4

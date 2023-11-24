@@ -201,6 +201,7 @@ func try_pickup():
 		pickinst.get_node("Area3D").monitoring = false
 		GlobalVar.objectPicked = true
 		$MeshInstance3D.add_child(pickinst)
+		
 		get_parent_node_3d().remove_child(pickedobject[0])
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
