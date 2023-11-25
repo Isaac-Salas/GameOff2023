@@ -7,7 +7,6 @@ func _ready():
 	GlobalVar.MaxCap = 1
 	GlobalVar.sizefactor = 1
 	GlobalVar.sizestandard = 1
-	$Player.gravity = 8
 	pass # Replace with function body.
 
 

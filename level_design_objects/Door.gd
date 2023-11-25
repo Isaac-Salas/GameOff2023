@@ -2,6 +2,7 @@ extends StaticBody3D
 var isOpen = false
 var inAnimation = false
 @onready var anim = $AnimationPlayer
+
 func _ready():
 	anim.play("Close Door")
 	

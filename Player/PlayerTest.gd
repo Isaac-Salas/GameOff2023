@@ -139,9 +139,9 @@ func sizecheck():
 func grow(amount = GlobalVar.Scalerate):
 	if GlobalVar.sizefactor < GlobalVar.MaxCap and GlobalVar.sizefactor > 0:
 		dyn_music()
-		scale += Vector3(amount, amount, amount) 
+		scale += Vector3(amount, amount, amount)
 		GlobalVar.sizeM = scale
-		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1)
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount)
 		GlobalVar.state = "growing"
 		
 		$GPUParticles3D.process_material.set_collision_mode(2)
@@ -155,8 +155,9 @@ func shrink(amount = GlobalVar.Scalerate):
 		dyn_music()
 		scale -= Vector3(amount, amount, amount) 
 		GlobalVar.sizeM = scale
-		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1) 
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount) 
 		GlobalVar.state = "shrinking"
+		
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
@@ -253,6 +254,20 @@ func throw():
 	GlobalVar.objectPicked = false
 	mundotest.add_child(pickinst)
 
+
+func _on_ray_collided(target_scale):
+	scale = Vector3(target_scale, target_scale, target_scale) 
+	GlobalVar.sizeM = scale
+	GlobalVar.state = "shrinking"
+	GlobalVar.MinCap = target_scale
+	GlobalVar.MaxCap = target_scale
+	GlobalVar.sizefactor = target_scale
+	GlobalVar.sizestandard = target_scale
+	$GPUParticles3D.process_material.set_collision_mode(1)
+	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
+	$GPUParticles3D.one_shot = true
+	$GPUParticles3D.emitting = true
+	
 func _on_object_detect_body_entered(body):
 	pickedobject.push_front(body)
 

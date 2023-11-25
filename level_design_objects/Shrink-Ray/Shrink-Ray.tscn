@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhmxmd3t5rgvm"]
+[gd_scene load_steps=14 format=3 uid="uid://b10soqja17qq6"]
 
-[ext_resource type="Script" path="res://level_design_objects/Shrink-Ray.gd" id="1_70u5e"]
-[ext_resource type="Script" path="res://level_design_objects/VisualLaser.gd" id="2_kklau"]
+[ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/Shrink-Ray.gd" id="1_y1bvl"]
+[ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/VisualLaser.gd" id="2_mk68o"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_btoij"]
 height = 0.1
@@ -62,7 +62,7 @@ disable_receive_shadows = true
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_0d8g3"]
 
 [node name="Shrink-Ray" type="Node3D"]
-script = ExtResource("1_70u5e")
+script = ExtResource("1_y1bvl")
 
 [node name="Base" type="RigidBody3D" parent="."]
 freeze = true
@@ -98,22 +98,23 @@ mesh = SubResource("CylinderMesh_2xvsk")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
 target_position = Vector3(0, 50, 0)
-collision_mask = 7
 debug_shape_thickness = 5
 
 [node name="VisualLaser" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
 material_override = SubResource("StandardMaterial3D_prh7u")
 mesh = SubResource("ImmediateMesh_0d8g3")
-script = ExtResource("2_kklau")
+script = ExtResource("2_mk68o")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.772501, 4.37114e-08)
 light_color = Color(0, 0.717647, 0, 1)
 light_energy = 14.375
-light_indirect_energy = 7.75
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
 shadow_enabled = true
 spot_range = 36.1298
+spot_attenuation = 0.0206173
 spot_angle = 0.936471
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

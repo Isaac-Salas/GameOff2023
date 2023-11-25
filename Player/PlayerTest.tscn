@@ -13,9 +13,12 @@ radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0527"]
 albedo_color = Color(0, 0.501961, 0.0431373, 1)
+emission_enabled = true
+emission = Color(0, 0.262745, 0.0117647, 1)
 rim_enabled = true
 rim = 0.15
 clearcoat_roughness = 0.13
+refraction_enabled = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a7bid"]
 lifetime_randomness = 1.0
@@ -75,12 +78,14 @@ shape = SubResource("SphereShape3D_u7xq5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715751, 0)
 layers = 3
 sorting_use_aabb_center = false
+material_override = SubResource("StandardMaterial3D_a0527")
 material_overlay = SubResource("StandardMaterial3D_a0527")
+transparency = 0.55
 emitting = false
 amount = 40
 sub_emitter = NodePath(".")
 lifetime = 3.0
-explosiveness = 0.2
+explosiveness = 0.36
 fixed_fps = 60
 collision_base_size = 0.5
 visibility_aabb = AABB(-77.6112, -20.6767, -25.9344, 155.222, 41.3534, 51.8688)
