@@ -7,6 +7,8 @@ var mundotest
 var startspeed = GlobalVar.SPEED
 var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
+
+
 @onready var Animate = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 
 @onready var corner_direction = $Check_Corner
@@ -31,6 +33,7 @@ func _input(event):
 			throw()
 
 func _physics_process(delta):
+
 	#print("size: ", GlobalVar.sizefactor, "comparative to:", stateC)
 	sizecheck()
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)

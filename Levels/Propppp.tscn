@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ksq2r4vkbwh"]
+[gd_scene load_steps=17 format=3 uid="uid://ksq2r4vkbwh"]
 
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_pjb16"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="2_xrrod"]
@@ -15,11 +15,27 @@
 [ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="14_umy1e"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="15_cgq6g"]
 
+[sub_resource type="GDScript" id="GDScript_figrg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	GlobalVar.sizefactor = 3
+	GlobalVar.sizestandard = 3
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="Environment" id="Environment_a0845"]
 background_mode = 1
 background_color = Color(0.054902, 0, 0.164706, 1)
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_figrg")
 
 [node name="Blocks" type="Node3D" parent="."]
 

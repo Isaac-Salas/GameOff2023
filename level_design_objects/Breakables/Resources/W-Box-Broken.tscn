@@ -1,6 +1,24 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvefett6rmq5u"]
+[gd_scene load_steps=25 format=3 uid="uid://bvefett6rmq5u"]
 
 [ext_resource type="Texture2D" uid="uid://cpj0m7fkaoggi" path="res://Models/Props/Cajarota_cajotota.png" id="1_hpu1j"]
+
+[sub_resource type="GDScript" id="GDScript_0nfnv"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_animation_player_animation_finished(anim_name):
+	self.queue_free()
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nr1x5"]
 resource_name = "Material.001"
@@ -207,11 +225,172 @@ shadow_mesh = SubResource("ArrayMesh_8twhv")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3tqx3"]
 points = PackedVector3Array(0.999925, 1, 1, 1.01576, 0.928152, -0.490799, 1.01541, 0.949883, -0.892717, 0.999925, 1, -1, 0.691181, 1, 1, 0.999925, -1, 1, 0.999925, -1, -1, 0.691181, 1, -1, -0.742398, -0.864722, 1, 0.746768, -1, 1, 0.746768, -1, -1, 0.694795, 0.866876, -1, -0.742398, -0.864722, 0.925803, 0.742638, -0.854542, -1, 0.695139, 0.854346, -1)
 
+[sub_resource type="Animation" id="Animation_k5hv1"]
+resource_name = "Fadeout"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/Cube_001:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D2/Cube_002:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RigidBody3D3/Cube_003:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RigidBody3D4/Cube_004:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody3D5/Cube_005:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RigidBody3D6/Cube_006:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5fq1h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/Cube_001:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D2/Cube_002:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RigidBody3D3/Cube_003:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RigidBody3D4/Cube_004:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody3D5/Cube_005:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RigidBody3D6/Cube_006:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_miw7k"]
+_data = {
+"Fadeout": SubResource("Animation_k5hv1"),
+"RESET": SubResource("Animation_5fq1h")
+}
+
 [node name="Brokenbox" type="Node3D"]
+script = SubResource("GDScript_0nfnv")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_001" type="MeshInstance3D" parent="RigidBody3D"]
+transparency = 1.0
 mesh = SubResource("ArrayMesh_7gpa6")
 skeleton = NodePath("")
 
@@ -219,6 +398,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_uk3r8")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_002" type="MeshInstance3D" parent="RigidBody3D2"]
 mesh = SubResource("ArrayMesh_426n8")
@@ -228,6 +409,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3e8o8")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_003" type="MeshInstance3D" parent="RigidBody3D3"]
 mesh = SubResource("ArrayMesh_mqk0q")
@@ -237,6 +420,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_ot3c1")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_004" type="MeshInstance3D" parent="RigidBody3D4"]
 mesh = SubResource("ArrayMesh_4fd4w")
@@ -246,6 +431,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_uwus4")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_005" type="MeshInstance3D" parent="RigidBody3D5"]
 mesh = SubResource("ArrayMesh_rave1")
@@ -255,6 +442,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_gy4gf")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Cube_006" type="MeshInstance3D" parent="RigidBody3D6"]
 mesh = SubResource("ArrayMesh_e1h70")
@@ -262,3 +451,10 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6"]
 shape = SubResource("ConvexPolygonShape3D_3tqx3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_miw7k")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

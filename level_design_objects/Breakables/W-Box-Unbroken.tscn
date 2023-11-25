@@ -21,9 +21,10 @@ func break_object():
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
 	print(breakable.get_children())
-	
+	breakable.find_child(\"AnimationPlayer\").play(\"Fadeout\")
 	# Deleting the Area node.
 	self.queue_free()
+	
 	pass
 	
 
@@ -78,6 +79,8 @@ points = PackedVector3Array(0.999847, 1, 1, 0.999847, -1, 1, 1.01576, 0.928152, 
 collision_layer = 3
 collision_mask = 3
 axis_lock_linear_z = true
+max_contacts_reported = 5
+contact_monitor = true
 script = SubResource("GDScript_th7v8")
 resource = ExtResource("1_bh0vm")
 
