@@ -1,3 +1,3 @@
 extends Node3D
-@export var target_size = 1.5
+@export var target_size = 0.2
 

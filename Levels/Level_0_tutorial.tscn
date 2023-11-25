@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=14 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
@@ -34,7 +34,7 @@ inertia = Vector3(3.75, 0, 0)
 freeze_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_j3s68")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7286, 17.2697, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.8426, 17.2697, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 2.29733)
@@ -44,16 +44,15 @@ shadow_enabled = true
 shadow_bias = 1.0
 shadow_normal_bias = 0.0
 shadow_blur = 0.05
-omni_range = 31.747
 omni_range = 8.0
 omni_attenuation = 2.14355
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.41785)
 visible = false
+light_color = Color(0.258824, 0.639216, 0.254902, 1)
 light_energy = 0.5
 light_indirect_energy = 16.0
-light_color = Color(0.258824, 0.639216, 0.254902, 1)
 light_size = 1.0
 light_specular = 0.0
 
@@ -143,7 +142,7 @@ transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 31.1414, 19.6469, 2.08165e-12)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, -39.98, 16.127, 30)
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, -39.98, 16.127, 30)
 projection = 1
 current = true
 fov = 157.0
@@ -162,7 +161,8 @@ sky_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.242, 20.494, 0)
 
 [node name="Shrink-Ray" parent="." instance=ExtResource("12_h8a4j")]
-transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 81.947, 24.5253, 0)
+transform = Transform3D(2, 0, -1.74846e-07, 0, -2, 0, 1.74846e-07, 0, 2, 81.947, 25.3319, 0)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qcmk4")
 

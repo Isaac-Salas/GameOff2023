@@ -120,6 +120,7 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="RayCast3D_floor" type="RayCast3D" parent="Check_Corner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06969, 1.10539, 0.000232697)
 enabled = false
+debug_shape_thickness = 1
 
 [node name="RayCast3D_wall" type="RayCast3D" parent="Check_Corner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894642, 0.680496, 0)

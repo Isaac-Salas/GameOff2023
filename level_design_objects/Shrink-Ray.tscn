@@ -23,8 +23,8 @@ radius = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i311r"]
 albedo_color = Color(0.415686, 0.415686, 0.258824, 1)
-metallic = 0.52
-metallic_specular = 0.64
+metallic = 1.0
+metallic_specular = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8vm4h"]
 material = SubResource("StandardMaterial3D_i311r")
@@ -57,6 +57,7 @@ cap_bottom = false
 albedo_color = Color(0, 0.717647, 0, 1)
 emission_enabled = true
 emission = Color(0.313726, 0.713726, 0.305882, 1)
+disable_receive_shadows = true
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_0d8g3"]
 
@@ -105,3 +106,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
 material_override = SubResource("StandardMaterial3D_prh7u")
 mesh = SubResource("ImmediateMesh_0d8g3")
 script = ExtResource("2_kklau")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.772501, 4.37114e-08)
+light_color = Color(0, 0.717647, 0, 1)
+light_energy = 14.375
+light_indirect_energy = 7.75
+shadow_enabled = true
+spot_range = 36.1298
+spot_angle = 0.936471
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05544, 0)
+light_color = Color(0, 0.717647, 0, 1)
+light_energy = 5.125
+light_indirect_energy = 7.75
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 3.91812
