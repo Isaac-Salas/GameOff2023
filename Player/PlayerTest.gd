@@ -262,7 +262,6 @@ func _on_ray_collided(target_scale):
 	GlobalVar.MinCap = target_scale
 	GlobalVar.MaxCap = target_scale
 	GlobalVar.sizefactor = target_scale
-	GlobalVar.sizestandard = target_scale
 	$GPUParticles3D.process_material.set_collision_mode(1)
 	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
 	$GPUParticles3D.one_shot = true
