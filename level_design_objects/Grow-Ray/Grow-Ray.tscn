@@ -97,6 +97,7 @@ mesh = SubResource("CylinderMesh_2xvsk")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
 target_position = Vector3(0, 50, 0)
+debug_shape_custom_color = Color(0.647059, 0.00392157, 0.94902, 1)
 debug_shape_thickness = 5
 
 [node name="VisualLaser" type="MeshInstance3D" parent="."]
