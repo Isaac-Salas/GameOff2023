@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnuve53ey7qs4"]
+
+[ext_resource type="ArrayMesh" uid="uid://cbufycij056fv" path="res://Items(Grabbable)/Matraz2.tres" id="1_rb1ns"]
+
+[node name="Matraz Var-2" type="Node3D"]
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transparency = 0.5
+mesh = ExtResource("1_rb1ns")
+skeleton = NodePath("")

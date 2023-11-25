@@ -1,0 +1,111 @@
+[gd_scene load_steps=17 format=3 uid="uid://ksq2r4vkbwh"]
+
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_f7ib2"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="2_g6hqq"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="3_qrjj4"]
+[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Power-Ups/Bigone.tscn" id="4_io35w"]
+[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Power-Ups/Smallone.tscn" id="5_of5w0"]
+[ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="6_ey6sq"]
+[ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="7_muhkq"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="8_45nxm"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="9_okycm"]
+[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken-Wall.tscn" id="10_t62um"]
+[ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="11_52knu"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="12_psgto"]
+[ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="13_ruhbp"]
+[ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="14_udbno"]
+
+[sub_resource type="GDScript" id="GDScript_figrg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	GlobalVar.sizefactor = 3
+	GlobalVar.sizestandard = 3
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="Environment" id="Environment_a0845"]
+background_mode = 1
+background_color = Color(0.054902, 0, 0.164706, 1)
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_figrg")
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("1_f7ib2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0332, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_f7ib2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6161, 8.56582, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_g6hqq")]
+
+[node name="Floor" parent="." instance=ExtResource("3_qrjj4")]
+transform = Transform3D(400, 0, 0, 0, 4.006, 0, 0, 0, 100, 0, -3.82546, 0)
+
+[node name="Big" parent="." instance=ExtResource("4_io35w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
+
+[node name="Small" parent="." instance=ExtResource("5_of5w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
+
+[node name="Musicota" type="Node3D" parent="."]
+
+[node name="UPPER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("6_ey6sq")
+autoplay = true
+max_polyphony = 2
+bus = &"SMALL"
+
+[node name="LOWER" type="AudioStreamPlayer" parent="Musicota"]
+stream = ExtResource("7_muhkq")
+autoplay = true
+max_polyphony = 2
+bus = &"BIG"
+
+[node name="Camera3D2" parent="." instance=ExtResource("8_45nxm")]
+transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 24.9603)
+
+[node name="SpotLight3D" parent="Camera3D2" index="0"]
+transform = Transform3D(1, -9.31323e-10, 7.45058e-09, 9.31323e-10, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+spot_range = 30.0
+
+[node name="Pickable" parent="." instance=ExtResource("9_okycm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
+
+[node name="Pickable2" parent="." instance=ExtResource("9_okycm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67718, 1.74248, 0)
+
+[node name="Pickable3" parent="." instance=ExtResource("9_okycm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.521, 13.0167, 0)
+
+[node name="Breakable" parent="." instance=ExtResource("10_t62um")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -32.075, 8.519, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0845")
+
+[node name="Pickup" parent="." instance=ExtResource("11_52knu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
+
+[node name="Player" parent="." instance=ExtResource("12_psgto")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -42.3737, 6.443, 0)
+
+[node name="Matraz Var-1" parent="." instance=ExtResource("13_ruhbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5733, 12.1443, 0)
+
+[node name="Cajita" parent="." instance=ExtResource("14_udbno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0782, 11.0461, 0)
+
+[editable path="Camera3D2"]

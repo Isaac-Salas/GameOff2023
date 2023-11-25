@@ -13,6 +13,11 @@
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
 [ext_resource type="PackedScene" uid="uid://bhmxmd3t5rgvm" path="res://level_design_objects/Shrink-Ray.tscn" id="12_h8a4j"]
 
+[sub_resource type="Environment" id="Environment_qcmk4"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
 [node name="TutorialLevel" type="Node3D"]
 script = ExtResource("1_cbc7w")
 
@@ -29,24 +34,26 @@ inertia = Vector3(3.75, 0, 0)
 freeze_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_j3s68")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.6968, 17.2697, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7286, 17.2697, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
-transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 0)
-light_color = Color(0.258824, 0.639216, 0.254902, 1)
-light_energy = 3.18
-light_size = 2.0
-light_specular = 1.0
-light_bake_mode = 1
+transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 2.29733)
+light_color = Color(0, 1, 0, 1)
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
 shadow_blur = 0.05
 omni_range = 31.747
+omni_range = 8.0
+omni_attenuation = 2.14355
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.41785)
+visible = false
+light_energy = 0.5
+light_indirect_energy = 16.0
 light_color = Color(0.258824, 0.639216, 0.254902, 1)
-light_energy = 0.567
-light_indirect_energy = 0.0
 light_size = 1.0
 light_specular = 0.0
 
@@ -146,8 +153,8 @@ script = ExtResource("10_inqw2")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103956, 0, 0.994522, 0.104528, 0.104528, -0.103956, 0.989074, 0, 0, 0)
-light_color = Color(0.509804, 0.498039, 0, 1)
-light_energy = 0.2
+light_color = Color(0.207843, 0, 0.478431, 1)
+light_energy = 0.05
 shadow_enabled = true
 sky_mode = 1
 
@@ -156,6 +163,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.242, 20.494, 0)
 
 [node name="Shrink-Ray" parent="." instance=ExtResource("12_h8a4j")]
 transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 81.947, 24.5253, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qcmk4")
 
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="body_entered" from="Trigger" to="Door/Door" method="_on_trigger_body_entered"]

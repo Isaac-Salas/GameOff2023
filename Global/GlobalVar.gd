@@ -1,5 +1,6 @@
 extends Node 
 
+var movements
 var pickedpath = ""
 var direction 
 var VolBig = 0.0
