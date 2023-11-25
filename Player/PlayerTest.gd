@@ -208,6 +208,7 @@ func try_pickup():
 		get_parent_node_3d().remove_child(pickedobject[0])
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
+
 		
 		var direction_to_object = (pickinst.global_position - global_position).normalized()
 		var distance_to_object = (pickinst.global_position - global_position).length()
