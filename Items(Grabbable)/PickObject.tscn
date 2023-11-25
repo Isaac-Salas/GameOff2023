@@ -1,5 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx46mlukul3fs"]
 
+[ext_resource type="Material" uid="uid://bkkcm61r271qe" path="res://Items(Grabbable)/OutlineMaterial.tres" id="1_wkar7"]
+
 [sub_resource type="GDScript" id="GDScript_1eluv"]
 script/source = "extends Node3D
 	
@@ -20,16 +22,9 @@ grow_amount = 3.33067e-16
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_3nagn")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcodq"]
-resource_local_to_scene = true
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 0.658824, 0.117647, 1)
-grow_amount = 3.33067e-16
-
 [sub_resource type="BoxMesh" id="BoxMesh_4di73"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_jcodq")
+material = ExtResource("1_wkar7")
 size = Vector3(1.07, 1.07, 1.07)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]

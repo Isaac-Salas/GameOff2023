@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2lvf3faa426r"]
 
 [ext_resource type="Script" path="res://level_design_objects/Breakables/Unbroken.gd" id="1_hm5rc"]
-[ext_resource type="PackedScene" uid="uid://bt3426e4td1ic" path="res://level_design_objects/Breakables/Breakable.tscn" id="2_8oiod"]
+[ext_resource type="PackedScene" uid="uid://bt3426e4td1ic" path="res://level_design_objects/Breakables/Resources/Broken-Wall.tscn" id="2_yr3ht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0wl0"]
 resource_name = "Material"
@@ -52,7 +52,7 @@ axis_lock_linear_z = true
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_hm5rc")
-resource = ExtResource("2_8oiod")
+resource = ExtResource("2_yr3ht")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
