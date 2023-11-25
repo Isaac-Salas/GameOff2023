@@ -390,7 +390,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Cube_001" type="MeshInstance3D" parent="RigidBody3D"]
-transparency = 1.0
 mesh = SubResource("ArrayMesh_7gpa6")
 skeleton = NodePath("")
 
@@ -453,6 +452,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3tqx3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_miw7k")
 }
