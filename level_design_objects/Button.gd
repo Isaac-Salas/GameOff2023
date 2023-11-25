@@ -3,6 +3,7 @@ extends StaticBody3D
 signal pressed(state, body)
 var state = false
 var n_inside = 0
+
 func _ready():
 	anim.play("Pressed Up")
 	

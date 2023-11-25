@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://bhmxmd3t5rgvm"]
+
+[ext_resource type="Script" path="res://level_design_objects/Shrink-Ray.gd" id="1_70u5e"]
+[ext_resource type="Script" path="res://level_design_objects/VisualLaser.gd" id="2_kklau"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_btoij"]
+height = 0.1
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q83oa"]
+albedo_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2qebq"]
+material = SubResource("StandardMaterial3D_q83oa")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.1
+radial_segments = 8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_id384"]
+height = 0.3
+radius = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i311r"]
+albedo_color = Color(0.415686, 0.415686, 0.258824, 1)
+metallic = 0.52
+metallic_specular = 0.64
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8vm4h"]
+material = SubResource("StandardMaterial3D_i311r")
+top_radius = 1.0
+bottom_radius = 1.5
+height = 0.25
+radial_segments = 8
+rings = 6
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1f18m"]
+height = 0.4
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ma5j1"]
+albedo_color = Color(0.313726, 0.713726, 0.305882, 1)
+emission_enabled = true
+emission = Color(0.313726, 0.713726, 0.305882, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2xvsk"]
+material = SubResource("StandardMaterial3D_ma5j1")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 6
+rings = 6
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prh7u"]
+albedo_color = Color(0, 0.717647, 0, 1)
+emission_enabled = true
+emission = Color(0.313726, 0.713726, 0.305882, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_0d8g3"]
+
+[node name="Shrink-Ray" type="Node3D"]
+script = ExtResource("1_70u5e")
+
+[node name="Base" type="RigidBody3D" parent="."]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_btoij")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_2qebq")
+skeleton = NodePath("../../..")
+
+[node name="Cone" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cone"]
+shape = SubResource("CylinderShape3D_id384")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cone/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_8vm4h")
+
+[node name="LaserCannon" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.556, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LaserCannon"]
+shape = SubResource("CylinderShape3D_1f18m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LaserCannon/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_2xvsk")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
+target_position = Vector3(0, 50, 0)
+collision_mask = 7
+debug_shape_thickness = 5
+
+[node name="VisualLaser" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
+material_override = SubResource("StandardMaterial3D_prh7u")
+mesh = SubResource("ImmediateMesh_0d8g3")
+script = ExtResource("2_kklau")

@@ -132,10 +132,10 @@ func sizecheck():
 		GlobalVar.CURRENT = "NORMAL"
 
 
-func grow():
-	if GlobalVar.sizefactor < GlobalVar.MaxCap:
+func grow(amount = GlobalVar.Scalerate):
+	if GlobalVar.sizefactor < GlobalVar.MaxCap and GlobalVar.sizefactor > 0:
 		dyn_music()
-		scale += Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate) 
+		scale += Vector3(amount, amount, amount) 
 		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1)
 		GlobalVar.state = "growing"
@@ -143,20 +143,20 @@ func grow():
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
+		$GPUParticles3D.one_shot = false
 		$GPUParticles3D.emitting = true
-		#GlobalVar.ProgBar += GlobalVar.Scalerate
 
-func shrink():
-	if GlobalVar.sizefactor > GlobalVar.MinCap and GlobalVar.sizefactor > 0 :
-		
+func shrink(amount = GlobalVar.Scalerate):
+	if GlobalVar.sizefactor > GlobalVar.MinCap and GlobalVar.sizefactor > 0:
 		dyn_music()
-		scale -= Vector3(GlobalVar.Scalerate,GlobalVar.Scalerate,GlobalVar.Scalerate) 
+		scale -= Vector3(amount, amount, amount) 
 		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, 0.1) 
 		GlobalVar.state = "shrinking"
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
+		$GPUParticles3D.one_shot = false
 		$GPUParticles3D.emitting = true
 
 func near_ledge():
@@ -166,10 +166,9 @@ func touching_wall():
 	return wall_cast.is_colliding()
 
 func dyn_music():
-	
 	if GlobalVar.CURRENT == "NORMAL":
-		AudioServer.set_bus_volume_db(SMALL,0)
-		AudioServer.set_bus_volume_db(SMALL,0)
+		AudioServer.set_bus_volume_db(SMALL, 0)
+		AudioServer.set_bus_volume_db(SMALL, 0)
 	
 	if GlobalVar.CURRENT == "SMALL":
 		GlobalVar.VolBig -= 0.05

@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="3_x6fmb"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="4_6arpd"]
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_5b3l6"]
-[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Pickups/Bigone.tscn" id="6_lkq63"]
-[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Pickups/Smallone.tscn" id="7_njq5f"]
-[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Pickups/PickObject.tscn" id="8_fyf8q"]
+[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Power-Ups/Bigone.tscn" id="6_lkq63"]
+[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Power-Ups/Smallone.tscn" id="7_njq5f"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="8_fyf8q"]
 
 [node name="Node3D" type="Node3D"]
 
