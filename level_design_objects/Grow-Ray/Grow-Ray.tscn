@@ -52,12 +52,13 @@ radial_segments = 6
 rings = 6
 cap_bottom = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2501u"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32v3k"]
 albedo_color = Color(0.380392, 0, 0.968627, 1)
 emission_enabled = true
 emission = Color(0.380392, 0, 0.968627, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_0d8g3"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_cuouj"]
+resource_local_to_scene = true
 
 [node name="Grow-Ray" type="Node3D"]
 script = ExtResource("1_nfcwl")
@@ -102,8 +103,8 @@ debug_shape_thickness = 5
 
 [node name="VisualLaser" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
-material_override = SubResource("StandardMaterial3D_2501u")
-mesh = SubResource("ImmediateMesh_0d8g3")
+material_override = SubResource("StandardMaterial3D_32v3k")
+mesh = SubResource("ImmediateMesh_cuouj")
 script = ExtResource("2_y53yk")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
