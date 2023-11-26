@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ksq2r4vkbwh"]
+[gd_scene load_steps=18 format=3 uid="uid://ksq2r4vkbwh"]
 
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_f7ib2"]
 [ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="2_g6hqq"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="12_psgto"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="13_ruhbp"]
 [ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="14_udbno"]
+[ext_resource type="PackedScene" uid="uid://blhg2d7exnrn5" path="res://Items(Grabbable)/Meatbox.tscn" id="15_vjais"]
 
 [sub_resource type="GDScript" id="GDScript_figrg"]
 script/source = "extends Node3D
@@ -107,5 +108,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5733, 12.1443, 0)
 
 [node name="Cajita" parent="." instance=ExtResource("14_udbno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0782, 11.0461, 0)
+
+[node name="Meatbox" parent="." instance=ExtResource("15_vjais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.269, 8.99343, 0)
 
 [editable path="Camera3D2"]
