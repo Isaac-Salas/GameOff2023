@@ -8,7 +8,6 @@ var startspeed = GlobalVar.SPEED
 var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
 
-
 @onready var Animate = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 
 @onready var corner_direction = $Check_Corner
@@ -143,7 +142,7 @@ func grow(amount = GlobalVar.Scalerate):
 		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount)
 		GlobalVar.state = "growing"
-		
+		$RigidBody3D.mass = amount
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
@@ -157,7 +156,6 @@ func shrink(amount = GlobalVar.Scalerate):
 		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount) 
 		GlobalVar.state = "shrinking"
-		
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
@@ -187,9 +185,9 @@ func dyn_music():
 		GlobalVar.VolSmall -= 0.05
 		AudioServer.set_bus_volume_db(SMALL,GlobalVar.VolSmall)
 		
-		if AudioServer.get_bus_volume_db(BIG) < 0:
-			GlobalVar.VolBig += 0.05
-			AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
+	if AudioServer.get_bus_volume_db(BIG) < 0:
+		GlobalVar.VolBig += 0.05
+		AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
 
 func try_pickup():
 	if pickedobject.size() > 0:
@@ -254,7 +252,6 @@ func throw():
 	GlobalVar.objectPicked = false
 	mundotest.add_child(pickinst)
 
-
 func _on_ray_collided(target_scale):
 	scale = Vector3(target_scale, target_scale, target_scale) 
 	GlobalVar.sizeM = scale
@@ -262,6 +259,7 @@ func _on_ray_collided(target_scale):
 	GlobalVar.MinCap = target_scale
 	GlobalVar.MaxCap = target_scale
 	GlobalVar.sizefactor = target_scale
+	$RigidBody3D.mass = target_scale
 	$GPUParticles3D.process_material.set_collision_mode(1)
 	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
 	$GPUParticles3D.one_shot = true

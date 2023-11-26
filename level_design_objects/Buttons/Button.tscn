@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://wuf47xtgw8ba"]
+[gd_scene load_steps=12 format=3 uid="uid://drshbhi6p7tem"]
 
-[ext_resource type="Script" path="res://level_design_objects/Button.gd" id="1_yqta4"]
+[ext_resource type="Script" path="res://level_design_objects/Buttons/Button.gd" id="1_00xtg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slk0i"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -112,7 +112,7 @@ size = Vector3(1, 0.065, 1)
 height = 0.2
 
 [node name="Button" type="StaticBody3D"]
-script = ExtResource("1_yqta4")
+script = ExtResource("1_00xtg")
 
 [node name="Base" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_1l4hn")
