@@ -79,9 +79,6 @@ Item={
 [physics]
 
 3d/physics_engine="GodotPhysics3D"
-3d/sleep_threshold_linear=0.5
-3d/sleep_threshold_angular=0.5
-3d/time_before_sleep=0.1
 
 [rendering]
 

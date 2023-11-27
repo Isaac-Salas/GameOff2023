@@ -4,17 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bhefu0y341in2" path="res://Models/Props/Matraz Var-1_Matraz 1.png" id="1_clauo"]
 
 [sub_resource type="GDScript" id="GDScript_ap5s1"]
-script/source = "extends Node3D
+script/source = "extends RigidBody3D
 
 @onready var resizeable = false
+func _ready():
+	set_disable_scale(true)
+
+func _process(delta):
+	pass
+
 
 func resize():
-#	$.scale = ($MeshInstance3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
-	$Outline.scale = ($Matraz1.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
-	$Matraz1.scale = ($Matraz1.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor))
-	$CollisionShape3D.scale = $CollisionShape3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
-	$Area3D.scale = $Area3D.scale*Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
-
+	pass
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0eed"]
@@ -79,7 +80,7 @@ points = PackedVector3Array(0, -0.000245988, 1, -0.587801, -0.000245988, 0.80892
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5t0x"]
 
-[node name="Pickup" type="RigidBody3D"]
+[node name="Tube" type="RigidBody3D"]
 collision_layer = 7
 collision_mask = 7
 axis_lock_linear_z = true
