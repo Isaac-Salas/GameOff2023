@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx46mlukul3fs"]
 
-[ext_resource type="Material" uid="uid://bkkcm61r271qe" path="res://Items(Grabbable)/OutlineMaterial.tres" id="1_wkar7"]
+[ext_resource type="Material" uid="uid://d2auewsr76rio" path="res://Items(Grabbable)/OutlineMaterial.tres" id="1_wkar7"]
 
 [sub_resource type="GDScript" id="GDScript_1eluv"]
 script/source = "extends Node3D
@@ -29,7 +29,6 @@ material = ExtResource("1_wkar7")
 size = Vector3(1.07, 1.07, 1.07)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]
-custom_solver_bias = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2n3i"]
 

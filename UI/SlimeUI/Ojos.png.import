@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uuhykfxugfbc"
-path="res://.godot/imported/mañoso-enemy_enemigomañoso.png-e755b08012a6dca2ac2864ad3e1f295d.ctex"
+uid="uid://c3eqqpnawvysw"
+path="res://.godot/imported/Ojos.png-841077543afe36533f914fdc41a44ae4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Enemies/mañoso-enemy_enemigomañoso.png"
-dest_files=["res://.godot/imported/mañoso-enemy_enemigomañoso.png-e755b08012a6dca2ac2864ad3e1f295d.ctex"]
+source_file="res://UI/SlimeUI/Ojos.png"
+dest_files=["res://.godot/imported/Ojos.png-841077543afe36533f914fdc41a44ae4.ctex"]
 
 [params]
 
