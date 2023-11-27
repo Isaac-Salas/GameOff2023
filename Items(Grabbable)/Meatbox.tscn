@@ -23,7 +23,7 @@ func _process(delta):
 		$Area3D.scale = Vector3(GlobalVar.sizefactor,GlobalVar.sizefactor,GlobalVar.sizefactor)
 
 func reset():
-		$Outline.scale = (Vector3(1,1,1))
+		$Outline.scale = (Vector3(1.2,1.2,1.2))
 		$Cube.scale = (Vector3(1,1,1))
 		$CollisionShape3D.scale = Vector3(1,1,1)
 		$Area3D.scale = Vector3(1,1,1)

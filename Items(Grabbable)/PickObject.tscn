@@ -29,7 +29,6 @@ material = ExtResource("1_wkar7")
 size = Vector3(1.07, 1.07, 1.07)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhp8x"]
-custom_solver_bias = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2n3i"]
 
