@@ -144,7 +144,7 @@ func grow(amount = GlobalVar.Scalerate):
 		
 		
 		GlobalVar.state = "growing"
-		$RigidBody3D.mass = amount
+		$RigidBody3D.mass = scale.x
 		
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
@@ -162,8 +162,7 @@ func shrink(amount = GlobalVar.Scalerate):
 		
 		
 		GlobalVar.state = "shrinking"
-		$RigidBody3D.mass = amount
-		
+		$RigidBody3D.mass = scale.x
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
@@ -271,7 +270,7 @@ func _on_ray_collided(target_scale):
 	GlobalVar.sizefactor = target_scale
 	
 	
-	$RigidBody3D.mass = target_scale
+	$RigidBody3D.mass = scale.x
 	
 	
 	$GPUParticles3D.process_material.set_collision_mode(1)
