@@ -275,7 +275,7 @@ mesh = SubResource("BoxMesh_80khp")
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.368652, 0.574554, 0.496643)
 sprite_frames = SubResource("SpriteFrames_w4q15")
-animation = &"8"
+animation = &"0"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373611, 0.617313, 0.6593)

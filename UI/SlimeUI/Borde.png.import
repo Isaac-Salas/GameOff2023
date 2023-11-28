@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uuhykfxugfbc"
-path="res://.godot/imported/mañoso-enemy_enemigomañoso.png-e755b08012a6dca2ac2864ad3e1f295d.ctex"
+uid="uid://dsmvgvbdbfrym"
+path="res://.godot/imported/Borde.png-add0ac0bd8f239fd8ac69ef893ba03be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Enemies/mañoso-enemy_enemigomañoso.png"
-dest_files=["res://.godot/imported/mañoso-enemy_enemigomañoso.png-e755b08012a6dca2ac2864ad3e1f295d.ctex"]
+source_file="res://UI/SlimeUI/Borde.png"
+dest_files=["res://.godot/imported/Borde.png-add0ac0bd8f239fd8ac69ef893ba03be.ctex"]
 
 [params]
 

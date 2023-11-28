@@ -22,6 +22,6 @@ func break_object():
 	
 
 func _on_body_entered(body):
-	if body.name == "Pickup":
+	if body.name == "Pickup" or body.name == "Meatbox":
 		break_object()
 	

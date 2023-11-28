@@ -7,7 +7,6 @@ var mundotest
 var startspeed = GlobalVar.SPEED
 var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
-
 @onready var Animate = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 
 @onready var corner_direction = $Check_Corner
@@ -138,11 +137,15 @@ func sizecheck():
 func grow(amount = GlobalVar.Scalerate):
 	if GlobalVar.sizefactor < GlobalVar.MaxCap and GlobalVar.sizefactor > 0:
 		dyn_music()
+		
 		scale += Vector3(amount, amount, amount)
 		GlobalVar.sizeM = scale
 		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount)
+		
+		
 		GlobalVar.state = "growing"
 		$RigidBody3D.mass = amount
+		
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
@@ -150,12 +153,17 @@ func grow(amount = GlobalVar.Scalerate):
 		$GPUParticles3D.emitting = true
 
 func shrink(amount = GlobalVar.Scalerate):
-	if GlobalVar.sizefactor > GlobalVar.MinCap and GlobalVar.sizefactor > 0:
+	if GlobalVar.sizefactor - amount/2 > GlobalVar.MinCap and GlobalVar.sizefactor > 0:
 		dyn_music()
+		
 		scale -= Vector3(amount, amount, amount) 
 		GlobalVar.sizeM = scale
-		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount) 
+		GlobalVar.sizefactor = snapped(GlobalVar.sizeM.x, amount)
+		
+		
 		GlobalVar.state = "shrinking"
+		$RigidBody3D.mass = amount
+		
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
@@ -203,6 +211,9 @@ func try_pickup():
 		GlobalVar.objectPicked = true
 		$MeshInstance3D.add_child(pickinst)
 		
+		if pickinst.find_child("Meatbox"):
+			pickinst.toggle()
+		
 		get_parent_node_3d().remove_child(pickedobject[0])
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
@@ -228,6 +239,7 @@ func release_pickup():
 		pickinst.get_node("CollisionShape3D").disabled = false
 		pickinst.get_node("Area3D").monitoring = true
 		pickinst.resize()
+
 		GlobalVar.objectPicked = false
 		if lastSide == "right":
 			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
@@ -253,20 +265,23 @@ func throw():
 	mundotest.add_child(pickinst)
 
 func _on_ray_collided(target_scale):
+	
 	scale = Vector3(target_scale, target_scale, target_scale) 
 	GlobalVar.sizeM = scale
-	GlobalVar.state = "shrinking"
-	GlobalVar.MinCap = target_scale
-	GlobalVar.MaxCap = target_scale
 	GlobalVar.sizefactor = target_scale
+	
+	
 	$RigidBody3D.mass = target_scale
+	
+	
 	$GPUParticles3D.process_material.set_collision_mode(1)
 	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
 	$GPUParticles3D.one_shot = true
 	$GPUParticles3D.emitting = true
 	
 func _on_object_detect_body_entered(body):
-	pickedobject.push_front(body)
+	if body.find_child("Pickable") or body.find_child("Meatbox"):
+		pickedobject.push_front(body)
 
 func _on_object_detect_body_exited(body):
 	body.get_child(1).hide()

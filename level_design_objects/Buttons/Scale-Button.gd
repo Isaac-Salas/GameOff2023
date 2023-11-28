@@ -8,15 +8,14 @@ var weight_inside = 0
 var bodys_inside = []
 var delta = 0
 var sign = false
+
 func _ready():
 	display.play("0")
 	anim.play("Pressed Up")
-	print(delta)
 
 func _process(_delta):
 	if bodys_inside.size() > 0 and update() and !sign:
 		sign = true
-		print(sign)
 		emit_signal("pressed", state)
 	else:
 		sign = false
