@@ -4,8 +4,8 @@ var pos = get_node(".").position
 var pickupinst
 var pickinst 
 var mundotest
-var startspeed = GlobalVar.SPEED
-var startjump = GlobalVar.JUMP_VELOCITY
+@export var startspeed = GlobalVar.SPEED
+@export var startjump = GlobalVar.JUMP_VELOCITY
 var lastSide = "right"
 @onready var Animate = get_node("MeshInstance3D/Prot-Slime").find_child("AnimationPlayer")
 

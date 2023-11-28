@@ -423,7 +423,7 @@ radius = 2.11086
 height = 4.50125
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_amfvc"]
-radius = 8.0
+radius = 10.0
 
 [node name="Hand" type="CharacterBody3D"]
 axis_lock_linear_z = true
@@ -471,3 +471,4 @@ shape = SubResource("CapsuleShape3D_pduus")
 shape = SubResource("SphereShape3D_amfvc")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

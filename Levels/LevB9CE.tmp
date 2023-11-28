@@ -14,12 +14,13 @@ script/source = "extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Hand.loadPlayer()
+	$Player.startspeed = 30.0
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+pass
 "
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -35,7 +36,6 @@ script = SubResource("GDScript_6a5mg")
 
 [node name="Player" parent="." instance=ExtResource("2_0os48")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -39.98, 6.127, 0)
-startspeed = 20.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_ic014")]
 
@@ -66,5 +66,5 @@ navigation_layers = 7
 transform = Transform3D(400, 0, 0, 0, 2, 0, 0, 0, 40, 0, 0, 0)
 
 [node name="Hand" parent="." instance=ExtResource("6_yolky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.3819, 4.63781, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.3819, 6.84982, 0)
 player_path = NodePath("../Player")
