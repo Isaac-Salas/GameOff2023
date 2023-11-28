@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://dkirhggfyjeqp"]
+[gd_scene load_steps=95 format=3 uid="uid://dkirhggfyjeqp"]
 
 [ext_resource type="Texture2D" uid="uid://coe5vql2mck2a" path="res://Models/Enemies/HandSprites/Catch/100.png" id="1_imcpr"]
 [ext_resource type="Texture2D" uid="uid://bkcrurahb7cmt" path="res://Models/Enemies/HandSprites/Ang-End/10.png" id="1_p41ej"]
@@ -82,6 +82,20 @@
 [ext_resource type="Texture2D" uid="uid://cw5n3k0yktm2y" path="res://Models/Enemies/HandSprites/Turned-Idle/14.png" id="67_p5vgm"]
 [ext_resource type="Texture2D" uid="uid://b1y2yompnmqwh" path="res://Models/Enemies/HandSprites/Turned-Idle/15.png" id="68_vw8rx"]
 [ext_resource type="Texture2D" uid="uid://c6delxg6l8lj0" path="res://Models/Enemies/HandSprites/Turned-Idle/16.png" id="69_y5jcl"]
+
+[sub_resource type="GDScript" id="GDScript_x3bk6"]
+script/source = "extends RigidBody3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$AnimatedSprite3D.play(\"Run\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ei3e2"]
 load_path = "res://.godot/imported/Idle0.png-d5feece1ab77076cd242f7e14d225565.s3tc.ctex"
@@ -439,6 +453,7 @@ height = 9.37
 collision_layer = 7
 collision_mask = 7
 axis_lock_linear_z = true
+script = SubResource("GDScript_x3bk6")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5007, 0.333799, 0)
@@ -447,7 +462,7 @@ shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mc2nn")
 animation = &"Idle"
-frame_progress = 0.73976
+frame_progress = 0.953813
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.135, 0, 0)
