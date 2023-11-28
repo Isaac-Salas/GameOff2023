@@ -283,8 +283,9 @@ func _on_object_detect_body_entered(body):
 		pickedobject.push_front(body)
 
 func _on_object_detect_body_exited(body):
-	body.get_child(1).hide()
-	pickedobject.erase(body)
+	if body.find_child("Pickable") or body.find_child("Meatbox"):
+		body.get_child(1).hide()
+		pickedobject.erase(body)
 
 func _on_rigid_body_3d_body_entered(body):
 	print(body.name)
