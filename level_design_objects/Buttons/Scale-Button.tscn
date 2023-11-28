@@ -277,5 +277,14 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.368652, 0.574554, 0.
 sprite_frames = SubResource("SpriteFrames_w4q15")
 animation = &"8"
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373611, 0.617313, 0.6593)
+light_energy = 11.828
+light_indirect_energy = 3.909
+light_volumetric_fog_energy = 3.26
+shadow_enabled = true
+omni_range = 4.565
+omni_attenuation = 3.22739
+
 [connection signal="body_entered" from="ButtonHitbox" to="." method="_on_button_hitbox_body_entered"]
 [connection signal="body_exited" from="ButtonHitbox" to="." method="_on_button_hitbox_body_exited"]

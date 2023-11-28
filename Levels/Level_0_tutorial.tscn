@@ -42,7 +42,7 @@ inertia = Vector3(3.75, 4.45, 0)
 freeze_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_j3s68")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.0263, 5.15273, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.2922, 5.15273, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 2.29733)
