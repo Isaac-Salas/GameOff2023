@@ -92,18 +92,28 @@
 [ext_resource type="Texture2D" uid="uid://b1y2yompnmqwh" path="res://Models/Enemies/HandSprites/Turned-Idle/15.png" id="68_vw8rx"]
 [ext_resource type="Texture2D" uid="uid://c6delxg6l8lj0" path="res://Models/Enemies/HandSprites/Turned-Idle/16.png" id="69_y5jcl"]
 
-[sub_resource type="GDScript" id="GDScript_x3bk6"]
-script/source = "extends RigidBody3D
+[sub_resource type="GDScript" id="GDScript_silba"]
+script/source = "extends CharacterBody3D
+var player = null
+
+@export var SPEED = 4.0
+@export var player_path : NodePath
+@onready var nav_agent = $NavigationAgent3D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimatedSprite3D.play(\"Run\")
+	player = get_node(player_path)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	velocity = Vector3.ZERO
+	nav_agent.set_target_position(player.global_transform.origin)
+	var next_nav_point = nav_agent.get_next_path_position()
+	velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
+	move_and_slide()
+	
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2nn"]
@@ -431,11 +441,11 @@ animations = [{
 radius = 2.945
 height = 9.37
 
-[node name="Node3D" type="RigidBody3D"]
+[node name="Node3D" type="CharacterBody3D"]
 collision_layer = 7
 collision_mask = 7
 axis_lock_linear_z = true
-script = SubResource("GDScript_x3bk6")
+script = SubResource("GDScript_silba")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5007, 0.333799, 0)
@@ -444,8 +454,11 @@ shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mc2nn")
 animation = &"Idle"
-frame_progress = 0.214728
+frame_progress = 0.269255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.135, 0, 0)
 shape = SubResource("CapsuleShape3D_6waqn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 7
