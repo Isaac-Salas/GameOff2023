@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1nyqqnws6rgq"]
+[gd_scene load_steps=17 format=3 uid="uid://1nyqqnws6rgq"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_xc5vm"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="3_vqgsn"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://djmt1d5rsnj0p" path="res://Music/CapaPequeño.mp3" id="12_cm8v7"]
 [ext_resource type="AudioStream" uid="uid://bah5n5paw08we" path="res://Music/CapaGrande.mp3" id="13_dl0m7"]
 [ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken-Wall.tscn" id="14_mxkbp"]
+[ext_resource type="PackedScene" uid="uid://bqf3lvqh4ynwk" path="res://level_design_objects/Buttons/Scale-Button.tscn" id="15_blw5a"]
 [ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="15_go5ma"]
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -111,5 +112,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_xc5vm")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -42.3737, 6.443, 0)
+
+[node name="Scale-Button" parent="." instance=ExtResource("15_blw5a")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.106, -1.822, 0)
+activation_weight = 8
 
 [editable path="Camera3D2"]
