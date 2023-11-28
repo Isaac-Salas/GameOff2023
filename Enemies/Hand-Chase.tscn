@@ -50,13 +50,22 @@
 [ext_resource type="Texture2D" uid="uid://0tv7dpi1050r" path="res://Models/Enemies/HandSprites/Scream/103.png" id="35_nedw4"]
 [ext_resource type="Texture2D" uid="uid://riafclkowm6u" path="res://Models/Enemies/HandSprites/Scream/104.png" id="36_psr45"]
 [ext_resource type="Texture2D" uid="uid://on7xiuu8im2s" path="res://Models/Enemies/HandSprites/Scream/105.png" id="37_4dcgt"]
+[ext_resource type="Texture2D" uid="uid://cqnio0w4shj3b" path="res://Models/Enemies/HandSprites/Idle/Idle0.png" id="37_vdkil"]
 [ext_resource type="Texture2D" uid="uid://dgn17js0qnl18" path="res://Models/Enemies/HandSprites/Scream/106.png" id="38_4quil"]
+[ext_resource type="Texture2D" uid="uid://bqo50m7rtahbp" path="res://Models/Enemies/HandSprites/Idle/Idle1.png" id="38_xfaku"]
 [ext_resource type="Texture2D" uid="uid://dynf6n3cnw0cc" path="res://Models/Enemies/HandSprites/Scream/107.png" id="39_g2s2y"]
+[ext_resource type="Texture2D" uid="uid://brg14ce1rln2d" path="res://Models/Enemies/HandSprites/Idle/Idle2.png" id="39_ma4lb"]
+[ext_resource type="Texture2D" uid="uid://cii6sg3m5di3k" path="res://Models/Enemies/HandSprites/Idle/Idle3.png" id="40_pfd0y"]
 [ext_resource type="Texture2D" uid="uid://cmup8yalr2ok1" path="res://Models/Enemies/HandSprites/Scream/108.png" id="40_ro6ua"]
 [ext_resource type="Texture2D" uid="uid://ca5am580nrti4" path="res://Models/Enemies/HandSprites/Scream/109.png" id="41_70iea"]
+[ext_resource type="Texture2D" uid="uid://h5q7bmhsrmm2" path="res://Models/Enemies/HandSprites/Idle/Idle4.png" id="41_gvt6r"]
+[ext_resource type="Texture2D" uid="uid://dnr3xosadq5yc" path="res://Models/Enemies/HandSprites/Idle/Idle5.png" id="42_2kvy8"]
 [ext_resource type="Texture2D" uid="uid://dlkko3ivmowcm" path="res://Models/Enemies/HandSprites/Scream/110.png" id="42_323ry"]
+[ext_resource type="Texture2D" uid="uid://r5hjj732wy2n" path="res://Models/Enemies/HandSprites/Idle/Idle6.png" id="43_g0kbp"]
 [ext_resource type="Texture2D" uid="uid://dgbf02ny5so8v" path="res://Models/Enemies/HandSprites/Scream/111.png" id="43_vog8i"]
 [ext_resource type="Texture2D" uid="uid://ch265f4osbe43" path="res://Models/Enemies/HandSprites/Scream/112.png" id="44_gnmgk"]
+[ext_resource type="Texture2D" uid="uid://ccx2u3l1jbyfe" path="res://Models/Enemies/HandSprites/Idle/Idle7.png" id="44_ljj24"]
+[ext_resource type="Texture2D" uid="uid://b660tny2bek8y" path="res://Models/Enemies/HandSprites/Idle/Idle8.png" id="45_8ooyt"]
 [ext_resource type="Texture2D" uid="uid://di4e466smpt0h" path="res://Models/Enemies/HandSprites/Scream/113.png" id="45_l5jwp"]
 [ext_resource type="Texture2D" uid="uid://cfc416t0n2udc" path="res://Models/Enemies/HandSprites/Scream/114.png" id="46_cva26"]
 [ext_resource type="Texture2D" uid="uid://baf8eh855wmbn" path="res://Models/Enemies/HandSprites/Scream/115.png" id="47_i24ir"]
@@ -96,33 +105,6 @@ func _ready():
 func _process(delta):
 	pass
 "
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ei3e2"]
-load_path = "res://.godot/imported/Idle0.png-d5feece1ab77076cd242f7e14d225565.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmmtm"]
-load_path = "res://.godot/imported/Idle1.png-82bab0b6c5602491683de9cffc65caf3.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5muop"]
-load_path = "res://.godot/imported/Idle2.png-263160aab097e624b5336c320c5b626c.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pxkgq"]
-load_path = "res://.godot/imported/Idle3.png-5d3d3c380ffcd7faafff6938ade7eda6.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h0tl5"]
-load_path = "res://.godot/imported/Idle4.png-b8e231e5e488d2db6de6817de33c4094.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygfim"]
-load_path = "res://.godot/imported/Idle5.png-3c19ad1ddae0caccd08ec30f388bf9c2.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2jw2q"]
-load_path = "res://.godot/imported/Idle6.png-ff9d48ea61857f0937dcbb9494430c5f.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bynpx"]
-load_path = "res://.godot/imported/Idle7.png-b43a662ccd1f5152751738f217f128bb.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q2dis"]
-load_path = "res://.godot/imported/Idle8.png-671dd8a95bdc38772bc47d50ff321c90.s3tc.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2nn"]
 animations = [{
@@ -256,31 +238,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ei3e2")
+"texture": ExtResource("37_vdkil")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_rmmtm")
+"texture": ExtResource("38_xfaku")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_5muop")
+"texture": ExtResource("39_ma4lb")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_pxkgq")
+"texture": ExtResource("40_pfd0y")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_h0tl5")
+"texture": ExtResource("41_gvt6r")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ygfim")
+"texture": ExtResource("42_2kvy8")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_2jw2q")
+"texture": ExtResource("43_g0kbp")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_bynpx")
+"texture": ExtResource("44_ljj24")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_q2dis")
+"texture": ExtResource("45_8ooyt")
 }],
 "loop": true,
 "name": &"Idle",
@@ -462,7 +444,7 @@ shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mc2nn")
 animation = &"Idle"
-frame_progress = 0.953813
+frame_progress = 0.214728
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.135, 0, 0)
