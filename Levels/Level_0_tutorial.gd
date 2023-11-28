@@ -14,4 +14,4 @@ func _ready():
 func _process(_delta):
 	GlobalVar.MinCap = $Player.scale.x
 	GlobalVar.MaxCap = $Player.scale.x
-	
+

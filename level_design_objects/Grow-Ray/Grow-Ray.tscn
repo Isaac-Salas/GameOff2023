@@ -104,6 +104,7 @@ debug_shape_thickness = 5
 [node name="VisualLaser" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
 material_override = SubResource("StandardMaterial3D_32v3k")
+cast_shadow = 0
 mesh = SubResource("ImmediateMesh_cuouj")
 script = ExtResource("2_y53yk")
 

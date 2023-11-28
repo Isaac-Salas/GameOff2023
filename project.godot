@@ -18,11 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalVar="*res://Global/GlobalVar.gd"
+DialogManager="*res://UI/TextBox/DialogManager.gd"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=324
 window/size/mode=2
 window/size/initial_position_type=0
 window/stretch/mode="viewport"
@@ -83,4 +82,3 @@ Item={
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
-textures/canvas_textures/default_texture_filter=0
