@@ -93,6 +93,9 @@
 [ext_resource type="Texture2D" uid="uid://b1y2yompnmqwh" path="res://Models/Enemies/HandSprites/Turned-Idle/15.png" id="68_vw8rx"]
 [ext_resource type="Texture2D" uid="uid://c6delxg6l8lj0" path="res://Models/Enemies/HandSprites/Turned-Idle/16.png" id="69_y5jcl"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2oa6c"]
+radius = 1.66537
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2nn"]
 animations = [{
 "frames": [{
@@ -418,10 +421,6 @@ animations = [{
 radius = 2.9
 height = 9.3
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pduus"]
-radius = 2.11086
-height = 6.02839
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_amfvc"]
 radius = 10.0
 
@@ -495,6 +494,23 @@ axis_lock_linear_z = true
 script = ExtResource("1_7ncls")
 target_size = 5.0
 
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+can_sleep = false
+lock_rotation = true
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131615, -1.10825, 0)
+shape = SubResource("SphereShape3D_2oa6c")
+
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65674, 0.764255, 0)
 layers = 7
@@ -512,22 +528,6 @@ shape = SubResource("CapsuleShape3D_6waqn")
 path_desired_distance = 20.0
 target_desired_distance = 13.0
 path_max_distance = 0.11
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-can_sleep = false
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.531806, -0.81987, 0)
-shape = SubResource("CapsuleShape3D_pduus")
 
 [node name="Area3D" type="Area3D" parent="."]
 
