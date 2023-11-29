@@ -26,15 +26,32 @@ func _physics_process(delta):
 func matchtest():
 	match switch:
 		0:
-			pass
+			print("En ceros")
+			
 		1:
-			print("On 1, gonna switch to 0")
-			switch = 0
-	
+			$AnimatedSprite3D.play("Turn")
+			await $AnimatedSprite3D.animation_finished
+			switch = 2
+		2:
+			$AnimatedSprite3D.play("Turned-Idle")
+			await $AnimatedSprite3D.animation_finished
+			switch = 3
+		3:
+			$AnimatedSprite3D.play("Scream")
+			await $AnimatedSprite3D.animation_finished
+			change = true
+			switch = 4
+		4:
+			$AnimatedSprite3D.play("Run")
+			
+		5: 
+			$AnimatedSprite3D.play("Catch")
+			await $AnimatedSprite3D.animation_finished
+			change = true
+			switch = 4
 func start():
-	$AnimatedSprite3D.play("Scream")
-	await $AnimatedSprite3D.animation_finished
-	change = true
+	matchtest()
+
 
 
 func tracking():
@@ -54,8 +71,10 @@ func update_target(target_position):
 
 
 func _on_navigation_agent_3d_target_reached():
-	$AnimatedSprite3D.play("Catch")
+	switch = 5
 
 func _on_area_3d_body_entered(body):
 	if body.name == "Player":
 		Playerclose = true
+		switch = 1
+		$Area3D.queue_free()

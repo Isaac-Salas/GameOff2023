@@ -66,5 +66,5 @@ navigation_layers = 7
 transform = Transform3D(400, 0, 0, 0, 2, 0, 0, 0, 40, 0, 0, 0)
 
 [node name="Hand" parent="." instance=ExtResource("6_yolky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.3819, 8.28823, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -75.3819, 8.28823, 0)
 player_path = NodePath("../Player")
