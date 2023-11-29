@@ -144,7 +144,7 @@ func grow(amount = GlobalVar.Scalerate):
 		
 		
 		GlobalVar.state = "growing"
-		$RigidBody3D.mass = scale.x
+		$PlayerRigid.mass = scale.x
 		
 		$GPUParticles3D.process_material.set_collision_mode(2)
 		$GPUParticles3D.process_material.direction = Vector3(0,-1,0)
@@ -162,7 +162,7 @@ func shrink(amount = GlobalVar.Scalerate):
 		
 		
 		GlobalVar.state = "shrinking"
-		$RigidBody3D.mass = scale.x
+		$PlayerRigid.mass = scale.x
 		$GPUParticles3D.process_material.direction = Vector3(0,1,0)
 		$GPUParticles3D.process_material.set("lifetime", 4)
 		$GPUParticles3D.process_material.set_collision_mode(1)
@@ -264,19 +264,29 @@ func throw():
 	mundotest.add_child(pickinst)
 
 func _on_ray_collided(target_scale):
-	
 	scale = Vector3(target_scale, target_scale, target_scale) 
 	GlobalVar.sizeM = scale
 	GlobalVar.sizefactor = target_scale
-	
-	
-	$RigidBody3D.mass = scale.x
-	
-	
+	$PlayerRigid.mass = scale.x
 	$GPUParticles3D.process_material.set_collision_mode(1)
 	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
 	$GPUParticles3D.one_shot = true
 	$GPUParticles3D.emitting = true
+
+func goo():
+	$GPUParticles3D.process_material.set_collision_mode(1)
+	$GPUParticles3D.process_material.direction = Vector3(0,0,0)
+	$GPUParticles3D.one_shot = true
+	$GPUParticles3D.emitting = true
+
+func hit(target_scale):
+	scale = Vector3(target_scale, target_scale, target_scale) 
+	GlobalVar.sizeM = scale
+	GlobalVar.sizefactor = target_scale
+	GlobalVar.sizestandard = target_scale
+	GlobalVar.MinCap = target_scale
+	GlobalVar.MaxCap = target_scale
+	$PlayerRigid.mass = scale.x
 	
 func _on_object_detect_body_entered(body):
 	if body.find_child("Pickable") or body.find_child("Meatbox"):
