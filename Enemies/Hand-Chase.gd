@@ -4,6 +4,7 @@ var SPEED
 var Playerclose
 var reached 
 var change
+var switch = 1
 @export var player_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 
@@ -19,18 +20,24 @@ func _physics_process(delta):
 		start()
 		if change == true:
 			tracking()
+			matchtest()
+			
+
+func matchtest():
+	match switch:
+		0:
+			pass
+		1:
+			print("On 1, gonna switch to 0")
+			switch = 0
 	
 func start():
 	$AnimatedSprite3D.play("Scream")
 	await $AnimatedSprite3D.animation_finished
 	change = true
-func idle(switch):
-	if switch == false:
-		$AnimatedSprite3D.play("Idle")
-		return true
+
 
 func tracking():
-	idle(false)
 	SPEED=player.startspeed
 	update_target(player.global_transform.origin)
 	var current_location = global_transform.origin
