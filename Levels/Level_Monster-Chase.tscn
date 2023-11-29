@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckhb0b2hhrtsy"]
+[gd_scene load_steps=10 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="4_nexwc"]
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
+[ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="6_7r72s"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
@@ -79,3 +80,6 @@ target_size = 2.0
 
 [node name="Paredzota" parent="." instance=ExtResource("5_h2blc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -155.202, 23.5701, -47.2148)
+
+[node name="Floor-Un" parent="." instance=ExtResource("6_7r72s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.33047, 0)

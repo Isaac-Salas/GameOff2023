@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmsri33o4dda3"]
+
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="1_i2xt0"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_uf6g3"]
+[ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="4_jxy0p"]
+[ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_3a2iu"]
+[ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="6_w6ilo"]
+
+[sub_resource type="GDScript" id="GDScript_6a5mg"]
+script/source = "extends Node3D
+var switching = 1
+var findhand
+@onready var over = preload(\"res://UI/Game-Over/game_over.tscn\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Hand.loadPlayer()
+	findhand = find_child(\"Hand\")
+	GlobalVar.MinCap = 2
+	GlobalVar.MaxCap = 2
+	GlobalVar.sizestandard = 2
+	GlobalVar.sizefactor = 2
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if findhand.target_size < 0.1:
+		matching()
+
+func matching():
+	match switching:
+		0:
+			pass
+		
+		1:
+			var anim = findhand.find_child(\"AnimationPlayer\")
+			await anim.animation_started
+			print(\"Instanciaaa\")
+			add_child(over.instantiate())
+			switching=0
+			
+"
+
+[sub_resource type="Environment" id="Environment_a0845"]
+background_mode = 1
+background_color = Color(0.054902, 0, 0.164706, 1)
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_6a5mg")
+
+[node name="Player" parent="." instance=ExtResource("1_i2xt0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -17.8886, 55.0709, 0)
+startspeed = 30.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0845")
+
+[node name="Camera3D2" parent="." instance=ExtResource("2_uf6g3")]
+transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -44.701, 10.1376, 25)
+current = false
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Hand" parent="." instance=ExtResource("4_jxy0p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -167.705, 9.86501, 0)
+player_path = NodePath("../Player")
+target_size = 2.0
+
+[node name="Paredzota" parent="." instance=ExtResource("5_3a2iu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -155.202, 23.5701, -47.2148)
+
+[node name="Floor-Un" parent="." instance=ExtResource("6_w6ilo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5019, 0, 0)
+
+[node name="Floor-Un2" parent="." instance=ExtResource("6_w6ilo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4764, -19.7086, 0)
+
+[node name="Floor-Un3" parent="." instance=ExtResource("6_w6ilo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81384, -47.5983, 0)
