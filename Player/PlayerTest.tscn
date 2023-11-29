@@ -97,7 +97,7 @@ draw_skin = SubResource("Skin_3ldfs")
 layers = 3
 radius = 0.997958
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="PlayerRigid" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 collision_layer = 2
 collision_mask = 2
@@ -115,7 +115,7 @@ freeze = true
 linear_velocity = Vector3(0, 8, 0)
 constant_force = Vector3(1, 1, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerRigid"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0721899, 0)
 shape = SubResource("CapsuleShape3D_6xv47")
 
@@ -134,4 +134,4 @@ target_position = Vector3(1, 0, 0)
 
 [connection signal="body_entered" from="ObjectDetect" to="." method="_on_object_detect_body_entered"]
 [connection signal="body_exited" from="ObjectDetect" to="." method="_on_object_detect_body_exited"]
-[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
+[connection signal="body_entered" from="PlayerRigid" to="." method="_on_rigid_body_3d_body_entered"]

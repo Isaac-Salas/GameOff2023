@@ -12,11 +12,11 @@ near = 0.001
 script = ExtResource("1_qokmp")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.966824, 0.255446, 0, -0.255446, 0.966824, 0, 0, 0)
+transform = Transform3D(0.999805, 0.0190145, 0.00523277, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
 light_color = Color(0.490196, 0.960784, 0.388235, 1)
 light_energy = 16.0
 light_indirect_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
 shadow_blur = 10.0
-spot_range = 20.0
+spot_range = 30.0

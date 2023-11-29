@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmiqo1mi1uic0"]
-
-[ext_resource type="Script" path="res://NPCs/SimpleCube.gd" id="1_xxvyd"]
+[gd_scene load_steps=3 format=3 uid="uid://dmiqo1mi1uic0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8pcb2"]
 size = Vector3(3, 3, 3)
@@ -8,15 +6,11 @@ size = Vector3(3, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_q1mvf"]
 size = Vector3(3, 3, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
-size = Vector3(5, 5, 5)
-
 [node name="Block" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
 axis_lock_linear_z = true
 inertia = Vector3(0, 5, 0)
-script = ExtResource("1_xxvyd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8pcb2")
@@ -26,12 +20,3 @@ shape = SubResource("BoxShape3D_q1mvf")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 size = Vector3(3, 3, 3)
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04255, 4.60846)
-shape = SubResource("BoxShape3D_bgy1i")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
