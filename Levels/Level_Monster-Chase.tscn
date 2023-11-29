@@ -7,11 +7,13 @@
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
-
-
+var switching = 1
+var findhand
+@onready var over = preload(\"res://UI/Game-Over/game_over.tscn\")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Hand.loadPlayer()
+	findhand = find_child(\"Hand\")
 	GlobalVar.MinCap = 2
 	GlobalVar.MaxCap = 2
 	GlobalVar.sizestandard = 2
@@ -21,7 +23,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if findhand.target_size < 0.1:
+		matching()
+
+func matching():
+	match switching:
+		0:
+			pass
+		
+		1:
+			var anim = findhand.find_child(\"AnimationPlayer\")
+			await anim.animation_started
+			print(\"Instanciaaa\")
+			add_child(over.instantiate())
+			switching=0
+			
 "
 
 [sub_resource type="Environment" id="Environment_a0845"]

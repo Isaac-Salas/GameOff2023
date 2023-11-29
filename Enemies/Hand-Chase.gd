@@ -5,7 +5,7 @@ var Playerclose
 var reached 
 var change
 var switch = 1
-var over = preload("res://UI/Game-Over/game_over.tscn")
+
 @export var player_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 @export var target_size = 1.5
@@ -60,10 +60,8 @@ func matchtest():
 			await $AnimationPlayer.animation_finished
 			switch = 4
 		10:
-			print("Instanciaaa")
-			var mundo = get_parent_node_3d()
-			mundo.add_child(over.instantiate())
-			switch=0
+			pass
+
 
 
 func start():
@@ -102,8 +100,6 @@ func _on_playerthrow_body_entered(body):
 	print(body.name)
 	if body.name == "Player":
 		target_size -= 0.5
-		if target_size < 0.1:
-			switch=10
 		await $AnimatedSprite3D.animation_looped
 		switch = 6
 

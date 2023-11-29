@@ -491,6 +491,7 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().set_pause(true)
 	$CanvasLayer/AnimatedSprite2D.play(\"Start\")
 
 
@@ -502,6 +503,7 @@ func _process(delta):
 
 func _on_texture_button_pressed():
 	get_tree().reload_current_scene()
+	get_tree().set_pause(false)
 "
 
 [sub_resource type="Animation" id="Animation_0jait"]
@@ -1963,6 +1965,7 @@ animations = [{
 }]
 
 [node name="Game-Over" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
