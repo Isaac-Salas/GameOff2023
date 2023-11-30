@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckhb0b2hhrtsy"]
+
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_ygb08"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="3_ic014"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="4_nexwc"]
+[ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
+
+[sub_resource type="GDScript" id="GDScript_6a5mg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Hand.loadPlayer()
+	$Player.startspeed = 30.0
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+pass
+"
+
+[sub_resource type="Environment" id="Environment_a0845"]
+background_mode = 1
+background_color = Color(0.054902, 0, 0.164706, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_m0gf1"]
+vertices = PackedVector3Array(-199.5, 1.5, 9.75, -199.5, 1.5, 19.5, -193.5, 1.5, 19.5, -193.5, 1.5, -19.5, -199.5, 1.5, -19.5, -199.5, 1.5, -9.75, 193.25, 1.5, 19.5, 199.5, 1.5, 19.5, 199.5, 1.5, 9.75, 199.5, 1.5, -9.75, 199.5, 1.5, -19.5, 193.25, 1.5, -19.5, -199.5, 1.5, 9.75, -193.5, 1.5, 19.5, -187.25, 1.5, 19.5, -187.25, 1.5, -19.5, -193.5, 1.5, -19.5, -199.5, 1.5, -9.75, 187, 1.5, 19.5, 193.25, 1.5, 19.5, 199.5, 1.5, 9.75, 199.5, 1.5, -9.75, 193.25, 1.5, -19.5, 187, 1.5, -19.5, -199.5, 1.5, 9.75, -187.25, 1.5, 19.5, -181, 1.5, 19.5, -181, 1.5, -19.5, -187.25, 1.5, -19.5, -199.5, 1.5, -9.75, 180.75, 1.5, 19.5, 187, 1.5, 19.5, 199.5, 1.5, 9.75, 199.5, 1.5, -9.75, 187, 1.5, -19.5, 180.75, 1.5, -19.5, -199.5, 1.5, 9.75, -181, 1.5, 19.5, -174.75, 1.5, 19.5, -174.75, 1.5, -19.5, -181, 1.5, -19.5, -199.5, 1.5, -9.75, 174.5, 1.5, 19.5, 180.75, 1.5, 19.5, 199.5, 1.5, 9.75, 199.5, 1.5, -9.75, 180.75, 1.5, -19.5, 174.5, 1.5, -19.5, -199.5, 1.5, 0, -199.5, 1.5, 9.75, -174.75, 1.5, 19.5, -168.5, 1.5, 19.5, -174.75, 1.5, -19.5, -199.5, 1.5, -9.75, -199.5, 1.5, 0, -168.5, 1.5, -19.5, 174.5, 1.5, 19.5, 199.5, 1.5, 9.75, 199.5, 1.5, 0, 168.25, 1.5, 19.5, 199.5, 1.5, 0, 199.5, 1.5, -9.75, 174.5, 1.5, -19.5, 168.25, 1.5, -19.5, -25, 1.5, -19.5, -31.25, 1.5, -19.5, -31.25, 1.5, 19.5, -25, 1.5, 19.5, 12.25, 1.5, 19.5, 18.5, 1.5, 19.5, 18.5, 1.5, -19.5, 12.25, 1.5, -19.5, -18.75, 1.5, -19.5, -25, 1.5, -19.5, -25, 1.5, 19.5, -18.75, 1.5, 19.5, 6, 1.5, 19.5, 12.25, 1.5, 19.5, 12.25, 1.5, -19.5, 6, 1.5, -19.5, 168.25, 1.5, 19.5, 199.5, 1.5, 0, 168.25, 1.5, -19.5, 162, 1.5, -19.5, 162, 1.5, 19.5, -168.5, 1.5, -19.5, -199.5, 1.5, 0, -168.5, 1.5, 19.5, -162.25, 1.5, 19.5, -162.25, 1.5, -19.5, -6.25, 1.5, 19.5, 0, 1.5, 19.5, 0, 1.5, -19.5, -6.25, 1.5, -19.5, 0, 1.5, 19.5, 6, 1.5, 19.5, 6, 1.5, -19.5, 0, 1.5, -19.5, 155.75, 1.5, 19.5, 162, 1.5, 19.5, 162, 1.5, -19.5, 155.75, 1.5, -19.5, -156, 1.5, -19.5, -162.25, 1.5, -19.5, -162.25, 1.5, 19.5, -156, 1.5, 19.5, 149.5, 1.5, 19.5, 155.75, 1.5, 19.5, 155.75, 1.5, -19.5, 149.5, 1.5, -19.5, -149.75, 1.5, -19.5, -156, 1.5, -19.5, -156, 1.5, 19.5, -149.75, 1.5, 19.5, 143.25, 1.5, 19.5, 149.5, 1.5, 19.5, 149.5, 1.5, -19.5, 143.25, 1.5, -19.5, -143.5, 1.5, -19.5, -149.75, 1.5, -19.5, -149.75, 1.5, 19.5, -143.5, 1.5, 19.5, 137, 1.5, 19.5, 143.25, 1.5, 19.5, 143.25, 1.5, -19.5, 137, 1.5, -19.5, -137.25, 1.5, -19.5, -143.5, 1.5, -19.5, -143.5, 1.5, 19.5, -137.25, 1.5, 19.5, 130.75, 1.5, 19.5, 137, 1.5, 19.5, 137, 1.5, -19.5, 130.75, 1.5, -19.5, -131, 1.5, -19.5, -137.25, 1.5, -19.5, -137.25, 1.5, 19.5, -131, 1.5, 19.5, 124.5, 1.5, 19.5, 130.75, 1.5, 19.5, 130.75, 1.5, -19.5, 124.5, 1.5, -19.5, -124.75, 1.5, -19.5, -131, 1.5, -19.5, -131, 1.5, 19.5, -124.75, 1.5, 19.5, 118.25, 1.5, 19.5, 124.5, 1.5, 19.5, 124.5, 1.5, -19.5, 118.25, 1.5, -19.5, -118.5, 1.5, -19.5, -124.75, 1.5, -19.5, -124.75, 1.5, 19.5, -118.5, 1.5, 19.5, 112, 1.5, 19.5, 118.25, 1.5, 19.5, 118.25, 1.5, -19.5, 112, 1.5, -19.5, -112.25, 1.5, -19.5, -118.5, 1.5, -19.5, -118.5, 1.5, 19.5, -112.25, 1.5, 19.5, 105.75, 1.5, 19.5, 112, 1.5, 19.5, 112, 1.5, -19.5, 105.75, 1.5, -19.5, -106, 1.5, -19.5, -112.25, 1.5, -19.5, -112.25, 1.5, 19.5, -106, 1.5, 19.5, 99.75, 1.5, 19.5, 105.75, 1.5, 19.5, 105.75, 1.5, -19.5, 99.75, 1.5, -19.5, -12.5, 1.5, 19.5, -6.25, 1.5, 19.5, -6.25, 1.5, -19.5, -12.5, 1.5, -19.5, 93.5, 1.5, 19.5, 99.75, 1.5, 19.5, 99.75, 1.5, -19.5, 93.5, 1.5, -19.5, -99.75, 1.5, -19.5, -106, 1.5, -19.5, -106, 1.5, 19.5, -99.75, 1.5, 19.5, 87.25, 1.5, 19.5, 93.5, 1.5, 19.5, 93.5, 1.5, -19.5, 87.25, 1.5, -19.5, -93.75, 1.5, -19.5, -99.75, 1.5, -19.5, -99.75, 1.5, 19.5, -93.75, 1.5, 19.5, 81, 1.5, 19.5, 87.25, 1.5, 19.5, 87.25, 1.5, -19.5, 81, 1.5, -19.5, -12.5, 1.5, -19.5, -18.75, 1.5, -19.5, -18.75, 1.5, 19.5, -12.5, 1.5, 19.5, 74.75, 1.5, 19.5, 81, 1.5, 19.5, 81, 1.5, -19.5, 74.75, 1.5, -19.5, -87.5, 1.5, -19.5, -93.75, 1.5, -19.5, -93.75, 1.5, 19.5, -87.5, 1.5, 19.5, 68.5, 1.5, 19.5, 74.75, 1.5, 19.5, 74.75, 1.5, -19.5, 68.5, 1.5, -19.5, -81.25, 1.5, -19.5, -87.5, 1.5, -19.5, -87.5, 1.5, 19.5, -81.25, 1.5, 19.5, 62.25, 1.5, 19.5, 68.5, 1.5, 19.5, 68.5, 1.5, -19.5, 62.25, 1.5, -19.5, -75, 1.5, -19.5, -81.25, 1.5, -19.5, -81.25, 1.5, 19.5, -75, 1.5, 19.5, 56, 1.5, 19.5, 62.25, 1.5, 19.5, 62.25, 1.5, -19.5, 56, 1.5, -19.5, -68.75, 1.5, -19.5, -75, 1.5, -19.5, -75, 1.5, 19.5, -68.75, 1.5, 19.5, 49.75, 1.5, 19.5, 56, 1.5, 19.5, 56, 1.5, -19.5, 49.75, 1.5, -19.5, -62.5, 1.5, -19.5, -68.75, 1.5, -19.5, -68.75, 1.5, 19.5, -62.5, 1.5, 19.5, 43.5, 1.5, 19.5, 49.75, 1.5, 19.5, 49.75, 1.5, -19.5, 43.5, 1.5, -19.5, -56.25, 1.5, -19.5, -62.5, 1.5, -19.5, -62.5, 1.5, 19.5, -56.25, 1.5, 19.5, 37.25, 1.5, 19.5, 43.5, 1.5, 19.5, 43.5, 1.5, -19.5, 37.25, 1.5, -19.5, -50, 1.5, -19.5, -56.25, 1.5, -19.5, -56.25, 1.5, 19.5, -50, 1.5, 19.5, 31, 1.5, 19.5, 37.25, 1.5, 19.5, 37.25, 1.5, -19.5, 31, 1.5, -19.5, -43.75, 1.5, -19.5, -50, 1.5, -19.5, -50, 1.5, 19.5, -43.75, 1.5, 19.5, 24.75, 1.5, 19.5, 31, 1.5, 19.5, 31, 1.5, -19.5, 24.75, 1.5, -19.5, -37.5, 1.5, -19.5, -43.75, 1.5, -19.5, -43.75, 1.5, 19.5, -37.5, 1.5, 19.5, 18.5, 1.5, 19.5, 24.75, 1.5, 19.5, 24.75, 1.5, -19.5, 18.5, 1.5, -19.5, -31.25, 1.5, -19.5, -37.5, 1.5, -19.5, -37.5, 1.5, 19.5, -31.25, 1.5, 19.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(26, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(35, 34, 33), PackedInt32Array(38, 37, 36), PackedInt32Array(41, 40, 39), PackedInt32Array(44, 43, 42), PackedInt32Array(47, 46, 45), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 48), PackedInt32Array(52, 55, 53), PackedInt32Array(53, 55, 54), PackedInt32Array(56, 59, 57), PackedInt32Array(57, 59, 58), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 60), PackedInt32Array(67, 66, 64), PackedInt32Array(64, 66, 65), PackedInt32Array(71, 70, 68), PackedInt32Array(68, 70, 69), PackedInt32Array(75, 74, 72), PackedInt32Array(72, 74, 73), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(84, 83, 80), PackedInt32Array(80, 83, 82), PackedInt32Array(80, 82, 81), PackedInt32Array(89, 88, 85), PackedInt32Array(85, 88, 87), PackedInt32Array(85, 87, 86), PackedInt32Array(93, 92, 90), PackedInt32Array(90, 92, 91), PackedInt32Array(97, 96, 94), PackedInt32Array(94, 96, 95), PackedInt32Array(101, 100, 98), PackedInt32Array(98, 100, 99), PackedInt32Array(105, 104, 102), PackedInt32Array(102, 104, 103), PackedInt32Array(109, 108, 106), PackedInt32Array(106, 108, 107), PackedInt32Array(113, 112, 110), PackedInt32Array(110, 112, 111), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(121, 120, 118), PackedInt32Array(118, 120, 119), PackedInt32Array(125, 124, 122), PackedInt32Array(122, 124, 123), PackedInt32Array(129, 128, 126), PackedInt32Array(126, 128, 127), PackedInt32Array(133, 132, 130), PackedInt32Array(130, 132, 131), PackedInt32Array(137, 136, 134), PackedInt32Array(134, 136, 135), PackedInt32Array(141, 140, 138), PackedInt32Array(138, 140, 139), PackedInt32Array(145, 144, 142), PackedInt32Array(142, 144, 143), PackedInt32Array(149, 148, 146), PackedInt32Array(146, 148, 147), PackedInt32Array(153, 152, 150), PackedInt32Array(150, 152, 151), PackedInt32Array(157, 156, 154), PackedInt32Array(154, 156, 155), PackedInt32Array(161, 160, 158), PackedInt32Array(158, 160, 159), PackedInt32Array(165, 164, 162), PackedInt32Array(162, 164, 163), PackedInt32Array(169, 168, 166), PackedInt32Array(166, 168, 167), PackedInt32Array(173, 172, 170), PackedInt32Array(170, 172, 171), PackedInt32Array(177, 176, 174), PackedInt32Array(174, 176, 175), PackedInt32Array(181, 180, 178), PackedInt32Array(178, 180, 179), PackedInt32Array(185, 184, 182), PackedInt32Array(182, 184, 183), PackedInt32Array(189, 188, 186), PackedInt32Array(186, 188, 187), PackedInt32Array(193, 192, 190), PackedInt32Array(190, 192, 191), PackedInt32Array(197, 196, 194), PackedInt32Array(194, 196, 195), PackedInt32Array(201, 200, 198), PackedInt32Array(198, 200, 199), PackedInt32Array(205, 204, 202), PackedInt32Array(202, 204, 203), PackedInt32Array(209, 208, 206), PackedInt32Array(206, 208, 207), PackedInt32Array(213, 212, 210), PackedInt32Array(210, 212, 211), PackedInt32Array(217, 216, 214), PackedInt32Array(214, 216, 215), PackedInt32Array(221, 220, 218), PackedInt32Array(218, 220, 219), PackedInt32Array(225, 224, 222), PackedInt32Array(222, 224, 223), PackedInt32Array(229, 228, 226), PackedInt32Array(226, 228, 227), PackedInt32Array(233, 232, 230), PackedInt32Array(230, 232, 231), PackedInt32Array(237, 236, 234), PackedInt32Array(234, 236, 235), PackedInt32Array(241, 240, 238), PackedInt32Array(238, 240, 239), PackedInt32Array(245, 244, 242), PackedInt32Array(242, 244, 243), PackedInt32Array(249, 248, 246), PackedInt32Array(246, 248, 247), PackedInt32Array(253, 252, 250), PackedInt32Array(250, 252, 251), PackedInt32Array(257, 256, 254), PackedInt32Array(254, 256, 255), PackedInt32Array(261, 260, 258), PackedInt32Array(258, 260, 259), PackedInt32Array(265, 264, 262), PackedInt32Array(262, 264, 263), PackedInt32Array(269, 268, 266), PackedInt32Array(266, 268, 267), PackedInt32Array(273, 272, 270), PackedInt32Array(270, 272, 271), PackedInt32Array(277, 276, 274), PackedInt32Array(274, 276, 275), PackedInt32Array(281, 280, 278), PackedInt32Array(278, 280, 279)]
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_6a5mg")
+
+[node name="Player" parent="." instance=ExtResource("2_0os48")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -39.98, 6.127, 0)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_ic014")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0845")
+
+[node name="Camera3D2" parent="." instance=ExtResource("2_7ic5v")]
+transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -44.701, 10.1376, 25)
+current = false
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("1_ygb08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0332, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_ygb08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6161, 19.3181, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_m0gf1")
+navigation_layers = 7
+
+[node name="Floor" parent="NavigationRegion3D" instance=ExtResource("4_nexwc")]
+transform = Transform3D(400, 0, 0, 0, 2, 0, 0, 0, 40, 0, 0, 0)
+
+[node name="Hand" parent="." instance=ExtResource("6_yolky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.3819, 6.84982, 0)
+player_path = NodePath("../Player")

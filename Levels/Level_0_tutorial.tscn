@@ -334,6 +334,9 @@ gi_mode = 2
 shaded = true
 texture = ExtResource("17_qq1nl")
 
+[node name="Block" parent="." instance=ExtResource("1_e423e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.42, 15.2602, -2.80626)
+
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Node3D3" method="_on_button_pressed"]
