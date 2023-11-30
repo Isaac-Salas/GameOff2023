@@ -122,7 +122,6 @@ func _physics_process(delta):
 		pickedobject[0].get_child(1).show()
 	for i in range(1, pickedobject.size()):
 		pickedobject[i].get_child(1).hide()
-	
 	move_and_slide()
 
 func sizecheck():
@@ -226,7 +225,7 @@ func try_pickup():
 
 func release_pickup():
 	print("release desde el player")
-	if GlobalVar.objectPicked:
+	if GlobalVar.objectPicked and !is_on_wall():
 		mundotest = get_parent_node_3d()
 		#Itemsize*sizefactor
 		$MeshInstance3D.remove_child(pickinst)
@@ -247,21 +246,22 @@ func release_pickup():
 		mundotest.add_child(pickinst)
 
 func throw():
-	mundotest = get_parent_node_3d()
-	$MeshInstance3D.remove_child(pickinst)
-	pickinst.transform.origin = Vector3(0,2,0)
-	pickinst.resize()
-	if lastSide == "right":
-		pickinst.linear_velocity = Vector3(20,0,0)
-		pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
-	else:
-		pickinst.linear_velocity = Vector3(-20,0,0)
-		pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
-	pickinst.freeze = false
-	pickinst.get_node("CollisionShape3D").disabled = false
-	pickinst.get_node("Area3D").monitoring = true
-	GlobalVar.objectPicked = false
-	mundotest.add_child(pickinst)
+	if !is_on_wall():
+		mundotest = get_parent_node_3d()
+		$MeshInstance3D.remove_child(pickinst)
+		pickinst.transform.origin = Vector3(0,2,0)
+		pickinst.resize()
+		if lastSide == "right":
+			pickinst.linear_velocity = Vector3(20,0,0)
+			pickinst.transform.origin = global_position+Vector3((1.65*GlobalVar.sizefactor),0,0)
+		else:
+			pickinst.linear_velocity = Vector3(-20,0,0)
+			pickinst.transform.origin = global_position+Vector3(-(1.65*GlobalVar.sizefactor),0,0)
+		pickinst.freeze = false
+		pickinst.get_node("CollisionShape3D").disabled = false
+		pickinst.get_node("Area3D").monitoring = true
+		GlobalVar.objectPicked = false
+		mundotest.add_child(pickinst)
 
 func _on_ray_collided(target_scale):
 	scale = Vector3(target_scale, target_scale, target_scale) 
