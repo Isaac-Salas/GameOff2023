@@ -1,24 +1,5 @@
 extends RigidBody3D
 
-var state = false
-const lines: Array[String] =[
-	"Hey, you seem pretty strong!",
-	"Wanna spar?",
-	"Wait...",
-	"I shouldn't waste my energy before an important battle...",
-	"Well, I'll see you at the buffet!",]
-
-func _unhandled_input(event):
-	if state and event.is_action_pressed("Interact"):
-		DialogManager.start_dialog(global_position, lines)
-		state = false
-	
-func _on_area_3d_body_entered(body):
-	if body.name == "Player":
-		state = true
-
-func _on_area_3d_body_exited(body):
-	state = false # Replace with function body.
 
 #var bump = false
 #var thing

@@ -14,7 +14,7 @@ func start_dialog(position:Vector3, lines: Array[String]):
 	if is_dialog_active:
 		return
 	dialog_lines = lines
-	text_box_position = position + Vector3(0, 5, -2)
+	text_box_position = position + Vector3(-5, 5, -2)
 	_show_text_box()
 	is_dialog_active = true
 	
@@ -31,7 +31,7 @@ func _on_text_box_finished_displaying():
 	can_advance_line = true
 
 func _unhandled_input(event):
-	if event.is_action_pressed ("Interact") && is_dialog_active && can_advance_line:
+	if event.is_action_pressed ("Talk") && is_dialog_active && can_advance_line:
 		text_box.queue_free()
 		current_line_index += 1
 		if current_line_index >= dialog_lines.size():

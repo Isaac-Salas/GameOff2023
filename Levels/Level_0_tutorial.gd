@@ -9,9 +9,8 @@ func _ready():
 	GlobalVar.MaxCap = max_cap
 	GlobalVar.sizefactor = size_factor
 	GlobalVar.sizestandard = size_standard
-	$Player/RigidBody3D.mass = size_standard
+	$Player/PlayerRigid.mass = size_standard
 
 func _process(_delta):
 	GlobalVar.MinCap = $Player.scale.x
 	GlobalVar.MaxCap = $Player.scale.x
-
