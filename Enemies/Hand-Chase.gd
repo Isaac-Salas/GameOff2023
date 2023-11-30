@@ -32,7 +32,8 @@ func _physics_process(delta):
 func matchtest():
 	match switch:
 		0:
-			print("En ceros")
+			#print("En ceros")
+			pass
 			
 		1:
 			$AnimatedSprite3D.play("Turn")
@@ -83,6 +84,7 @@ func tracking():
 	velocity = new_velocity
 	move_and_slide()
 	
+	
 func loadPlayer():
 	player = get_node(player_path)
 
@@ -108,7 +110,7 @@ func _on_area_3d_body_entered(body):
 
 
 func _on_playerthrow_body_entered(body):
-	print(body.name)
+	#print(body.name)
 	if body.name == "Player":
 		GlobalVar.target_scale -= 0.5
 		await $AnimatedSprite3D.animation_looped

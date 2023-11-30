@@ -199,9 +199,9 @@ func try_pickup():
 	if pickedobject.size() > 0:
 		pickupinst = load(String(pickedobject[0].scene_file_path))
 		pickinst =  pickupinst.instantiate()
-		print("espacio del jugador" + str(pos))
-		print("Espacio del objeto" + str(pickinst.transform.origin))
-		print("pickup desde el player")
+#		print("espacio del jugador" + str(pos))
+#		print("Espacio del objeto" + str(pickinst.transform.origin))
+#		print("pickup desde el player")
 		pickinst.transform.origin = Vector3(0,(1.5*GlobalVar.sizefactor),0)
 		pickinst.freeze = true
 		pickinst.get_node("CollisionShape3D").disabled = true
@@ -224,7 +224,7 @@ func try_pickup():
 		pickinst.global_position = global_position + direction_to_object * adjusted_distance
 
 func release_pickup():
-	print("release desde el player")
+#	print("release desde el player")
 	if GlobalVar.objectPicked and !is_on_wall():
 		mundotest = get_parent_node_3d()
 		#Itemsize*sizefactor
@@ -301,4 +301,5 @@ func _on_object_detect_body_exited(body):
 		pickedobject.erase(body)
 
 func _on_rigid_body_3d_body_entered(body):
-	print(body.name)
+	pass
+#	print(body.name)

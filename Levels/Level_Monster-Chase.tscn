@@ -36,8 +36,10 @@ var player
 
 
 func _ready():
+	var Hand = get_node(\"Hand\")
+	Hand.loadPlayer()
 	player = get_node(player_path)
-	$Hand.loadPlayer()
+#	$Hand.loadPlayer()
 	findhand = find_child(\"Hand\")
 	
 	GlobalVar.MinCap = min_cap
