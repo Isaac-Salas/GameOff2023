@@ -207,7 +207,6 @@ reset_on_save = false
 transform = Transform3D(-4.37114e-08, 0, -0.5, 0, 0.5, 0, 1, 0, -2.18557e-08, 99.8095, 1.92664, -4.70862)
 
 [node name="Door" parent="Door2" instance=ExtResource("6_n8a4u")]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
 
 [node name="MeshInstance3D" parent="Door2/Door" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.662, 6, 2.08165e-12)
@@ -219,7 +218,6 @@ reset_on_save = false
 transform = Transform3D(-4.37114e-08, 0, -0.5, 0, 0.5, 0, 1, 0, -2.18557e-08, 169.184, 1.92664, -4.70862)
 
 [node name="Door" parent="Door3" instance=ExtResource("6_n8a4u")]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
 
 [node name="MeshInstance3D" parent="Door3/Door" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66225, 6, -0.406929)

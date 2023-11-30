@@ -14,7 +14,7 @@ func start_dialog(position:Vector3, lines: Array[String]):
 	if is_dialog_active:
 		return
 	dialog_lines = lines
-	text_box_position = position + Vector3(0, 5, -2)
+	text_box_position = position + Vector3(-5, 5, -2)
 	_show_text_box()
 	is_dialog_active = true
 	
