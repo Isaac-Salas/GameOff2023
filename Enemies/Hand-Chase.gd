@@ -13,6 +13,7 @@ signal shrink_player(target_size)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite3D.play("Idle")
+	move_and_slide()
 
 
 
@@ -54,7 +55,7 @@ func matchtest():
 			player.goo()
 			$AnimatedSprite3D.play("Catch")
 			$AnimationPlayer.play("Punch test")
-			player.hit(target_size)
+			player.hithand(target_size)
 			player.velocity.x = 2.5*(SPEED)
 			player.velocity.y = 0.1*(SPEED)
 			await $AnimationPlayer.animation_finished
@@ -66,8 +67,6 @@ func matchtest():
 
 func start():
 	matchtest()
-
-
 
 func tracking():
 	loadPlayer()

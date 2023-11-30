@@ -93,8 +93,9 @@
 [ext_resource type="Texture2D" uid="uid://b1y2yompnmqwh" path="res://Models/Enemies/HandSprites/Turned-Idle/15.png" id="68_vw8rx"]
 [ext_resource type="Texture2D" uid="uid://c6delxg6l8lj0" path="res://Models/Enemies/HandSprites/Turned-Idle/16.png" id="69_y5jcl"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_2oa6c"]
-radius = 1.66537
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_doa2r"]
+radius = 1.75854
+height = 10.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2nn"]
 animations = [{
@@ -494,7 +495,7 @@ axis_lock_linear_z = true
 script = ExtResource("1_7ncls")
 target_size = 5.0
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="HandBreak" type="RigidBody3D" parent="."]
 collision_layer = 2
 collision_mask = 2
 axis_lock_linear_x = true
@@ -506,10 +507,11 @@ axis_lock_angular_z = true
 can_sleep = false
 lock_rotation = true
 freeze = true
+linear_velocity = Vector3(15, 3, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131615, -1.10825, 0)
-shape = SubResource("SphereShape3D_2oa6c")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandBreak"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.131615, -0.941203, 0)
+shape = SubResource("CapsuleShape3D_doa2r")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65674, 0.764255, 0)
