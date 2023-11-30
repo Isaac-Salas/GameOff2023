@@ -1,49 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cki7g0252vdmw"]
+[gd_scene load_steps=6 format=3 uid="uid://cki7g0252vdmw"]
 
 [ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="1_flv3r"]
 [ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="2_2pc71"]
 [ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="3_6bc8e"]
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="4_lg84o"]
 
-[sub_resource type="GDScript" id="GDScript_xlctx"]
-script/source = "extends Node3D
-
-var switch
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	camsize()
-
-
-func _on_area_3d_body_entered(body):
-	if body.name == \"Hand\":
-		switch = true
-
-
-func _on_area_3d_body_exited(body):
-	if body.name == \"Hand\":
-		switch = false
-
-
-func camsize():
-	var camera = get_parent_node_3d().find_child(\"F-Camera\")
-	if switch == true:
-		if camera.size < 80:
-			camera.size +=0.5
-	else:
-		if camera.size > 40:
-			camera.size -=0.5
-"
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_gccih"]
 radius = 27.739
 
 [node name="Obstacles-New" type="Node3D"]
-script = SubResource("GDScript_xlctx")
 
 [node name="Metal Crate" parent="." instance=ExtResource("1_flv3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -431.698, 26.1851, 0)
@@ -55,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -228.764, 3.90648, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.605, 3.90648, 0)
 
 [node name="Metal Crate2" parent="." instance=ExtResource("1_flv3r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3709, 21.4754, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3709, 16.8124, 0)
 
 [node name="Platforms" type="Node3D" parent="."]
 
@@ -98,10 +63,10 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -152.2
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -84.1057, 26.302, 2)
 
 [node name="Fluorescent light6" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -21.6389, 42.6332, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -21.6389, 25.6134, 2)
 
 [node name="Fluorescent light7" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.71573, 42.6332, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.71573, 25.6134, 2)
 
 [node name="Walls" type="Node3D" parent="."]
 

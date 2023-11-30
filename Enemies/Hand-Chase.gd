@@ -5,7 +5,7 @@ var Playerclose
 var reached 
 var change
 var switch = 1
-
+var camera
 @export var player_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 @export var target_size = 1.5
@@ -23,6 +23,8 @@ func _physics_process(delta):
 	if Playerclose == true:
 		start()
 		if change == true:
+			if camera.size < 80:
+				camera.size += 0.5
 			tracking()
 			matchtest()
 			
@@ -68,6 +70,7 @@ func matchtest():
 
 
 func start():
+	camera = get_parent_node_3d().find_child("F-Camera")
 	matchtest()
 
 func tracking():
@@ -93,7 +96,7 @@ func _on_navigation_agent_3d_target_reached():
 func _on_area_3d_body_entered(body):
 	if body.name == "Player":
 		get_tree().set_pause(true)
-		player.startspeed = 30
+		player.startspeed = 40
 		player.find_child("PlayerRigid").set_linear_velocity(Vector3(30,10,10))
 		Playerclose = true
 		switch = 1
@@ -101,6 +104,7 @@ func _on_area_3d_body_entered(body):
 		$"../Hand-lights".queue_free()
 		$Area3D.queue_free()
 		get_parent_node_3d().add_child(new.instantiate())
+
 
 
 func _on_playerthrow_body_entered(body):

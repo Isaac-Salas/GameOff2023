@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bamj3xxi1ry00"
+path="res://.godot/imported/Variante 1 Cientifico.obj-41d96247a1b0e1e27f5f1a76dbf738c7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Variante 1 Cientifico.obj-41d96247a1b0e1e27f5f1a76dbf738c7.mesh"]
+
+source_file="res://Models/NPC/Variante 1 Cientifico.obj"
+dest_files=["res://.godot/imported/Variante 1 Cientifico.obj-41d96247a1b0e1e27f5f1a76dbf738c7.mesh", "res://.godot/imported/Variante 1 Cientifico.obj-41d96247a1b0e1e27f5f1a76dbf738c7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
