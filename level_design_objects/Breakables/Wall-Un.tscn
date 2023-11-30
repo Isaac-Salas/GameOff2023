@@ -30,7 +30,7 @@ func break_object():
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
-	if body.name == \"Hand\":
+	if body.name == \"Hand\" or body.find_child(\"Brk-Walls\"):
 		break_object()
 
 "

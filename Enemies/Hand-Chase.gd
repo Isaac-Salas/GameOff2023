@@ -9,9 +9,10 @@ var switch = 1
 @export var player_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 @export var target_size = 1.5
-signal shrink_player(target_size)
+@onready var new = preload("res://level_design_objects/Obstacles.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalVar.target_scale = target_size
 	$AnimatedSprite3D.play("Idle")
 	move_and_slide()
 
@@ -42,6 +43,7 @@ func matchtest():
 		3:
 			$AnimatedSprite3D.play("Scream")
 			await $AnimatedSprite3D.animation_finished
+			get_tree().set_pause(false)
 			change = true
 			switch = 4
 		4:
@@ -55,7 +57,7 @@ func matchtest():
 			player.goo()
 			$AnimatedSprite3D.play("Catch")
 			$AnimationPlayer.play("Punch test")
-			player.hithand(target_size)
+			player.hit(GlobalVar.target_scale)
 			player.velocity.x = 2.5*(SPEED)
 			player.velocity.y = 0.1*(SPEED)
 			await $AnimationPlayer.animation_finished
@@ -90,17 +92,24 @@ func _on_navigation_agent_3d_target_reached():
 
 func _on_area_3d_body_entered(body):
 	if body.name == "Player":
+		get_tree().set_pause(true)
+		player.startspeed = 30
+		player.find_child("PlayerRigid").set_linear_velocity(Vector3(30,10,10))
 		Playerclose = true
 		switch = 1
+		$"../Beginlights".queue_free()
+		$"../Hand-lights".queue_free()
 		$Area3D.queue_free()
+		get_parent_node_3d().add_child(new.instantiate())
 
 
 func _on_playerthrow_body_entered(body):
 	print(body.name)
 	if body.name == "Player":
-		target_size -= 0.5
+		GlobalVar.target_scale -= 0.5
 		await $AnimatedSprite3D.animation_looped
 		switch = 6
+		
 
 
 

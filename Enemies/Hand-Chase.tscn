@@ -94,7 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://c6delxg6l8lj0" path="res://Models/Enemies/HandSprites/Turned-Idle/16.png" id="69_y5jcl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_doa2r"]
-radius = 1.75854
+radius = 2.3852
 height = 10.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc2nn"]
@@ -507,10 +507,10 @@ axis_lock_angular_z = true
 can_sleep = false
 lock_rotation = true
 freeze = true
-linear_velocity = Vector3(15, 3, 0)
+linear_velocity = Vector3(30, 3, 50)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HandBreak"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.131615, -0.941203, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.703634, -0.941203, 0)
 shape = SubResource("CapsuleShape3D_doa2r")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]

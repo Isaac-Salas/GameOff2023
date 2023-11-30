@@ -212,7 +212,7 @@ func try_pickup():
 		if pickinst.find_child("Meatbox"):
 			pickinst.toggle()
 		
-		get_parent_node_3d().remove_child(pickedobject[0])
+		pickedobject[0].get_parent_node_3d().remove_child(pickedobject[0])
 		if mundotest != null:
 			mundotest.remove_child(pickinst)
 
@@ -281,22 +281,15 @@ func goo():
 
 func hit(target_scale):
 	if GlobalVar.sizefactor > 0:
-		scale -= Vector3(target_scale, target_scale, target_scale) 
-		GlobalVar.sizeM -= scale
-		GlobalVar.sizefactor -= target_scale
-		GlobalVar.sizestandard -= target_scale
-		GlobalVar.MinCap -= target_scale
-		GlobalVar.MaxCap -= target_scale
-		$PlayerRigid.mass -= scale.x
+		scale = Vector3(target_scale, target_scale, target_scale) 
+		GlobalVar.sizeM = scale
+		GlobalVar.sizefactor = target_scale
+		GlobalVar.sizestandard = target_scale
+		GlobalVar.MinCap = target_scale
+		GlobalVar.MaxCap = target_scale
+		$PlayerRigid.mass = scale.x
 
-func hithand(target_scale):
-	scale = Vector3(target_scale, target_scale, target_scale) 
-	GlobalVar.sizeM = scale
-	GlobalVar.sizefactor = target_scale
-	GlobalVar.sizestandard = target_scale
-	GlobalVar.MinCap = target_scale
-	GlobalVar.MaxCap = target_scale
-	$PlayerRigid.mass = scale.x
+
 
 func _on_object_detect_body_entered(body):
 	if body.find_child("Pickable") or body.find_child("Meatbox"):

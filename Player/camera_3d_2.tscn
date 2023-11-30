@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="1_qokmp"]
 
-[node name="Camera3D2" type="Camera3D"]
+[node name="F-Camera" type="Camera3D"]
 transform = Transform3D(0.996195, 0.0106216, -0.0865061, 0, 0.992546, 0.121869, 0.0871557, -0.121406, 0.988769, 0, 0, 0)
 projection = 1
 current = true

@@ -30,7 +30,10 @@ func break_object():
 
 
 func _on_body_entered(body):
-	if body.name == \"Pickup\":
+	print(body.name)
+	if body.find_child(\"Pickable\"):
+		break_object()
+	if body.name == \"Pickup\" or body.name== \"HandBreak\" :
 		break_object()
 	
 "

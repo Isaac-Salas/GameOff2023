@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://cki7g0252vdmw"]
+
+[ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="1_flv3r"]
+[ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="2_2pc71"]
+[ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="3_6bc8e"]
+[ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="4_lg84o"]
+
+[sub_resource type="GDScript" id="GDScript_xlctx"]
+script/source = "extends Node3D
+
+var switch
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	camsize()
+
+
+func _on_area_3d_body_entered(body):
+	if body.name == \"Hand\":
+		switch = true
+
+
+func _on_area_3d_body_exited(body):
+	if body.name == \"Hand\":
+		switch = false
+
+
+func camsize():
+	var camera = get_parent_node_3d().find_child(\"F-Camera\")
+	if switch == true:
+		if camera.size < 80:
+			camera.size +=0.5
+	else:
+		if camera.size > 40:
+			camera.size -=0.5
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gccih"]
+radius = 27.739
+
+[node name="Obstacles-New" type="Node3D"]
+script = SubResource("GDScript_xlctx")
+
+[node name="Metal Crate" parent="." instance=ExtResource("1_flv3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -431.698, 26.1851, 0)
+
+[node name="Metal Crate3" parent="." instance=ExtResource("1_flv3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -228.764, 3.90648, 0)
+
+[node name="Metal Crate4" parent="." instance=ExtResource("1_flv3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.605, 3.90648, 0)
+
+[node name="Metal Crate2" parent="." instance=ExtResource("1_flv3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3709, 21.4754, 0)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Floor-Un" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -352.046, 16.4809, 0)
+
+[node name="Floor-Un6" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.517, 16.4809, 0)
+
+[node name="Floor-Un7" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -222.308, 22.642, 0)
+
+[node name="Floor-Un5" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(0.857338, -0.514754, 0, 0.514754, 0.857338, 0, 0, 0, 1, -306.329, 16.0047, 0)
+
+[node name="Floor-Un4" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(0.940062, -0.341003, 0, 0.341003, 0.940062, 0, 0, 0, 1, -52.8116, 11.8801, 0)
+
+[node name="Floor-Un3" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8098, 12.3918, 0)
+
+[node name="Floor-Un2" parent="Platforms" instance=ExtResource("2_2pc71")]
+transform = Transform3D(0.813953, -0.58093, 0, 0.58093, 0.813953, 0, 0, 0, 1, -399.873, 16.4809, 0)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Fluorescent light" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -413.302, 30.2862, 2)
+
+[node name="Fluorescent light2" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -379.112, 45.7268, 2)
+
+[node name="Fluorescent light3" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -336.32, 40.6534, 2)
+
+[node name="Fluorescent light4" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -152.288, 26.302, 2)
+
+[node name="Fluorescent light5" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -84.1057, 26.302, 2)
+
+[node name="Fluorescent light6" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -21.6389, 42.6332, 2)
+
+[node name="Fluorescent light7" parent="Lights" instance=ExtResource("3_6bc8e")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.71573, 42.6332, 2)
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall-Unbreak3" parent="Walls" instance=ExtResource("4_lg84o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -194.491, 14.6033, -10)
+
+[node name="Wall-Unbreak4" parent="Walls" instance=ExtResource("4_lg84o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -123.084, 14.6033, -10)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -235.907, 1.24705, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_gccih")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -1,44 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6inaoqalf0at"]
+[gd_scene load_steps=6 format=3 uid="uid://cc8jo3lr7raon"]
 
-[ext_resource type="PackedScene" uid="uid://c0qcjnxkblhyb" path="res://level_design_objects/Breakables/Resources/Floor_Brk.tscn" id="1_35g1f"]
-[ext_resource type="Texture2D" uid="uid://238x8ppu58ak" path="res://Models/Props/Floor-Un_Pisote.png" id="1_ugp1f"]
-
-[sub_resource type="GDScript" id="GDScript_ahusk"]
-script/source = "extends StaticBody3D
-#It doesn't have to be an Area node it can be a Rigidbody as well.
- 
-# Setting a breakable scene.
-@export var resource : Resource
- 
-func break_object():
-	# Instancing the breakable.
-	var breakable = resource.instantiate()
-	# Getting the parent of the Area node.
-	var parent = self.get_parent()
-	# Adding the breakable as a child of the parent.
-	parent.add_child(breakable)
-	#Setting the breakable's translation and rotation to the Area node.
-	breakable.transform = self.transform
-	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
-	
-	# Deleting the Area node.
-	self.queue_free()
-	pass
-
-
-func _on_area_3d_body_entered(body):
-	print(body.name)
-	if body.name == \"Hand\":
-		break_object()
-	
-"
+[ext_resource type="Texture2D" uid="uid://238x8ppu58ak" path="res://Models/Props/Floor-Un_Pisote.png" id="2_6f6sy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsj6"]
 resource_name = "Material"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_ugp1f")
+albedo_texture = ExtResource("2_6f6sy")
 roughness = 0.2
 texture_filter = 2
 
@@ -75,29 +43,17 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_flfew")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q75bq"]
-size = Vector3(50, 2.5, 33)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eourj"]
-size = Vector3(51, 4, 33)
+size = Vector3(50, 40, 33)
 
 [node name="Floor-Un" type="StaticBody3D"]
 disable_mode = 2
-script = SubResource("GDScript_ahusk")
-resource = ExtResource("1_35g1f")
+collision_layer = 7
+collision_mask = 7
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(25, 0, 0, 0, 1, 0, 0, 0, 16.6667, 0, 0, 0)
+transform = Transform3D(25, 0, 0, 0, 20, 0, 0, 0, 16.667, 0, 0, 0)
 mesh = SubResource("ArrayMesh_jf6l8")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_q75bq")
-
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 7
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_eourj")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
 [ext_resource type="Texture2D" uid="uid://ylp5pt8ep2as" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
-[ext_resource type="PackedScene" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
+[ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
 [ext_resource type="Texture2D" uid="uid://ubajor80nhkl" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
 [ext_resource type="Texture2D" uid="uid://b0gtrg2ctcc35" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
@@ -244,7 +244,7 @@ visible = true
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 31.1414, 19.6469, 2.08165e-12)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, -39.98, 16.127, 30)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -39.98, 16.127, 30)
 projection = 1
 current = true
 fov = 157.0

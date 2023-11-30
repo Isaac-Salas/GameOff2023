@@ -20,3 +20,4 @@ var sizefactor = 2
 var MaxCap=4.0
 var MinCap=0.1
 var Scalerate = 0.02
+var target_scale

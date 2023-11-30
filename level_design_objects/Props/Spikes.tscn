@@ -3,7 +3,6 @@
 [sub_resource type="GDScript" id="GDScript_6wmo2"]
 script/source = "extends StaticBody3D
 @export var player_path : NodePath
-@export var target_size = 1.5
 var player
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +18,9 @@ func _process(delta):
 
 func _on_hitbox_body_entered(body):
 	if body.name == \"Player\":
-		player.hit(target_size)
-		player.goo() # Replace with function body.
+		player.hit(GlobalVar.target_scale)
+		player.goo()
+		GlobalVar.target_scale -= 0.5
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxa8k"]
@@ -61,30 +61,29 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nejmm")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vrweo"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dbtom"]
 points = PackedVector3Array(2.09746, 0.248877, -1.05686, 1.60461, 2.24889, -1.05686, 1.9533, 0.248877, -0.70857, 0.492843, 0.00483358, -0.000511646, 2.09746, 0.248877, -4.10025, -1.60503, 2.24889, -1.05686, -0.000410557, 2.00463, -0.000511646, 0.348276, 0.00483358, 0.348353, 1.60461, 2.24889, -4.10025, 0.348276, 0.00483358, -0.348803, 1.9533, 0.248877, -4.44854, -2.09787, 0.248877, -1.05686, -1.95371, 0.248877, -0.70857, -0.348686, 0.00483358, 0.348353, -1.60503, 2.24889, -4.10025, -0.000410557, 0.00483358, 0.492949, 0.350329, 0.248877, -5.22488, 0.00164294, 2.24889, -4.87601, -0.000410557, 0.00483358, -0.493398, -0.493254, 0.00483358, -0.000511646, -2.09787, 0.248877, -4.10025, -0.347044, 0.248877, -5.22488, -1.95371, 0.248877, -4.44854, 0.00164294, 0.248877, -5.3689, -0.348686, 0.00483358, -0.348803)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3b5ny"]
-radius = 1.27907
-height = 5.229
+radius = 1.2774
+height = 4.05074
 
 [node name="Spikes" type="StaticBody3D"]
 script = SubResource("GDScript_6wmo2")
-target_size = 0.5
 
 [node name="Cone" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, -1.8, 0, 1.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 mesh = SubResource("ArrayMesh_2fx4g")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, -1.8, 0, 1.8)
-shape = SubResource("ConvexPolygonShape3D_vrweo")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+shape = SubResource("ConvexPolygonShape3D_dbtom")
 
 [node name="Hitbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.175, 1.01485, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.00929622, 1.01485, 0)
 shape = SubResource("CapsuleShape3D_3b5ny")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
