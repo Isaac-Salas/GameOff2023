@@ -31,7 +31,7 @@ func _on_text_box_finished_displaying():
 	can_advance_line = true
 
 func _unhandled_input(event):
-	if event.is_action_pressed ("Interact") && is_dialog_active && can_advance_line:
+	if event.is_action_pressed ("Talk") && is_dialog_active && can_advance_line:
 		text_box.queue_free()
 		current_line_index += 1
 		if current_line_index >= dialog_lines.size():

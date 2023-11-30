@@ -53,7 +53,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.831373, 0.588235, 0, 1)
 theme_override_fonts/font = ExtResource("2_a5sj1")
 theme_override_font_sizes/font_size = 128
-text = "hola soy dante"
 vertical_alignment = 1
 
 [node name="Letter_Timer" type="Timer" parent="SubViewport/TextBox"]

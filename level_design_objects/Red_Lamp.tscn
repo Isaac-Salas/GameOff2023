@@ -67,15 +67,14 @@ mesh = SubResource("BoxMesh_4w3h3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+visible = false
 layers = 3
 light_color = Color(0.984314, 0, 0.0666667, 1)
 light_energy = 6.841
-light_bake_mode = 1
 shadow_enabled = true
 shadow_normal_bias = 2.212
 shadow_transmittance_bias = 8.454
 shadow_blur = 0.39
-distance_fade_enabled = true
 omni_range = 60.0
 omni_attenuation = 0.812252
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctux5gsecjtlv"]
+
+[ext_resource type="Script" path="res://UI/TextBox/dialogue area.gd" id="1_hw34d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+size = Vector3(5, 5, 5)
+
+[node name="Dialogue_box" type="Area3D"]
+script = ExtResource("1_hw34d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bgy1i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
