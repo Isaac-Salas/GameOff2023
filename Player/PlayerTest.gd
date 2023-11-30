@@ -280,6 +280,16 @@ func goo():
 	$GPUParticles3D.emitting = true
 
 func hit(target_scale):
+	if GlobalVar.sizefactor > 0:
+		scale -= Vector3(target_scale, target_scale, target_scale) 
+		GlobalVar.sizeM -= scale
+		GlobalVar.sizefactor -= target_scale
+		GlobalVar.sizestandard -= target_scale
+		GlobalVar.MinCap -= target_scale
+		GlobalVar.MaxCap -= target_scale
+		$PlayerRigid.mass -= scale.x
+
+func hithand(target_scale):
 	scale = Vector3(target_scale, target_scale, target_scale) 
 	GlobalVar.sizeM = scale
 	GlobalVar.sizefactor = target_scale
@@ -287,7 +297,7 @@ func hit(target_scale):
 	GlobalVar.MinCap = target_scale
 	GlobalVar.MaxCap = target_scale
 	$PlayerRigid.mass = scale.x
-	
+
 func _on_object_detect_body_entered(body):
 	if body.find_child("Pickable") or body.find_child("Meatbox"):
 		pickedobject.push_front(body)

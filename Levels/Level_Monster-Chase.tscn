@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckhb0b2hhrtsy"]
+[gd_scene load_steps=11 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
@@ -6,14 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="6_7r72s"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
+[ext_resource type="PackedScene" uid="uid://k74kk00sogmh" path="res://level_design_objects/Props/Spikes.tscn" id="7_g5875"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
 var switching = 1
 var findhand
+var player
+@export var player_path : NodePath
 @onready var over = preload(\"res://UI/Game-Over/game_over.tscn\")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_node(player_path)
 	$Hand.loadPlayer()
 	findhand = find_child(\"Hand\")
 	GlobalVar.MinCap = 2
@@ -25,7 +29,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if findhand.target_size < 0.1:
+	print(GlobalVar.sizefactor)
+	if GlobalVar.sizefactor < 0.1:
 		matching()
 
 func matching():
@@ -74,12 +79,21 @@ navigation_mesh = SubResource("NavigationMesh_m0gf1")
 transform = Transform3D(1000, 0, 0, 0, 5, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="Hand" parent="." instance=ExtResource("6_yolky")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -167.705, 9.86501, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -473.435, 17.6717, 0)
 player_path = NodePath("../Player")
 target_size = 2.0
 
-[node name="Paredzota" parent="." instance=ExtResource("5_h2blc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -155.202, 23.5701, -47.2148)
+[node name="Wall-Unbreak" parent="." instance=ExtResource("5_h2blc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -464.897, 17.6537, 6.44541)
 
-[node name="Floor-Un" parent="." instance=ExtResource("6_7r72s")]
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Floor-Un" parent="Obstacles" instance=ExtResource("6_7r72s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.33047, 0)
+
+[node name="Wall-Unbreak2" parent="Obstacles" instance=ExtResource("5_h2blc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -440.473, 28.7632, 6.44541)
+
+[node name="Spikes" parent="." instance=ExtResource("7_g5875")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164.67, 2.3419, 0)
+player_path = NodePath("../Player")
