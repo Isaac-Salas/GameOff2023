@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
 [ext_resource type="Texture2D" uid="uid://ylp5pt8ep2as" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
-[ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
+[ext_resource type="PackedScene" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
 [ext_resource type="Texture2D" uid="uid://ubajor80nhkl" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
-[ext_resource type="PackedScene" uid="uid://dea4vbv3n4n77" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
+[ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
 [ext_resource type="Texture2D" uid="uid://b0gtrg2ctcc35" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
 [ext_resource type="Texture2D" uid="uid://cp66ihvi504bt" path="res://Sprites/push.png" id="17_qq1nl"]
 

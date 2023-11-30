@@ -38,7 +38,7 @@ func update():
 	weight_inside = 0
 	for body in bodys_inside:
 		if body.name == "Player":
-			weight_inside += body.get_node('RigidBody3D').mass
+			weight_inside += body.get_node('PlayerRigid').mass
 		else:
 			weight_inside += body.mass
 	delta = 1 - (activation_weight - weight_inside) / activation_weight

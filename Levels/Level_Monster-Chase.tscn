@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckhb0b2hhrtsy"]
+[gd_scene load_steps=12 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="6_7r72s"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
 [ext_resource type="PackedScene" uid="uid://k74kk00sogmh" path="res://level_design_objects/Props/Spikes.tscn" id="7_g5875"]
+[ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
@@ -30,7 +31,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	print(GlobalVar.sizefactor)
-	if GlobalVar.sizefactor < 0.1:
+	if GlobalVar.sizefactor < 0.5:
 		matching()
 
 func matching():
@@ -97,3 +98,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -440.4
 [node name="Spikes" parent="." instance=ExtResource("7_g5875")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164.67, 2.3419, 0)
 player_path = NodePath("../Player")
+
+[node name="Fluorescent light" parent="." instance=ExtResource("8_bwc21")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -126.964, 20.9485, 0)

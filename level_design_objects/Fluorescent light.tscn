@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dea4vbv3n4n77"]
+[gd_scene load_steps=5 format=3 uid="uid://b11wl7ud7qyku"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
 disable_ambient_light = true
