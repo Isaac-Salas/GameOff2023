@@ -31,7 +31,7 @@ func _input(event):
 			throw()
 
 func _physics_process(delta):
-
+	
 	#print("size: ", GlobalVar.sizefactor, "comparative to:", stateC)
 	sizecheck()
 	#print("Jumpvel:",GlobalVar.JUMP_VELOCITY, "Vel:",GlobalVar.SPEED)
@@ -81,6 +81,7 @@ func _physics_process(delta):
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("Jump") and (is_on_floor() or (near_ledge() and touching_wall())):
+		Animate.stop()
 		Animate.play("Armature|Jump Animation")
 		velocity.y = GlobalVar.JUMP_VELOCITY
 	
@@ -103,7 +104,6 @@ func _physics_process(delta):
 		Animate.play("Walk?")
 		velocity.x = direction.x * (GlobalVar.SPEED)
 		velocity.z = 0
-		
 		if direction.x > 0: 
 			lastSide = "right" 
 			GlobalVar.direction = "right"
@@ -115,6 +115,7 @@ func _physics_process(delta):
 	#-------------------------------------------------------------------------------------------------------
 
 	else:
+		Animate.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, (GlobalVar.SPEED))
 		velocity.z = 0
 		

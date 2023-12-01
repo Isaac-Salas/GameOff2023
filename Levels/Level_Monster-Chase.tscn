@@ -56,7 +56,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print($Player.startspeed)
+	
 	if GlobalVar.target_scale < 0.5:
 		matching()
 

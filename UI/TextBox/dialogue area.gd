@@ -15,10 +15,11 @@ func _unhandled_input(event):
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		$Sprite3D.show
+		$Sprite3D.show()
 		state = true
 
 
 func _on_body_exited(body):
-	state = false 
-	$Sprite3D.hide()
+	if body.name == "Player":
+		state = false 
+		$Sprite3D.hide()
