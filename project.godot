@@ -90,5 +90,4 @@ Talk={
 
 occlusion_culling/bvh_build_quality=1
 textures/canvas_textures/default_texture_filter=0
-driver/threads/thread_model=2
 limits/opengl/max_renderable_lights=64

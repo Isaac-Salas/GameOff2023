@@ -28,7 +28,7 @@ func _ready():
 func _physics_process(delta):
 	index = DialogManager.current_line_index
 	
-	if index == 1 and thing == true:
+	if index >= 1 and thing == true:
 		match go:
 			0:
 				startup()
@@ -36,8 +36,7 @@ func _physics_process(delta):
 			1:
 				match index:
 					2:
-						switch = 6
-						hamster.run()
+						switch = 4
 						go = 2
 			2:
 				pass
@@ -49,10 +48,11 @@ func _physics_process(delta):
 				camera.size += 0.5
 			if index == 1:
 				DialogManager.loaded_box = "res://UI/TextBox/Bigger.tscn"
-			
+			if go == 2:
+				tracking()
 				#DialogManager.text_box.size = DialogManager.text_box.size*2
 				
-				tracking()
+				
 			matchtest()
 			
 
