@@ -7,11 +7,12 @@
 script/source = "extends StaticBody3D
 
 #It doesn't have to be an Area node it can be a Rigidbody as well.
- 
+var breaking = false
 # Setting a breakable scene.
 @export var resource : Resource
  
 func break_object():
+	breaking = true
 	print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()

@@ -1,26 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://chh3bt1gql45s"]
+[gd_scene load_steps=11 format=3 uid="uid://chh3bt1gql45s"]
 
 [ext_resource type="Texture2D" uid="uid://t3sqvm0taho4" path="res://Models/Props/Metal Crate_MetalCrate.png" id="1_7ot2l"]
+[ext_resource type="PackedScene" uid="uid://o5kbibywxfmn" path="res://level_design_objects/Breakables/Metal_Crate-Crumple.tscn" id="1_c1ekd"]
 
 [sub_resource type="GDScript" id="GDScript_0eubb"]
 script/source = "extends RigidBody3D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+@export var resource : Resource
+ 
+func break_object():
+	# Instancing the breakable.
+	var breakable = resource.instantiate()
+	# Getting the parent of the Area node.
+	var parent = self.get_parent()
+	# Adding the breakable as a child of the parent.
+	parent.add_child(breakable)
+	#Setting the breakable's translation and rotation to the Area node.
+	breakable.transform = self.transform
+	breakable.rotation_degrees = self.rotation_degrees
+	print(breakable.get_children())
+	
+	# Deleting the Area node.
+	self.queue_free()
 	pass
 
 
 func _on_body_entered(body):
 	if body.name == \"HandBreak\":
-		$AnimationPlayer.play(\"Hit\")
-		await $AnimationPlayer.animation_finished
-		queue_free()
+		break_object()
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i06mf"]
@@ -112,6 +119,7 @@ mass = 10.0
 max_contacts_reported = 10
 contact_monitor = true
 script = SubResource("GDScript_0eubb")
+resource = ExtResource("1_c1ekd")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

@@ -54,6 +54,8 @@ height = 2.1338
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 129
+collision_mask = 129
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 script = ExtResource("1_20tws")

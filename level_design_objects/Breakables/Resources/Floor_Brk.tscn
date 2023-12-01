@@ -897,8 +897,8 @@ _data = {
 script = SubResource("GDScript_rsmsw")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -912,8 +912,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6729, 0.0312839, 1.7779)
 shape = SubResource("ConvexPolygonShape3D_kd86l")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -927,8 +927,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5196, 0, 14.1544)
 shape = SubResource("ConvexPolygonShape3D_0alai")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -942,8 +942,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.345, 0.0188116, -12.5307)
 shape = SubResource("ConvexPolygonShape3D_0synj")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -958,8 +958,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0052, 0.450447, -15.6128)
 shape = SubResource("ConvexPolygonShape3D_vpkw5")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -973,8 +973,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6334, 0.136306, -9.84323)
 shape = SubResource("ConvexPolygonShape3D_objeh")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -989,8 +989,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7941, 0, 12.0098)
 shape = SubResource("ConvexPolygonShape3D_ui8cd")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1004,8 +1004,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6905, 0, -7.49869)
 shape = SubResource("ConvexPolygonShape3D_tmqff")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1020,8 +1020,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7598, -0.555918, -15.3405)
 shape = SubResource("ConvexPolygonShape3D_y6eyh")
 
 [node name="RigidBody3D9" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1035,8 +1035,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4781, 0, 14.5969)
 shape = SubResource("ConvexPolygonShape3D_qitms")
 
 [node name="RigidBody3D10" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1051,8 +1051,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.16148, -0.0451681, -3.10307
 shape = SubResource("ConvexPolygonShape3D_01l2e")
 
 [node name="RigidBody3D11" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1066,8 +1066,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28998, 0, 12.017)
 shape = SubResource("ConvexPolygonShape3D_idcgi")
 
 [node name="RigidBody3D12" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1082,8 +1082,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5419, 0.0979965, -0.316697
 shape = SubResource("ConvexPolygonShape3D_jjo3k")
 
 [node name="RigidBody3D13" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1097,8 +1097,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48227, -0.283768, -11.9593
 shape = SubResource("ConvexPolygonShape3D_vi3k2")
 
 [node name="RigidBody3D14" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -1113,8 +1113,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.529, 0.654236, -10.3536)
 shape = SubResource("ConvexPolygonShape3D_3dp2k")
 
 [node name="RigidBody3D15" type="RigidBody3D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 

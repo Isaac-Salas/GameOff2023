@@ -104,6 +104,8 @@ func _on_area_3d_body_entered(body):
 		switch = 1
 		$"../Beginlights".queue_free()
 		$"../Hand-lights".queue_free()
+		$"../Red-Light".queue_free()
+		$"../Repisa-Tubes".queue_free()
 		$Area3D.queue_free()
 		get_parent_node_3d().add_child(new.instantiate())
 
