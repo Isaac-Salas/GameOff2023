@@ -15,6 +15,9 @@ func _process(delta):
 		position.z += 0.1
 	if GlobalVar.state == "shrinking":
 		position.z -= 0.1
+	if GlobalVar.sizefactor < 0.1:
+		size -= 0.2
+		rotation_degrees.z -= 0.5
 	
 	#print(rotation_degrees.y)
 	

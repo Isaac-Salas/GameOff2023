@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmglen4avdnsk"]
+
+[ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="1_xha4d"]
+[ext_resource type="PackedScene" uid="uid://cnuve53ey7qs4" path="res://Items(Grabbable)/Matraz2.tscn" id="2_g6na1"]
+[ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="3_i7hn2"]
+[ext_resource type="PackedScene" uid="uid://dii8yy3l7leva" path="res://level_design_objects/Props/Mesita.tscn" id="4_q4a60"]
+
+[node name="Bench-tubes" type="Node3D"]
+
+[node name="Tube" parent="." instance=ExtResource("1_xha4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93128, 3.79689, 0)
+
+[node name="Tube2" parent="." instance=ExtResource("2_g6na1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37517, 3.70249, 0)
+
+[node name="Tube3" parent="." instance=ExtResource("3_i7hn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.237034, 3.75158, 0)
+
+[node name="Mesita" parent="." instance=ExtResource("4_q4a60")]

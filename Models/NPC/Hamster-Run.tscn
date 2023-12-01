@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://3e40p7hd3no5"]
+
+[ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="1_v0q67"]
+
+[sub_resource type="GDScript" id="GDScript_5gvs4"]
+script/source = "extends RigidBody3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if $AnimationPlayer.current_animation == \"Run\":
+		await $AnimationPlayer.animation_finished
+		queue_free()
+
+
+func _on_area_3d_body_entered(body):
+	if body.name == \"Player\":
+		$AnimationPlayer.play(\"Run\")
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxvha"]
+
+[sub_resource type="Animation" id="Animation_ru34w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-219.878, 0.710634, 0.193602)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_t2rir"]
+resource_name = "Run"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-33.8478, 5.96166, -15.464), Vector3(-54.8638, 5.49798, -16.907)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdoss"]
+_data = {
+"RESET": SubResource("Animation_ru34w"),
+"Run": SubResource("Animation_t2rir")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gtae4"]
+radius = 20.0
+
+[node name="Hamster" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8478, 5.96166, -15.464)
+collision_layer = 7
+collision_mask = 7
+script = SubResource("GDScript_5gvs4")
+
+[node name="Sprite3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.5299e-08, -0.35, 1.5299e-08, 0, -1.5299e-08, -0.35, 0.35, -1.5299e-08, 6.6874e-16, 0.16, 0, 0)
+mesh = ExtResource("1_v0q67")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_sxvha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_rdoss")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_gtae4")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

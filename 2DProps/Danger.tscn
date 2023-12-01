@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wu2sa1fdi3bu"]
+
+[ext_resource type="Texture2D" uid="uid://bhoaaefu7h4lk" path="res://2DProps/Dangerprop.png" id="1_n0fdd"]
+
+[node name="Danger" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_n0fdd")

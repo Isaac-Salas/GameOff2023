@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="2.5D Demo Test"
-run/main_scene="res://Levels/LevelTest.tscn"
+config/name="Hold your Breadth"
+run/main_scene="res://Menu/Title-Screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -89,4 +89,5 @@ Talk={
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
+textures/canvas_textures/default_texture_filter=0
 limits/opengl/max_renderable_lights=64

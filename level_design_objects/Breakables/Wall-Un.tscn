@@ -7,11 +7,12 @@
 script/source = "extends StaticBody3D
 
 #It doesn't have to be an Area node it can be a Rigidbody as well.
- 
+var breaking = false
 # Setting a breakable scene.
 @export var resource : Resource
  
 func break_object():
+	breaking = true
 	print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()
@@ -30,7 +31,7 @@ func break_object():
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
-	if body.name == \"Hand\":
+	if body.name == \"Hand\" or body.find_child(\"Brk-Walls\"):
 		break_object()
 
 "

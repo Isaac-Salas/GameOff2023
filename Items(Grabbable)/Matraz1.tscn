@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://d2auewsr76rio" path="res://Items(Grabbable)/OutlineMaterial.tres" id="1_1lssc"]
 [ext_resource type="Texture2D" uid="uid://bhefu0y341in2" path="res://Models/Props/Matraz Var-1_Matraz 1.png" id="1_clauo"]
 
-[sub_resource type="GDScript" id="GDScript_ap5s1"]
+[sub_resource type="GDScript" id="GDScript_aa4ya"]
 script/source = "extends RigidBody3D
 
 @onready var resizeable = false
@@ -81,10 +81,10 @@ points = PackedVector3Array(0, -0.000245988, 1, -0.587801, -0.000245988, 0.80892
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5t0x"]
 
 [node name="Tube" type="RigidBody3D"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 6
+collision_mask = 6
 axis_lock_linear_z = true
-script = SubResource("GDScript_ap5s1")
+script = SubResource("GDScript_aa4ya")
 
 [node name="Matraz1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

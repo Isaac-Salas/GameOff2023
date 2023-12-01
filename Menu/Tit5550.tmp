@@ -1,0 +1,386 @@
+[gd_scene load_steps=24 format=3 uid="uid://jryh4i7dmnye"]
+
+[ext_resource type="Texture2D" uid="uid://bl35383yrwenk" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://c0sx7cd5eabmi" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://dbhguchrh74wc" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://bl1j4rhbbpo6" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://7dx76315ecmt" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://dgu2ffhulxkjl" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://c44ysk4ofs7w" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://dseqfwndjbom1" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="Texture2D" uid="uid://besb3txpvftdr" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://cl41cv2qfrcpp" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+
+[sub_resource type="GDScript" id="GDScript_hy2iu"]
+script/source = "extends Node3D
+var switching
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	switching = 0
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	match switching:
+		0: 
+			$AnimationPlayer.play(\"Intro\")
+			switching=1
+		1:
+			await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play(\"PanText\")
+			switching=2
+		2:
+			await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play(\"Appear text loop\")
+			switching=3
+		3:
+			pass
+			
+"
+
+[sub_resource type="Environment" id="Environment_clc0f"]
+background_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86l4a"]
+resource_name = "Material"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kov18")
+roughness = 0.0511811
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wfrxh"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"format": 4097,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1ilwh"]
+resource_name = "Box_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"attribute_data": PackedByteArray(113, 160, 42, 63, 12, 191, 170, 62, 2, 150, 170, 62, 254, 180, 42, 63, 4, 225, 127, 63, 84, 191, 170, 62, 4, 150, 170, 62, 164, 232, 170, 62, 113, 160, 42, 63, 0, 48, 252, 57, 4, 225, 127, 63, 87, 160, 42, 63, 88, 160, 42, 63, 84, 191, 170, 62, 2, 150, 170, 62, 171, 245, 127, 63, 88, 160, 42, 63, 84, 191, 170, 62, 5, 150, 170, 62, 0, 152, 78, 58, 87, 160, 42, 63, 87, 160, 42, 63, 87, 160, 42, 63, 87, 160, 42, 63, 0, 240, 247, 57, 82, 191, 170, 62, 225, 192, 170, 62, 12, 191, 170, 62, 113, 77, 37, 57, 254, 180, 42, 63, 0, 232, 247, 57, 86, 160, 42, 63, 191, 89, 37, 57, 164, 232, 170, 62, 225, 192, 170, 62, 0, 48, 252, 57, 86, 191, 170, 62, 84, 191, 170, 62, 86, 191, 170, 62, 84, 191, 170, 62, 35, 65, 37, 57, 171, 245, 127, 63, 85, 191, 170, 62, 87, 160, 42, 63, 191, 89, 37, 57, 0, 152, 78, 58, 85, 191, 170, 62, 87, 160, 42, 63),
+"format": 4119,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 20, 0, 14, 0, 1, 0, 7, 0, 20, 0, 10, 0, 19, 0, 6, 0, 10, 0, 23, 0, 19, 0, 21, 0, 12, 0, 18, 0, 21, 0, 15, 0, 12, 0, 16, 0, 9, 0, 3, 0, 16, 0, 22, 0, 9, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 17, 0, 0, 0, 13, 0, 17, 0, 4, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_86l4a"),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wfrxh")
+
+[sub_resource type="Animation" id="Animation_skaph"]
+resource_name = "Intro"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 6), Vector3(0, 0, 2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xgish"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xcmlt"]
+resource_name = "Rotatebox"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 2.5), Vector3(-1.35, 0, 2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k3e07"]
+resource_name = "Appear text loop"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghcib"]
+_data = {
+"Appear text loop": SubResource("Animation_k3e07"),
+"Intro": SubResource("Animation_skaph"),
+"PanText": SubResource("Animation_xcmlt"),
+"RESET": SubResource("Animation_xgish")
+}
+
+[sub_resource type="GDScript" id="GDScript_bphmr"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Button.hide()
+	$Button2.hide()
+	$Label.hide()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if $\"../AnimationPlayer\".current_animation == \"PanText\"
+		$Button.show()
+		$Button2.show()
+		$Label.show()
+		
+"
+
+[sub_resource type="SystemFont" id="SystemFont_u2uxe"]
+font_names = PackedStringArray("HORROR SPRAY DEMO")
+oversampling = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qssw"]
+font = SubResource("SystemFont_u2uxe")
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_hy2iu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_clc0f")
+
+[node name="Box" type="Node3D" parent="."]
+transform = Transform3D(-1, 3.90806e-08, -1.45851e-07, 0, 0.965926, 0.258819, 1.50996e-07, 0.258819, -0.965926, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Box"]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_1ilwh")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194474, 0, 0.35462)
+light_color = Color(0.784314, 0.756863, 1, 1)
+light_energy = 2.503
+light_indirect_energy = 2.611
+light_specular = 0.1
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39922, 0, 0.35462)
+light_color = Color(0.784314, 0.756863, 1, 1)
+light_energy = 2.503
+light_indirect_energy = 2.611
+light_specular = 0.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.92208)
+light_color = Color(0.133333, 0, 0.317647, 1)
+light_energy = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ghcib")
+}
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+script = SubResource("GDScript_bphmr")
+
+[node name="Button" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_top = -158.0
+offset_right = 337.0
+offset_bottom = 57.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("2_rfpsy")
+texture_pressed = ExtResource("3_ql5t1")
+texture_hover = ExtResource("4_q3r5g")
+
+[node name="Button2" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 0.999969
+offset_right = 630.0
+offset_bottom = 226.0
+scale = Vector2(0.36, 0.36)
+texture_normal = ExtResource("5_bbytu")
+texture_pressed = ExtResource("6_clw3w")
+texture_hover = ExtResource("7_lb0k2")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 8.143
+offset_left = 31.0
+offset_top = 114.0
+offset_right = 157.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Demo made for:
+GameOff 2023"
+label_settings = SubResource("LabelSettings_6qssw")
+
+[node name="Sectets" type="TextureButton" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 453.0
+offset_top = 106.0
+offset_right = 611.0
+offset_bottom = 159.0
+texture_normal = ExtResource("8_u6ky7")
+texture_pressed = ExtResource("9_x3xrl")
+texture_hover = ExtResource("10_a11pn")

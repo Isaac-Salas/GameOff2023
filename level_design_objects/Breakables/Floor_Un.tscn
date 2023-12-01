@@ -29,7 +29,7 @@ func break_object():
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
-	if body.name == \"Player\":
+	if body.name == \"Hand\":
 		break_object()
 	
 "
@@ -78,7 +78,7 @@ shadow_mesh = SubResource("ArrayMesh_flfew")
 size = Vector3(50, 2.5, 33)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eourj"]
-size = Vector3(48, 4, 33)
+size = Vector3(51, 4, 33)
 
 [node name="Floor-Un" type="StaticBody3D"]
 disable_mode = 2

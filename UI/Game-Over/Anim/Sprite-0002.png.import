@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3k886jc434ls"
-path="res://.godot/imported/Buton.png-4dd10e60f889d5aad0b197b4d4f4154e.ctex"
+uid="uid://cjyi3dlmtrsg5"
+path="res://.godot/imported/Sprite-0002.png-50956bd5694d7f3707de8e17f1c31f9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Game-Over/Button/Buton.png"
-dest_files=["res://.godot/imported/Buton.png-4dd10e60f889d5aad0b197b4d4f4154e.ctex"]
+source_file="res://UI/Game-Over/Anim/Sprite-0002.png"
+dest_files=["res://.godot/imported/Sprite-0002.png-50956bd5694d7f3707de8e17f1c31f9b.ctex"]
 
 [params]
 

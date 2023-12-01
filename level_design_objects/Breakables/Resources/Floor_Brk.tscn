@@ -1,6 +1,21 @@
-[gd_scene load_steps=48 format=3 uid="uid://c0qcjnxkblhyb"]
+[gd_scene load_steps=52 format=3 uid="uid://c0qcjnxkblhyb"]
 
 [ext_resource type="Texture2D" uid="uid://di63mx67fhw8d" path="res://Models/Props/Floor-Brk_Pisote.png" id="1_1eu23"]
+
+[sub_resource type="GDScript" id="GDScript_rsmsw"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$AnimationPlayer.play(\"Death\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	await $AnimationPlayer.animation_finished
+	queue_free()
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4t0f"]
 resource_name = "Material"
@@ -505,11 +520,385 @@ shadow_mesh = SubResource("ArrayMesh_pkv32")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0nu3j"]
 points = PackedVector3Array(3.17114, 1, 2.97071, 3.13052, -1, -7.12153, 3.17052, 1, -6.94206, -0.23123, 1, 5.52286, 3.13052, -1, 3.18112, -3.11546, -1, -7.12153, -3.11546, 1, -6.94206, 0.0887609, -1, 5.46221, -3.11546, 1, 5.52162, -3.11546, -1, 5.46221)
 
+[sub_resource type="Animation" id="Animation_1lncc"]
+resource_name = "Death"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/Cube_cell:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D2/Cube_cell_001:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RigidBody3D3/Cube_cell_002:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RigidBody3D4/Cube_cell_003:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody3D5/Cube_cell_004:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RigidBody3D6/Cube_cell_005:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RigidBody3D7/Cube_cell_006:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RigidBody3D8/Cube_cell_007:transparency")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RigidBody3D9/Cube_cell_008:transparency")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RigidBody3D10/Cube_cell_009:transparency")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RigidBody3D11/Cube_cell_010:transparency")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RigidBody3D12/Cube_cell_011:transparency")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RigidBody3D13/Cube_cell_012:transparency")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RigidBody3D14/Cube_cell_013:transparency")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("RigidBody3D15/Cube_cell_014:transparency")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_60204"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/Cube_cell:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D2/Cube_cell_001:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RigidBody3D3/Cube_cell_002:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RigidBody3D4/Cube_cell_003:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RigidBody3D5/Cube_cell_004:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RigidBody3D6/Cube_cell_005:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RigidBody3D7/Cube_cell_006:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RigidBody3D8/Cube_cell_007:transparency")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RigidBody3D9/Cube_cell_008:transparency")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RigidBody3D10/Cube_cell_009:transparency")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RigidBody3D11/Cube_cell_010:transparency")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RigidBody3D12/Cube_cell_011:transparency")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RigidBody3D13/Cube_cell_012:transparency")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RigidBody3D14/Cube_cell_013:transparency")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("RigidBody3D15/Cube_cell_014:transparency")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cw6ii"]
+_data = {
+"Death": SubResource("Animation_1lncc"),
+"RESET": SubResource("Animation_60204")
+}
+
 [node name="Floor-Brk" type="Node3D"]
+script = SubResource("GDScript_rsmsw")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -523,8 +912,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6729, 0.0312839, 1.7779)
 shape = SubResource("ConvexPolygonShape3D_kd86l")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -538,8 +927,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5196, 0, 14.1544)
 shape = SubResource("ConvexPolygonShape3D_0alai")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -553,13 +942,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.345, 0.0188116, -12.5307)
 shape = SubResource("ConvexPolygonShape3D_0synj")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_003" type="MeshInstance3D" parent="RigidBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0052, 0.450447, -15.6128)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_5mn5b")
 skeleton = NodePath("")
 
@@ -568,8 +958,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0052, 0.450447, -15.6128)
 shape = SubResource("ConvexPolygonShape3D_vpkw5")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -583,13 +973,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6334, 0.136306, -9.84323)
 shape = SubResource("ConvexPolygonShape3D_objeh")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_005" type="MeshInstance3D" parent="RigidBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7941, 0, 12.0098)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_6dj3j")
 skeleton = NodePath("")
 
@@ -598,8 +989,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7941, 0, 12.0098)
 shape = SubResource("ConvexPolygonShape3D_ui8cd")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -613,13 +1004,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6905, 0, -7.49869)
 shape = SubResource("ConvexPolygonShape3D_tmqff")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_007" type="MeshInstance3D" parent="RigidBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7598, -0.555918, -15.3405)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_q7soq")
 skeleton = NodePath("")
 
@@ -628,8 +1020,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7598, -0.555918, -15.3405)
 shape = SubResource("ConvexPolygonShape3D_y6eyh")
 
 [node name="RigidBody3D9" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -643,13 +1035,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4781, 0, 14.5969)
 shape = SubResource("ConvexPolygonShape3D_qitms")
 
 [node name="RigidBody3D10" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_009" type="MeshInstance3D" parent="RigidBody3D10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.16148, -0.0451681, -3.10307)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_g1suj")
 skeleton = NodePath("")
 
@@ -658,8 +1051,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.16148, -0.0451681, -3.10307
 shape = SubResource("ConvexPolygonShape3D_01l2e")
 
 [node name="RigidBody3D11" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -673,13 +1066,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28998, 0, 12.017)
 shape = SubResource("ConvexPolygonShape3D_idcgi")
 
 [node name="RigidBody3D12" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_011" type="MeshInstance3D" parent="RigidBody3D12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5419, 0.0979965, -0.316697)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_76fy1")
 skeleton = NodePath("")
 
@@ -688,8 +1082,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5419, 0.0979965, -0.316697
 shape = SubResource("ConvexPolygonShape3D_jjo3k")
 
 [node name="RigidBody3D13" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -703,13 +1097,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48227, -0.283768, -11.9593
 shape = SubResource("ConvexPolygonShape3D_vi3k2")
 
 [node name="RigidBody3D14" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
 [node name="Cube_cell_013" type="MeshInstance3D" parent="RigidBody3D14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.529, 0.654236, -10.3536)
+transparency = 1.0
 mesh = SubResource("ArrayMesh_nojcd")
 skeleton = NodePath("")
 
@@ -718,8 +1113,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.529, 0.654236, -10.3536)
 shape = SubResource("ConvexPolygonShape3D_3dp2k")
 
 [node name="RigidBody3D15" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
 
@@ -731,3 +1126,8 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8845, 0, 7.03228)
 shape = SubResource("ConvexPolygonShape3D_0nu3j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cw6ii")
+}
