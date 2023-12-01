@@ -85,7 +85,7 @@ func matching():
 
 func _on_end_body_exited(body):
 	if body.name == \"Player\":
-		get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+		get_tree().change_scene_to_file(\"res://UI/Credits/Credits.tscn\")
 "
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -476,7 +476,7 @@ size_factor = 2.0
 size_standard = 2.0
 
 [node name="Player" parent="." instance=ExtResource("2_0os48")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -428.684, 1.72548, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.6603, 1.72548, 0)
 startspeed = 15.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
