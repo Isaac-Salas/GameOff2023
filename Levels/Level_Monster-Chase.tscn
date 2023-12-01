@@ -280,7 +280,7 @@ size_factor = 2.0
 size_standard = 2.0
 
 [node name="Player" parent="." instance=ExtResource("2_0os48")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -430.538, 1.72548, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.0744, 1.72548, 0)
 startspeed = 15.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
@@ -436,7 +436,7 @@ shadow_blur = 0.0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.716, 14.6033, -10)
 
 [node name="Cajita2" parent="." instance=ExtResource("12_gslxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7296, 1.48391, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06887, 0.638806, 0)
 
 [node name="Red-Light" parent="." instance=ExtResource("11_nk1y1")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -218.956, 20, 2)
@@ -514,6 +514,7 @@ transform = Transform3D(0.547916, 0.0560384, 0.834655, -0.0293015, -0.995856, 0.
 transform = Transform3D(0.550079, 0.0472175, -0.833777, -0.0962963, 0.995327, -0.00716465, 0.829542, 0.0842307, 0.552055, 12.2934, 18.8335, -2.13)
 
 [node name="Bench-tubes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9676, 0, 0)
 
 [node name="Tube" parent="Bench-tubes" instance=ExtResource("13_1fh23")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25675, 4.57588, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=30 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_kexi1"]
 [ext_resource type="PackedScene" uid="uid://i3q7kyt2yprg" path="res://level_design_objects/Door.tscn" id="6_n8a4u"]
 [ext_resource type="PackedScene" uid="uid://drshbhi6p7tem" path="res://level_design_objects/Buttons/Button.tscn" id="7_q3wgi"]
-[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="8_7dfna"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
@@ -19,6 +18,50 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
 [ext_resource type="Texture2D" uid="uid://b0gtrg2ctcc35" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
 [ext_resource type="Texture2D" uid="uid://cp66ihvi504bt" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
+[ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
+albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mgd3i"]
+material = SubResource("StandardMaterial3D_6y2g5")
+size = Vector3(10, 12, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dflmi"]
+size = Vector3(10, 12, 1)
+
+[sub_resource type="GDScript" id="GDScript_fo260"]
+script/source = "extends Area3D
+
+var state = false
+@export var lines: Array[String] =[
+	\"Hey, you seem pretty strong!\",
+	\"Wanna spar?\",
+	\"Wait...\",
+	\"I shouldn't waste my energy before an important battle...\",
+	\"Well, I'll see you at the buffet!\",]
+
+func _unhandled_input(event):
+	if state and event.is_action_pressed(\"Talk\"):
+		DialogManager.start_dialog(global_position, lines)
+		state = false
+		get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		$Sprite3D.show()
+		state = true
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		state = false 
+		$Sprite3D.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+size = Vector3(5, 5, 5)
 
 [sub_resource type="Environment" id="Environment_qcmk4"]
 background_mode = 1
@@ -62,7 +105,7 @@ func _on_body_exited(body):
 		$Sprite3D.hide()
 "
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_axocx"]
 size = Vector3(5, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j40lq"]
@@ -191,6 +234,9 @@ transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 117.439, 1.02675, 2.08165e-
 [node name="Floor13" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 152.386, 1.02675, 2.08165e-12)
 
+[node name="Floor21" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 160.826, 1.02675, 2.08165e-12)
+
 [node name="Floor12" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 117.675, 8.96052, 2.08165e-12)
 
@@ -213,7 +259,13 @@ transform = Transform3D(5, 0, 0, 0, 2, 0, 0, 0, 10, 60.4324, 26.44, 2.08165e-12)
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 10, 58.2863, 28.3824, 2.08165e-12)
 
 [node name="Floor14" parent="Terrain" instance=ExtResource("5_kexi1")]
-transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 152.625, 8.96052, 2.08165e-12)
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 149.046, 8.96052, 2.08165e-12)
+
+[node name="Floor22" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 10, 160.799, 10.6649, 2.08165e-12)
+
+[node name="Floor23" parent="Terrain" instance=ExtResource("5_kexi1")]
+transform = Transform3D(-4.37114e-07, -2, 0, 10, -8.74228e-08, 0, 0, 0, 10, 177.297, 6.11124, 2.08165e-12)
 
 [node name="Floor8" parent="Terrain" instance=ExtResource("5_kexi1")]
 transform = Transform3D(204, 0, 0, 0, 2, 0, 0, 0, 10, 2.08165e-12, -2, 2.08165e-12)
@@ -229,9 +281,6 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -85.7361, 15.9423, 0)
 
 [node name="Button" parent="Button" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0106189, 0)
-
-[node name="Pickable" parent="." instance=ExtResource("8_7dfna")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1783, 17.851, 0)
 
 [node name="Door" type="Node3D" parent="."]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 15.545, 13.778, -2.40876)
@@ -259,13 +308,33 @@ reset_on_save = false
 [node name="Door3" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -0.5, 0, 0.5, 0, 1, 0, -2.18557e-08, 169.184, 1.92664, -4.70862)
 
-[node name="Door" parent="Door3" instance=ExtResource("6_n8a4u")]
+[node name="Door" type="StaticBody3D" parent="Door3"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 
-[node name="MeshInstance3D" parent="Door3/Door" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door3/Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66225, 6, -0.406929)
+mesh = SubResource("BoxMesh_mgd3i")
 
-[node name="AnimationPlayer" parent="Door3/Door" index="2"]
-reset_on_save = false
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door3/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
+shape = SubResource("BoxShape3D_dflmi")
+
+[node name="Dialogue_box" type="Area3D" parent="Door3/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73584, 3.09729, 3.47725)
+script = SubResource("GDScript_fo260")
+lines = Array[String]([])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door3/Door/Dialogue_box"]
+shape = SubResource("BoxShape3D_bgy1i")
+
+[node name="Sprite3D" type="Sprite3D" parent="Door3/Door/Dialogue_box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8251, 1.88027, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("14_jcnol")
 
 [node name="Node3D" parent="." instance=ExtResource("9_f4su8")]
 transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -85.7554, 24.2082, -4.30008)
@@ -301,9 +370,6 @@ light_energy = 0.05
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Pickup" parent="." instance=ExtResource("8_7dfna")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.4942, 16.2828, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qcmk4")
 
@@ -337,7 +403,7 @@ script = SubResource("GDScript_8ykrp")
 lines = Array[String](["This is...", "Yeah, that's right.", "That's... literally me."])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dialogue_box"]
-shape = SubResource("BoxShape3D_bgy1i")
+shape = SubResource("BoxShape3D_axocx")
 
 [node name="Sprite3D" type="Sprite3D" parent="Dialogue_box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8251, 1.88027, 0)
@@ -391,10 +457,27 @@ texture = ExtResource("17_qq1nl")
 [node name="Block" parent="." instance=ExtResource("1_e423e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.42, 15.2602, -2.80626)
 
+[node name="Bench-tubes" parent="." instance=ExtResource("20_ltglb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.0021, 16.5322, 0)
+
+[node name="Tube" parent="." instance=ExtResource("20_87bia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.725, 17.101, 0)
+
+[node name="Tube2" parent="." instance=ExtResource("20_87bia")]
+transform = Transform3D(0.880725, -0.473627, 0, 0.473627, 0.880725, 0, 0, 0, 1, 44.773, 17.101, 0)
+
+[node name="Tube3" parent="." instance=ExtResource("20_87bia")]
+transform = Transform3D(0.600136, -0.322735, 0.731901, 0.473627, 0.880725, 0, -0.644604, 0.346648, 0.681411, 48.8691, 19.341, 0)
+
+[node name="Tube4" parent="." instance=ExtResource("20_87bia")]
+transform = Transform3D(0.757284, 0.411823, 0.506875, -0.104914, 0.842755, -0.527974, -0.644604, 0.346648, 0.681411, 51.0451, 15.181, 0)
+
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Node3D3" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Node3D2" method="_on_button_pressed"]
+[connection signal="body_entered" from="Door3/Door/Dialogue_box" to="Door3/Door/Dialogue_box" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="Door3/Door/Dialogue_box" to="Door3/Door/Dialogue_box" method="_on_body_exited" flags=18]
 [connection signal="body_entered" from="Trigger" to="Door/Door" method="_on_trigger_body_entered"]
 [connection signal="entered" from="Trigger" to="Door/Door" method="toggle_door"]
 [connection signal="body_entered" from="Dialogue_box" to="Dialogue_box" method="_on_body_entered" flags=18]
@@ -405,6 +488,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.42, 15.2602, -2.80626)
 [editable path="Button"]
 [editable path="Door/Door"]
 [editable path="Door2/Door"]
-[editable path="Door3/Door"]
 [editable path="Node3D4"]
 [editable path="Node3D2"]
