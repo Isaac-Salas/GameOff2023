@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://pqkwvr7hob62"]
+[gd_scene load_steps=14 format=3 uid="uid://pqkwvr7hob62"]
 
 [ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
 [ext_resource type="Texture2D" uid="uid://bmjvcwu2ojikg" path="res://UI/Credits/Logo.png" id="2_k42xk"]
+[ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="3_3j7a3"]
 
 [sub_resource type="SystemFont" id="SystemFont_tkj53"]
-font_names = PackedStringArray("Gooey")
+font_names = PackedStringArray("Retro Computer")
+hinting = 2
+subpixel_positioning = 2
 oversampling = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ew4ct"]
 font = SubResource("SystemFont_tkj53")
+font_size = 8
 
 [sub_resource type="Animation" id="Animation_isnvw"]
 length = 0.001
@@ -84,7 +88,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rqy0p"]
 resource_name = "Credits"
-length = 10.0
+length = 65.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,10 +96,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.1, 10),
+"times": PackedFloat32Array(1, 60),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(215.5, 445), Vector2(215.5, -424.435)]
+"values": [Vector2(361, 450), Vector2(361, -590)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -104,10 +108,10 @@ tracks/1/path = NodePath("../ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 60, 65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rihp0"]
@@ -118,7 +122,18 @@ _data = {
 "runCredits": SubResource("Animation_3xxke")
 }
 
-[node name="Control" type="Control"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wdh78"]
+load_path = "res://.godot/imported/Hover.png-5f1c93fb964a89379744eab942125527.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g4lkt"]
+load_path = "res://.godot/imported/Click.png-107c90a6f5d3840d37068840e36eeee4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2mjo"]
+load_path = "res://.godot/imported/Normal.png-6922f7189abc3baf9a6b20da5ade27db.ctex"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,69 +142,115 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2nhe0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(16, 9)
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -2500.0
+offset_right = 93.0
+offset_bottom = -1448.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 91
+text = "Concept artist:
+ChemitaSnake
+
+Main character design:
+ChemitaSnake
+
+Level Design:
+Alexcavadora
+
+Programming:
+Alexcavadora
+Isaac
+
+Music and SFX:
+ChemitaSnake
+Isaac
+
+Everything else:
+ChemitaSnake
+Alexcavadora
+Isaac
+
+------------------
+
+This game is dedicated to our teamates
+that had to leave the team:
+JuanGdev
+Jair
+Apocalix
+
+And Marco Antonio, who hasnt
+worked a day in his life
+
+We love you all!
+
+-----------------
+
+---Special thanks---
+Andrea --- Box Art
+Kevin --- Hand Model
+
+And You!!!
+
+
+
+
+
+
+
+
+Thanks, from the bottom
+of our hearts for playing!"
+label_settings = SubResource("LabelSettings_ew4ct")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_rihp0")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Label"]
+position = Vector2(101, -61)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("2_k42xk")
+
+[node name="TextureButton2" type="TextureButton" parent="Control/Label"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 157.0
-offset_top = -2662.0
-offset_right = 320.0
-offset_bottom = -2032.0
+offset_left = -110.5
+offset_top = 38.0
+offset_right = 107.5
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 5
-theme_override_font_sizes/font_size = 91
-text = "Art
-ElWeroBalazos
-Gerardo Acosta
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = SubResource("CompressedTexture2D_wdh78")
+texture_pressed = SubResource("CompressedTexture2D_g4lkt")
+texture_hover = SubResource("CompressedTexture2D_x2mjo")
+stretch_mode = 4
 
-Main character design
-Gerardo Acosta
+[node name="Node3D" parent="." instance=ExtResource("3_3j7a3")]
 
-Programming
-Alexcavadora
-Isaac Salas
-Juan Aguilera
-
-Gameplay programming:
-Alexcavadora
-Isaac Salas
-
-UI
-Juan Aguilera
-
-
-
-
-
-
-
-
-
-Thanks for playing!
-AUTUMN TAVERN JAM
-by Luigi Salas"
-label_settings = SubResource("LabelSettings_ew4ct")
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
-libraries = {
-"": SubResource("AnimationLibrary_rihp0")
-}
-
-[node name="Sprite2D" type="Sprite2D" parent="Label"]
-position = Vector2(87.5, -61)
-scale = Vector2(0.335, 0.335)
-texture = ExtResource("2_k42xk")
+[connection signal="pressed" from="Control/Label/TextureButton2" to="Control" method="_on_texture_button_2_pressed"]

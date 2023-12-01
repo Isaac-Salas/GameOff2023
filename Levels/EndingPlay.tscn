@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://pg77appayahy"]
+
+[ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_xjaw8"]
+[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="2_0eblh"]
+[ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="3_f8iny"]
+[ext_resource type="PackedScene" uid="uid://vmorumv4db5f" path="res://Power-Ups/Bigone.tscn" id="4_h84yc"]
+[ext_resource type="PackedScene" uid="uid://lwadxgbqcjhn" path="res://Power-Ups/Smallone.tscn" id="5_k5fir"]
+[ext_resource type="PackedScene" uid="uid://befcxi1an7gdb" path="res://Power-Ups/PermaBig.tscn" id="6_nyjjq"]
+[ext_resource type="PackedScene" uid="uid://cvrq5l5qxmdqo" path="res://Power-Ups/ScalerateUP.tscn" id="7_qsfbo"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="10_cm2do"]
+[ext_resource type="PackedScene" uid="uid://cx46mlukul3fs" path="res://Items(Grabbable)/PickObject.tscn" id="11_d4xv4"]
+[ext_resource type="PackedScene" uid="uid://b2lvf3faa426r" path="res://level_design_objects/Breakables/Unbroken-Wall.tscn" id="12_dvss7"]
+[ext_resource type="PackedScene" uid="uid://ujwciqrqyur6" path="res://Items(Grabbable)/Testdouble.tscn" id="13_riti6"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="14_opull"]
+[ext_resource type="PackedScene" uid="uid://bqf3lvqh4ynwk" path="res://level_design_objects/Buttons/Scale-Button.tscn" id="15_m4yrg"]
+
+[sub_resource type="GDScript" id="GDScript_cnfye"]
+script/source = "extends Camera3D
+var campos
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	position.x = $\"../Player\".global_position.x+10
+	position.y = $\"../Player\".global_position.y+8
+	position.z = $\"../Player\".global_position.z+20
+	if GlobalVar.state == \"growing\":
+		position.z += 0.1
+	if GlobalVar.state == \"shrinking\":
+		position.z -= 0.1
+	if GlobalVar.sizefactor < 0.1:
+		size -= 0.2
+		rotation_degrees.z -= 0.5
+	
+	#print(rotation_degrees.y)
+	
+	if GlobalVar.direction == \"right\" and rotation_degrees.y > -5:
+		rotation_degrees -= Vector3(0,0.1,0)
+
+	
+	if GlobalVar.direction == \"left\" and rotation_degrees.y < 5:
+		rotation_degrees += Vector3(0,0.1,0)
+	
+
+		
+"
+
+[sub_resource type="Environment" id="Environment_a0845"]
+background_mode = 1
+background_color = Color(0.054902, 0, 0.164706, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("1_xjaw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0332, 4.33463, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_xjaw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6161, 8.56582, 0)
+inertia = Vector3(3.75, 0, 0)
+freeze_mode = 1
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_0eblh")]
+
+[node name="Floor" parent="." instance=ExtResource("3_f8iny")]
+transform = Transform3D(400, 0, 0, 0, 4.006, 0, 0, 0, 100, 0, -3.82546, 0)
+
+[node name="Big" parent="." instance=ExtResource("4_h84yc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6453, 6.52816, 0)
+
+[node name="Small" parent="." instance=ExtResource("5_k5fir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4185, 4.71827, 0)
+
+[node name="Grandes" type="Node3D" parent="."]
+
+[node name="PermaBIG" parent="Grandes" instance=ExtResource("6_nyjjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6798, 8.11075, 0)
+
+[node name="PermaBIG3" parent="Grandes" instance=ExtResource("6_nyjjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.0102, 8.11075, 0)
+
+[node name="PermaBIG2" parent="Grandes" instance=ExtResource("6_nyjjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.989, 9.87295, 0)
+
+[node name="Scaleboost" type="Node3D" parent="."]
+
+[node name="SR+" parent="Scaleboost" instance=ExtResource("7_qsfbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 7.24366, 0)
+
+[node name="SR+2" parent="Scaleboost" instance=ExtResource("7_qsfbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4052, 9.42593, 0)
+
+[node name="SR+3" parent="Scaleboost" instance=ExtResource("7_qsfbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 5.42664, 0)
+
+[node name="SR+4" parent="Scaleboost" instance=ExtResource("7_qsfbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.389, 9.09468, 0)
+
+[node name="Camera3D2" parent="." instance=ExtResource("10_cm2do")]
+transform = Transform3D(0.996195, 0.0106216, -0.086506, 0, 0.992546, 0.12187, 0.0871557, -0.121406, 0.988769, -39.98, 16.127, 24.9603)
+size = 50.0
+script = SubResource("GDScript_cnfye")
+
+[node name="SpotLight3D" parent="Camera3D2" index="0"]
+transform = Transform3D(1, -9.31323e-10, 7.45058e-09, 9.31323e-10, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+
+[node name="Pickable" parent="." instance=ExtResource("11_d4xv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
+
+[node name="Pickable2" parent="." instance=ExtResource("11_d4xv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67718, 1.74248, 0)
+
+[node name="Pickable3" parent="." instance=ExtResource("11_d4xv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.521, 13.0167, 0)
+
+[node name="Breakable" parent="." instance=ExtResource("12_dvss7")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -32.075, 8.519, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0845")
+
+[node name="Pickup" parent="." instance=ExtResource("13_riti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0311, 12.4936, 0)
+
+[node name="Player" parent="." instance=ExtResource("14_opull")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -42.3737, 6.443, 0)
+
+[node name="Scale-Button" parent="." instance=ExtResource("15_m4yrg")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.106, -1.822, 0)
+activation_weight = 8
+
+[editable path="Camera3D2"]

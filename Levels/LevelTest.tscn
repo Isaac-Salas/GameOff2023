@@ -90,7 +90,6 @@ size = 50.0
 
 [node name="SpotLight3D" parent="Camera3D2" index="0"]
 transform = Transform3D(1, -9.31323e-10, 7.45058e-09, 9.31323e-10, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
-spot_range = 30.0
 
 [node name="Pickable" parent="." instance=ExtResource("8_tplic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96521, 0)
