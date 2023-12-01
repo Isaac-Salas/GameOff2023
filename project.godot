@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2.5D Demo Test"
+config/name="Hold your Breadth"
 run/main_scene="res://Menu/Title-Screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
