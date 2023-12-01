@@ -143,6 +143,7 @@ func startup():
 		$"../Hand-lights".queue_free()
 		$"../Red-Light".queue_free()
 		$"../Repisa-Tubes".queue_free()
+		$"../Scattered".queue_free()
 		$Area3D.queue_free()
 		get_parent_node_3d().add_child(new.instantiate())
 

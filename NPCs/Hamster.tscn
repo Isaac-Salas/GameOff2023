@@ -20,7 +20,7 @@ func run():
 	$Dialogue_box2/Sprite3D.hide()
 	set_collision_layer_value(1,false)
 	set_collision_mask_value(1,false)
-	linear_velocity.x = 40
+	linear_velocity.x = 50
 	angular_velocity.z = -10
 "
 
