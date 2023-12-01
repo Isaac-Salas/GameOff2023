@@ -100,6 +100,7 @@ func _physics_process(delta):
 	
 	
 	if direction:
+		Animate.play("Walk?")
 		velocity.x = direction.x * (GlobalVar.SPEED)
 		velocity.z = 0
 		

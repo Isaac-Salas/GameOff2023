@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uf60n6aw5phq"
-path="res://.godot/imported/Pressed.png-8ede92b708ca483ac8552556bb632ede.ctex"
+uid="uid://dhbuujpvd432x"
+path="res://.godot/imported/Click.png-107c90a6f5d3840d37068840e36eeee4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Game-Over/Button/Pressed.png"
-dest_files=["res://.godot/imported/Pressed.png-8ede92b708ca483ac8552556bb632ede.ctex"]
+source_file="res://UI/Game-Over/Menu/Click.png"
+dest_files=["res://.godot/imported/Click.png-107c90a6f5d3840d37068840e36eeee4.ctex"]
 
 [params]
 

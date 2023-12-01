@@ -1,4 +1,4 @@
-[gd_scene load_steps=489 format=3 uid="uid://bvtndxrdydjx5"]
+[gd_scene load_steps=497 format=3 uid="uid://bvtndxrdydjx5"]
 
 [ext_resource type="Texture2D" uid="uid://kaivbpk2bxhr" path="res://UI/Game-Over/Loop/1000.png" id="1_w686x"]
 [ext_resource type="Texture2D" uid="uid://bov7sxivcgy64" path="res://UI/Game-Over/Loop/1001.png" id="2_cosfs"]
@@ -458,13 +458,23 @@
 [ext_resource type="Texture2D" uid="uid://bbngpgw20qbw" path="res://UI/Game-Over/Begin/1226.png" id="478_dlemu"]
 [ext_resource type="Texture2D" uid="uid://bptp3xriyoalb" path="res://UI/Game-Over/Begin/1227.png" id="479_q4nj6"]
 [ext_resource type="Texture2D" uid="uid://dqsp0oyl5pfxh" path="res://UI/Game-Over/Begin/1228.png" id="480_oo6fg"]
+[ext_resource type="Texture2D" uid="uid://devrm25inc0oa" path="res://UI/Game-Over/Button/Normal.png" id="481_qcq46"]
 [ext_resource type="Texture2D" uid="uid://b4jdr7sg0cpbl" path="res://UI/Game-Over/Begin/1229.png" id="481_wnspn"]
+[ext_resource type="Texture2D" uid="uid://bqb2xneairp57" path="res://UI/Game-Over/Button/Click.png" id="482_uswbv"]
 [ext_resource type="Texture2D" uid="uid://cn22poy33rvl8" path="res://UI/Game-Over/Begin/1230.png" id="482_vbvj8"]
 [ext_resource type="Texture2D" uid="uid://d2y1ovq16h76q" path="res://UI/Game-Over/Begin/1231.png" id="483_l7xpn"]
+[ext_resource type="Texture2D" uid="uid://cjyi3dlmtrsg5" path="res://UI/Game-Over/Anim/Sprite-0002.png" id="484_q45a8"]
+[ext_resource type="Texture2D" uid="uid://c8j7bub4v7u1c" path="res://UI/Game-Over/Menu/Hover.png" id="484_unnki"]
 [ext_resource type="Texture2D" uid="uid://bb1dpm2sidwl8" path="res://UI/Game-Over/Begin/1232.png" id="484_w57h1"]
 [ext_resource type="Texture2D" uid="uid://vdjbieepa308" path="res://UI/Game-Over/Begin/1233.png" id="485_343h3"]
+[ext_resource type="Texture2D" uid="uid://cwj4m826rojdp" path="res://UI/Game-Over/Anim/Sprite-0003.png" id="485_geqtw"]
+[ext_resource type="Texture2D" uid="uid://dhbuujpvd432x" path="res://UI/Game-Over/Menu/Click.png" id="485_s6hs0"]
+[ext_resource type="Texture2D" uid="uid://c1li6ah20vyin" path="res://UI/Game-Over/Menu/Normal.png" id="486_a8ymi"]
 [ext_resource type="Texture2D" uid="uid://05p0lq5r0sjc" path="res://UI/Game-Over/Begin/1234.png" id="486_ad38h"]
+[ext_resource type="Texture2D" uid="uid://c8r3d8185smww" path="res://UI/Game-Over/Anim/Sprite-0004.png" id="486_la41e"]
 [ext_resource type="Texture2D" uid="uid://bclbrqaqu2w4p" path="res://UI/Game-Over/Begin/1235.png" id="487_noy53"]
+[ext_resource type="Texture2D" uid="uid://fxe22natrd7x" path="res://UI/Game-Over/Anim/Sprite-0005.png" id="487_uprlc"]
+[ext_resource type="Texture2D" uid="uid://br0a7cdf5pisq" path="res://UI/Game-Over/Anim/Sprite-0006.png" id="488_uydmy"]
 [ext_resource type="Texture2D" uid="uid://b3px3xpfr8m1h" path="res://UI/Game-Over/Begin/1236.png" id="488_ywwl4"]
 [ext_resource type="Texture2D" uid="uid://baxikxn6s5a6s" path="res://UI/Game-Over/Begin/1237.png" id="489_37d23"]
 [ext_resource type="Texture2D" uid="uid://dtvjq1rg11ce0" path="res://UI/Game-Over/Begin/1238.png" id="490_ttkpe"]
@@ -479,21 +489,19 @@
 [ext_resource type="Texture2D" uid="uid://dbahm0d5tx4sx" path="res://UI/Game-Over/Begin/1247.png" id="499_qbhtv"]
 [ext_resource type="Texture2D" uid="uid://h25imp8vh4h8" path="res://UI/Game-Over/Begin/1248.png" id="500_2rtn3"]
 [ext_resource type="Texture2D" uid="uid://dvjf5su02gkib" path="res://UI/Game-Over/Begin/1249.png" id="501_d5ybw"]
-[ext_resource type="Texture2D" uid="uid://d3k886jc434ls" path="res://UI/Game-Over/Button/Buton.png" id="502_68bmo"]
 [ext_resource type="Texture2D" uid="uid://y5c7s3kai4m4" path="res://UI/Game-Over/Background/Backover.png" id="502_amr4i"]
-[ext_resource type="Texture2D" uid="uid://uf60n6aw5phq" path="res://UI/Game-Over/Button/Pressed.png" id="503_snamn"]
-[ext_resource type="Texture2D" uid="uid://cy7qpiucb8037" path="res://UI/Game-Over/Button/Hover.png" id="504_5cavm"]
-[ext_resource type="Texture2D" uid="uid://f3u6axqsl03b" path="res://UI/Game-Over/Game-Over.png" id="506_co3eq"]
+[ext_resource type="Texture2D" uid="uid://dw2ls4qcihlaq" path="res://UI/Game-Over/Button/Hover.png" id="504_5cavm"]
 
 [sub_resource type="GDScript" id="GDScript_t5c6p"]
 script/source = "extends Control
-
+var current
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	current = get_tree().current_scene.get_path()
 	get_tree().set_pause(true)
 	$CanvasLayer/AnimatedSprite2D.play(\"Start\")
-
+	$\"CanvasLayer/Control/Game Over\".play(\"default\")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -1964,6 +1972,29 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_t26n1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("484_q45a8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("485_geqtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("486_la41e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("487_uprlc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("488_uydmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Game-Over" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -2000,20 +2031,42 @@ texture = ExtResource("502_amr4i")
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
 texture_filter = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -84.5
-offset_top = -114.0
-offset_right = 84.5
-offset_bottom = -37.0
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = 24.0
+offset_right = -18.0
+offset_bottom = 138.0
 grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("502_68bmo")
-texture_pressed = ExtResource("503_snamn")
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("481_qcq46")
+texture_pressed = ExtResource("482_uswbv")
 texture_hover = ExtResource("504_5cavm")
+stretch_mode = 4
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = 24.0
+offset_right = 212.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("484_unnki")
+texture_pressed = ExtResource("485_s6hs0")
+texture_hover = ExtResource("486_a8ymi")
 stretch_mode = 4
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -2030,7 +2083,13 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Game Over" type="Sprite2D" parent="CanvasLayer/Control"]
-texture = ExtResource("506_co3eq")
+[node name="Game Over" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+texture_filter = 1
+position = Vector2(10, 12)
+scale = Vector2(0.637963, 0.637963)
+sprite_frames = SubResource("SpriteFrames_t26n1")
+frame_progress = 0.820489
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureButton2" to="." method="_on_texture_button_pressed"]
