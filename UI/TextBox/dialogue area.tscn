@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctux5gsecjtlv"]
+[gd_scene load_steps=4 format=3 uid="uid://ctux5gsecjtlv"]
 
 [ext_resource type="Script" path="res://UI/TextBox/dialogue area.gd" id="1_hw34d"]
+[ext_resource type="Texture2D" uid="uid://t1iiumicgc1g" path="res://2DProps/Dialog.png" id="2_mjduh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
 size = Vector3(5, 5, 5)
@@ -10,6 +11,13 @@ script = ExtResource("1_hw34d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_bgy1i")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8251, 1.88027, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_mjduh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

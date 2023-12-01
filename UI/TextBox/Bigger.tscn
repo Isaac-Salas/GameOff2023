@@ -1,22 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dra0pl1g8cgyo"]
+[gd_scene load_steps=6 format=3 uid="uid://dy0fsnagl3bgk"]
 
-[ext_resource type="Script" path="res://UI/TextBox/DialogControl.gd" id="1_hvaes"]
-[ext_resource type="Script" path="res://UI/TextBox/dialogue_box.gd" id="1_u3bl8"]
-[ext_resource type="Texture2D" uid="uid://b4rui8x7gokrb" path="res://Sprites/Dialog_box.png" id="1_ye8rp"]
-[ext_resource type="FontFile" uid="uid://dih8qet4q3cfp" path="res://UI/TextBox/Font/Oswald/Oswald-VariableFont_wght.ttf" id="2_a5sj1"]
+[ext_resource type="Script" path="res://UI/TextBox/DialogControl.gd" id="1_pbc48"]
+[ext_resource type="Script" path="res://UI/TextBox/dialogue_box.gd" id="2_7lj7i"]
+[ext_resource type="Texture2D" uid="uid://b4rui8x7gokrb" path="res://Sprites/Dialog_box.png" id="3_lb58v"]
+[ext_resource type="FontFile" uid="uid://dih8qet4q3cfp" path="res://UI/TextBox/Font/Oswald/Oswald-VariableFont_wght.ttf" id="4_d2cxn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_i0ivt"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Dialogue_box" type="Sprite3D"]
 process_mode = 3
-sorting_use_aabb_center = false
+pixel_size = 0.05
 billboard = 1
 double_sided = false
-no_depth_test = true
 texture_filter = 0
 texture = SubResource("ViewportTexture_i0ivt")
-script = ExtResource("1_hvaes")
+script = ExtResource("1_pbc48")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -32,17 +31,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -82.5
-offset_top = -135.0
-offset_right = 82.5
-offset_bottom = 135.0
+offset_left = 3.27002
+offset_top = -243.87
+offset_right = 168.27
+offset_bottom = 26.13
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u3bl8")
+script = ExtResource("2_7lj7i")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/TextBox"]
 layout_mode = 2
-texture = ExtResource("1_ye8rp")
+texture = ExtResource("3_lb58v")
 patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
@@ -59,7 +58,7 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.831373, 0.588235, 0, 1)
-theme_override_fonts/font = ExtResource("2_a5sj1")
+theme_override_fonts/font = ExtResource("4_d2cxn")
 theme_override_font_sizes/font_size = 128
 vertical_alignment = 1
 

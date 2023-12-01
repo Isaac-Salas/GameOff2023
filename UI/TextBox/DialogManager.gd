@@ -1,14 +1,19 @@
 extends Node
-
-@onready var text_box_scene = preload("res://UI/TextBox/dialogue_box.tscn")
+var loaded_box = "res://UI/TextBox/dialogue_box.tscn"
+var text_box_scene
 
 var dialog_lines: Array[String] = []
 var current_line_index = 0 
 
+var mod_text
 var text_box
 var text_box_position: Vector3
 var is_dialog_active = false
 var can_advance_line = false
+
+func _physics_process(delta):
+	text_box_scene = load(loaded_box)
+
 
 func start_dialog(position:Vector3, lines: Array[String]):
 	if is_dialog_active:

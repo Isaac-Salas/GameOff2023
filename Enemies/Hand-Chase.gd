@@ -1,17 +1,23 @@
 extends CharacterBody3D
 var player
+var hamster
 var SPEED
 var Playerclose
 var reached 
 var change
 var switch = 1
 var camera
+var index
+var go = 0
+var thing
 @export var player_path : NodePath
+@export var hamster_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 @export var target_size = 1.5
 @onready var new = preload("res://level_design_objects/Obstacles.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hamster = get_node(hamster_path)
 	GlobalVar.target_scale = target_size
 	$AnimatedSprite3D.play("Idle")
 	move_and_slide()
@@ -20,12 +26,33 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	index = DialogManager.current_line_index
+	
+	if index == 1 and thing == true:
+		match go:
+			0:
+				startup()
+				go = 1
+			1:
+				match index:
+					2:
+						switch = 6
+						hamster.run()
+						go = 2
+			2:
+				pass
+	
 	if Playerclose == true:
 		start()
 		if change == true:
 			if camera.size < 80:
 				camera.size += 0.5
-			tracking()
+			if index == 1:
+				DialogManager.loaded_box = "res://UI/TextBox/Bigger.tscn"
+			
+				#DialogManager.text_box.size = DialogManager.text_box.size*2
+				
+				tracking()
 			matchtest()
 			
 
@@ -46,11 +73,18 @@ func matchtest():
 		3:
 			$AnimatedSprite3D.play("Scream")
 			await $AnimatedSprite3D.animation_finished
-			get_tree().set_pause(false)
 			change = true
-			switch = 4
+			switch = "Interlude"
+			
+		"Interlude":
+			$AnimatedSprite3D.play("Turned-Idle")
+			await $AnimatedSprite3D.animation_finished
+			get_tree().set_pause(false)
+			
+		
 		4:
 			$AnimatedSprite3D.play("Run")
+			hamster.run()
 			
 		5: 
 			$AnimatedSprite3D.play("Catch")
@@ -97,6 +131,9 @@ func _on_navigation_agent_3d_target_reached():
 
 func _on_area_3d_body_entered(body):
 	if body.name == "Player":
+		thing = true
+
+func startup():
 		get_tree().set_pause(true)
 		player.startspeed = 40
 		player.find_child("PlayerRigid").set_linear_velocity(Vector3(30,10,10))
@@ -108,7 +145,6 @@ func _on_area_3d_body_entered(body):
 		$"../Repisa-Tubes".queue_free()
 		$Area3D.queue_free()
 		get_parent_node_3d().add_child(new.instantiate())
-
 
 
 func _on_playerthrow_body_entered(body):

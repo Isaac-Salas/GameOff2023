@@ -37,7 +37,6 @@ var player
 
 
 func _ready():
-	DialogManager.loaded_box = \"res://UI/TextBox/dialogue_box.tscn\"
 	var Hand = get_node(\"Hand\")
 	Hand.loadPlayer()
 	player = get_node(player_path)
@@ -207,33 +206,6 @@ func _on_area_3d_body_entered(body):
 		$AnimationPlayer.play(\"Run\")
 "
 
-[sub_resource type="Animation" id="Animation_jmx3n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-33.3494, 5.69136, -16.0643)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D:transparency")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="Animation" id="Animation_8ks76"]
 resource_name = "Run"
 length = 1.5
@@ -260,6 +232,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jmx3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-33.3494, 5.69136, -16.0643)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lr47f"]
@@ -534,7 +533,7 @@ collision_mask = 7
 script = SubResource("GDScript_06wt2")
 
 [node name="Sprite3D" type="MeshInstance3D" parent="Hamster2"]
-transform = Transform3D(-1.267e-06, -0.35, 1.267e-06, 0, -1.267e-06, -0.35, 0.35, -1.267e-06, 4.58651e-12, 0.16, 0, 0)
+transform = Transform3D(-1.5299e-08, -0.35, 1.5299e-08, 0, -1.5299e-08, -0.35, 0.35, -1.5299e-08, 6.6874e-16, 0.16, 0, 0)
 mesh = ExtResource("18_nkaql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster2"]
@@ -587,7 +586,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.307, 1.16822, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Hamster"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854901, 1.75453)
-light_energy = 0.5
 light_specular = 0.0
 omni_range = 1.936
 

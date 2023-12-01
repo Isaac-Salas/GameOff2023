@@ -1,15 +1,69 @@
-[gd_scene load_steps=17 format=3 uid="uid://cki7g0252vdmw"]
+[gd_scene load_steps=24 format=3 uid="uid://cki7g0252vdmw"]
 
 [ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="1_flv3r"]
 [ext_resource type="PackedScene" uid="uid://b6inaoqalf0at" path="res://level_design_objects/Breakables/Floor_Un.tscn" id="2_2pc71"]
 [ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="3_6bc8e"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="4_7lx6t"]
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="4_lg84o"]
+[ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="4_mc8al"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="5_0wq1u"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_fpiok"]
 [ext_resource type="Texture2D" uid="uid://bjhbaucvju1sn" path="res://Models/Props/Paredzota_Texture-wall.png" id="6_ih44h"]
 [ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="8_vhnjl"]
-[ext_resource type="PackedScene" uid="uid://c1dk8fdbe5gee" path="res://level_design_objects/X-Marking.tscn" id="10_xcn1v"]
+[ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="10_m8lpf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.13
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bifd4"]
+material = SubResource("StandardMaterial3D_7gywp")
+height = 31.442
+radial_segments = 4
+rings = 3
+
+[sub_resource type="GDScript" id="GDScript_bvote"]
+script/source = "extends MeshInstance3D
+
+# Setting a breakable scene.
+@export var resource : Resource
+ 
+func break_object():
+	# Instancing the breakable.
+	var breakable = resource.instantiate()
+	# Getting the parent of the Area node.
+	var parent = self.get_parent()
+	# Adding the breakable as a child of the parent.
+	parent.add_child(breakable)
+	#Setting the breakable's translation and rotation to the Area node.
+	breakable.transform = self.transform
+	breakable.rotation_degrees.z = self.rotation_degrees.z
+	print(breakable.get_children())
+	
+	# Deleting the Area node.
+	self.queue_free()
+	pass
+	
+
+
+
+func _on_area_3d_body_entered(body):
+	if body.name == \"Player\":
+		break_object()
+	
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhykb"]
+albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ak2oq"]
+material = SubResource("StandardMaterial3D_xhykb")
+size = Vector3(0.3, 32, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ks06t"]
+radius = 15.0
 
 [sub_resource type="GDScript" id="GDScript_pp2jt"]
 script/source = "extends StaticBody3D
@@ -124,34 +178,169 @@ transform = Transform3D(0.813953, -0.58093, 0, 0.58093, 0.813953, 0, 0, 0, 2.2, 
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="Fluorescent light" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -413.302, 30.2862, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -413.302, 30.2862, 2)
 
 [node name="Fluorescent light2" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -379.112, 39.3141, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -379.112, 39.3141, 2)
 
 [node name="Fluorescent light3" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -336.32, 28.9707, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -336.32, 28.9707, 2)
 
 [node name="Fluorescent light11" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -289.54, 40.5653, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -289.54, 40.5653, 2)
 
 [node name="Fluorescent light12" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -245.405, 40.1823, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -245.405, 40.1823, 2)
+
+[node name="Fluorescent light13" type="MeshInstance3D" parent="Lights"]
+transform = Transform3D(-0.782054, 0.623211, 0, -0.623211, -0.782054, 0, 0, 0, 1, -205.431, 38.6288, 2)
+mesh = SubResource("CapsuleMesh_bifd4")
+script = SubResource("GDScript_bvote")
+resource = ExtResource("4_mc8al")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -0.417619, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 4.259
+omni_attenuation = 0.435276
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, 6.17029, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 4.259
+omni_attenuation = 0.435276
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, 12.9347, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 4.259
+omni_attenuation = 0.435276
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -6.87464, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 4.259
+omni_attenuation = 0.435276
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -13.3974, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 4.259
+omni_attenuation = 0.435276
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, -0.744042, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 24.3319
+omni_attenuation = 1.7411
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, -15.4073, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 24.3319
+omni_attenuation = 1.7411
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, 15.3951, 0)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 9.708
+light_indirect_energy = 7.992
+light_volumetric_fog_energy = 15.113
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 24.3319
+omni_attenuation = 1.7411
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/Fluorescent light13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565845, -2.47339e-08, 0)
+mesh = SubResource("BoxMesh_ak2oq")
+
+[node name="Area3D" type="Area3D" parent="Lights/Fluorescent light13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lights/Fluorescent light13/Area3D"]
+shape = SubResource("SphereShape3D_ks06t")
 
 [node name="Fluorescent light4" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.058, 16.9175, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -152.288, 16.9175, 2)
 
-[node name="MeshInstance3D" parent="Lights/Fluorescent light4/Fluorescent light" index="8"]
+[node name="OmniLight3D" parent="Lights/Fluorescent light4" index="0"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D2" parent="Lights/Fluorescent light4" index="1"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D3" parent="Lights/Fluorescent light4" index="2"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D4" parent="Lights/Fluorescent light4" index="3"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D5" parent="Lights/Fluorescent light4" index="4"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D6" parent="Lights/Fluorescent light4" index="5"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D7" parent="Lights/Fluorescent light4" index="6"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D8" parent="Lights/Fluorescent light4" index="7"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 16.0
+
+[node name="MeshInstance3D" parent="Lights/Fluorescent light4" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565845, 0, 0)
 
 [node name="Fluorescent light5" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.1057, 17.4982, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -84.1057, 17.4982, 2)
 
 [node name="Fluorescent light6" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6389, 25.6134, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -21.6389, 25.6134, 2)
 
 [node name="Fluorescent light7" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.71573, 25.6134, 2)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.71573, 25.6134, 2)
 
 [node name="Fluorescent light8" parent="Lights" instance=ExtResource("4_7lx6t")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -272.835, 17.7536, 2)
@@ -525,9 +714,6 @@ light_color = Color(1, 0, 0, 1)
 transform = Transform3D(2.8169, 0, 0, 0, 2.8169, 0, 0, 0, 2.8169, 3.07602, 15.3951, 0)
 light_color = Color(1, 0, 0, 1)
 
-[node name="Fluorescent" parent="Lights" instance=ExtResource("3_6bc8e")]
-transform = Transform3D(0.615868, 0.787849, 0, -0.787849, 0.615868, 0, 0, 0, 1, -207.249, 40.3402, 0)
-
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Wall-Unbreak4" parent="Walls" instance=ExtResource("4_lg84o")]
@@ -571,6 +757,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -394.746, 5.79048, 0)
 [node name="Cajita2" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -365.54, 13.7433, 0)
 
+[node name="Cajita3" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.945, 24.2122, 0)
+
+[node name="Cajita4" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.517, 24.2122, 0)
+
+[node name="Cajita5" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.992, 24.2122, 0)
+
+[node name="Cajita6" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -204.466, 24.2122, 0)
+
+[node name="Cajita7" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -205.778, 26.2335, 0)
+
+[node name="Cajita8" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -208.301, 26.2335, 0)
+
+[node name="Cajita9" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.825, 26.2335, 0)
+
+[node name="Cajita10" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.53, 28.3441, -0.253662)
+
+[node name="Cajita11" parent="WoodBoxes" instance=ExtResource("8_vhnjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.901, 28.3441, -0.253662)
+
+[node name="Bench-tubes" parent="." instance=ExtResource("10_m8lpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -260.381, 23.3294, 0)
+
 [node name="MetalCrates" type="Node3D" parent="."]
 
 [node name="Metal Crate3" parent="MetalCrates" instance=ExtResource("1_flv3r")]
@@ -582,36 +798,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.605, 3.90648, 0)
 [node name="Metal Crate2" parent="MetalCrates" instance=ExtResource("1_flv3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3709, 16.8124, 0)
 
-[node name="Node3D" parent="." instance=ExtResource("10_xcn1v")]
-transform = Transform3D(2.43184, -0.660717, -2.88808e-08, 0, -1.10153e-07, 2.52, -0.660717, -2.43184, -1.06299e-07, -228.115, 22.4037, 0)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.999693, 0.00133401, -0.0247277, 0.0247637, -0.0538532, 0.998242, 0, -0.998548, -0.0538697, -229.076, 77.3846, 0)
-light_color = Color(0.792157, 0.87451, 0.686275, 1)
-light_energy = 500.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 61.497
-spot_angle = 10.91
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(0.999693, 0.00133401, -0.0247277, 0.0247637, -0.0538532, 0.998242, 0, -0.998548, -0.0538697, 13.6064, 68.863, 0)
-light_color = Color(0.792157, 0.87451, 0.686275, 1)
-light_energy = 500.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 61.497
-spot_angle = 10.91
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(0.999693, 0.00133401, -0.0247277, 0.0247637, -0.0538532, 0.998242, 0, -0.998548, -0.0538697, -137.229, 56.4695, 0)
-light_color = Color(0.792157, 0.87451, 0.686275, 1)
-light_energy = 500.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 61.497
-spot_angle = 10.91
-
+[connection signal="body_entered" from="Lights/Fluorescent light13/Area3D" to="Lights/Fluorescent light13" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Walls/Group/Wall-Unbreak5/Area3D" to="Walls/Group/Wall-Unbreak5" method="_on_area_3d_body_entered" flags=18]
 
 [editable path="Lights/Fluorescent light4"]

@@ -2,20 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="1_xxkb8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
-disable_ambient_light = true
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.13
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2brf"]
-material = SubResource("StandardMaterial3D_7gywp")
-height = 31.442
-radial_segments = 4
-rings = 3
-
-[sub_resource type="GDScript" id="GDScript_7oiud"]
-script/source = "extends MeshInstance3D
+[sub_resource type="GDScript" id="GDScript_6d6vs"]
+script/source = "extends Node3D
 
 # Setting a breakable scene.
 @export var resource : Resource
@@ -29,7 +17,7 @@ func break_object():
 	parent.add_child(breakable)
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
-	breakable.rotation_degrees = self.rotation_degrees*2
+	breakable.rotation_degrees = self.rotation_degrees
 	print(breakable.get_children())
 	
 	# Deleting the Area node.
@@ -45,6 +33,18 @@ func _on_area_3d_body_entered(body):
 	
 "
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.13
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2brf"]
+material = SubResource("StandardMaterial3D_7gywp")
+height = 31.442
+radial_segments = 4
+rings = 3
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhykb"]
 albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
 
@@ -55,13 +55,15 @@ size = Vector3(0.3, 32, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ks06t"]
 radius = 15.0
 
-[node name="Fluorescent light" type="MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_t2brf")
-script = SubResource("GDScript_7oiud")
+[node name="Fluorescent" type="Node3D"]
+script = SubResource("GDScript_6d6vs")
 resource = ExtResource("1_xxkb8")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Fluorescent light" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_t2brf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -0.417619, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -72,7 +74,7 @@ shadow_enabled = true
 omni_range = 4.259
 omni_attenuation = 0.435276
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, 6.17029, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -83,7 +85,7 @@ shadow_enabled = true
 omni_range = 4.259
 omni_attenuation = 0.435276
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, 12.9347, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -94,7 +96,7 @@ shadow_enabled = true
 omni_range = 4.259
 omni_attenuation = 0.435276
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+[node name="OmniLight3D4" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -6.87464, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -105,7 +107,7 @@ shadow_enabled = true
 omni_range = 4.259
 omni_attenuation = 0.435276
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+[node name="OmniLight3D5" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53515, -13.3974, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -116,7 +118,7 @@ shadow_enabled = true
 omni_range = 4.259
 omni_attenuation = 0.435276
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="."]
+[node name="OmniLight3D6" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, -0.744042, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -127,7 +129,7 @@ shadow_enabled = true
 omni_range = 24.3319
 omni_attenuation = 1.7411
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="."]
+[node name="OmniLight3D7" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, -15.4073, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -138,7 +140,7 @@ shadow_enabled = true
 omni_range = 24.3319
 omni_attenuation = 1.7411
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="."]
+[node name="OmniLight3D8" type="OmniLight3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07602, 15.3951, 0)
 light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
@@ -149,13 +151,13 @@ shadow_enabled = true
 omni_range = 24.3319
 omni_attenuation = 1.7411
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fluorescent light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565845, -2.47339e-08, 0)
 mesh = SubResource("BoxMesh_ak2oq")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="Fluorescent light"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fluorescent light/Area3D"]
 shape = SubResource("SphereShape3D_ks06t")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Fluorescent light/Area3D" to="." method="_on_area_3d_body_entered"]

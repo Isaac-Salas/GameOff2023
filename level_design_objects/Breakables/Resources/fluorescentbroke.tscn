@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbmdgmophoyc2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.13
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8a7gy"]
+material = SubResource("StandardMaterial3D_7gywp")
+height = 31.442
+radial_segments = 4
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhykb"]
+albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ak2oq"]
+material = SubResource("StandardMaterial3D_xhykb")
+size = Vector3(0.3, 32, 1)
+
+[node name="Fluorescent light" type="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_8a7gy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565845, -2.47339e-08, 0)
+mesh = SubResource("BoxMesh_ak2oq")
