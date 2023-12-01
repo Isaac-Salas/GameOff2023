@@ -413,7 +413,6 @@ texture_filter = 0
 texture = ExtResource("14_jcnol")
 
 [node name="Id-Card" parent="Dialogue_box" instance=ExtResource("14_waje6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Dialogue_box2" parent="." instance=ExtResource("14_gvmxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.3906, 4.38693, 2.08165e-12)

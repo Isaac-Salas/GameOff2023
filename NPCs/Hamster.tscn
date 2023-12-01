@@ -55,6 +55,7 @@ var state = false
 	\"I shouldn't waste my energy before an important battle...\",
 	\"Well, I'll see you at the buffet!\",]
 	
+	
 
 func _unhandled_input(event):
 	if state and event.is_action_pressed(\"Talk\"):

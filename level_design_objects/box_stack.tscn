@@ -5,28 +5,30 @@
 [node name="Box Stack" type="Node3D"]
 
 [node name="Cajita3" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.945, 24.2122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90207, 0, 0)
 
 [node name="Cajita4" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.517, 24.2122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54952, 1.9271, 0)
 
 [node name="Cajita5" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.992, 24.2122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84076, 0, 0)
 
 [node name="Cajita6" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -204.466, 24.2122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32762, 1.75155, 0)
 
 [node name="Cajita7" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -205.778, 26.2335, 0)
 
 [node name="Cajita8" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -208.301, 26.2335, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71088, 3.53738, 0)
 
 [node name="Cajita9" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.825, 26.2335, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.71871, 0)
+
+[node name="Cajita12" parent="." instance=ExtResource("1_205k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42183, 5.18116, 0)
 
 [node name="Cajita10" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.53, 28.3441, -0.253662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17642, 1.8443, 0)
 
 [node name="Cajita11" parent="." instance=ExtResource("1_205k6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.901, 28.3441, -0.253662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40845, 0, 0)

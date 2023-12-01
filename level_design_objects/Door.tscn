@@ -1,6 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://i3q7kyt2yprg"]
 
 [ext_resource type="Script" path="res://level_design_objects/Door.gd" id="1_2pxd8"]
+[ext_resource type="Animation" uid="uid://soy31gdco7ob" path="res://Close Door.res" id="2_25ivy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -11,21 +12,6 @@ size = Vector3(10, 12, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dflmi"]
 size = Vector3(10, 12, 1)
-
-[sub_resource type="Animation" id="Animation_kfsjl"]
-resource_name = "Close Door"
-length = 0.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1.5708, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
 
 [sub_resource type="Animation" id="Animation_2mjnp"]
 resource_name = "Open Door"
@@ -71,7 +57,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mo21i"]
 _data = {
-"Close Door": SubResource("Animation_kfsjl"),
+"Close Door": ExtResource("2_25ivy"),
 "Open Door": SubResource("Animation_2mjnp"),
 "RESET": SubResource("Animation_v13hn")
 }
