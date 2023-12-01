@@ -1,0 +1,195 @@
+[gd_scene load_steps=10 format=3 uid="uid://pqkwvr7hob62"]
+
+[ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
+[ext_resource type="Texture2D" uid="uid://bmjvcwu2ojikg" path="res://UI/Credits/Logo.png" id="2_k42xk"]
+
+[sub_resource type="SystemFont" id="SystemFont_tkj53"]
+font_names = PackedStringArray("Gooey")
+oversampling = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ew4ct"]
+font = SubResource("SystemFont_tkj53")
+
+[sub_resource type="Animation" id="Animation_isnvw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, -2500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bbkfg"]
+resource_name = "dissolve"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99651),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, 1093)]
+}
+
+[sub_resource type="Animation" id="Animation_3xxke"]
+resource_name = "runCredits"
+length = 15.0
+step = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(454, 2800), Vector2(454, -3000)]
+}
+
+[sub_resource type="Animation" id="Animation_rqy0p"]
+resource_name = "Credits"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(215.5, 445), Vector2(215.5, -424.435)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rihp0"]
+_data = {
+"Credits": SubResource("Animation_rqy0p"),
+"RESET": SubResource("Animation_isnvw"),
+"dissolve": SubResource("Animation_bbkfg"),
+"runCredits": SubResource("Animation_3xxke")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2nhe0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(16, 9)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 157.0
+offset_top = -2662.0
+offset_right = 320.0
+offset_bottom = -2032.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 91
+text = "Art
+ElWeroBalazos
+Gerardo Acosta
+
+Main character design
+Gerardo Acosta
+
+Programming
+Alexcavadora
+Isaac Salas
+Juan Aguilera
+
+Gameplay programming:
+Alexcavadora
+Isaac Salas
+
+UI
+Juan Aguilera
+
+
+
+
+
+
+
+
+
+Thanks for playing!
+AUTUMN TAVERN JAM
+by Luigi Salas"
+label_settings = SubResource("LabelSettings_ew4ct")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+"": SubResource("AnimationLibrary_rihp0")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(87.5, -61)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("2_k42xk")

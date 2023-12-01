@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=24 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
 [ext_resource type="Texture2D" uid="uid://ylp5pt8ep2as" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
+[ext_resource type="Texture2D" uid="uid://t1iiumicgc1g" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
 [ext_resource type="Texture2D" uid="uid://ubajor80nhkl" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
 [ext_resource type="Texture2D" uid="uid://b0gtrg2ctcc35" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
@@ -22,6 +24,42 @@
 background_mode = 1
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
+
+[sub_resource type="GDScript" id="GDScript_8ykrp"]
+script/source = "extends Area3D
+
+var state = false
+@export var lines: Array[String] =[
+	\"Hey, you seem pretty strong!\",
+	\"Wanna spar?\",
+	\"Wait...\",
+	\"I shouldn't waste my energy before an important battle...\",
+	\"Well, I'll see you at the buffet!\",]
+
+func _unhandled_input(event):
+	if state and event.is_action_pressed(\"Talk\"):
+		DialogManager.start_dialog(global_position, lines)
+		state = false
+		$\"Id-Card\".queue_free()
+		var Card = load(\"res://2DProps/id_card.tscn\")
+		$\"../Player\".add_child(Card.instantiate())
+		monitoring = false
+		monitorable = false
+		
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		$Sprite3D.show()
+		state = true
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		state = false 
+		$Sprite3D.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+size = Vector3(5, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j40lq"]
 
@@ -289,9 +327,23 @@ transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 
 [node name="Fluorescent light6" parent="." instance=ExtResource("15_ndddx")]
 transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, -54.0789, 25.2219, 3.60464)
 
-[node name="Dialogue_box" parent="." instance=ExtResource("14_gvmxk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.5894, 30.2225, 2.08165e-12)
-lines = Array[String](["This is... ", "Yeah, that's right.", "That's... literally me."])
+[node name="Dialogue_box" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.854595, 0.519295, 0, -0.519295, 0.854595, -69.5894, 30.2225, 2.08165e-12)
+script = SubResource("GDScript_8ykrp")
+lines = Array[String](["This is...", "Yeah, that's right.", "That's... literally me."])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dialogue_box"]
+shape = SubResource("BoxShape3D_bgy1i")
+
+[node name="Sprite3D" type="Sprite3D" parent="Dialogue_box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8251, 1.88027, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("14_jcnol")
+
+[node name="Id-Card" parent="Dialogue_box" instance=ExtResource("14_waje6")]
+transform = Transform3D(1, 0, 0, 0, 0.124329, -0.992241, 0, 0.992241, 0.124329, 0, 0, 0)
 
 [node name="Dialogue_box2" parent="." instance=ExtResource("14_gvmxk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.3906, 4.38693, 2.08165e-12)
@@ -341,6 +393,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.42, 15.2602, -2.80626)
 [connection signal="pressed" from="Button" to="Node3D2" method="_on_button_pressed"]
 [connection signal="body_entered" from="Trigger" to="Door/Door" method="_on_trigger_body_entered"]
 [connection signal="entered" from="Trigger" to="Door/Door" method="toggle_door"]
+[connection signal="body_entered" from="Dialogue_box" to="Dialogue_box" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="Dialogue_box" to="Dialogue_box" method="_on_body_exited" flags=18]
 [connection signal="pressed" from="Button2" to="Door2/Door" method="toggle_door"]
 
 [editable path="Terrain/Foreground"]
