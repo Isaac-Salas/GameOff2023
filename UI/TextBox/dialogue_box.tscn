@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://UI/TextBox/DialogControl.gd" id="1_hvaes"]
 [ext_resource type="Script" path="res://UI/TextBox/dialogue_box.gd" id="1_u3bl8"]
-[ext_resource type="Texture2D" uid="uid://b4rui8x7gokrb" path="res://Sprites/Dialog_box.png" id="1_ye8rp"]
-[ext_resource type="FontFile" uid="uid://dih8qet4q3cfp" path="res://UI/TextBox/Font/Oswald/Oswald-VariableFont_wght.ttf" id="2_a5sj1"]
+[ext_resource type="Texture2D" uid="uid://brbdoj04k1uxj" path="res://Sprites/Dialog_box.png" id="1_ye8rp"]
+[ext_resource type="FontFile" uid="uid://dowc710adwssy" path="res://UI/TextBox/Font/Oswald/Oswald-VariableFont_wght.ttf" id="2_a5sj1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_i0ivt"]
 viewport_path = NodePath("SubViewport")

@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t3sqvm0taho4"
+uid="uid://nmc0b01cyy47"
 path.s3tc="res://.godot/imported/Metal Crate_MetalCrate.png-b3217037b0b273c8f5455a7b47806dbf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

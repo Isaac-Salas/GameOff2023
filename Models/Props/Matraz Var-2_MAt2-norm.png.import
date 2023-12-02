@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlhal15phf1ew"
+uid="uid://dqi6530x207nw"
 path.s3tc="res://.godot/imported/Matraz Var-2_MAt2-norm.png-c66b341aefbe66f9b9a2df722766fbe6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

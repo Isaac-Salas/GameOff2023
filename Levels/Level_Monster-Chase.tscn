@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ckhb0b2hhrtsy"]
+[gd_scene load_steps=57 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://bjhbaucvju1sn" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://d01ht5gkhse3t" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://bryo181676qgv" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://coie0g8lmlvsn" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -22,6 +22,7 @@
 [ext_resource type="Animation" uid="uid://soy31gdco7ob" path="res://Close Door.res" id="20_7xbmo"]
 [ext_resource type="PackedScene" uid="uid://10wkwnw1ie5d" path="res://NPCs/Hamster.tscn" id="20_ply3q"]
 [ext_resource type="PackedScene" uid="uid://bbbo7im43lgbi" path="res://level_design_objects/box_stack.tscn" id="20_w0a2a"]
+[ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="23_b2f62"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
@@ -39,7 +40,7 @@ var player
 
 
 func _ready():
-	
+	DialogManager.loaded_box = \"res://UI/TextBox/dialogue_box.tscn\"
 	var Hand = get_node(\"Hand\")
 	Hand.loadPlayer()
 	player = get_node(player_path)
@@ -97,7 +98,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 agent_max_slope = 90.0
 vertices_per_polygon = 10.0
 
-[sub_resource type="GDScript" id="GDScript_ydexo"]
+[sub_resource type="GDScript" id="GDScript_tn1ub"]
 script/source = "extends StaticBody3D
 
 #It doesn't have to be an Area node it can be a Rigidbody as well.
@@ -131,8 +132,10 @@ func _on_area_3d_body_entered(body):
 
 
 func _on_detect_player_body_exited(body):
-	if body.name == \"Player\":
-		$\"../Obstacles/Wall-Unbreak2/AnimationPlayer\".play(\"Down\")
+	$AnimationPlayer.play(\"Down\")
+	$DetectPlayer.queue_free()
+	var check = load(\"res://level_design_objects/checkpoint.tscn\")
+	get_tree().current_scene.add_child(check.instantiate())
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e7av"]
@@ -189,14 +192,26 @@ resource_name = "Down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("Cube:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-440.473, 23.292, -10), Vector3(-440.473, 15.032, -10)]
+"values": [Vector3(0, 0, 0), Vector3(0, -9.32615, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -9.42902, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3xngx"]
@@ -204,14 +219,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("Cube:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-440.473, 23.292, -10)]
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3wsff"]
@@ -476,7 +503,7 @@ size_factor = 2.0
 size_standard = 2.0
 
 [node name="Player" parent="." instance=ExtResource("2_0os48")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.6603, 1.72548, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.644, 1.72548, 0)
 startspeed = 15.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
@@ -609,7 +636,7 @@ collision_mask = 3
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
-script = SubResource("GDScript_ydexo")
+script = SubResource("GDScript_tn1ub")
 resource = ExtResource("6_2vuet")
 
 [node name="Cube" type="MeshInstance3D" parent="Obstacles/Wall-Unbreak2"]
@@ -840,8 +867,17 @@ libraries = {
 [node name="Box Stack" parent="." instance=ExtResource("20_w0a2a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.102, 1.19328, 0)
 
+[node name="Metal Crate" parent="." instance=ExtResource("23_b2f62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -449.966, 4.55937, -7.07941)
+
+[node name="Metal Crate2" parent="." instance=ExtResource("23_b2f62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.917, 4.55937, -14.2975)
+
+[node name="Metal Crate3" parent="." instance=ExtResource("23_b2f62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -447.357, 10.9233, -11.9238)
+
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
-[connection signal="body_exited" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Wall-Unbreak" method="_on_detect_player_body_exited"]
+[connection signal="body_exited" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_exited"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Hamster4/Area3D" to="Hamster4" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_exited" from="End" to="." method="_on_end_body_exited"]

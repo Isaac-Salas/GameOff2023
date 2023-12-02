@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://v8f8fuepq5r3"]
 
-[ext_resource type="Texture2D" uid="uid://bjhbaucvju1sn" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
+[ext_resource type="Texture2D" uid="uid://d01ht5gkhse3t" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="1_ydwxr"]
 
 [sub_resource type="GDScript" id="GDScript_ydexo"]
@@ -106,4 +106,5 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_qho6q")
 
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

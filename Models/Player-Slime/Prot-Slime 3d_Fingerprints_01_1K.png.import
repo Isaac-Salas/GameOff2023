@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yuw6rdcxcqe7"
+uid="uid://dyjfh876wo0hi"
 path.s3tc="res://.godot/imported/Prot-Slime 3d_Fingerprints_01_1K.png-837b7d32bed559f5ca49336f963288d5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

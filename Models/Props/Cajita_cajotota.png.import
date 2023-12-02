@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f0c6xiel4ohn"
+uid="uid://k6y85v45l1uk"
 path.s3tc="res://.godot/imported/Cajita_cajotota.png-3aed8f691e764417208a19042d2b530e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

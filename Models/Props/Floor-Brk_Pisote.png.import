@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di63mx67fhw8d"
+uid="uid://ct5fy84gcirrv"
 path.s3tc="res://.godot/imported/Floor-Brk_Pisote.png-445d29396f5632db3a657a96001845af.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

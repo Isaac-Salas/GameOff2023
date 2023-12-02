@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jmrqun0tha2d"
+uid="uid://bgwffuf0b1fs"
 path.s3tc="res://.godot/imported/Mesita_Mesota.png-6b9db56d15cf15970b9f534cc7ff4019.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

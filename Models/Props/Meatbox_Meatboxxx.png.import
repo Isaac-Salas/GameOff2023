@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnph7dox5pwiw"
+uid="uid://dlba7u8snbwbj"
 path.s3tc="res://.godot/imported/Meatbox_Meatboxxx.png-bcf61b405dde4e2d72a35e625c71d407.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

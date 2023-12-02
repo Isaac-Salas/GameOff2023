@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://238x8ppu58ak"
+uid="uid://5hxv6si8ui62"
 path.s3tc="res://.godot/imported/Floor-Un_Pisote.png-d376a1bced230e112a192401feb5bd2c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://pqkwvr7hob62"]
 
 [ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
-[ext_resource type="Texture2D" uid="uid://bmjvcwu2ojikg" path="res://UI/Credits/Logo.png" id="2_k42xk"]
+[ext_resource type="Texture2D" uid="uid://c6n7ipwjvugea" path="res://UI/Credits/Logo.png" id="2_k42xk"]
 [ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="3_3j7a3"]
 
 [sub_resource type="SystemFont" id="SystemFont_tkj53"]
@@ -13,6 +13,34 @@ oversampling = 10.0
 [sub_resource type="LabelSettings" id="LabelSettings_ew4ct"]
 font = SubResource("SystemFont_tkj53")
 font_size = 8
+
+[sub_resource type="Animation" id="Animation_rqy0p"]
+resource_name = "Credits"
+length = 65.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(361, 450), Vector2(361, -590)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 60, 65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_isnvw"]
 length = 0.001
@@ -86,34 +114,6 @@ tracks/0/keys = {
 "values": [Vector2(454, 2800), Vector2(454, -3000)]
 }
 
-[sub_resource type="Animation" id="Animation_rqy0p"]
-resource_name = "Credits"
-length = 65.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1, 60),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(361, 450), Vector2(361, -590)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 60, 65),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rihp0"]
 _data = {
 "Credits": SubResource("Animation_rqy0p"),
@@ -155,10 +155,10 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -140.0
+offset_left = 454.0
 offset_top = -2500.0
-offset_right = 93.0
-offset_bottom = -1448.0
+offset_right = 687.0
+offset_bottom = 172.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)

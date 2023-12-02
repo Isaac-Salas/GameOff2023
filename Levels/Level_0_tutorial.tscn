@@ -1,25 +1,28 @@
-[gd_scene load_steps=30 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=39 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_j3s68"]
-[ext_resource type="PackedScene" uid="uid://b8uiphfwfgnq2" path="res://UI/ui.tscn" id="4_hnf06"]
 [ext_resource type="PackedScene" uid="uid://ccd0mnyoukcva" path="res://GridMaps/Floor.tscn" id="5_kexi1"]
 [ext_resource type="PackedScene" uid="uid://i3q7kyt2yprg" path="res://level_design_objects/Door.tscn" id="6_n8a4u"]
 [ext_resource type="PackedScene" uid="uid://drshbhi6p7tem" path="res://level_design_objects/Buttons/Button.tscn" id="7_q3wgi"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://ylp5pt8ep2as" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://bmh08fkhepq6f" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://t1iiumicgc1g" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://b4pu8jk1xlf3w" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://ubajor80nhkl" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://04b4cit1hg" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://b0gtrg2ctcc35" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://cp66ihvi504bt" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://btra5a5x8iljy" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://du1mraovyxx3o" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
+[ext_resource type="Texture2D" uid="uid://bp5fjbvhtttvt" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://06xbeuk1bl2d" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://qacbd7524ggt" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://cg0arwwich1k6" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -35,16 +38,10 @@ size = Vector3(10, 12, 1)
 script/source = "extends Area3D
 
 var state = false
-@export var lines: Array[String] =[
-	\"Hey, you seem pretty strong!\",
-	\"Wanna spar?\",
-	\"Wait...\",
-	\"I shouldn't waste my energy before an important battle...\",
-	\"Well, I'll see you at the buffet!\",]
+
 
 func _unhandled_input(event):
 	if state and event.is_action_pressed(\"Talk\"):
-		DialogManager.start_dialog(global_position, lines)
 		state = false
 		get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
 
@@ -89,7 +86,10 @@ func _unhandled_input(event):
 		Cardinst.transform.origin += Vector3(0,0,2)
 		Cardinst.set_scale(Vector3(0.2,0.2,0.2))
 		$\"../Player\".add_child(Cardinst)
-		
+		$\"../Player\".goo()
+		$\"../Control/AnimationPlayer\".play(\"Slide in\")
+		await $\"../Control/AnimationPlayer\".animation_finished
+		$\"../Control/AnimationPlayer\".play(\"Out\")
 		monitoring = false
 		monitorable = false
 		
@@ -110,6 +110,65 @@ size = Vector3(5, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j40lq"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8nk"]
+
+[sub_resource type="Animation" id="Animation_c60xa"]
+resource_name = "Slide in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(545, 383), Vector2(541, 322), Vector2(541, 322)]
+}
+
+[sub_resource type="Animation" id="Animation_f0m4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(541, 384.81)]
+}
+
+[sub_resource type="Animation" id="Animation_ribcr"]
+resource_name = "Slideout"
+
+[sub_resource type="Animation" id="Animation_yho5q"]
+resource_name = "Out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(541, 322), Vector2(545, 383)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aatyi"]
+_data = {
+"Out": SubResource("Animation_yho5q"),
+"RESET": SubResource("Animation_f0m4j"),
+"Slide in": SubResource("Animation_c60xa"),
+"Slideout": SubResource("Animation_ribcr")
+}
+
 [node name="TutorialLevel" type="Node3D"]
 script = ExtResource("1_cbc7w")
 
@@ -122,11 +181,6 @@ freeze_mode = 1
 
 [node name="Block4" parent="Blocks" instance=ExtResource("1_e423e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69996, 3.73708, -4.5784)
-inertia = Vector3(3.75, 0, 0)
-freeze_mode = 1
-
-[node name="Block3" parent="Blocks" instance=ExtResource("1_e423e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.9043, 3.79018, -4.90562)
 inertia = Vector3(3.75, 0, 0)
 freeze_mode = 1
 
@@ -154,8 +208,6 @@ shadow_normal_bias = 0.0
 shadow_blur = 0.05
 omni_range = 7.783
 omni_attenuation = 1.07178
-
-[node name="CanvasLayer" parent="." instance=ExtResource("4_hnf06")]
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -322,15 +374,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
 shape = SubResource("BoxShape3D_dflmi")
 
 [node name="Dialogue_box" type="Area3D" parent="Door3/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73584, 3.09729, 3.47725)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.6813, 6.34831, 3.47725)
 script = SubResource("GDScript_fo260")
-lines = Array[String]([])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door3/Door/Dialogue_box"]
 shape = SubResource("BoxShape3D_bgy1i")
 
 [node name="Sprite3D" type="Sprite3D" parent="Door3/Door/Dialogue_box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8251, 1.88027, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375549, 1.88027, -5.1856e-06)
 visible = false
 billboard = 1
 texture_filter = 0
@@ -390,6 +441,9 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 63.076
 
 [node name="Fluorescent light9" parent="." instance=ExtResource("15_ndddx")]
 transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 132.021, 7.606, 2.08165e-12)
+
+[node name="Fluorescent light10" parent="." instance=ExtResource("15_ndddx")]
+transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 155.105, 7.606, 2.08165e-12)
 
 [node name="Fluorescent light7" parent="." instance=ExtResource("15_ndddx")]
 transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 1.8444, 26.3714, 3.60464)
@@ -470,6 +524,55 @@ transform = Transform3D(0.600136, -0.322735, 0.731901, 0.473627, 0.880725, 0, -0
 
 [node name="Tube4" parent="." instance=ExtResource("20_87bia")]
 transform = Transform3D(0.757284, 0.411823, 0.506875, -0.104914, 0.842755, -0.527974, -0.644604, 0.346648, 0.681411, 51.0451, 15.181, 0)
+
+[node name="Node3D5" parent="." instance=ExtResource("9_f4su8")]
+transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 171.675, 8.77705, -5.06567)
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.008, 4.97285, -5.01651)
+material_overlay = SubResource("StandardMaterial3D_wl8nk")
+pixel_size = 0.03
+shaded = true
+texture = ExtResource("20_ohgud")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(0.996456, -0.0836868, -0.00848344, 0.0512361, 0.523876, 0.850252, -0.0667106, -0.847674, 0.526307, -84.1608, 2.69126, -0.907672)
+pixel_size = 0.008
+shaded = true
+texture = ExtResource("21_kb4et")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.7615, 9.16019, 2.25098)
+light_color = Color(0.858824, 0.0352941, 0, 1)
+omni_range = 9.929
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34161, 5.04346, 2.25098)
+light_color = Color(0.858824, 0.0352941, 0, 1)
+omni_range = 9.929
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69654, 3.73062, -2.97918)
+pixel_size = 0.0015
+shaded = true
+texture = ExtResource("22_nujfq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(541, 384.81)
+rotation = -1.5708
+scale = Vector2(0.105, 0.105)
+texture = ExtResource("23_n5iq2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+"": SubResource("AnimationLibrary_aatyi")
+}
 
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]

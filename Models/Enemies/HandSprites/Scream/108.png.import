@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmup8yalr2ok1"
-path.s3tc="res://.godot/imported/108.png-9f38f47c985e28c9454f9caa2c031bed.s3tc.ctex"
+uid="uid://bibkqwrccpdfs"
+path="res://.godot/imported/108.png-9f38f47c985e28c9454f9caa2c031bed.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Models/Enemies/HandSprites/Scream/108.png"
-dest_files=["res://.godot/imported/108.png-9f38f47c985e28c9454f9caa2c031bed.s3tc.ctex"]
+dest_files=["res://.godot/imported/108.png-9f38f47c985e28c9454f9caa2c031bed.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

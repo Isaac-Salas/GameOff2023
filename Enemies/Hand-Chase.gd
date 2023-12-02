@@ -2,13 +2,13 @@ extends CharacterBody3D
 var player
 var hamster
 var SPEED
-var Playerclose
-var reached 
-var change
-var switch = 1
+@onready var Playerclose = false
+
+@onready var change = false
+@onready var switch = 1
 var camera
 var index
-var go = 0
+@onready var go = 0
 var thing
 @export var player_path : NodePath
 @export var hamster_path : NodePath
@@ -17,6 +17,7 @@ var thing
 @onready var new = preload("res://level_design_objects/Obstacles.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	hamster = get_node(hamster_path)
 	GlobalVar.target_scale = target_size
 	$AnimatedSprite3D.play("Idle")
@@ -27,27 +28,52 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	index = DialogManager.current_line_index
+	print(index)
 	
-	if index >= 1 and thing == true:
-		match go:
+	if thing == true:
+		match index:
 			0:
-				startup()
-				go = 1
+				pass
 			1:
-				match index:
-					2:
-						switch = 4
-						go = 2
+				pass
 			2:
 				pass
-	
+			
+			3:
+				match go:
+					0:
+						startup()
+						go = 1
+					1:
+						pass
+					2:
+						pass
+			4:
+				DialogManager.loaded_box = "res://UI/TextBox/Bigger.tscn"
+			5:
+				switch = 4
+				go=2
+				
+				
+#				go = 1
+#		match go:
+#			0:
+#				startup()
+#				go = 1
+#			1:
+#				match index:
+#					2:
+#						switch = 4
+#						go = 2
+#			2:
+#				pass
+#
 	if Playerclose == true:
 		start()
 		if change == true:
 			if camera.size < 80:
 				camera.size += 0.5
-			if index == 1:
-				DialogManager.loaded_box = "res://UI/TextBox/Bigger.tscn"
+				
 			if go == 2:
 				tracking()
 				#DialogManager.text_box.size = DialogManager.text_box.size*2
