@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ojo4m5e7twb"]
 
-[ext_resource type="Texture2D" uid="uid://j2o5ybbimkk" path="res://Models/Props/id card_idcard.png" id="1_2kkrp"]
+[ext_resource type="Texture2D" uid="uid://cg0arwwich1k6" path="res://Models/Props/id card_idcard.png" id="1_2kkrp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fbl4"]
 resource_name = "Material"

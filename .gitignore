@@ -16,3 +16,6 @@ mono_crash.*.json
 #Mac-specific ignore:
 .DS_Store
 *.exe
+*.import
+*.import
+*.import

@@ -1,23 +1,22 @@
 [gd_scene load_steps=23 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://bl35383yrwenk" path="res://Menu/Box_Test.png" id="1_kov18"]
-[ext_resource type="Texture2D" uid="uid://c0sx7cd5eabmi" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://dbhguchrh74wc" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://bl1j4rhbbpo6" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://7dx76315ecmt" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://dgu2ffhulxkjl" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://c44ysk4ofs7w" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://dseqfwndjbom1" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="Texture2D" uid="uid://besb3txpvftdr" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://cl41cv2qfrcpp" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://do4q7swm3pdoh" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://d3scavvywml8" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://dbvg7tf3il4dx" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://fvhyed7hrtf3" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://c84vbv7qdfjsi" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://dhoewv505qk7t" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://sv078ppvob1h" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://6egkxt1psfv3" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://dbwemqfw5e1to" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://chtprr1vl7n4h" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://37y52bxiu0na" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
-var switching
+@onready var switching = 0
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	switching = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -376,12 +375,8 @@ _data = {
 "RESET": SubResource("Animation_xgish")
 }
 
-[sub_resource type="SystemFont" id="SystemFont_u2uxe"]
-font_names = PackedStringArray("HORROR SPRAY DEMO")
-oversampling = 5.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_6qssw"]
-font = SubResource("SystemFont_u2uxe")
+font = ExtResource("8_vtpms")
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_hy2iu")
@@ -420,6 +415,7 @@ light_color = Color(0.133333, 0, 0.317647, 1)
 light_energy = 0.01
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_ghcib")
 }
@@ -464,10 +460,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 8.143
-offset_left = 31.0
-offset_top = 114.0
-offset_right = 157.0
-offset_bottom = 158.0
+offset_left = 46.0
+offset_top = 112.0
+offset_right = 210.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Demo made for:
