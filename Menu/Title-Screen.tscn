@@ -1,15 +1,16 @@
 [gd_scene load_steps=23 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://dtekwqydtjkj8" path="res://Menu/Box_Test.png" id="1_kov18"]
-[ext_resource type="Texture2D" uid="uid://8ywtossnl6y4" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://rks4ewjjnrdl" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://b4m1c153o3i5k" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://c281rpyo1r6xi" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://6314nh8lrblq" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://dwaqwvg8jcmwv" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://c8vcjp0el6xu8" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="Texture2D" uid="uid://coggtjmnscoy3" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://byrq7l3vxkbqu" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://do4q7swm3pdoh" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://d3scavvywml8" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://dbvg7tf3il4dx" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://fvhyed7hrtf3" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://c84vbv7qdfjsi" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://dhoewv505qk7t" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://sv078ppvob1h" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://6egkxt1psfv3" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://dbwemqfw5e1to" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://chtprr1vl7n4h" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://37y52bxiu0na" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
@@ -374,13 +375,8 @@ _data = {
 "RESET": SubResource("Animation_xgish")
 }
 
-[sub_resource type="SystemFont" id="SystemFont_u2uxe"]
-font_names = PackedStringArray("Retro Computer")
-allow_system_fallback = false
-oversampling = 5.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_6qssw"]
-font = SubResource("SystemFont_u2uxe")
+font = ExtResource("8_vtpms")
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_hy2iu")

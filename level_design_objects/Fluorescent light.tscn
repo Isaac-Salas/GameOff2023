@@ -29,8 +29,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 4.259
 omni_attenuation = 0.435276
 
@@ -40,8 +42,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 4.259
 omni_attenuation = 0.435276
 
@@ -51,8 +55,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 4.259
 omni_attenuation = 0.435276
 
@@ -62,8 +68,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 4.259
 omni_attenuation = 0.435276
 
@@ -73,8 +81,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 4.259
 omni_attenuation = 0.435276
 
@@ -84,8 +94,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 24.3319
 omni_attenuation = 1.7411
 
@@ -95,8 +107,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 24.3319
 omni_attenuation = 1.7411
 
@@ -106,8 +120,10 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 9.708
 light_indirect_energy = 7.992
 light_volumetric_fog_energy = 15.113
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.99
 omni_range = 24.3319
 omni_attenuation = 1.7411
 

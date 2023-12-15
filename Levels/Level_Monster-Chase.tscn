@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://d01ht5gkhse3t" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://1mvopf3mgc1e" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://coie0g8lmlvsn" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://dqt4sgknx2tpn" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -185,7 +185,7 @@ size = Vector3(50, 30, 2)
 size = Vector3(50, 30, 2.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o7oe"]
-size = Vector3(48.79, 10, 2)
+size = Vector3(48.79, 10, 30.8208)
 
 [sub_resource type="Animation" id="Animation_7y5eq"]
 resource_name = "Down"
@@ -658,6 +658,7 @@ shape = SubResource("BoxShape3D_qho6q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.8397, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/DetectPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 0, -14.1817)
 shape = SubResource("BoxShape3D_2o7oe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/Wall-Unbreak2"]
@@ -788,7 +789,7 @@ collision_mask = 7
 script = SubResource("GDScript_06wt2")
 
 [node name="Sprite3D" type="MeshInstance3D" parent="Hamster2"]
-transform = Transform3D(-1.267e-06, -0.35, 1.267e-06, 0, -1.267e-06, -0.35, 0.35, -1.267e-06, 4.58651e-12, 0.16, 0, 0)
+transform = Transform3D(-3.47519e-06, -0.96, 3.47519e-06, 0, -3.47519e-06, -0.96, 0.96, -3.47519e-06, 1.25802e-11, 0.160004, 0.372707, 0.00587448)
 mesh = ExtResource("18_nkaql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster2"]
@@ -811,7 +812,7 @@ collision_mask = 7
 script = SubResource("GDScript_fl4kg")
 
 [node name="Sprite3D" type="MeshInstance3D" parent="Hamster4"]
-transform = Transform3D(-1.5299e-08, -0.35, 1.5299e-08, 0, -1.5299e-08, -0.35, 0.35, -1.5299e-08, 0, 0.16, -0.243373, -0.00383568)
+transform = Transform3D(-2.84124e-08, -0.65, 2.84124e-08, 0, -2.84124e-08, -0.65, 0.65, -2.84124e-08, 0, 0.253551, 0.224337, 0.00353622)
 mesh = ExtResource("18_nkaql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster4"]

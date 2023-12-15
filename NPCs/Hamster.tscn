@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://10wkwnw1ie5d"]
 
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="1_nd21d"]
-[ext_resource type="Texture2D" uid="uid://b4pu8jk1xlf3w" path="res://2DProps/Dialog.png" id="4_6alxn"]
+[ext_resource type="Texture2D" uid="uid://i38p0cgsyupp" path="res://2DProps/Dialog.png" id="4_6alxn"]
 
 [sub_resource type="GDScript" id="GDScript_drvn2"]
 script/source = "extends RigidBody3D

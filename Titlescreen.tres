@@ -1,0 +1,6 @@
+[gd_resource type="SystemFont" format=3 uid="uid://jgwvo67ld6fs"]
+
+[resource]
+font_names = PackedStringArray("Retro Computer")
+allow_system_fallback = false
+oversampling = 5.0

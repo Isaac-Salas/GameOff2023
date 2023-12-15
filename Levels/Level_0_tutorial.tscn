@@ -9,20 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://bmh08fkhepq6f" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://dwuu6w4ksar1u" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://b4pu8jk1xlf3w" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://i38p0cgsyupp" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://04b4cit1hg" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://dyxlrfvdmxvvk" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://btra5a5x8iljy" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://du1mraovyxx3o" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://dtfkxwahyrxn4" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://dbkexe1aqktx7" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
-[ext_resource type="Texture2D" uid="uid://bp5fjbvhtttvt" path="res://Sprites/Interactions.png" id="20_ohgud"]
-[ext_resource type="Texture2D" uid="uid://06xbeuk1bl2d" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
-[ext_resource type="Texture2D" uid="uid://qacbd7524ggt" path="res://Sprites/Npcthing.png" id="22_nujfq"]
-[ext_resource type="Texture2D" uid="uid://cg0arwwich1k6" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="Texture2D" uid="uid://c4sedtm8pexmy" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://c5tkpgrkvb7r4" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://cafo0y6qnrury" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://d362ki1tuauff" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -112,9 +112,8 @@ size = Vector3(5, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8nk"]
 
-[sub_resource type="Animation" id="Animation_c60xa"]
-resource_name = "Slide in"
-length = 5.0
+[sub_resource type="Animation" id="Animation_yho5q"]
+resource_name = "Out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -122,10 +121,10 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(545, 383), Vector2(541, 322), Vector2(541, 322)]
+"values": [Vector2(541, 322), Vector2(545, 383)]
 }
 
 [sub_resource type="Animation" id="Animation_f0m4j"]
@@ -143,11 +142,9 @@ tracks/0/keys = {
 "values": [Vector2(541, 384.81)]
 }
 
-[sub_resource type="Animation" id="Animation_ribcr"]
-resource_name = "Slideout"
-
-[sub_resource type="Animation" id="Animation_yho5q"]
-resource_name = "Out"
+[sub_resource type="Animation" id="Animation_c60xa"]
+resource_name = "Slide in"
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,11 +152,14 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(541, 322), Vector2(545, 383)]
+"values": [Vector2(545, 383), Vector2(541, 322), Vector2(541, 322)]
 }
+
+[sub_resource type="Animation" id="Animation_ribcr"]
+resource_name = "Slideout"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aatyi"]
 _data = {
@@ -418,6 +418,7 @@ script = ExtResource("10_inqw2")
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, 0, 0, 0)
 light_color = Color(0.207843, 0, 0.478431, 1)
 light_energy = 0.05
+light_bake_mode = 1
 shadow_enabled = true
 sky_mode = 1
 
