@@ -1,3 +1,6 @@
+#Build Folder
+Build/
+
 # Godot 4+ specific ignores
 .godot/
 
