@@ -1,7 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://jryh4i7dmnye"]
+[gd_scene load_steps=19 format=3 uid="uid://jryh4i7dmnye"]
 
 [ext_resource type="Texture2D" uid="uid://b2uixo8b612u2" path="res://Menu/Box_Test.png" id="1_k6yqv"]
 [ext_resource type="Animation" uid="uid://b5q61d67jyb0h" path="res://ShrinkLoop.res" id="2_wc6x5"]
+[ext_resource type="Texture2D" uid="uid://b57ql8gogjcwf" path="res://Level-Select/Level1/Normal.png" id="4_ua0n4"]
+[ext_resource type="Texture2D" uid="uid://dh30v76cyhatc" path="res://Level-Select/Level1/Clicked.png" id="5_gn1xr"]
+[ext_resource type="Texture2D" uid="uid://c5d8p86gbobww" path="res://Level-Select/Level1/Hover.png" id="6_xt83e"]
+[ext_resource type="Texture2D" uid="uid://ds35jkiyqf4a6" path="res://Level-Select/Level1/Blocked.png" id="7_f3ef2"]
 [ext_resource type="FontFile" uid="uid://cnty5xgvgt7of" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vrlcm"]
 
 [sub_resource type="GDScript" id="GDScript_sxesf"]
@@ -350,9 +354,10 @@ libraries = {
 [node name="Control" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Control"]
@@ -371,3 +376,38 @@ grow_vertical = 0
 text = "Demo made for:
 GameOff 2023"
 label_settings = SubResource("LabelSettings_6qssw")
+
+[node name="Level1" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -138.0
+offset_right = 127.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("4_ua0n4")
+texture_pressed = ExtResource("5_gn1xr")
+texture_hover = ExtResource("6_xt83e")
+texture_disabled = ExtResource("7_f3ef2")
+
+[node name="Level2" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -138.0
+offset_right = 295.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
