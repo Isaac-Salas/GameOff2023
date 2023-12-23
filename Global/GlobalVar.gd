@@ -1,5 +1,6 @@
 extends Node 
 
+var menuskip = false
 var movements
 var pickedpath = ""
 var direction 

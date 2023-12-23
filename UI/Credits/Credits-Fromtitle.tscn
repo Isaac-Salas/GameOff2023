@@ -1,12 +1,30 @@
-[gd_scene load_steps=14 format=3 uid="uid://pqkwvr7hob62"]
+[gd_scene load_steps=17 format=3 uid="uid://c7akd0xsqy27p"]
 
-[ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
-[ext_resource type="FontFile" uid="uid://cnty5xgvgt7of" path="res://Fonts/retro_computer_personal_use.ttf" id="2_3e5be"]
-[ext_resource type="Texture2D" uid="uid://22v3dnpng3hg" path="res://UI/Credits/Logo.png" id="2_k42xk"]
-[ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="3_3j7a3"]
+[ext_resource type="FontFile" uid="uid://cnty5xgvgt7of" path="res://Fonts/retro_computer_personal_use.ttf" id="2_5jcos"]
+[ext_resource type="Texture2D" uid="uid://22v3dnpng3hg" path="res://UI/Credits/Logo.png" id="3_17mif"]
+[ext_resource type="Texture2D" uid="uid://mmps7s7toy6j" path="res://UI/BackButton/Hover.png" id="4_4x3kr"]
+[ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="4_aq6qb"]
+[ext_resource type="Texture2D" uid="uid://1ue676p05ja2" path="res://UI/BackButton/Click.png" id="5_ttxhp"]
+[ext_resource type="Texture2D" uid="uid://q4re65lasqae" path="res://UI/BackButton/Normal.png" id="6_d2rhh"]
+
+[sub_resource type="GDScript" id="GDScript_whkcx"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Label/AnimationPlayer.play(\"Credits\")
+
+
+func _on_texture_button_2_pressed():
+	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+
+
+func _on_texture_button_pressed():
+	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_a4toc"]
-font = ExtResource("2_3e5be")
+font = ExtResource("2_5jcos")
 font_size = 8
 
 [sub_resource type="Animation" id="Animation_rqy0p"]
@@ -183,7 +201,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2nhe0")
+script = SubResource("GDScript_whkcx")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 0
@@ -201,7 +219,7 @@ anchor_bottom = 1.0
 offset_left = 454.0
 offset_top = -2500.0
 offset_right = 687.0
-offset_bottom = 621.0
+offset_bottom = 945.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
@@ -271,7 +289,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="Control/Label"]
 position = Vector2(101, -61)
 scale = Vector2(0.335, 0.335)
-texture = ExtResource("2_k42xk")
+texture = ExtResource("3_17mif")
 
 [node name="TextureButton2" type="TextureButton" parent="Control"]
 texture_filter = 1
@@ -291,6 +309,28 @@ texture_pressed = SubResource("CompressedTexture2D_g4lkt")
 texture_hover = SubResource("CompressedTexture2D_x2mjo")
 stretch_mode = 4
 
-[node name="Node3D" parent="." instance=ExtResource("3_3j7a3")]
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -14.0
+offset_top = 292.0
+offset_right = 62.0
+offset_bottom = 332.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_4x3kr")
+texture_pressed = ExtResource("5_ttxhp")
+texture_hover = ExtResource("6_d2rhh")
+
+[node name="Node3D" parent="." instance=ExtResource("4_aq6qb")]
 
 [connection signal="pressed" from="Control/TextureButton2" to="Control" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="Control2/TextureButton" to="Control" method="_on_texture_button_pressed"]
