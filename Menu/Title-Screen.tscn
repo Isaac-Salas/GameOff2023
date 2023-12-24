@@ -21,7 +21,10 @@ script/source = "extends Node3D
 @onready var switching = 0
 
 # Called when the node enters the scene tree for the first time.
-
+func _input(event):
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().quit()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,6 +61,8 @@ func _process(delta):
 
 
 func _on_play_pressed():
+	Levels.Level1 = true
+	Levels.save()
 	GlobalVar.menuskip = true
 	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
 
@@ -68,6 +73,8 @@ func _on_credits_pressed():
 
 
 func _on_level_select_pressed():
+	Levels.load_data()
+	GlobalVar.menuskip = true
 	$Control.visible = false
 	switching = 4
 	
@@ -482,7 +489,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(3.14, -1.55, 0)]
+"values": [Vector3(0, 0, 0), Vector3(1.6, -1.2, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
