@@ -29,6 +29,7 @@ script/source = "extends Node3D
 var switching = 1
 var findhand
 var player
+@export var checkpoint = false
 @export var player_path : NodePath
 @onready var over = preload(\"res://UI/Game-Over/game_over.tscn\")
 # Called when the node enters the scene tree for the first time.
@@ -40,6 +41,13 @@ var player
 
 
 func _ready():
+	
+	match checkpoint:
+		true:
+			$Player.global_position = $Checkpoint.global_position
+		false:
+			$Player.global_position = $Start.global_position
+
 	DialogManager.loaded_box = \"res://UI/TextBox/dialogue_box.tscn\"
 	var Hand = get_node(\"Hand\")
 	Hand.loadPlayer()
@@ -131,11 +139,14 @@ func _on_area_3d_body_entered(body):
 
 
 
-func _on_detect_player_body_exited(body):
-	$AnimationPlayer.play(\"Down\")
-	$DetectPlayer.queue_free()
-	var check = load(\"res://level_design_objects/checkpoint.tscn\")
-	get_tree().current_scene.add_child(check.instantiate())
+
+
+func _on_detect_player_body_entered(body):
+	if body.name == \"Player\":
+		$\"../..\".checkpoint = true
+		$AnimationPlayer.play(\"Down\")
+		await $AnimationPlayer.animation_finished
+		$DetectPlayer.queue_free()
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e7av"]
@@ -185,7 +196,7 @@ size = Vector3(50, 30, 2)
 size = Vector3(50, 30, 2.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o7oe"]
-size = Vector3(48.79, 10, 30.8208)
+size = Vector3(50.695, 47.915, 13.646)
 
 [sub_resource type="Animation" id="Animation_7y5eq"]
 resource_name = "Down"
@@ -496,6 +507,7 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
+checkpoint = true
 player_path = NodePath("Player")
 min_cap = 2.0
 max_cap = 2.0
@@ -658,7 +670,7 @@ shape = SubResource("BoxShape3D_qho6q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.8397, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/DetectPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 0, -14.1817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86102e-06, 0, 16.8723)
 shape = SubResource("BoxShape3D_2o7oe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/Wall-Unbreak2"]
@@ -877,8 +889,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -444.917, 4.55937, -14.2975)
 [node name="Metal Crate3" parent="." instance=ExtResource("23_b2f62")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -447.357, 10.9233, -11.9238)
 
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.074, 0, 0)
+
+[node name="Checkpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
+
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
-[connection signal="body_exited" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Hamster4/Area3D" to="Hamster4" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_exited" from="End" to="." method="_on_end_body_exited"]

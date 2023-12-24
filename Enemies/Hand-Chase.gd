@@ -28,7 +28,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	index = DialogManager.current_line_index
-	print(index)
+	#print(index)
 	
 	if thing == true:
 		match index:
@@ -124,6 +124,7 @@ func matchtest():
 			player.velocity.x = 2.5*(SPEED)
 			player.velocity.y = 0.1*(SPEED)
 			await $AnimationPlayer.animation_finished
+			await $AnimatedSprite3D.animation_finished
 			switch = 4
 		10:
 			pass
@@ -156,7 +157,7 @@ func _on_navigation_agent_3d_target_reached():
 	pass
 
 func _on_area_3d_body_entered(body):
-	if body.name == "Player":
+	#if body.name == "Player":
 		thing = true
 
 func startup():
@@ -175,8 +176,9 @@ func startup():
 
 
 func _on_playerthrow_body_entered(body):
-	#print(body.name)
+	
 	if body.name == "Player":
+		print(body.name)
 		GlobalVar.target_scale -= 0.5
 		await $AnimatedSprite3D.animation_looped
 		switch = 6

@@ -1,40 +1,40 @@
 [gd_scene load_steps=29 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://bkn1ray5v1m0" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://b2uixo8b612u2" path="res://Menu/Box_Test.png" id="1_kov18"]
 [ext_resource type="Animation" uid="uid://b5q61d67jyb0h" path="res://ShrinkLoop.res" id="2_k504v"]
-[ext_resource type="Texture2D" uid="uid://seu3oysoxbpc" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://bnidghuxthsov" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://brwg0u54id8qd" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://0edada86a0qf" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://11dxey38ggo5" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://brtfc6ufwxy5j" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://dflgjm81u0rv8" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
-[ext_resource type="Texture2D" uid="uid://bxqy3gi2cxps7" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="FontFile" uid="uid://cdmhhpahbgw48" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
-[ext_resource type="Texture2D" uid="uid://dynov4tdrsvhd" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
-[ext_resource type="Texture2D" uid="uid://d3x2w2gdq1mir" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://cx6eopk8xlm4g" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
-[ext_resource type="Texture2D" uid="uid://c2xsd7svi3kc" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://rdoagocra55m" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://ckoul073k3mff" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://o7t0dp074q3a" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://cduabyhu8ilpp" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://c1suhtawkqsr2" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://bmcxv3nghr7r" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://dafjdq6a1dunx" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
+[ext_resource type="Texture2D" uid="uid://b60w6dfaorxhf" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://cnty5xgvgt7of" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://bxtskmm457bjn" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
+[ext_resource type="Texture2D" uid="uid://danh6vxs2kryh" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://duroo3s00qh6w" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
+[ext_resource type="Texture2D" uid="uid://0ypqr23tfxbd" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
+@onready var select = preload(\"res://Level-Select/Level-Select.tscn\")
 @onready var switching = 0
-@onready var Esc
+@onready var Esc = preload(\"res://Menu/ExitMenu/Exit-Menu.tscn\")
 @onready var Escinst
-@onready var Escswitch = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
 	if Input.is_action_just_pressed(\"Escaping\"):
-		match Escswitch:
+		match GlobalVar.Escswitch:
 			0:
-				Esc = preload(\"res://Menu/ExitMenu/Exit-Menu.tscn\")
 				Escinst = Esc.instantiate()
 				add_child(Escinst)
-				Escswitch = 1
+				GlobalVar.Escswitch = 1
 			1:
-				var remove = find_child(\"Escinst\")
-				remove_child(remove)
+				remove_child(Escinst)
+				GlobalVar.Escswitch = 0
 
 		
 
@@ -69,7 +69,7 @@ func _process(delta):
 			switching = 5
 		5:
 			await $AnimationPlayer.animation_finished
-			get_tree().change_scene_to_file(\"res://Level-Select/Level-Select.tscn\")
+			get_tree().change_scene_to_file(select.resource_path)
 
 
 func _on_play_pressed():

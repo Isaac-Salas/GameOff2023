@@ -3,6 +3,7 @@ const SAVE_FILE = "res://Saves/save_file.save"
 
 var Level1 = false
 var Level2 = false
+var Cutscene1 = false
 var Level3 = false
 var Level4 = false
 var Level5 = false
