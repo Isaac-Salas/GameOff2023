@@ -9,20 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://d4f6kukvpoeyk" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://c04ki6mcs883d" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://cq0xesxynk138" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://days8s7x7eqx0" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://bjfoequ0cs1" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://yk8lu2bewtam" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://b28dnwa1n8qs4" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://5gk8rq3qaybf" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://caovqd5ohcty" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://cc1rb7in87qkh" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
-[ext_resource type="Texture2D" uid="uid://orggjjhl7mr5" path="res://Sprites/Interactions.png" id="20_ohgud"]
-[ext_resource type="Texture2D" uid="uid://vu5je72frslf" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
-[ext_resource type="Texture2D" uid="uid://doe45rcllvfou" path="res://Sprites/Npcthing.png" id="22_nujfq"]
-[ext_resource type="Texture2D" uid="uid://blgycycm13mu6" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="Texture2D" uid="uid://bemkc6gidv0th" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://dpxfw0crkq8jb" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://b60xdqkcbthq" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://3loh725whaxl" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -43,6 +43,8 @@ var state = false
 func _unhandled_input(event):
 	if state and event.is_action_pressed(\"Talk\"):
 		state = false
+		Levels.Level2 = true
+		Levels.save()
 		get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
 
 func _on_body_entered(body):
@@ -374,7 +376,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
 shape = SubResource("BoxShape3D_dflmi")
 
 [node name="Dialogue_box" type="Area3D" parent="Door3/Door"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.6813, 6.34831, 3.47725)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.68127, 6.34831, 3.47725)
 script = SubResource("GDScript_fo260")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door3/Door/Dialogue_box"]
