@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://bkx0vp2xnxslv" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://fxodbghvhh6p" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://cgoturp5nb5rb" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://c0fo76sv5x78d" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -85,7 +85,7 @@ func matching():
 				add_child(over.instantiate())
 				switching=0
 			else:
-				print(\"Instanciaaa\")
+				#print(\"Instanciaaa\")
 				add_child(over.instantiate())
 				switching=0
 		
@@ -126,14 +126,14 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()
 	
 
 func _on_area_3d_body_entered(body):
-	print(body.name)
+	#print(body.name)
 	if body.name == \"Hand\" or body.find_child(\"Brk-Walls\"):
 		break_object()
 

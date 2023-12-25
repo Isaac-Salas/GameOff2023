@@ -9,7 +9,7 @@ var SPEED
 var camera
 var index
 @onready var go = 0
-var thing
+@onready var thing = true
 @export var player_path : NodePath
 @export var hamster_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
@@ -124,7 +124,6 @@ func matchtest():
 			player.velocity.x = 2.5*(SPEED)
 			player.velocity.y = 0.1*(SPEED)
 			await $AnimationPlayer.animation_finished
-			await $AnimatedSprite3D.animation_finished
 			switch = 4
 		10:
 			pass
@@ -156,9 +155,7 @@ func update_target(target_position):
 func _on_navigation_agent_3d_target_reached():
 	pass
 
-func _on_area_3d_body_entered(body):
-	#if body.name == "Player":
-		thing = true
+
 
 func startup():
 		get_tree().set_pause(true)
@@ -171,14 +168,13 @@ func startup():
 		$"../Red-Light".queue_free()
 		$"../Repisa-Tubes".queue_free()
 		$"../Scattered".queue_free()
-		$Area3D.queue_free()
+		#$Area3D.queue_free()
 		get_parent_node_3d().add_child(new.instantiate())
 
 
 func _on_playerthrow_body_entered(body):
-	
 	if body.name == "Player":
-		print(body.name)
+		#print(body.name)
 		GlobalVar.target_scale -= 0.5
 		await $AnimatedSprite3D.animation_looped
 		switch = 6
@@ -186,5 +182,3 @@ func _on_playerthrow_body_entered(body):
 
 
 
-func _on_area_3d_body_exited(body):
-	pass

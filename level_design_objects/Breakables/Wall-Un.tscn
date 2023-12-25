@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://v8f8fuepq5r3"]
 
-[ext_resource type="Texture2D" uid="uid://1mvopf3mgc1e" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
+[ext_resource type="Texture2D" uid="uid://fxodbghvhh6p" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="1_ydwxr"]
 
 [sub_resource type="GDScript" id="GDScript_ydexo"]
@@ -13,7 +13,7 @@ var breaking = false
  
 func break_object():
 	breaking = true
-	print(\"StartBreaking\")
+	#print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()
 	# Getting the parent of the Area node.
@@ -23,14 +23,14 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()
 	
 
 func _on_area_3d_body_entered(body):
-	print(body.name)
+	#print(body.name)
 	if body.name == \"Hand\" or body.find_child(\"Brk-Walls\"):
 		break_object()
 

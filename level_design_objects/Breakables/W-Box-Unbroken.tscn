@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd0j70spbw5h0"]
 
-[ext_resource type="Texture2D" uid="uid://f0c6xiel4ohn" path="res://Models/Props/Cajita_cajotota.png" id="1_305hy"]
+[ext_resource type="Texture2D" uid="uid://c4majseiidqqh" path="res://Models/Props/Cajita_cajotota.png" id="1_305hy"]
 [ext_resource type="PackedScene" uid="uid://bvefett6rmq5u" path="res://level_design_objects/Breakables/Resources/W-Box-Broken.tscn" id="1_bh0vm"]
 
 [sub_resource type="GDScript" id="GDScript_th7v8"]
@@ -20,7 +20,7 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	breakable.find_child(\"AnimationPlayer\").play(\"Fadeout\")
 	# Deleting the Area node.
 	self.queue_free()

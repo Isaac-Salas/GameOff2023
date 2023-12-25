@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cc8jo3lr7raon"]
 
-[ext_resource type="Texture2D" uid="uid://238x8ppu58ak" path="res://Models/Props/Floor-Un_Pisote.png" id="2_6f6sy"]
+[ext_resource type="Texture2D" uid="uid://dld06ns24jryn" path="res://Models/Props/Floor-Un_Pisote.png" id="2_6f6sy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsj6"]
 resource_name = "Material"
