@@ -39,6 +39,7 @@ script/source = "extends Node3D
 @onready var switching = 2
 
 func _ready():
+	Levels.load_data()
 	match Levels.Level1:
 		true:
 			$Control/Level1.disabled = false
@@ -94,6 +95,16 @@ func _process(delta):
 
 func _on_texture_button_pressed():
 	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+
+
+func _on_level_1_pressed():
+	load(\"res://Levels/Level_0_tutorial.tscn\")
+	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+
+
+func _on_level_2_pressed():
+	load(\"res://Levels/Level_Monster-Chase.tscn\")
+	get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
 "
 
 [sub_resource type="Environment" id="Environment_clc0f"]
@@ -662,4 +673,6 @@ texture_normal = ExtResource("31_07jkk")
 texture_pressed = ExtResource("32_w0rva")
 texture_hover = ExtResource("33_1wyeq")
 
+[connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]
