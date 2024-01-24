@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ckhb0b2hhrtsy"]
+[gd_scene load_steps=58 format=3 uid="uid://ckhb0b2hhrtsy"]
 
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_0os48"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="2_7ic5v"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://fxodbghvhh6p" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://5evbadaha8mq" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://c0fo76sv5x78d" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://c3dpl7egvk7xl" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://10wkwnw1ie5d" path="res://NPCs/Hamster.tscn" id="20_ply3q"]
 [ext_resource type="PackedScene" uid="uid://bbbo7im43lgbi" path="res://level_design_objects/box_stack.tscn" id="20_w0a2a"]
 [ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="23_b2f62"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_kwe1p"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
@@ -894,6 +895,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.074, 0, 0)
 
 [node name="Checkpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
+
+[node name="Pause" parent="." instance=ExtResource("24_kwe1p")]
 
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
