@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdvj2tbalmcjq"]
+
+[ext_resource type="Texture2D" uid="uid://y35u7evxy1pv" path="res://UI/PauseButton/Normal.png" id="1_8gocc"]
+[ext_resource type="Texture2D" uid="uid://bnsd57llwpbbs" path="res://UI/PauseButton/Clicked.png" id="2_ibgna"]
+[ext_resource type="Texture2D" uid="uid://ckmduaoxpgkgr" path="res://UI/PauseButton/Hover.png" id="2_vxdr7"]
+
+[sub_resource type="GDScript" id="GDScript_cxdej"]
+script/source = "extends Control
+@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
+@onready var Escinst
+
+
+func _input(event):
+	
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().paused = true
+		Escinst = Esc.instantiate()
+		get_parent().add_child(Escinst)
+		GlobalVar.Escswitch = 1
+		self.queue_free()
+		
+
+
+
+func _on_pause_game_pressed():
+	get_tree().paused = true
+	Escinst = Esc.instantiate()
+	get_parent().add_child(Escinst)
+	GlobalVar.Escswitch = 1
+	self.queue_free()
+	
+"
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cxdej")
+
+[node name="Pause-Game" type="TextureButton" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 58.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("1_8gocc")
+texture_pressed = ExtResource("2_ibgna")
+texture_hover = ExtResource("2_vxdr7")
+
+[connection signal="pressed" from="Pause-Game" to="." method="_on_pause_game_pressed"]

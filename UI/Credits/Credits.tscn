@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://pqkwvr7hob62"]
 
 [ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
-[ext_resource type="FontFile" uid="uid://cnty5xgvgt7of" path="res://Fonts/retro_computer_personal_use.ttf" id="2_3e5be"]
-[ext_resource type="Texture2D" uid="uid://22v3dnpng3hg" path="res://UI/Credits/Logo.png" id="2_k42xk"]
+[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="2_3e5be"]
+[ext_resource type="Texture2D" uid="uid://cg40273ks2skf" path="res://UI/Credits/Logo.png" id="2_k42xk"]
 [ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="3_3j7a3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a4toc"]
@@ -201,7 +201,7 @@ anchor_bottom = 1.0
 offset_left = 454.0
 offset_top = -2500.0
 offset_right = 687.0
-offset_bottom = 945.0
+offset_bottom = 1593.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)

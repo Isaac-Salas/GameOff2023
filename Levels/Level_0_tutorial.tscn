@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=40 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c5t5f7664qiyn" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
 [ext_resource type="Texture2D" uid="uid://c7m7a6cdc2mx2" path="res://Sprites/Npcthing.png" id="22_nujfq"]
 [ext_resource type="Texture2D" uid="uid://b4ev0i5f7kyue" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_ajaem"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -576,6 +577,8 @@ texture = ExtResource("23_n5iq2")
 libraries = {
 "": SubResource("AnimationLibrary_aatyi")
 }
+
+[node name="Pause" parent="." instance=ExtResource("24_ajaem")]
 
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]
