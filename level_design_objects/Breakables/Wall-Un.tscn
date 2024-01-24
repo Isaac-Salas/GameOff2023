@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://v8f8fuepq5r3"]
 
-[ext_resource type="Texture2D" uid="uid://fxodbghvhh6p" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
+[ext_resource type="Texture2D" uid="uid://5evbadaha8mq" path="res://Models/Props/Paredzota_Texture-wall.png" id="1_wt3fb"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="1_ydwxr"]
 
 [sub_resource type="GDScript" id="GDScript_ydexo"]
