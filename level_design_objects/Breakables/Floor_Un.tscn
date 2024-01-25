@@ -29,7 +29,7 @@ func break_object():
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
-	if body.name == \"Hand\" or body.name == \"Player\":
+	if body.name == \"Hand\":
 		break_object()
 	
 "

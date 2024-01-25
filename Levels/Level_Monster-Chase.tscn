@@ -95,7 +95,7 @@ func matching():
 
 func _on_end_body_exited(body):
 	if body.name == \"Player\":
-		get_tree().change_scene_to_file(\"res://UI/Credits/Credits.tscn\")
+		get_tree().change_scene_to_file(\"res://Levels/Level_2_Cutscene.tscn\")
 "
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -551,6 +551,7 @@ transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195
 size = 40.0
 
 [node name="SpotLight3D" parent="F-Camera" index="0"]
+transform = Transform3D(0.999805, 0.0190145, 0.00523278, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
 visible = false
 
 [node name="Blocks" type="Node3D" parent="."]
