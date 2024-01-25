@@ -22,7 +22,10 @@ script/source = "extends Node3D
 @onready var switching = 0
 @onready var Esc = preload(\"res://Menu/ExitMenu/Exit-Menu.tscn\")
 @onready var Escinst
+@onready var Current
 
+func _ready():
+	Levels.load_data()
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
@@ -71,12 +74,49 @@ func _process(delta):
 			await $AnimationPlayer.animation_finished
 			get_tree().change_scene_to_file(select.resource_path)
 
+func lookup():
+	match Levels.Level1:
+		true:
+			Current = \"res://Levels/Level_0_tutorial.tscn\"
+	match Levels.Level2:
+		true:
+			Current = \"res://Levels/Level_Monster-Chase.tscn\"
+	match Levels.Cutscene1:
+		true:
+			Current = \"res://Levels/Level_2_Cutscene.tscn\"
+	match Levels.Level3:
+		true:
+			$Control/Level3.disabled = false
+	match Levels.Level4:
+		true:
+			$Control/Level4.disabled = false
+		false:
+			pass
+	match Levels.Level5:
+		true:
+			$Control/Level5.disabled = false
+		false:
+			pass
+	match Levels.Level6:
+		true:
+			$Control/Level6.disabled = false
+		false:
+			pass
+
 
 func _on_play_pressed():
-	Levels.Level1 = true
-	Levels.save()
-	GlobalVar.menuskip = true
-	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+	match Levels.Firsttime:
+		true:
+			Levels.Level1 = true
+			GlobalVar.menuskip = true
+			Levels.Firsttime = false
+			Levels.save()
+			get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+		false:
+			lookup()
+			Levels.save()
+			get_tree().change_scene_to_file(Current)
+	
 
 
 func _on_credits_pressed():

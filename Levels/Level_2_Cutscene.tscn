@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=6 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="3_bs0lo"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="4_spswn"]
 
 [sub_resource type="Environment" id="Environment_e4g3h"]
 background_mode = 1
@@ -51,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
 
 [node name="F-Camera" parent="." instance=ExtResource("3_bs0lo")]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -44.701, 10.1376, 25)
-size = 40.0
+size = 80.0
 
 [node name="SpotLight3D" parent="F-Camera" index="0"]
 transform = Transform3D(0.999805, 0.0190145, 0.00523278, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
@@ -84,5 +85,7 @@ shadow_normal_bias = 0.0
 shadow_blur = 0.05
 omni_range = 7.783
 omni_attenuation = 1.07178
+
+[node name="Pause" parent="." instance=ExtResource("4_spswn")]
 
 [editable path="F-Camera"]

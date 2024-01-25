@@ -95,6 +95,8 @@ func matching():
 
 func _on_end_body_exited(body):
 	if body.name == \"Player\":
+		Levels.save()
+		
 		get_tree().change_scene_to_file(\"res://Levels/Level_2_Cutscene.tscn\")
 "
 
@@ -433,7 +435,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aupk"]
-size = Vector3(200, 100, 100)
+size = Vector3(400, 100, 100)
 
 [sub_resource type="GDScript" id="GDScript_p8ngo"]
 script/source = "extends StaticBody3D
@@ -849,6 +851,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.959, 13.286, -25.6672)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.346, -53.1246, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="End"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.4671, 0)
 shape = SubResource("BoxShape3D_7aupk")
 
 [node name="Hamster" parent="." instance=ExtResource("20_ply3q")]
