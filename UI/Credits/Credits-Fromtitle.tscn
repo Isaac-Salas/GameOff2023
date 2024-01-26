@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://bdq21qkv4rwa7"]
 
-[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="2_5jcos"]
-[ext_resource type="Texture2D" uid="uid://cg40273ks2skf" path="res://UI/Credits/Logo.png" id="3_17mif"]
-[ext_resource type="Texture2D" uid="uid://bg4ugfl3j6qul" path="res://UI/BackButton/Hover.png" id="4_4x3kr"]
+[ext_resource type="FontFile" uid="uid://cdmhhpahbgw48" path="res://Fonts/retro_computer_personal_use.ttf" id="2_5jcos"]
+[ext_resource type="Texture2D" uid="uid://di3y3obi8qhip" path="res://UI/Credits/Logo.png" id="3_17mif"]
+[ext_resource type="Texture2D" uid="uid://nxd1jvju5k7v" path="res://UI/BackButton/Hover.png" id="4_4x3kr"]
 [ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="4_aq6qb"]
-[ext_resource type="Texture2D" uid="uid://cf2i3ldsa1pdr" path="res://UI/BackButton/Click.png" id="5_ttxhp"]
-[ext_resource type="Texture2D" uid="uid://m1i6sspmq562" path="res://UI/BackButton/Normal.png" id="6_d2rhh"]
+[ext_resource type="Texture2D" uid="uid://u4y5fno52cpt" path="res://UI/BackButton/Click.png" id="5_ttxhp"]
+[ext_resource type="Texture2D" uid="uid://de0sf8k5i461w" path="res://UI/BackButton/Normal.png" id="6_d2rhh"]
 
 [sub_resource type="GDScript" id="GDScript_whkcx"]
 script/source = "extends Control
@@ -219,7 +219,7 @@ anchor_bottom = 1.0
 offset_left = 454.0
 offset_top = -2500.0
 offset_right = 687.0
-offset_bottom = 3213.0
+offset_bottom = 3537.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)

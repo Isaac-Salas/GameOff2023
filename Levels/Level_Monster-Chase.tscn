@@ -510,6 +510,7 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
+checkpoint = true
 player_path = NodePath("Player")
 min_cap = 2.0
 max_cap = 2.0
@@ -681,7 +682,7 @@ libraries = {
 "": SubResource("AnimationLibrary_3wsff")
 }
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="Morado" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
 light_color = Color(0.207843, 0, 0.478431, 1)
 light_energy = 0.1
@@ -762,6 +763,12 @@ skeleton = NodePath("../..")
 [node name="Fluorescent light" parent="Hand-lights" instance=ExtResource("8_bwc21")]
 transform = Transform3D(-1.55175e-08, 0.355, 0, -0.355, -1.55175e-08, 0, 0, 0, 0.355, -453.869, 2.08441, -18.7717)
 skeleton = NodePath("../..")
+
+[node name="OmniLight3D5" parent="Hand-lights/Fluorescent light" index="4"]
+omni_range = 4096.0
+
+[node name="OmniLight3D7" parent="Hand-lights/Fluorescent light" index="6"]
+omni_range = 47.98
 
 [node name="Fluorescent light2" parent="Hand-lights" instance=ExtResource("8_bwc21")]
 transform = Transform3D(-1.55175e-08, 0.355, 0, -0.355, -1.55175e-08, 0, 0, 0, 0.355, -428.788, 2.08441, -18.7717)
@@ -934,7 +941,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
 [node name="Pause" parent="." instance=ExtResource("24_kwe1p")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Blanco" type="DirectionalLight3D" parent="."]
 light_energy = 0.01
 light_bake_mode = 1
 
@@ -947,3 +954,4 @@ light_bake_mode = 1
 [editable path="F-Camera"]
 [editable path="Node3D"]
 [editable path="Red-Light"]
+[editable path="Hand-lights/Fluorescent light"]
