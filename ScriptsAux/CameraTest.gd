@@ -8,6 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if size > 40:
+		size -= 0.5
 	position.x = $"../Player".global_position.x
 	position.y = $"../Player".global_position.y+8
 	position.z = $"../Player".global_position.z+20
