@@ -1,5 +1,5 @@
 extends Node
-const SAVE_FILE = "res://Saves/save_file.save"
+var SAVE_FILE =  ProjectSettings.globalize_path("user://Save/savefile.save")
 
 var Firsttime = true
 var Level1 = false
@@ -13,6 +13,8 @@ var Level7 = false
 
 
 func save():
+	
+	DirAccess.make_dir_absolute("user://Save/")
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	
 	file.store_var(Firsttime)
@@ -25,6 +27,8 @@ func save():
 	file.store_var(Level7)
 
 func load_data():
+	
+	
 	if FileAccess.file_exists(SAVE_FILE):
 		var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
 		

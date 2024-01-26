@@ -510,7 +510,6 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
-checkpoint = true
 player_path = NodePath("Player")
 min_cap = 2.0
 max_cap = 2.0
@@ -685,7 +684,8 @@ libraries = {
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
 light_color = Color(0.207843, 0, 0.478431, 1)
-light_energy = 0.05
+light_energy = 0.1
+light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 3.321
 sky_mode = 1
@@ -710,6 +710,38 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.716
 
 [node name="Red-Light" parent="." instance=ExtResource("11_nk1y1")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -218.956, 20, 2)
+
+[node name="OmniLight3D" parent="Red-Light" index="0"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D2" parent="Red-Light" index="1"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D3" parent="Red-Light" index="2"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D4" parent="Red-Light" index="3"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D5" parent="Red-Light" index="4"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D6" parent="Red-Light" index="5"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D7" parent="Red-Light" index="6"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D8" parent="Red-Light" index="7"]
+light_energy = 16.0
+omni_range = 20.0
 
 [node name="Beginlights" type="Node3D" parent="."]
 
@@ -902,6 +934,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
 [node name="Pause" parent="." instance=ExtResource("24_kwe1p")]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 0.01
+light_bake_mode = 1
+
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
@@ -910,3 +946,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
 [editable path="F-Camera"]
 [editable path="Node3D"]
+[editable path="Red-Light"]
