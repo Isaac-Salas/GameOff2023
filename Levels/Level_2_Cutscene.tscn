@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=14 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -7,6 +7,33 @@
 [ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="4_spswn"]
 [ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="6_p2evt"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
+[ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
+
+[sub_resource type="GDScript" id="GDScript_8s11j"]
+script/source = "extends Node3D
+
+@export var min_cap = 1.0
+@export var max_cap = 1.0
+@export var size_factor = 1.0
+@export var size_standard = 1.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	
+	GlobalVar.MinCap = min_cap
+	GlobalVar.MaxCap = max_cap
+	GlobalVar.sizefactor = size_factor
+	GlobalVar.sizestandard = size_factor
+	GlobalVar.sizeM = Vector3(size_factor, size_factor, size_factor)
+	$Player/PlayerRigid.mass = size_factor
+	$Player.scale = Vector3(size_factor, size_factor, size_factor)
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="Environment" id="Environment_e4g3h"]
 background_mode = 1
@@ -15,10 +42,17 @@ ambient_light_energy = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_aoy7f"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gfot"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxupm"]
 size = Vector3(18.71, 397.649, 50)
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_8s11j")
+min_cap = 2.0
+max_cap = 2.0
+size_factor = 2.0
+size_standard = 2.0
 
 [node name="World" type="Node3D" parent="."]
 
@@ -121,9 +155,18 @@ omni_attenuation = 1.07178
 
 [node name="Fondo" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fondo"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Fondo"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fondo/StaticBody3D"]
 transform = Transform3D(500, 0, 0, 0, 44.48, 0, 0, 0, 10, 152.106, 36.0047, -19.9713)
 mesh = SubResource("BoxMesh_aoy7f")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fondo/StaticBody3D"]
+transform = Transform3D(500, 0, 0, 0, 44.48, 0, 0, 0, 10, 152.106, 36.0047, -19.9713)
+shape = SubResource("BoxShape3D_6gfot")
 
 [node name="Invisible-walls" type="Node3D" parent="."]
 
@@ -157,5 +200,8 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 89.973
 
 [node name="Fluorescent light3" parent="." instance=ExtResource("7_dwmgy")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 127.791, 47, 0)
+
+[node name="Repisa-Tubes" parent="." instance=ExtResource("8_fdeah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7298, 23.8336, -17.0263)
 
 [editable path="F-Camera"]
