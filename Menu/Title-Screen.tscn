@@ -1,20 +1,20 @@
 [gd_scene load_steps=29 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://cyh0cdiore3qg" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://bkn1ray5v1m0" path="res://Menu/Box_Test.png" id="1_kov18"]
 [ext_resource type="Animation" uid="uid://dqjavnosxkxdk" path="res://ShrinkLoop.res" id="2_k504v"]
-[ext_resource type="Texture2D" uid="uid://de02f2yowwe3p" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://0i4sep6j33mj" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://bc52awnspxjfw" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://dxibjqv5v8s7k" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://76cfqx08f05f" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://dfp74e6k53rfl" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://caalji5jpsyoo" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
-[ext_resource type="Texture2D" uid="uid://cl65o5mguo2rc" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
-[ext_resource type="Texture2D" uid="uid://cmkg2jo6h3mkb" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
-[ext_resource type="Texture2D" uid="uid://dch7mkgnfh61j" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://cm8nj184nn0l4" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
-[ext_resource type="Texture2D" uid="uid://dnhr6gecf45h1" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://seu3oysoxbpc" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://bnidghuxthsov" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://brwg0u54id8qd" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://0edada86a0qf" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://11dxey38ggo5" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://brtfc6ufwxy5j" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://dflgjm81u0rv8" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
+[ext_resource type="Texture2D" uid="uid://bxqy3gi2cxps7" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://cdmhhpahbgw48" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://dynov4tdrsvhd" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
+[ext_resource type="Texture2D" uid="uid://d3x2w2gdq1mir" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://cx6eopk8xlm4g" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
+[ext_resource type="Texture2D" uid="uid://c2xsd7svi3kc" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
@@ -22,7 +22,10 @@ script/source = "extends Node3D
 @onready var switching = 0
 @onready var Esc = preload(\"res://Menu/ExitMenu/Exit-Menu.tscn\")
 @onready var Escinst
+@onready var Current
 
+func _ready():
+	Levels.load_data()
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
@@ -71,12 +74,49 @@ func _process(delta):
 			await $AnimationPlayer.animation_finished
 			get_tree().change_scene_to_file(select.resource_path)
 
+func lookup():
+	match Levels.Level1:
+		true:
+			Current = \"res://Levels/Level_0_tutorial.tscn\"
+	match Levels.Level2:
+		true:
+			Current = \"res://Levels/Level_Monster-Chase.tscn\"
+	match Levels.Cutscene1:
+		true:
+			Current = \"res://Levels/Level_2_Cutscene.tscn\"
+	match Levels.Level3:
+		true:
+			$Control/Level3.disabled = false
+	match Levels.Level4:
+		true:
+			$Control/Level4.disabled = false
+		false:
+			pass
+	match Levels.Level5:
+		true:
+			$Control/Level5.disabled = false
+		false:
+			pass
+	match Levels.Level6:
+		true:
+			$Control/Level6.disabled = false
+		false:
+			pass
+
 
 func _on_play_pressed():
-	Levels.Level1 = true
-	Levels.save()
-	GlobalVar.menuskip = true
-	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+	match Levels.Firsttime:
+		true:
+			Levels.Level1 = true
+			GlobalVar.menuskip = true
+			Levels.Firsttime = false
+			Levels.save()
+			get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+		false:
+			lookup()
+			Levels.save()
+			get_tree().change_scene_to_file(Current)
+	
 
 
 func _on_credits_pressed():

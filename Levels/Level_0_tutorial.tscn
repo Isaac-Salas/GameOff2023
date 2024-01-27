@@ -9,21 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://behr7tkffh7oo" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://c04ki6mcs883d" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://days8s7x7eqx0" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://48igc28hq6oj" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://yk8lu2bewtam" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://bxberpntiojfe" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://5qakxf6sdgki" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://caovqd5ohcty" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://cc1rb7in87qkh" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
-[ext_resource type="Texture2D" uid="uid://0x1qk4kq05vj" path="res://Sprites/Interactions.png" id="20_ohgud"]
-[ext_resource type="Texture2D" uid="uid://c5t5f7664qiyn" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
-[ext_resource type="Texture2D" uid="uid://c7m7a6cdc2mx2" path="res://Sprites/Npcthing.png" id="22_nujfq"]
-[ext_resource type="Texture2D" uid="uid://b4ev0i5f7kyue" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_ajaem"]
+[ext_resource type="Texture2D" uid="uid://bemkc6gidv0th" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://dpxfw0crkq8jb" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://b60xdqkcbthq" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://3loh725whaxl" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -171,6 +170,33 @@ _data = {
 "Slide in": SubResource("Animation_c60xa"),
 "Slideout": SubResource("Animation_ribcr")
 }
+
+[sub_resource type="GDScript" id="GDScript_cxdej"]
+script/source = "extends Control
+@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
+@onready var Escinst
+
+
+func _input(event):
+	
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().paused = true
+		Escinst = Esc.instantiate()
+		get_parent().add_child(Escinst)
+		GlobalVar.Escswitch = 1
+		self.queue_free()
+		
+
+
+
+func _on_pause_game_pressed():
+	get_tree().paused = true
+	Escinst = Esc.instantiate()
+	get_parent().add_child(Escinst)
+	GlobalVar.Escswitch = 1
+	self.queue_free()
+	
+"
 
 [node name="TutorialLevel" type="Node3D"]
 script = ExtResource("1_cbc7w")
@@ -417,14 +443,6 @@ size = 30.0
 near = 0.001
 script = ExtResource("10_inqw2")
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, 0, 0, 0)
-light_color = Color(0.207843, 0, 0.478431, 1)
-light_energy = 0.05
-light_bake_mode = 1
-shadow_enabled = true
-sky_mode = 1
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qcmk4")
 
@@ -441,7 +459,10 @@ visible = true
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.2409, 47.5748, 3.60464)
 
 [node name="Fluorescent light8" parent="." instance=ExtResource("15_ndddx")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 63.0764, 35.6352, 3.60464)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 48.422, 35.6352, 3.60464)
+
+[node name="Fluorescent light11" parent="." instance=ExtResource("15_ndddx")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 81.9296, 35.6352, 3.60464)
 
 [node name="Fluorescent light9" parent="." instance=ExtResource("15_ndddx")]
 transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 132.021, 7.606, 2.08165e-12)
@@ -578,7 +599,28 @@ libraries = {
 "": SubResource("AnimationLibrary_aatyi")
 }
 
-[node name="Pause" parent="." instance=ExtResource("24_ajaem")]
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cxdej")
+
+[node name="Blanco" type="DirectionalLight3D" parent="."]
+light_energy = 0.01
+light_bake_mode = 1
+
+[node name="Morado" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
+light_color = Color(0.207843, 0, 0.478431, 1)
+light_energy = 0.1
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 3.321
+sky_mode = 1
 
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]

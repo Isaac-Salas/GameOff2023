@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://wu2sa1fdi3bu"]
 
-[ext_resource type="Texture2D" uid="uid://bhoaaefu7h4lk" path="res://2DProps/Dangerprop.png" id="1_n0fdd"]
+[ext_resource type="Texture2D" uid="uid://c8ba0s5q2srti" path="res://2DProps/Dangerprop.png" id="1_n0fdd"]
 
 [node name="Danger" type="Node3D"]
 

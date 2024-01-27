@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=3 uid="uid://c0qcjnxkblhyb"]
 
-[ext_resource type="Texture2D" uid="uid://di63mx67fhw8d" path="res://Models/Props/Floor-Brk_Pisote.png" id="1_1eu23"]
+[ext_resource type="Texture2D" uid="uid://cbnkk0bansmbx" path="res://Models/Props/Floor-Brk_Pisote.png" id="1_1eu23"]
 
 [sub_resource type="GDScript" id="GDScript_rsmsw"]
 script/source = "extends Node3D
@@ -901,6 +901,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell" type="MeshInstance3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6729, 0.0312839, 1.7779)
@@ -916,6 +917,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_001" type="MeshInstance3D" parent="RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5196, 0, 14.1544)
@@ -931,6 +933,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_002" type="MeshInstance3D" parent="RigidBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.345, 0.0188116, -12.5307)
@@ -946,6 +949,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_003" type="MeshInstance3D" parent="RigidBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0052, 0.450447, -15.6128)
@@ -962,6 +966,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_004" type="MeshInstance3D" parent="RigidBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6334, 0.136306, -9.84323)
@@ -977,6 +982,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_005" type="MeshInstance3D" parent="RigidBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7941, 0, 12.0098)
@@ -993,6 +999,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_006" type="MeshInstance3D" parent="RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6905, 0, -7.49869)
@@ -1008,6 +1015,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_007" type="MeshInstance3D" parent="RigidBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7598, -0.555918, -15.3405)
@@ -1024,6 +1032,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_008" type="MeshInstance3D" parent="RigidBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4781, 0, 14.5969)
@@ -1039,6 +1048,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_009" type="MeshInstance3D" parent="RigidBody3D10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.16148, -0.0451681, -3.10307)
@@ -1055,6 +1065,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_010" type="MeshInstance3D" parent="RigidBody3D11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28998, 0, 12.017)
@@ -1070,6 +1081,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_011" type="MeshInstance3D" parent="RigidBody3D12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5419, 0.0979965, -0.316697)
@@ -1086,6 +1098,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_012" type="MeshInstance3D" parent="RigidBody3D13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48227, -0.283768, -11.9593)
@@ -1101,6 +1114,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_013" type="MeshInstance3D" parent="RigidBody3D14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.529, 0.654236, -10.3536)
@@ -1117,6 +1131,7 @@ collision_layer = 130
 collision_mask = 130
 mass = 10.0
 inertia = Vector3(0, 10, 0)
+gravity_scale = 5.0
 
 [node name="Cube_cell_014" type="MeshInstance3D" parent="RigidBody3D15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8845, 0, 7.03228)

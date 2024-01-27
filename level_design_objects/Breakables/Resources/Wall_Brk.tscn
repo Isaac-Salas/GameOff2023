@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=3 uid="uid://ckrmb0o3y5k1n"]
 
-[ext_resource type="Texture2D" uid="uid://g1c2mal2y7m3" path="res://Models/Props/Pared-Rota_Texture-wall.png" id="1_1exsx"]
+[ext_resource type="Texture2D" uid="uid://dm5exovhwppk3" path="res://Models/Props/Pared-Rota_Texture-wall.png" id="1_1exsx"]
 
 [sub_resource type="GDScript" id="GDScript_4tqis"]
 script/source = "extends Node3D

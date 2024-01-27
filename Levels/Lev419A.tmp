@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://b338sncgcxvse"]
+
+[ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
+[ext_resource type="PackedScene" uid="uid://jaucwmr63uae" path="res://level_design_objects/Breakables/Floor_(Player).tscn" id="2_r6qqp"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="3_bs0lo"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="4_spswn"]
+
+[sub_resource type="Environment" id="Environment_e4g3h"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_e4g3h")
+
+[node name="Morado" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
+light_color = Color(0.207843, 0, 0.478431, 1)
+light_energy = 0.1
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 3.321
+sky_mode = 1
+
+[node name="Blanco" type="DirectionalLight3D" parent="World"]
+light_energy = 0.01
+light_bake_mode = 1
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="Floor-Un" parent="Floor" instance=ExtResource("1_imyb6")]
+
+[node name="Floor-Un9" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
+
+[node name="Floor-Un2" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+
+[node name="Floor-Un3" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+
+[node name="Floor-Un4" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
+
+[node name="Floor-Un5" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
+
+[node name="Floor-Un6" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 0)
+
+[node name="Floor-Un7" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="Floor-Un8" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
+
+[node name="Floor-Un10" parent="Floor" instance=ExtResource("2_r6qqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 109.361, 0)
+
+[node name="Floor-Un11" parent="Floor" instance=ExtResource("2_r6qqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.67, 109.361, 0)
+
+[node name="Floor-Un12" parent="Floor" instance=ExtResource("2_r6qqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.4766, 109.361, 0)
+
+[node name="F-Camera" parent="." instance=ExtResource("3_bs0lo")]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -44.701, 10.1376, 25)
+size = 80.0
+
+[node name="SpotLight3D" parent="F-Camera" index="0"]
+transform = Transform3D(0.999805, 0.0190145, 0.00523278, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("2_2hqgw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.644, 357.412, 0)
+startspeed = 15.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.5, 8.7423e-08, 0, -8.7423e-08, 0.5, 0, 0, 0, 0.5, 0, -1.15529, -0.943171)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.6
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
+shadow_blur = 0.05
+omni_range = 7.783
+omni_attenuation = 1.07178
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.5, 8.7423e-08, 0, -8.7423e-08, 0.5, 0, 0, 0, 0.5, 0, 0, 3.00782)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.6
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
+shadow_blur = 0.05
+omni_range = 7.783
+omni_attenuation = 1.07178
+
+[node name="Pause" parent="." instance=ExtResource("4_spswn")]
+
+[editable path="F-Camera"]

@@ -18,7 +18,7 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()

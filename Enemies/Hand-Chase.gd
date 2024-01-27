@@ -136,7 +136,7 @@ func start():
 
 func tracking():
 	loadPlayer()
-	SPEED=player.startspeed
+	SPEED= 35
 	update_target(player.global_transform.origin)
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()

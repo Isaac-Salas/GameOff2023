@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://5evbadaha8mq" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://d2eqmm8845aq2" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://c3dpl7egvk7xl" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://bb5rm8a03cl6u" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -95,7 +95,9 @@ func matching():
 
 func _on_end_body_exited(body):
 	if body.name == \"Player\":
-		get_tree().change_scene_to_file(\"res://UI/Credits/Credits.tscn\")
+		Levels.save()
+		
+		get_tree().change_scene_to_file(\"res://Levels/Level_2_Cutscene.tscn\")
 "
 
 [sub_resource type="Environment" id="Environment_a0845"]
@@ -433,7 +435,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aupk"]
-size = Vector3(200, 100, 100)
+size = Vector3(400, 100, 100)
 
 [sub_resource type="GDScript" id="GDScript_p8ngo"]
 script/source = "extends StaticBody3D
@@ -551,6 +553,7 @@ transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195
 size = 40.0
 
 [node name="SpotLight3D" parent="F-Camera" index="0"]
+transform = Transform3D(0.999805, 0.0190145, 0.00523278, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
 visible = false
 
 [node name="Blocks" type="Node3D" parent="."]
@@ -679,10 +682,11 @@ libraries = {
 "": SubResource("AnimationLibrary_3wsff")
 }
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="Morado" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
 light_color = Color(0.207843, 0, 0.478431, 1)
-light_energy = 0.05
+light_energy = 0.1
+light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 3.321
 sky_mode = 1
@@ -708,6 +712,38 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.716
 [node name="Red-Light" parent="." instance=ExtResource("11_nk1y1")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -218.956, 20, 2)
 
+[node name="OmniLight3D" parent="Red-Light" index="0"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D2" parent="Red-Light" index="1"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D3" parent="Red-Light" index="2"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D4" parent="Red-Light" index="3"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D5" parent="Red-Light" index="4"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D6" parent="Red-Light" index="5"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D7" parent="Red-Light" index="6"]
+light_energy = 16.0
+omni_range = 20.0
+
+[node name="OmniLight3D8" parent="Red-Light" index="7"]
+light_energy = 16.0
+omni_range = 20.0
+
 [node name="Beginlights" type="Node3D" parent="."]
 
 [node name="Fluorescent light7" parent="Beginlights" instance=ExtResource("8_bwc21")]
@@ -727,6 +763,12 @@ skeleton = NodePath("../..")
 [node name="Fluorescent light" parent="Hand-lights" instance=ExtResource("8_bwc21")]
 transform = Transform3D(-1.55175e-08, 0.355, 0, -0.355, -1.55175e-08, 0, 0, 0, 0.355, -453.869, 2.08441, -18.7717)
 skeleton = NodePath("../..")
+
+[node name="OmniLight3D5" parent="Hand-lights/Fluorescent light" index="4"]
+omni_range = 4096.0
+
+[node name="OmniLight3D7" parent="Hand-lights/Fluorescent light" index="6"]
+omni_range = 47.98
 
 [node name="Fluorescent light2" parent="Hand-lights" instance=ExtResource("8_bwc21")]
 transform = Transform3D(-1.55175e-08, 0.355, 0, -0.355, -1.55175e-08, 0, 0, 0, 0.355, -428.788, 2.08441, -18.7717)
@@ -848,6 +890,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.959, 13.286, -25.6672)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.346, -53.1246, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="End"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.4671, 0)
 shape = SubResource("BoxShape3D_7aupk")
 
 [node name="Hamster" parent="." instance=ExtResource("20_ply3q")]
@@ -898,6 +941,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
 [node name="Pause" parent="." instance=ExtResource("24_kwe1p")]
 
+[node name="Blanco" type="DirectionalLight3D" parent="."]
+light_energy = 0.01
+light_bake_mode = 1
+
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
@@ -906,3 +953,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
 [editable path="F-Camera"]
 [editable path="Node3D"]
+[editable path="Red-Light"]
+[editable path="Hand-lights/Fluorescent light"]
