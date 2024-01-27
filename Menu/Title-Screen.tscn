@@ -1,49 +1,95 @@
-[gd_scene load_steps=23 format=3 uid="uid://jryh4i7dmnye"]
+[gd_scene load_steps=29 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://do4q7swm3pdoh" path="res://Menu/Box_Test.png" id="1_kov18"]
-[ext_resource type="Texture2D" uid="uid://d3scavvywml8" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://dbvg7tf3il4dx" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://fvhyed7hrtf3" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://c84vbv7qdfjsi" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://dhoewv505qk7t" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://sv078ppvob1h" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://6egkxt1psfv3" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="FontFile" uid="uid://dbwemqfw5e1to" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
-[ext_resource type="Texture2D" uid="uid://chtprr1vl7n4h" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://37y52bxiu0na" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://cyh0cdiore3qg" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Animation" uid="uid://dqjavnosxkxdk" path="res://ShrinkLoop.res" id="2_k504v"]
+[ext_resource type="Texture2D" uid="uid://de02f2yowwe3p" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://0i4sep6j33mj" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://bc52awnspxjfw" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://dxibjqv5v8s7k" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://76cfqx08f05f" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://dfp74e6k53rfl" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://caalji5jpsyoo" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
+[ext_resource type="Texture2D" uid="uid://cl65o5mguo2rc" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://cmkg2jo6h3mkb" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
+[ext_resource type="Texture2D" uid="uid://dch7mkgnfh61j" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://cm8nj184nn0l4" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
+[ext_resource type="Texture2D" uid="uid://dnhr6gecf45h1" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
+@onready var select = preload(\"res://Level-Select/Level-Select.tscn\")
 @onready var switching = 0
+@onready var Esc = preload(\"res://Menu/ExitMenu/Exit-Menu.tscn\")
+@onready var Escinst
+
 
 # Called when the node enters the scene tree for the first time.
+func _input(event):
+	if Input.is_action_just_pressed(\"Escaping\"):
+		match GlobalVar.Escswitch:
+			0:
+				Escinst = Esc.instantiate()
+				add_child(Escinst)
+				GlobalVar.Escswitch = 1
+			1:
+				remove_child(Escinst)
+				GlobalVar.Escswitch = 0
 
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	match switching:
 		0: 
-			$AnimationPlayer.play(\"Intro\")
-			switching=1
+			match GlobalVar.menuskip:
+				false:
+					$AnimationPlayer.play(\"Intro\")
+					switching=1
+				true:
+					switching=1
+			
 		1:
-			await $AnimationPlayer.animation_finished
-			$AnimationPlayer.play(\"PanText\")
-			switching=2
+			match GlobalVar.menuskip:
+				false:
+					await $AnimationPlayer.animation_finished
+					$AnimationPlayer.play(\"PanText\")
+					switching=2
+				true:
+					$AnimationPlayer.play(\"PanText\")
+					switching=2
 		2:
 			await $AnimationPlayer.animation_finished
 			$AnimationPlayer.play(\"Appear text loop\")
 			switching=3
 		3:
 			pass
-			
+		4:
+			$AnimationPlayer.play(\"Shrink\")
+			switching = 5
+		5:
+			await $AnimationPlayer.animation_finished
+			get_tree().change_scene_to_file(select.resource_path)
 
 
 func _on_play_pressed():
+	Levels.Level1 = true
+	Levels.save()
+	GlobalVar.menuskip = true
 	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
 
 
 func _on_credits_pressed():
-	get_tree().change_scene_to_file(\"res://UI/Credits/Credits.tscn\")
+	GlobalVar.menuskip = true
+	get_tree().change_scene_to_file(\"res://UI/Credits/Credits-Fromtitle.tscn\")
+
+
+func _on_level_select_pressed():
+	Levels.load_data()
+	GlobalVar.menuskip = true
+	$Control.visible = false
+	switching = 4
+	
 "
 
 [sub_resource type="Environment" id="Environment_clc0f"]
@@ -191,6 +237,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Level-Select:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_xcmlt"]
 resource_name = "Rotatebox"
@@ -279,6 +337,46 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Level-Select:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3uuuo"]
+resource_name = "Panout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_xgish"]
 length = 0.001
@@ -366,17 +464,96 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Level-Select:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Box:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_plmv6"]
+resource_name = "Shrink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.6, -1.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.15, 0.15, 0.15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 2.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ghcib"]
 _data = {
 "Appear text loop": SubResource("Animation_k3e07"),
 "Intro": SubResource("Animation_skaph"),
 "PanText": SubResource("Animation_xcmlt"),
-"RESET": SubResource("Animation_xgish")
+"Panout": SubResource("Animation_3uuuo"),
+"RESET": SubResource("Animation_xgish"),
+"Shrink": SubResource("Animation_plmv6"),
+"ShrinkLoop": ExtResource("2_k504v")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_6qssw"]
 font = ExtResource("8_vtpms")
+font_size = 10
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_hy2iu")
@@ -443,14 +620,26 @@ texture_hover = ExtResource("4_q3r5g")
 [node name="Credits" type="TextureButton" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 31.0
-offset_top = 0.999969
-offset_right = 630.0
-offset_bottom = 226.0
-scale = Vector2(0.36, 0.36)
+offset_left = 72.0
+offset_top = 81.0
+offset_right = 671.0
+offset_bottom = 306.0
+scale = Vector2(0.215, 0.215)
 texture_normal = ExtResource("5_bbytu")
 texture_pressed = ExtResource("6_clw3w")
 texture_hover = ExtResource("7_lb0k2")
+
+[node name="Level-Select" type="TextureButton" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 246.0
+offset_bottom = 69.0
+scale = Vector2(1.12, 1.12)
+texture_normal = ExtResource("8_2cwrs")
+texture_pressed = ExtResource("9_s5wu6")
+texture_hover = ExtResource("10_1alyk")
 
 [node name="Label" type="Label" parent="Control"]
 visible = false
@@ -460,14 +649,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 8.143
-offset_left = 46.0
-offset_top = 112.0
-offset_right = 210.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Demo made for:
-GameOff 2023"
+offset_left = 29.0
+offset_top = 144.0
+offset_right = 235.0
+offset_bottom = 161.0
+grow_vertical = 0
+text = "Demo made for:  GameOff 2023"
 label_settings = SubResource("LabelSettings_6qssw")
 
 [node name="Sectets" type="TextureButton" parent="Control"]
@@ -483,3 +670,4 @@ texture_hover = ExtResource("10_a11pn")
 
 [connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/Level-Select" to="." method="_on_level_select_pressed"]

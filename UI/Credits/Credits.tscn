@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://pqkwvr7hob62"]
 
 [ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_2nhe0"]
-[ext_resource type="FontFile" uid="uid://dbwemqfw5e1to" path="res://Fonts/retro_computer_personal_use.ttf" id="2_3e5be"]
-[ext_resource type="Texture2D" uid="uid://dono3pbjoewh2" path="res://UI/Credits/Logo.png" id="2_k42xk"]
+[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="2_3e5be"]
+[ext_resource type="Texture2D" uid="uid://cg40273ks2skf" path="res://UI/Credits/Logo.png" id="2_k42xk"]
 [ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="3_3j7a3"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ew4ct"]
+[sub_resource type="LabelSettings" id="LabelSettings_a4toc"]
 font = ExtResource("2_3e5be")
 font_size = 8
 
@@ -36,6 +36,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureButton2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(60),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureButton2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(60, 61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_isnvw"]
 length = 0.001
@@ -62,6 +86,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureButton2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureButton2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bbkfg"]
@@ -153,7 +201,7 @@ anchor_bottom = 1.0
 offset_left = 454.0
 offset_top = -2500.0
 offset_right = 687.0
-offset_bottom = -1052.0
+offset_bottom = 1593.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
@@ -212,7 +260,7 @@ And You!!!
 
 Thanks, from the bottom
 of our hearts for playing!"
-label_settings = SubResource("LabelSettings_ew4ct")
+label_settings = SubResource("LabelSettings_a4toc")
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label"]
@@ -225,19 +273,16 @@ position = Vector2(101, -61)
 scale = Vector2(0.335, 0.335)
 texture = ExtResource("2_k42xk")
 
-[node name="TextureButton2" type="TextureButton" parent="Control/Label"]
+[node name="TextureButton2" type="TextureButton" parent="Control"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.884
-anchor_right = 0.5
-anchor_bottom = 0.884
-offset_left = -110.5
-offset_top = -233.616
-offset_right = 107.5
-offset_bottom = -119.616
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 362.0
+offset_top = -25.0
+offset_right = 580.0
+offset_bottom = 89.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -248,4 +293,4 @@ stretch_mode = 4
 
 [node name="Node3D" parent="." instance=ExtResource("3_3j7a3")]
 
-[connection signal="pressed" from="Control/Label/TextureButton2" to="Control" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="Control/TextureButton2" to="Control" method="_on_texture_button_2_pressed"]

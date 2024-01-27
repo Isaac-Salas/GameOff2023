@@ -1,5 +1,6 @@
 extends Node 
 
+##Player movement 
 var movements
 var pickedpath = ""
 var direction 
@@ -21,3 +22,7 @@ var MaxCap=4.0
 var MinCap=0.1
 var Scalerate = 0.02
 var target_scale
+
+##Menu stuff
+var Escswitch = 0
+var menuskip = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bllgeqfqfn5us"]
+[gd_scene load_steps=40 format=3 uid="uid://bllgeqfqfn5us"]
 
 [ext_resource type="Script" path="res://Levels/Level_0_tutorial.gd" id="1_cbc7w"]
 [ext_resource type="PackedScene" uid="uid://dmiqo1mi1uic0" path="res://NPCs/SimpleCube.tscn" id="1_e423e"]
@@ -9,20 +9,21 @@
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://dwuu6w4ksar1u" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://behr7tkffh7oo" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://i38p0cgsyupp" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://dyxlrfvdmxvvk" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://48igc28hq6oj" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://dtfkxwahyrxn4" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://dbkexe1aqktx7" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://bxberpntiojfe" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://5qakxf6sdgki" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
-[ext_resource type="Texture2D" uid="uid://c4sedtm8pexmy" path="res://Sprites/Interactions.png" id="20_ohgud"]
-[ext_resource type="Texture2D" uid="uid://c5tkpgrkvb7r4" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
-[ext_resource type="Texture2D" uid="uid://cafo0y6qnrury" path="res://Sprites/Npcthing.png" id="22_nujfq"]
-[ext_resource type="Texture2D" uid="uid://d362ki1tuauff" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="Texture2D" uid="uid://0x1qk4kq05vj" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://c5t5f7664qiyn" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://c7m7a6cdc2mx2" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://b4ev0i5f7kyue" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_ajaem"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
 albedo_color = Color(0.176471, 0.239216, 0.45098, 1)
@@ -43,6 +44,8 @@ var state = false
 func _unhandled_input(event):
 	if state and event.is_action_pressed(\"Talk\"):
 		state = false
+		Levels.Level2 = true
+		Levels.save()
 		get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
 
 func _on_body_entered(body):
@@ -374,7 +377,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
 shape = SubResource("BoxShape3D_dflmi")
 
 [node name="Dialogue_box" type="Area3D" parent="Door3/Door"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.6813, 6.34831, 3.47725)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.68127, 6.34831, 3.47725)
 script = SubResource("GDScript_fo260")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door3/Door/Dialogue_box"]
@@ -574,6 +577,8 @@ texture = ExtResource("23_n5iq2")
 libraries = {
 "": SubResource("AnimationLibrary_aatyi")
 }
+
+[node name="Pause" parent="." instance=ExtResource("24_ajaem")]
 
 [connection signal="pressed" from="Button" to="Door/Door" method="toggle_door"]
 [connection signal="pressed" from="Button" to="Node3D" method="_on_button_pressed"]

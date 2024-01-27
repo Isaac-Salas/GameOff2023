@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b6inaoqalf0at"]
 
 [ext_resource type="PackedScene" uid="uid://c0qcjnxkblhyb" path="res://level_design_objects/Breakables/Resources/Floor_Brk.tscn" id="1_35g1f"]
-[ext_resource type="Texture2D" uid="uid://238x8ppu58ak" path="res://Models/Props/Floor-Un_Pisote.png" id="1_ugp1f"]
+[ext_resource type="Texture2D" uid="uid://bceqksnuuouw5" path="res://Models/Props/Floor-Un_Pisote.png" id="1_ugp1f"]
 
 [sub_resource type="GDScript" id="GDScript_ahusk"]
 script/source = "extends StaticBody3D
@@ -29,7 +29,7 @@ func break_object():
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
-	if body.name == \"Hand\":
+	if body.name == \"Hand\" or body.name == \"Player\":
 		break_object()
 	
 "

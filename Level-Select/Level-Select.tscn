@@ -1,0 +1,678 @@
+[gd_scene load_steps=47 format=3 uid="uid://jryh4i7dmnye"]
+
+[ext_resource type="Texture2D" uid="uid://cyh0cdiore3qg" path="res://Menu/Box_Test.png" id="1_k6yqv"]
+[ext_resource type="Animation" uid="uid://dqjavnosxkxdk" path="res://ShrinkLoop.res" id="2_wc6x5"]
+[ext_resource type="Texture2D" uid="uid://b8ekldlsbws0j" path="res://Level-Select/Level1/Normal.png" id="4_ua0n4"]
+[ext_resource type="Texture2D" uid="uid://ypkpevpn4iaw" path="res://Level-Select/Level1/Clicked.png" id="5_gn1xr"]
+[ext_resource type="Texture2D" uid="uid://750y4n85fuwa" path="res://Level-Select/Level1/Hover.png" id="6_xt83e"]
+[ext_resource type="Texture2D" uid="uid://hsthi7iubpub" path="res://Level-Select/Level1/Blocked.png" id="7_f3ef2"]
+[ext_resource type="Texture2D" uid="uid://cfrhx0dea3o8n" path="res://Level-Select/Level2/Normal.png" id="8_kn6o5"]
+[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vrlcm"]
+[ext_resource type="Texture2D" uid="uid://dalvgbaf0fpm7" path="res://Level-Select/Level2/Clicked.png" id="9_ppdsp"]
+[ext_resource type="Texture2D" uid="uid://bqgalaeyrqq8y" path="res://Level-Select/Level2/Hover.png" id="10_v8lva"]
+[ext_resource type="Texture2D" uid="uid://bhdmt2lkkcsbn" path="res://Level-Select/Level2/Blocked.png" id="11_3a0pe"]
+[ext_resource type="Texture2D" uid="uid://batl8b2m4kawc" path="res://Level-Select/Level3/Normal.png" id="12_gh5r5"]
+[ext_resource type="Texture2D" uid="uid://bq7uuuy6nmdpw" path="res://Level-Select/Level3/Clicked.png" id="13_r6fnu"]
+[ext_resource type="Texture2D" uid="uid://b31gji638uhd6" path="res://Level-Select/Level3/Hover.png" id="14_aw8up"]
+[ext_resource type="Texture2D" uid="uid://b4lalx7iblrty" path="res://Level-Select/Level3/Blocked.png" id="15_n54df"]
+[ext_resource type="Texture2D" uid="uid://d8nwwqlrud0h" path="res://Level-Select/Level4/Normal.png" id="16_1wocn"]
+[ext_resource type="Texture2D" uid="uid://c4w24b06s2wp6" path="res://Level-Select/Level4/Clicked.png" id="17_pgstp"]
+[ext_resource type="Texture2D" uid="uid://b0gqewiv6ytup" path="res://Level-Select/Level4/Hover.png" id="18_fge0r"]
+[ext_resource type="Texture2D" uid="uid://volbcb6tjpp5" path="res://Level-Select/Level5/Normal.png" id="19_ywa4r"]
+[ext_resource type="Texture2D" uid="uid://dty6qqyuvhwsk" path="res://Level-Select/Level5/Clicked.png" id="20_1bp82"]
+[ext_resource type="Texture2D" uid="uid://d14rhlgtgsgxt" path="res://Level-Select/Level5/Hover.png" id="21_k701n"]
+[ext_resource type="Texture2D" uid="uid://c775ptjnw34h3" path="res://Level-Select/Level5/Blocked.png" id="22_dl7cj"]
+[ext_resource type="Texture2D" uid="uid://cfaev10ithiae" path="res://Level-Select/Level6/Normal.png" id="23_dtd6e"]
+[ext_resource type="Texture2D" uid="uid://bb0jkbqudei84" path="res://Level-Select/Level6/Clicked.png" id="24_2r25g"]
+[ext_resource type="Texture2D" uid="uid://domdurr58mh2e" path="res://Level-Select/Level6/Hover.png" id="25_tnc3a"]
+[ext_resource type="Texture2D" uid="uid://b1g2lsf0tpbqu" path="res://Level-Select/Level6/Blocked.png" id="26_k1kbh"]
+[ext_resource type="Texture2D" uid="uid://bkrpnm3i32y0v" path="res://Level-Select/Level7/Normal.png" id="27_7qsyw"]
+[ext_resource type="Texture2D" uid="uid://bnopjaqj8ro1p" path="res://Level-Select/Level7/Clicked.png" id="28_yihpw"]
+[ext_resource type="Texture2D" uid="uid://peno5g7p7ajg" path="res://Level-Select/Level7/Hover.png" id="29_e14ml"]
+[ext_resource type="Texture2D" uid="uid://ec7tmfpu3rhb" path="res://Level-Select/Level7/Blocked.png" id="30_cu28j"]
+[ext_resource type="Texture2D" uid="uid://bg4ugfl3j6qul" path="res://UI/BackButton/Hover.png" id="31_07jkk"]
+[ext_resource type="Texture2D" uid="uid://cf2i3ldsa1pdr" path="res://UI/BackButton/Click.png" id="32_w0rva"]
+[ext_resource type="Texture2D" uid="uid://m1i6sspmq562" path="res://UI/BackButton/Normal.png" id="33_1wyeq"]
+
+[sub_resource type="GDScript" id="GDScript_sxesf"]
+script/source = "extends Node3D
+@onready var switching = 2
+
+func _ready():
+	Levels.load_data()
+	match Levels.Level1:
+		true:
+			$Control/Level1.disabled = false
+		false:
+			$Control/Level1.disabled = true
+	match Levels.Level2:
+		true:
+			$Control/Level2.disabled = false
+		false:
+			$Control/Level2.disabled = true
+	match Levels.Level3:
+		true:
+			$Control/Level3.disabled = false
+		false:
+			$Control/Level3.disabled = true
+	match Levels.Level4:
+		true:
+			$Control/Level4.disabled = false
+		false:
+			$Control/Level4.disabled = true
+	match Levels.Level5:
+		true:
+			$Control/Level5.disabled = false
+		false:
+			$Control/Level5.disabled = true
+	match Levels.Level6:
+		true:
+			$Control/Level6.disabled = false
+		false:
+			$Control/Level6.disabled = true
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	match switching:
+		0: 
+			$AnimationPlayer.play(\"Intro\")
+			switching=1
+		1:
+			await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play(\"PanText\")
+			switching=2
+		2:
+			#await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play(\"ShrinkLoop\")
+			switching=3
+		3:
+			await $AnimationPlayer.animation_finished
+			$AnimationPlayer.play(\"LOOPAFTER\")
+			
+
+
+
+
+func _on_texture_button_pressed():
+	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+
+
+func _on_level_1_pressed():
+	load(\"res://Levels/Level_0_tutorial.tscn\")
+	get_tree().change_scene_to_file(\"res://Levels/Level_0_tutorial.tscn\")
+
+
+func _on_level_2_pressed():
+	load(\"res://Levels/Level_Monster-Chase.tscn\")
+	get_tree().change_scene_to_file(\"res://Levels/Level_Monster-Chase.tscn\")
+"
+
+[sub_resource type="Environment" id="Environment_clc0f"]
+background_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86l4a"]
+resource_name = "Material"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_k6yqv")
+roughness = 0.0511811
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wfrxh"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"format": 4097,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1ilwh"]
+resource_name = "Box_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"attribute_data": PackedByteArray(113, 160, 42, 63, 12, 191, 170, 62, 2, 150, 170, 62, 254, 180, 42, 63, 4, 225, 127, 63, 84, 191, 170, 62, 4, 150, 170, 62, 164, 232, 170, 62, 113, 160, 42, 63, 0, 48, 252, 57, 4, 225, 127, 63, 87, 160, 42, 63, 88, 160, 42, 63, 84, 191, 170, 62, 2, 150, 170, 62, 171, 245, 127, 63, 88, 160, 42, 63, 84, 191, 170, 62, 5, 150, 170, 62, 0, 152, 78, 58, 87, 160, 42, 63, 87, 160, 42, 63, 87, 160, 42, 63, 87, 160, 42, 63, 0, 240, 247, 57, 82, 191, 170, 62, 225, 192, 170, 62, 12, 191, 170, 62, 113, 77, 37, 57, 254, 180, 42, 63, 0, 232, 247, 57, 86, 160, 42, 63, 191, 89, 37, 57, 164, 232, 170, 62, 225, 192, 170, 62, 0, 48, 252, 57, 86, 191, 170, 62, 84, 191, 170, 62, 86, 191, 170, 62, 84, 191, 170, 62, 35, 65, 37, 57, 171, 245, 127, 63, 85, 191, 170, 62, 87, 160, 42, 63, 191, 89, 37, 57, 0, 152, 78, 58, 85, 191, 170, 62, 87, 160, 42, 63),
+"format": 4119,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 20, 0, 14, 0, 1, 0, 7, 0, 20, 0, 10, 0, 19, 0, 6, 0, 10, 0, 23, 0, 19, 0, 21, 0, 12, 0, 18, 0, 21, 0, 15, 0, 12, 0, 16, 0, 9, 0, 3, 0, 16, 0, 22, 0, 9, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 17, 0, 0, 0, 13, 0, 17, 0, 4, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_86l4a"),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 255, 255, 127, 255, 255, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wfrxh")
+
+[sub_resource type="Animation" id="Animation_k3e07"]
+resource_name = "Appear text loop"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.35, 0, 2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_skaph"]
+resource_name = "Intro"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 6), Vector3(0, 0, 2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xqbme"]
+resource_name = "LOOPAFTER"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.6, -1.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.15, 0.15, 0.15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_xcmlt"]
+resource_name = "Rotatebox"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 2.5), Vector3(-1.35, 0, 2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0), Vector3(-0.261799, -1.5708, 0), Vector3(-0.261799, 0, 0), Vector3(-0.261799, 1.5708, 0), Vector3(-0.261799, 3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xgish"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.261799, -3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghcib"]
+_data = {
+"Appear text loop": SubResource("Animation_k3e07"),
+"Intro": SubResource("Animation_skaph"),
+"LOOPAFTER": SubResource("Animation_xqbme"),
+"PanText": SubResource("Animation_xcmlt"),
+"RESET": SubResource("Animation_xgish"),
+"ShrinkLoop": ExtResource("2_wc6x5")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qssw"]
+font = ExtResource("8_vrlcm")
+font_size = 12
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4sg5y"]
+load_path = "res://.godot/imported/Blocked.png-863e8245d5f3eca8702198888b9f7c20.ctex"
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_sxesf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_clc0f")
+
+[node name="Box" type="Node3D" parent="."]
+transform = Transform3D(-0.15, 9.84229e-08, -3.6732e-07, 0, 0.144889, 0.0388228, 3.80277e-07, 0.0388228, -0.144889, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Box"]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_1ilwh")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194474, 0, 0.35462)
+light_color = Color(0.784314, 0.756863, 1, 1)
+light_energy = 2.503
+light_indirect_energy = 2.611
+light_specular = 0.1
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39922, 0, 0.35462)
+light_color = Color(0.784314, 0.756863, 1, 1)
+light_energy = 2.503
+light_indirect_energy = 2.611
+light_specular = 0.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.92208)
+light_color = Color(0.133333, 0, 0.317647, 1)
+light_energy = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+libraries = {
+"": SubResource("AnimationLibrary_ghcib")
+}
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 8.143
+offset_left = 6.0
+offset_top = 123.0
+offset_right = 129.0
+offset_bottom = 161.0
+grow_vertical = 0
+text = "Demo made for:
+GameOff 2023"
+label_settings = SubResource("LabelSettings_6qssw")
+
+[node name="Level1" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -146.0
+offset_right = 127.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("4_ua0n4")
+texture_pressed = ExtResource("5_gn1xr")
+texture_hover = ExtResource("6_xt83e")
+texture_disabled = ExtResource("7_f3ef2")
+
+[node name="Level2" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -146.0
+offset_right = 295.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("8_kn6o5")
+texture_pressed = ExtResource("9_ppdsp")
+texture_hover = ExtResource("10_v8lva")
+texture_disabled = ExtResource("11_3a0pe")
+
+[node name="Level3" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -146.0
+offset_right = 463.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("12_gh5r5")
+texture_pressed = ExtResource("13_r6fnu")
+texture_hover = ExtResource("14_aw8up")
+texture_disabled = ExtResource("15_n54df")
+
+[node name="Level4" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -42.0
+offset_right = 127.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("16_1wocn")
+texture_pressed = ExtResource("17_pgstp")
+texture_hover = ExtResource("18_fge0r")
+texture_disabled = SubResource("CompressedTexture2D_4sg5y")
+
+[node name="Level5" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -42.0
+offset_right = 295.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("19_ywa4r")
+texture_pressed = ExtResource("20_1bp82")
+texture_hover = ExtResource("21_k701n")
+texture_disabled = ExtResource("22_dl7cj")
+
+[node name="Level6" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -42.0
+offset_right = 463.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("23_dtd6e")
+texture_pressed = ExtResource("24_2r25g")
+texture_hover = ExtResource("25_tnc3a")
+texture_disabled = ExtResource("26_k1kbh")
+
+[node name="Level7" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 62.0
+offset_right = 295.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+disabled = true
+texture_normal = ExtResource("27_7qsyw")
+texture_pressed = ExtResource("28_yihpw")
+texture_hover = ExtResource("29_e14ml")
+texture_disabled = ExtResource("30_cu28j")
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 256.0
+offset_right = -165.0
+offset_bottom = 296.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("31_07jkk")
+texture_pressed = ExtResource("32_w0rva")
+texture_hover = ExtResource("33_1wyeq")
+
+[connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]

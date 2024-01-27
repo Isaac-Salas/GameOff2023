@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfrpaldrxa62j"]
 
-[ext_resource type="Texture2D" uid="uid://uuhykfxugfbc" path="res://Models/Enemies/mañoso-enemy_enemigomañoso.png" id="1_vmemi"]
+[ext_resource type="Texture2D" uid="uid://bn3a3j15ep6vj" path="res://Models/Enemies/mañoso-enemy_enemigomañoso.png" id="1_vmemi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amv48"]
 resource_name = "Material.001"

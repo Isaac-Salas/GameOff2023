@@ -1,0 +1,336 @@
+[gd_scene load_steps=17 format=3 uid="uid://bdq21qkv4rwa7"]
+
+[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="2_5jcos"]
+[ext_resource type="Texture2D" uid="uid://cg40273ks2skf" path="res://UI/Credits/Logo.png" id="3_17mif"]
+[ext_resource type="Texture2D" uid="uid://bg4ugfl3j6qul" path="res://UI/BackButton/Hover.png" id="4_4x3kr"]
+[ext_resource type="PackedScene" uid="uid://pg77appayahy" path="res://Levels/EndingPlay.tscn" id="4_aq6qb"]
+[ext_resource type="Texture2D" uid="uid://cf2i3ldsa1pdr" path="res://UI/BackButton/Click.png" id="5_ttxhp"]
+[ext_resource type="Texture2D" uid="uid://m1i6sspmq562" path="res://UI/BackButton/Normal.png" id="6_d2rhh"]
+
+[sub_resource type="GDScript" id="GDScript_whkcx"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Label/AnimationPlayer.play(\"Credits\")
+
+
+func _on_texture_button_2_pressed():
+	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+
+
+func _on_texture_button_pressed():
+	get_tree().change_scene_to_file(\"res://Menu/Title-Screen.tscn\")
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4toc"]
+font = ExtResource("2_5jcos")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_rqy0p"]
+resource_name = "Credits"
+length = 65.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(361, 450), Vector2(361, -590)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 60, 65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureButton2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(60),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureButton2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(60, 61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_isnvw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, -2500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureButton2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureButton2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bbkfg"]
+resource_name = "dissolve"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99651),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, 1093)]
+}
+
+[sub_resource type="Animation" id="Animation_3xxke"]
+resource_name = "runCredits"
+length = 15.0
+step = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(454, 2800), Vector2(454, -3000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rihp0"]
+_data = {
+"Credits": SubResource("Animation_rqy0p"),
+"RESET": SubResource("Animation_isnvw"),
+"dissolve": SubResource("Animation_bbkfg"),
+"runCredits": SubResource("Animation_3xxke")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wdh78"]
+load_path = "res://.godot/imported/Hover.png-5f1c93fb964a89379744eab942125527.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g4lkt"]
+load_path = "res://.godot/imported/Click.png-107c90a6f5d3840d37068840e36eeee4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2mjo"]
+load_path = "res://.godot/imported/Normal.png-6922f7189abc3baf9a6b20da5ade27db.ctex"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_whkcx")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(16, 9)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 454.0
+offset_top = -2500.0
+offset_right = 687.0
+offset_bottom = 3213.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.180392, 0.329412, 0.917647, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 91
+text = "Concept artist:
+ChemitaSnake
+
+Main character design:
+ChemitaSnake
+
+Level Design:
+Alexcavadora
+
+Programming:
+Alexcavadora
+Isaac
+
+Music and SFX:
+ChemitaSnake
+Isaac
+
+Everything else:
+ChemitaSnake
+Alexcavadora
+Isaac
+
+------------------
+
+This game is dedicated to our teamates
+that had to leave the team:
+JuanGdev
+Jair
+Apocalix
+
+And Marco Antonio, who hasnt
+worked a day in his life
+
+We love you all!
+
+-----------------
+
+---Special thanks---
+Andrea --- Box Art
+Kevin --- Hand Model
+
+And You!!!
+
+
+
+
+
+
+
+
+Thanks, from the bottom
+of our hearts for playing!"
+label_settings = SubResource("LabelSettings_a4toc")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_rihp0")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Label"]
+position = Vector2(101, -61)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("3_17mif")
+
+[node name="TextureButton2" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 362.0
+offset_top = -25.0
+offset_right = 580.0
+offset_bottom = 89.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = SubResource("CompressedTexture2D_wdh78")
+texture_pressed = SubResource("CompressedTexture2D_g4lkt")
+texture_hover = SubResource("CompressedTexture2D_x2mjo")
+stretch_mode = 4
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -14.0
+offset_top = 292.0
+offset_right = 62.0
+offset_bottom = 332.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_4x3kr")
+texture_pressed = ExtResource("5_ttxhp")
+texture_hover = ExtResource("6_d2rhh")
+
+[node name="Node3D" parent="." instance=ExtResource("4_aq6qb")]
+
+[connection signal="pressed" from="Control/TextureButton2" to="Control" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="Control2/TextureButton" to="Control" method="_on_texture_button_pressed"]

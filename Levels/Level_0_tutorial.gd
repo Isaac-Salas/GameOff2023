@@ -9,6 +9,8 @@ func _ready():
 	GlobalVar.MaxCap = max_cap
 	GlobalVar.sizefactor = size_factor
 	GlobalVar.sizestandard = size_standard
+	GlobalVar.SPEED = 10.0
+	GlobalVar.JUMP_VELOCITY = 20.0
 	$Player/PlayerRigid.mass = size_standard
 
 func _process(_delta):
