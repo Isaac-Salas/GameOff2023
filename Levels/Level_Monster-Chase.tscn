@@ -119,7 +119,7 @@ var breaking = false
  
 func break_object():
 	breaking = true
-	print(\"StartBreaking\")
+	#print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()
 	# Getting the parent of the Area node.

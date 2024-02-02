@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=16 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="3_bs0lo"]
 [ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="6_p2evt"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
+[ext_resource type="PackedScene" uid="uid://dj1ju2t7w3tnp" path="res://NPCs/Hamster-Cutscene.tscn" id="8_d31li"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="9_id17n"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -237,5 +239,13 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 127.79
 
 [node name="Repisa-Tubes" parent="." instance=ExtResource("8_fdeah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7298, 23.8336, -17.0263)
+
+[node name="Hamster" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("8_d31li")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.785, 21.0442, 0)
+collision_layer = 2
+collision_mask = 2
+Camera = NodePath("../F-Camera")
+
+[node name="Pause2" parent="." instance=ExtResource("9_id17n")]
 
 [editable path="F-Camera"]

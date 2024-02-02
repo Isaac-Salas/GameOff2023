@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlq3ntaakekhs"]
+[gd_scene load_steps=6 format=3 uid="uid://dlq3ntaakekhs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gywp"]
 disable_ambient_light = true
@@ -19,11 +19,9 @@ albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
 material = SubResource("StandardMaterial3D_xhykb")
 size = Vector3(0.3, 32, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mrgio"]
-points = PackedVector3Array(-0.5, -15.2224, 0, 0, -15.2224, -0.5, -0.46202, -15.4132, 0, 0, -15.2224, 0.5, -0.5, 15.2193, 0, 0.5, -15.2224, 0, 0, -15.4132, -0.46202, 0, 15.2193, -0.5, -0.353563, -15.5763, 0, 0, -15.4132, 0.461922, 0, 15.2193, 0.5, -0.46202, 15.4102, 0, 0.461922, -15.4132, 0, 0.5, 15.2193, 0, 0, -15.5763, -0.353563, 0, 15.4102, -0.46202, 0, -15.5763, 0.353465, -0.191366, -15.6841, 0, 0, 15.4102, 0.461922, -0.353563, 15.5733, 0, 0.353465, -15.5763, 0, 0.461922, 15.4102, 0, 0, -15.6841, -0.191366, 0, 15.5733, -0.353563, 0, -15.6841, 0.191269, 0, -15.721, 0, 0, 15.5733, 0.353465, -0.191366, 15.681, 0, 0.191269, -15.6841, 0, 0.353465, 15.5733, 0, 0, 15.681, -0.191366, 0, 15.681, 0.191269, 0, 15.7179, 0, 0.191269, 15.681, 0)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4qaiw"]
-points = PackedVector3Array(0.15, 16, 0.5, -0.15, 16, 0.5, 0.15, -16, 0.5, 0.15, 16, -0.5, -0.15, 16, -0.5, -0.15, -16, 0.5, 0.15, -16, -0.5, -0.15, -16, -0.5)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7kwsi"]
+radius = 0.638562
+height = 31.9563
 
 [node name="Bouncylight" type="Node3D"]
 
@@ -127,10 +125,6 @@ omni_attenuation = 1.7411
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565845, -2.47339e-08, 0)
 mesh = SubResource("BoxMesh_ak2oq")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_mrgio")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.30926e-14, 0.565845, 0)
-shape = SubResource("ConvexPolygonShape3D_4qaiw")
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.085, 0)
+shape = SubResource("CapsuleShape3D_7kwsi")
