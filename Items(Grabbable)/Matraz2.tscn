@@ -55,8 +55,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vo5ei")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_occu1"]
-radius = 1.00406
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t03pj"]
+height = 1.5
+radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0efeb"]
 
@@ -78,8 +79,8 @@ visible = false
 mesh = ExtResource("1_rb1ns")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.213238, 0)
-shape = SubResource("SphereShape3D_occu1")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0879907, 0)
+shape = SubResource("CylinderShape3D_t03pj")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 4
