@@ -510,7 +510,6 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
-checkpoint = true
 player_path = NodePath("Player")
 min_cap = 2.0
 max_cap = 2.0
