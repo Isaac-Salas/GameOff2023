@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=15 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://dj1ju2t7w3tnp" path="res://NPCs/Hamster-Cutscene.tscn" id="8_d31li"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="9_id17n"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="9_mjdug"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -40,33 +40,6 @@ func _process(delta):
 background_mode = 1
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
-
-[sub_resource type="GDScript" id="GDScript_cxdej"]
-script/source = "extends Control
-@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
-@onready var Escinst
-
-
-func _input(event):
-	
-	if Input.is_action_just_pressed(\"Escaping\"):
-		get_tree().paused = true
-		Escinst = Esc.instantiate()
-		get_parent().add_child(Escinst)
-		GlobalVar.Escswitch = 1
-		self.queue_free()
-		
-
-
-
-func _on_pause_game_pressed():
-	get_tree().paused = true
-	Escinst = Esc.instantiate()
-	get_parent().add_child(Escinst)
-	GlobalVar.Escswitch = 1
-	self.queue_free()
-	
-"
 
 [sub_resource type="BoxMesh" id="BoxMesh_aoy7f"]
 
@@ -179,16 +152,6 @@ shadow_blur = 0.05
 omni_range = 7.783
 omni_attenuation = 1.07178
 
-[node name="Pause" type="Control" parent="."]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_cxdej")
-
 [node name="Fondo" type="Node3D" parent="."]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Fondo"]
@@ -246,6 +209,6 @@ collision_layer = 2
 collision_mask = 2
 Camera = NodePath("../F-Camera")
 
-[node name="Pause2" parent="." instance=ExtResource("9_id17n")]
+[node name="Pause3" parent="." instance=ExtResource("9_mjdug")]
 
 [editable path="F-Camera"]

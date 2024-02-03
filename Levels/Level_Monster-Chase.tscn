@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://d2eqmm8845aq2" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://5evbadaha8mq" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://bb5rm8a03cl6u" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://c3dpl7egvk7xl" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://10wkwnw1ie5d" path="res://NPCs/Hamster.tscn" id="20_ply3q"]
 [ext_resource type="PackedScene" uid="uid://bbbo7im43lgbi" path="res://level_design_objects/box_stack.tscn" id="20_w0a2a"]
 [ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="23_b2f62"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_5cxqt"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
@@ -507,33 +508,6 @@ _data = {
 "RESET": SubResource("Animation_v13hn")
 }
 
-[sub_resource type="GDScript" id="GDScript_cxdej"]
-script/source = "extends Control
-@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
-@onready var Escinst
-
-
-func _input(event):
-	
-	if Input.is_action_just_pressed(\"Escaping\"):
-		get_tree().paused = true
-		Escinst = Esc.instantiate()
-		get_parent().add_child(Escinst)
-		GlobalVar.Escswitch = 1
-		self.queue_free()
-		
-
-
-
-func _on_pause_game_pressed():
-	get_tree().paused = true
-	Escinst = Esc.instantiate()
-	get_parent().add_child(Escinst)
-	GlobalVar.Escswitch = 1
-	self.queue_free()
-	
-"
-
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
 checkpoint = true
@@ -965,19 +939,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.074, 0, 0)
 [node name="Checkpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
-[node name="Pause" type="Control" parent="."]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_cxdej")
-
 [node name="Blanco" type="DirectionalLight3D" parent="."]
 light_energy = 0.01
 light_bake_mode = 1
+
+[node name="Pause2" parent="." instance=ExtResource("24_5cxqt")]
 
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
