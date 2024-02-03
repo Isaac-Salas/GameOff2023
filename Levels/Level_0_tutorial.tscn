@@ -83,6 +83,8 @@ func _unhandled_input(event):
 	if state and event.is_action_pressed(\"Talk\"):
 		DialogManager.start_dialog(global_position, lines)
 		state = false
+		monitoring = false
+		monitorable = false
 		$\"Id-Card\".queue_free()
 		var Card = load(\"res://2DProps/id_card.tscn\")
 		var Cardinst = Card.instantiate()
@@ -93,8 +95,8 @@ func _unhandled_input(event):
 		$\"../Control/AnimationPlayer\".play(\"Slide in\")
 		await $\"../Control/AnimationPlayer\".animation_finished
 		$\"../Control/AnimationPlayer\".play(\"Out\")
-		monitoring = false
-		monitorable = false
+#		monitoring = false
+#		monitorable = false
 		
 func _on_body_entered(body):
 	if body.name == \"Player\":
