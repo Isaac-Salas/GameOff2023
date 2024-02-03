@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="4_mc8al"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="5_0wq1u"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_fpiok"]
-[ext_resource type="Texture2D" uid="uid://5evbadaha8mq" path="res://Models/Props/Paredzota_Texture-wall.png" id="6_ih44h"]
+[ext_resource type="Texture2D" uid="uid://d2eqmm8845aq2" path="res://Models/Props/Paredzota_Texture-wall.png" id="6_ih44h"]
 [ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="8_vhnjl"]
 [ext_resource type="PackedScene" uid="uid://c1dk8fdbe5gee" path="res://level_design_objects/X-Marking.tscn" id="10_xcn1v"]
 [ext_resource type="PackedScene" uid="uid://dii8yy3l7leva" path="res://level_design_objects/Props/Mesita.tscn" id="11_v5xqb"]
@@ -29,7 +29,7 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()
@@ -82,7 +82,7 @@ func _process(_delta):
  
 func break_object():
 	breaking = true
-	print(\"StartBreaking\")
+	#print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()
 	# Getting the parent of the Area node.
@@ -92,14 +92,14 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()
 	
 
 func _on_area_3d_body_entered(body):
-	print(body.name)
+	#print(body.name)
 	if body.name == \"Hand\" or body.find_child(\"Brk-Walls\"):
 		break_object()
 
@@ -186,6 +186,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -227.5
 
 [node name="Fluorescent light2" parent="Lights" instance=ExtResource("3_6bc8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -374.066, 29.0002, 2)
+visible = false
 
 [node name="Fluorescent light13" type="Node3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -408.382, 29.0002, 2)
