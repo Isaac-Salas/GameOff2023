@@ -72,7 +72,8 @@ func _physics_process(delta):
 		start()
 		if change == true:
 			if camera.size < 80:
-				camera.size += 0.5
+				camera.size += 1
+				#print(camera.size)
 				
 			if go == 2:
 				tracking()

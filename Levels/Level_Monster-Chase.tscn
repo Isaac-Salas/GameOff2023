@@ -109,7 +109,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 agent_max_slope = 90.0
 vertices_per_polygon = 10.0
 
-[sub_resource type="GDScript" id="GDScript_tn1ub"]
+[sub_resource type="GDScript" id="GDScript_c6rf6"]
 script/source = "extends StaticBody3D
 
 #It doesn't have to be an Area node it can be a Rigidbody as well.
@@ -195,9 +195,6 @@ shadow_mesh = SubResource("ArrayMesh_jolfb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc5eu"]
 size = Vector3(50, 30, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qho6q"]
-size = Vector3(50, 30, 2.1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o7oe"]
 size = Vector3(50.695, 47.915, 13.646)
 
@@ -260,6 +257,9 @@ _data = {
 "Down": SubResource("Animation_7y5eq"),
 "RESET": SubResource("Animation_3xngx")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mfeok"]
+size = Vector3(50.25, 30.25, 2.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhyq6"]
 albedo_texture = ExtResource("9_1x7rp")
@@ -640,9 +640,6 @@ player_path = NodePath("../Player")
 hamster_path = NodePath("../Hamster")
 target_size = 2.0
 
-[node name="Wall-Unbreak" parent="." instance=ExtResource("5_h2blc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -464.897, 14.6033, -10)
-
 [node name="Obstacles" type="Node3D" parent="."]
 
 [node name="Wall-Unbreak2" type="StaticBody3D" parent="Obstacles"]
@@ -652,7 +649,7 @@ collision_mask = 3
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
-script = SubResource("GDScript_tn1ub")
+script = SubResource("GDScript_c6rf6")
 resource = ExtResource("6_2vuet")
 
 [node name="Cube" type="MeshInstance3D" parent="Obstacles/Wall-Unbreak2"]
@@ -662,13 +659,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2"]
 shape = SubResource("BoxShape3D_rc5eu")
-
-[node name="Area3D" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/Area3D"]
-shape = SubResource("BoxShape3D_qho6q")
 
 [node name="DetectPlayer" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.8397, 0)
@@ -681,6 +671,14 @@ shape = SubResource("BoxShape3D_2o7oe")
 libraries = {
 "": SubResource("AnimationLibrary_3wsff")
 }
+
+[node name="Area3D" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/Area3D"]
+shape = SubResource("BoxShape3D_mfeok")
+
+[node name="Wall-Unbreak" parent="Obstacles" instance=ExtResource("5_h2blc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -464.897, 14.6033, -10)
 
 [node name="Morado" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
@@ -945,8 +943,8 @@ light_bake_mode = 1
 
 [node name="Pause2" parent="." instance=ExtResource("24_5cxqt")]
 
-[connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
+[connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Hamster4/Area3D" to="Hamster4" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_exited" from="End" to="." method="_on_end_body_exited"]

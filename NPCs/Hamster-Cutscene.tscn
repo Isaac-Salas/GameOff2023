@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dj1ju2t7w3tnp"]
 
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="1_elsb2"]
-[ext_resource type="Texture2D" uid="uid://o1bfv7f7po6p" path="res://2DProps/Dialog.png" id="2_bbwsm"]
+[ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="2_bbwsm"]
 
 [sub_resource type="GDScript" id="GDScript_6x8su"]
 script/source = "extends RigidBody3D
@@ -40,8 +40,8 @@ func _on_playertoggle_body_entered(body):
 		camchange = true
 "
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p752j"]
-points = PackedVector3Array(-0.000191808, 0.194933, 0.980785, -0.375379, 0.194933, 0.906093, -0.000191808, -0.195243, 0.980785, 0.375187, 0.194933, 0.906093, 0.204106, 0.905269, 0.731941, -0.204298, 0.905269, 0.731941, -0.693538, 0.194933, 0.693347, -0.375379, -0.195243, 0.906093, -0.386323, 0.905269, 0.695651, -0.540891, 0.905269, 0.592542)
+[sub_resource type="BoxShape3D" id="BoxShape3D_piwqu"]
+size = Vector3(1.97313, 2.68315, 1)
 
 [sub_resource type="Animation" id="Animation_r1bs4"]
 resource_name = "Talk"
@@ -148,7 +148,8 @@ mesh = ExtResource("1_elsb2")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_p752j")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39612, 0)
+shape = SubResource("BoxShape3D_piwqu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

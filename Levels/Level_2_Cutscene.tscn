@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=16 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://dj1ju2t7w3tnp" path="res://NPCs/Hamster-Cutscene.tscn" id="8_d31li"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="9_mjdug"]
+[ext_resource type="PackedScene" uid="uid://b10soqja17qq6" path="res://level_design_objects/Shrink-Ray/Shrink-Ray.tscn" id="10_nnktc"]
+[ext_resource type="PackedScene" uid="uid://dpc8a3wdpmp0e" path="res://level_design_objects/Grow-Ray/Grow-Ray.tscn" id="11_sr40c"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
 
-@export var min_cap = 1.0
+@export var min_cap = 0.5
 @export var max_cap = 1.0
 @export var size_factor = 1.0
 @export var size_standard = 1.0
@@ -88,6 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.93, 74.5908, -4.46021)
 
 [node name="Floor-Un14" parent="Floor" instance=ExtResource("1_imyb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.401, 74.5908, -4.46021)
+
+[node name="Floor-Un15" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210, 74.591, -4.46)
 
 [node name="Floor-Un9" parent="Floor" instance=ExtResource("1_imyb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
@@ -209,6 +213,18 @@ collision_layer = 2
 collision_mask = 2
 Camera = NodePath("../F-Camera")
 
-[node name="Pause3" parent="." instance=ExtResource("9_mjdug")]
+[node name="SpotLight3D" type="SpotLight3D" parent="Hamster"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.5122, 0.523987)
+visible = false
+light_color = Color(1, 1, 0.741176, 1)
+light_energy = 4.585
+spot_range = 40.458
+spot_angle = 11.7
+
+[node name="Shrink-Ray" parent="." instance=ExtResource("10_nnktc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.111, 19.9662, 0)
+
+[node name="Grow-Ray" parent="." instance=ExtResource("11_sr40c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.988, 20, 1.3374)
 
 [editable path="F-Camera"]
