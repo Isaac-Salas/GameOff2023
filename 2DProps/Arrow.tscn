@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccusf8i7w1yll"]
+
+[ext_resource type="Texture2D" uid="uid://b0r3tdgs2p5w7" path="res://2DProps/Arrow.png" id="1_yvcng"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+shaded = true
+texture = ExtResource("1_yvcng")

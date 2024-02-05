@@ -9,11 +9,25 @@ script/source = "extends RigidBody3D
 @export var Camera : Node3D
 @onready var camchange = false
 @onready var correct = false
+@onready var index 
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	index = DialogManager.current_line_index
+	
+	match index:
+		0:
+			print(0)
+		1:
+			print(1)
+		2:
+			print(2)
+		3:
+			print(3)
+	
+	
 	match camchange:
 		true:
 			$Invisiwalls.scale = Vector3(1,1,1)
@@ -27,8 +41,9 @@ func _process(delta):
 				false:
 					pass
 				true:
-					if Camera.position.x < self.global_position.x:
+					if Camera.position.x <= self.global_position.x:
 						Camera.position.x += 0.1
+						Camera.position.y = self.global_position.y+8
 					else:
 						correct = false
 
@@ -144,6 +159,7 @@ freeze = true
 script = SubResource("GDScript_6x8su")
 
 [node name="Cachetes, pies y manos" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1896, 0)
 mesh = ExtResource("1_elsb2")
 skeleton = NodePath("")
 
@@ -160,7 +176,7 @@ libraries = {
 process_mode = 3
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = SubResource("GDScript_hqvrq")
-lines = Array[String](["Marco no chambea"])
+lines = Array[String](["STOP FOLLOWING ME!", "I tought I lost you back there", "...", "See ya!"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dialogue_box2"]
 shape = SubResource("BoxShape3D_bgy1i")

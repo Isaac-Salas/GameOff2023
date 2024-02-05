@@ -20,7 +20,7 @@ material = SubResource("StandardMaterial3D_xhykb")
 size = Vector3(0.3, 32, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7kwsi"]
-radius = 0.638562
+radius = 0.475
 height = 31.9563
 
 [node name="Bouncylight" type="Node3D"]

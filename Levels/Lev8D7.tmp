@@ -1,0 +1,644 @@
+[gd_scene load_steps=40 format=3 uid="uid://b338sncgcxvse"]
+
+[ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
+[ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
+[ext_resource type="PackedScene" uid="uid://jaucwmr63uae" path="res://level_design_objects/Breakables/Floor_(Player).tscn" id="2_r6qqp"]
+[ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="3_bs0lo"]
+[ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="6_p2evt"]
+[ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
+[ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
+[ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="8_q0nxd"]
+[ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="9_6110e"]
+[ext_resource type="PackedScene" uid="uid://b10soqja17qq6" path="res://level_design_objects/Shrink-Ray/Shrink-Ray.tscn" id="10_nnktc"]
+[ext_resource type="PackedScene" uid="uid://dpc8a3wdpmp0e" path="res://level_design_objects/Grow-Ray/Grow-Ray.tscn" id="11_sr40c"]
+[ext_resource type="PackedScene" uid="uid://wu2sa1fdi3bu" path="res://2DProps/Danger.tscn" id="13_qy2nb"]
+[ext_resource type="Script" path="res://level_design_objects/Red_Lamp.gd" id="14_m2km8"]
+[ext_resource type="PackedScene" uid="uid://ccusf8i7w1yll" path="res://2DProps/Arrow.tscn" id="14_oi7kj"]
+
+[sub_resource type="GDScript" id="GDScript_8s11j"]
+script/source = "extends Node3D
+
+@export var min_cap = 1.0
+@export var max_cap = 1.0
+@export var size_factor = 1.0
+@export var size_standard = 1.0
+@export var end = false
+@export var start = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	match end:
+		false:
+			pass
+		true:
+			$Player.global_position = $Places/End.global_position
+	match start:
+		false:
+			pass
+		true:
+			$Player.global_position = $Places/Start.global_position
+	GlobalVar.MinCap = min_cap
+	GlobalVar.MaxCap = max_cap
+	GlobalVar.sizefactor = size_factor
+	GlobalVar.sizestandard = size_standard
+	GlobalVar.sizeM = Vector3(size_factor, size_factor, size_factor)
+	$Player/PlayerRigid.mass = size_factor
+	$Player.scale = Vector3(size_factor, size_factor, size_factor)
+
+"
+
+[sub_resource type="Environment" id="Environment_e4g3h"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_aoy7f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gfot"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxupm"]
+size = Vector3(18.71, 397.649, 50)
+
+[sub_resource type="GDScript" id="GDScript_6x8su"]
+script/source = "extends RigidBody3D
+
+@export var Camera : Node3D
+@onready var camchange = false
+@onready var correct = false
+@onready var index 
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	index = DialogManager.current_line_index
+	
+	match index:
+		0:
+			pass
+			#print(0)
+		1:
+			pass
+			#print(1)
+		2:
+			pass
+			#print(2)
+		3:
+			$AnimationPlayer.play(\"Run\")
+			await $AnimationPlayer.animation_finished
+			Camera.follow = true
+			$Invisiwalls.queue_free()
+			$\"Cachetes, pies y manos\".queue_free()
+			print(\"Ending\")
+			print(Camera.size)
+			if Camera.size < 100:
+				Camera.size += 0.5
+			else:
+				pass
+				#self.queue_free()
+	
+	
+	match camchange:
+		true:
+			$Invisiwalls.scale = Vector3(1,1,1)
+			Camera.size -= 0.3
+			if Camera.size<20:
+				Camera.follow = false
+				camchange = false
+				correct = true
+		false:
+			match correct:
+				false:
+					pass
+				true:
+					if Camera.position.x <= self.global_position.x:
+						Camera.position.x += 0.1
+						Camera.position.y = self.global_position.y+10
+					else:
+						correct = false
+
+
+
+func _on_playertoggle_body_entered(body):
+	if body.name == \"Player\":
+		$Invisiwalls/Wall.play(\"Enter\")
+		camchange = true
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_piwqu"]
+size = Vector3(1.97313, 2.68315, 1)
+
+[sub_resource type="GDScript" id="GDScript_hqvrq"]
+script/source = "extends Area3D
+var Handready = false
+var state = false
+@export var lines: Array[String] =[
+	\"Hey, you seem pretty strong!\",
+	\"Wanna spar?\",
+	\"Wait...\",
+	\"I shouldn't waste my energy before an important battle...\",
+	\"Well, I'll see you at the buffet!\",]
+	
+	
+
+func _unhandled_input(event):
+	if state and event.is_action_pressed(\"Talk\"):
+		$\"../AnimationPlayer\".play(\"Turned\")
+		#Handready = true
+		$Sprite3D.hide()
+		DialogManager.start_dialog(global_position, lines)
+		state = false
+
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		$Sprite3D.show()
+		state = true
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		state = false
+		$Sprite3D.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_68xi2"]
+size = Vector3(30, 30, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f28ao"]
+size = Vector3(1, 30, 30)
+
+[sub_resource type="Animation" id="Animation_jklvi"]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-16, 32, 0), Vector3(-16, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_46xnu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-16, 32, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2lva"]
+_data = {
+"Enter": SubResource("Animation_jklvi"),
+"RESET": SubResource("Animation_46xnu")
+}
+
+[sub_resource type="Animation" id="Animation_xr708"]
+resource_name = "Turned"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0.0716633, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bb0vh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cachetes, pies y manos:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.465, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yck67"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.465, 0, 0), Vector3(40, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cachetes, pies y manos:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(1.5708, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tj2ya"]
+_data = {
+"RESET": SubResource("Animation_bb0vh"),
+"Run": SubResource("Animation_yck67"),
+"Turned": SubResource("Animation_xr708")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at6lh"]
+albedo_color = Color(0.913725, 0.247059, 0.207843, 1)
+emission_enabled = true
+emission = Color(0.780392, 0, 0, 1)
+emission_energy_multiplier = 4.78
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rqfkl"]
+material = SubResource("StandardMaterial3D_at6lh")
+uv2_padding = 2.54
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkeym"]
+albedo_color = Color(0.509804, 0.286275, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ban8v"]
+material = SubResource("StandardMaterial3D_wkeym")
+inner_radius = 0.45
+outer_radius = 0.54
+rings = 8
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qi8e"]
+material = SubResource("StandardMaterial3D_wkeym")
+size = Vector3(1.5, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4w3h3"]
+material = SubResource("StandardMaterial3D_wkeym")
+size = Vector3(0.2, 1.5, 0.2)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wf2et"]
+material = SubResource("StandardMaterial3D_wkeym")
+radius = 0.1
+height = 0.4
+radial_segments = 4
+rings = 1
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_8s11j")
+min_cap = 2.0
+max_cap = 2.0
+size_factor = 2.0
+size_standard = 2.0
+end = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_e4g3h")
+
+[node name="Morado" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
+light_color = Color(0.207843, 0, 0.478431, 1)
+light_energy = 0.1
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 3.321
+sky_mode = 1
+
+[node name="Blanco" type="DirectionalLight3D" parent="World"]
+light_energy = 0.01
+light_bake_mode = 1
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="Floor-Un" parent="Floor" instance=ExtResource("1_imyb6")]
+
+[node name="Floor-Un10" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3034, 35.2818, -4.40338)
+
+[node name="Floor-Un12" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.1288, 74.5908, -4.46021)
+
+[node name="Floor-Un13" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.93, 74.5908, -4.46021)
+
+[node name="Floor-Un14" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.401, 74.5908, -4.46021)
+
+[node name="Floor-Un16" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.667, 53.801, -4.46021)
+
+[node name="Floor-Un15" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210, 74.591, -4.46)
+
+[node name="Floor-Un9" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
+
+[node name="Floor-Un2" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+
+[node name="Floor-Un3" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+
+[node name="Floor-Un4" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
+
+[node name="Floor-Un5" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
+
+[node name="Floor-Un6" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 0)
+
+[node name="Floor-Un7" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="Floor-Un8" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
+
+[node name="Floor-Un11" parent="Floor" instance=ExtResource("2_r6qqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0812, 56.7615, 0)
+
+[node name="F-Camera" parent="." instance=ExtResource("3_bs0lo")]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -44.701, 10.1376, 25)
+size = 80.0
+
+[node name="SpotLight3D" parent="F-Camera" index="0"]
+transform = Transform3D(0.999805, 0.0190145, 0.00523278, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("2_2hqgw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.644, 357.412, 0)
+startspeed = 15.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.5, 8.7423e-08, 0, -8.7423e-08, 0.5, 0, 0, 0, 0.5, 0, -1.15529, -0.943171)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.6
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
+shadow_blur = 0.05
+omni_range = 7.783
+omni_attenuation = 1.07178
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.5, 8.7423e-08, 0, -8.7423e-08, 0.5, 0, 0, 0, 0.5, 0, 0, 3.00782)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.6
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
+shadow_blur = 0.05
+omni_range = 7.783
+omni_attenuation = 1.07178
+
+[node name="Fondo" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fondo"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fondo/StaticBody3D"]
+transform = Transform3D(500, 0, 0, 0, 44.48, 0, 0, 0, 10, 152.106, 36.0047, -19.9713)
+mesh = SubResource("BoxMesh_aoy7f")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fondo/StaticBody3D"]
+transform = Transform3D(500, 0, 0, 0, 44.48, 0, 0, 0, 10, 152.106, 36.0047, -19.9713)
+shape = SubResource("BoxShape3D_6gfot")
+
+[node name="Invisible-walls" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Invisible-walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Invisible-walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 256.856, 0)
+shape = SubResource("BoxShape3D_uxupm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Invisible-walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 256.856, 0)
+shape = SubResource("BoxShape3D_uxupm")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Fluorescent2" parent="Lights" instance=ExtResource("6_p2evt")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3.26727, 37.0751, 0)
+
+[node name="Fluorescent4" parent="Lights" instance=ExtResource("6_p2evt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1626, 53.0008, 0)
+
+[node name="Fluorescent5" parent="Lights" instance=ExtResource("6_p2evt")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 15.1626, 60.7469, 0)
+
+[node name="Fluorescent3" parent="Lights" instance=ExtResource("6_p2evt")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 32.6247, 37.0751, 0)
+
+[node name="Fluorescent light" parent="Lights" instance=ExtResource("7_dwmgy")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 52.9865, 47, 0)
+skeleton = NodePath("../..")
+
+[node name="Fluorescent light2" parent="Lights" instance=ExtResource("7_dwmgy")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 89.9732, 47, 0)
+skeleton = NodePath("../..")
+
+[node name="Fluorescent light3" parent="Lights" instance=ExtResource("7_dwmgy")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 127.791, 47, 0)
+skeleton = NodePath("../..")
+
+[node name="Repisa-Tubes" parent="." instance=ExtResource("8_fdeah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7298, 23.8336, -17.0263)
+
+[node name="Hamster" type="RigidBody3D" parent="." node_paths=PackedStringArray("Camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.785, 21, 0)
+collision_layer = 2
+collision_mask = 2
+can_sleep = false
+freeze = true
+script = SubResource("GDScript_6x8su")
+Camera = NodePath("../F-Camera")
+
+[node name="Cachetes, pies y manos" type="MeshInstance3D" parent="Hamster"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.465, 0, 0)
+mesh = ExtResource("8_q0nxd")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39612, 0)
+shape = SubResource("BoxShape3D_piwqu")
+
+[node name="Dialogue_box2" type="Area3D" parent="Hamster"]
+process_mode = 3
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+script = SubResource("GDScript_hqvrq")
+lines = Array[String](["STOP FOLLOWING ME!", "I tought I lost you back there", "...", "See ya!"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Dialogue_box2"]
+shape = SubResource("BoxShape3D_bgy1i")
+
+[node name="Sprite3D" type="Sprite3D" parent="Hamster/Dialogue_box2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_6110e")
+
+[node name="Playertoggle" type="Area3D" parent="Hamster"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Playertoggle"]
+shape = SubResource("BoxShape3D_68xi2")
+
+[node name="Invisiwalls" type="Node3D" parent="Hamster"]
+
+[node name="Left" type="StaticBody3D" parent="Hamster/Invisiwalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 32, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Invisiwalls/Left"]
+shape = SubResource("BoxShape3D_f28ao")
+
+[node name="Right" type="StaticBody3D" parent="Hamster/Invisiwalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Invisiwalls/Right"]
+shape = SubResource("BoxShape3D_f28ao")
+
+[node name="Up" type="StaticBody3D" parent="Hamster/Invisiwalls"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Invisiwalls/Up"]
+shape = SubResource("BoxShape3D_f28ao")
+
+[node name="Down" type="StaticBody3D" parent="Hamster/Invisiwalls"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -16, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster/Invisiwalls/Down"]
+shape = SubResource("BoxShape3D_f28ao")
+
+[node name="Wall" type="AnimationPlayer" parent="Hamster/Invisiwalls"]
+libraries = {
+"": SubResource("AnimationLibrary_c2lva")
+}
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Hamster"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.5122, 0.523987)
+visible = false
+light_color = Color(1, 1, 0.741176, 1)
+light_energy = 4.585
+spot_range = 40.458
+spot_angle = 11.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hamster"]
+libraries = {
+"": SubResource("AnimationLibrary_tj2ya")
+}
+
+[node name="Shrink-Ray" parent="." instance=ExtResource("10_nnktc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.04, 19.9662, 0)
+
+[node name="Grow-Ray" parent="." instance=ExtResource("11_sr40c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205.917, 20, 1.3374)
+
+[node name="Danger" parent="." instance=ExtResource("13_qy2nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.017, 28.416, -14.5267)
+
+[node name="Node3D" parent="." instance=ExtResource("14_oi7kj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 156, 28.3321, -11)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 151.342, 32.745, -12.7161)
+script = ExtResource("14_m2km8")
+
+[node name="LampBody" type="MeshInstance3D" parent="Node3D2"]
+mesh = SubResource("CapsuleMesh_rqfkl")
+
+[node name="Ring" type="MeshInstance3D" parent="Node3D2"]
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring2" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.444, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring3" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 7.58352e-13, -0.44403, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Support" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 0.855098, -3.73754e-08, -0.688423)
+mesh = SubResource("BoxMesh_3qi8e")
+
+[node name="Cable" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.641)
+mesh = SubResource("BoxMesh_4w3h3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D2"]
+transform = Transform3D(1, 1.21652e-31, 2.64698e-23, 1.21652e-31, 1, -2.64698e-23, 0, 0, 1, 0, 0, 9.83838)
+layers = 3
+light_color = Color(0.984314, 0, 0.0666667, 1)
+light_energy = 6.841
+shadow_enabled = true
+shadow_bias = 0.3
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = 8.454
+shadow_blur = 0.39
+omni_range = 60.0
+omni_attenuation = 0.812252
+
+[node name="LongRing" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-9.17939e-08, 1, 4.18544e-16, -2.1, -4.37114e-08, -4.18544e-16, -7.32452e-16, -3.48787e-16, 1.2, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Cableties" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.770977, -3.37005e-08, -0.68594)
+mesh = SubResource("CapsuleMesh_wf2et")
+
+[node name="Places" type="Node3D" parent="."]
+
+[node name="End" type="Marker3D" parent="Places"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.439, 21.9195, 0)
+
+[node name="Start" type="Marker3D" parent="Places"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6142, 357.396, 0)
+
+[connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="Hamster/Playertoggle" to="Hamster" method="_on_playertoggle_body_entered" flags=18]
+
+[editable path="F-Camera"]

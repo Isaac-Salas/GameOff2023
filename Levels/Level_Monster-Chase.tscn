@@ -43,6 +43,7 @@ var player
 
 func _ready():
 	
+	
 	match checkpoint:
 		true:
 			$Player.global_position = $Checkpoint.global_position

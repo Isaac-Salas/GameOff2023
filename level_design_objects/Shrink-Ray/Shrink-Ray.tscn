@@ -99,6 +99,7 @@ mesh = SubResource("CylinderMesh_2xvsk")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
 target_position = Vector3(0, 50, 0)
+collision_mask = 129
 debug_shape_custom_color = Color(0, 0.654902, 0, 1)
 debug_shape_thickness = 5
 

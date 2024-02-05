@@ -17,7 +17,7 @@ var index
 @onready var new = preload("res://level_design_objects/Obstacles.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	#DialogManager.current_line_index = 0
 	hamster = get_node(hamster_path)
 	GlobalVar.target_scale = target_size
 	$AnimatedSprite3D.play("Idle")
