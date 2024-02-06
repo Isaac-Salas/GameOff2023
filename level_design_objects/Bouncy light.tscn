@@ -28,7 +28,7 @@ height = 31.9563
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 2
 collision_mask = 2
-gravity_scale = 3.0
+gravity_scale = 2.0
 
 [node name="Fluorescent light" type="MeshInstance3D" parent="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

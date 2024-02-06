@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=92 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
 [ext_resource type="Texture2D" uid="uid://d1s4ii6ci773w" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_rxo8w"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -36,6 +37,7 @@ script/source = "extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	DialogManager.loaded_box = \"res://UI/TextBox/dialogue_box.tscn\"
 	match end:
 		false:
 			pass
@@ -544,10 +546,22 @@ tracks/3/path = NodePath("Cachetes, pies y manos:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.4, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-4.465, 0, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, -0.422155, 0)]
+"values": [Vector3(-4.465, 0, 0), Vector3(-4.465, 0, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, -0.422155, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cachetes, pies y manos:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(1.5708, 1.5708, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xr708"]
@@ -751,7 +765,7 @@ func _process(delta):
 			#print(\"done\")
 			#print(GlobalVar.sizefactor)
 			match GlobalVar.sizefactor:
-				2.0:
+				3.0:
 					countbig = true
 					#print(\"Bigcap\")
 					
@@ -768,7 +782,11 @@ func _process(delta):
 		0:
 			pass
 		1:
-			print(\"Animate here\")
+			$AnimationPlayer.play(\"jUMP!\")
+			var lines = $Dialogue_box2.lines
+			DialogManager.start_dialog(global_position, lines)
+			start = 2
+		2: 
 			pass
 
 "
@@ -812,8 +830,43 @@ func _on_body_exited(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_rnjdr"]
 size = Vector3(5, 5, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xy0iu"]
-size = Vector3(30, 30, 30)
+[sub_resource type="Animation" id="Animation_13gwx"]
+resource_name = "jUMP!"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(340.397, 20.8406, 1.20131), Vector3(340.397, 22.1636, 1.20131), Vector3(340.397, 20.8406, 1.20131)]
+}
+
+[sub_resource type="Animation" id="Animation_1tata"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(340.397, 20.8406, 1.20131)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vreqq"]
+_data = {
+"RESET": SubResource("Animation_1tata"),
+"jUMP!": SubResource("Animation_13gwx")
+}
 
 [sub_resource type="GDScript" id="GDScript_l06su"]
 script/source = "extends Area3D
@@ -839,40 +892,13 @@ func _on_body_entered(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6owi"]
 size = Vector3(0.999207, 4.46408, 50)
 
-[sub_resource type="GDScript" id="GDScript_cxdej"]
-script/source = "extends Control
-@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
-@onready var Escinst
-
-
-func _input(event):
-	
-	if Input.is_action_just_pressed(\"Escaping\"):
-		get_tree().paused = true
-		Escinst = Esc.instantiate()
-		get_parent().add_child(Escinst)
-		GlobalVar.Escswitch = 1
-		self.queue_free()
-		
-
-
-
-func _on_pause_game_pressed():
-	get_tree().paused = true
-	Escinst = Esc.instantiate()
-	get_parent().add_child(Escinst)
-	GlobalVar.Escswitch = 1
-	self.queue_free()
-	
-"
-
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_8s11j")
 min_cap = 2.0
 max_cap = 2.0
 size_factor = 2.0
 size_standard = 2.0
-end = true
+start = true
 
 [node name="World" type="Node3D" parent="."]
 
@@ -919,6 +945,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 260, 74.591, -4.46)
 
 [node name="Floor-Un18" parent="Floor" instance=ExtResource("1_imyb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 286.969, 42.5284, -4.46)
+
+[node name="Floor-Un19" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 371.106, 54.3739, -4.46)
+
+[node name="Floor-Un20" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 304.989, 77.026, -4.46)
+
+[node name="Floor-Un21" parent="Floor" instance=ExtResource("1_imyb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 334.855, 77.026, -4.46)
 
 [node name="Floor-Un9" parent="Floor" instance=ExtResource("1_imyb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
@@ -1527,6 +1562,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.251, 21.2045, 0)
 [node name="Wall-Hole" parent="." instance=ExtResource("16_8jckr")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 166.285, 25.8883, -3.7749)
 
+[node name="Wall-Hole2" parent="." instance=ExtResource("16_8jckr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 347.21, 25.8883, -3.7749)
+
 [node name="Node3D" parent="." instance=ExtResource("17_g4wd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 246.887, 31.1342, -14.2682)
 
@@ -1609,7 +1647,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
 
 [node name="Bench-tubes" parent="." instance=ExtResource("22_0rnhk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.295, 20.46, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.125, 20.46, 0)
 
 [node name="Hamster3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.397, 20.8406, 1.20131)
@@ -1631,7 +1669,7 @@ process_mode = 3
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 visible = false
 script = SubResource("GDScript_qpecu")
-lines = Array[String](["What?", "I tought I lost you back there", "...", "See ya!"])
+lines = Array[String](["Hasta aqui llevo!"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3/Dialogue_box2"]
 shape = SubResource("BoxShape3D_rnjdr")
@@ -1643,10 +1681,10 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_6110e")
 
-[node name="Playertoggle" type="Area3D" parent="Hamster3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3/Playertoggle"]
-shape = SubResource("BoxShape3D_xy0iu")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hamster3"]
+libraries = {
+"": SubResource("AnimationLibrary_vreqq")
+}
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.714, 31.254, -14.4818)
@@ -1662,21 +1700,13 @@ transform = Transform3D(0.317652, -0.936775, -0.146796, -0.948207, -0.313823, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309.028, 20.9984, 0)
 script = SubResource("GDScript_l06su")
 min_cap = 0.5
-max_cap = 2.0
+max_cap = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Unlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
 shape = SubResource("BoxShape3D_u6owi")
 
-[node name="Pause" type="Control" parent="."]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_cxdej")
+[node name="Pause" parent="." instance=ExtResource("24_rxo8w")]
 
 [connection signal="body_entered" from="Floor/Light toggle" to="." method="_on_light_toggle_body_entered"]
 [connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]
@@ -1685,7 +1715,6 @@ script = SubResource("GDScript_cxdej")
 [connection signal="body_entered" from="Hamster2/Player" to="Hamster2" method="_on_player_body_entered"]
 [connection signal="body_entered" from="Hamster3/Dialogue_box2" to="Hamster3/Dialogue_box2" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="Hamster3/Dialogue_box2" to="Hamster3/Dialogue_box2" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="Hamster3/Playertoggle" to="Hamster3" method="_on_playertoggle_body_entered" flags=18]
 [connection signal="body_entered" from="Unlock" to="Unlock" method="_on_body_entered"]
 
 [editable path="F-Camera"]
