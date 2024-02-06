@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
 [ext_resource type="Texture2D" uid="uid://d1s4ii6ci773w" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_kuxe4"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -840,6 +839,33 @@ func _on_body_entered(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6owi"]
 size = Vector3(0.999207, 4.46408, 50)
 
+[sub_resource type="GDScript" id="GDScript_cxdej"]
+script/source = "extends Control
+@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
+@onready var Escinst
+
+
+func _input(event):
+	
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().paused = true
+		Escinst = Esc.instantiate()
+		get_parent().add_child(Escinst)
+		GlobalVar.Escswitch = 1
+		self.queue_free()
+		
+
+
+
+func _on_pause_game_pressed():
+	get_tree().paused = true
+	Escinst = Esc.instantiate()
+	get_parent().add_child(Escinst)
+	GlobalVar.Escswitch = 1
+	self.queue_free()
+	
+"
+
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_8s11j")
 min_cap = 2.0
@@ -1642,7 +1668,15 @@ max_cap = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
 shape = SubResource("BoxShape3D_u6owi")
 
-[node name="Pause" parent="." instance=ExtResource("24_kuxe4")]
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cxdej")
 
 [connection signal="body_entered" from="Floor/Light toggle" to="." method="_on_light_toggle_body_entered"]
 [connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]
