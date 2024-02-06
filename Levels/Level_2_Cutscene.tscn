@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=90 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="8_q0nxd"]
-[ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="9_6110e"]
+[ext_resource type="Texture2D" uid="uid://d3mw20pnhvait" path="res://2DProps/Dialog.png" id="9_6110e"]
 [ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/VisualLaser.gd" id="10_hmmn0"]
 [ext_resource type="Script" path="res://level_design_objects/Grow-Ray/VisualLaser-Grow.gd" id="11_yktyf"]
 [ext_resource type="PackedScene" uid="uid://wu2sa1fdi3bu" path="res://2DProps/Danger.tscn" id="13_qy2nb"]
@@ -22,7 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://cnuve53ey7qs4" path="res://Items(Grabbable)/Matraz2.tscn" id="20_o613x"]
 [ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
-[ext_resource type="Texture2D" uid="uid://p7cxkinb3o0j" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
+[ext_resource type="Texture2D" uid="uid://d1s4ii6ci773w" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
+[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_kuxe4"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -1640,6 +1641,8 @@ max_cap = 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Unlock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
 shape = SubResource("BoxShape3D_u6owi")
+
+[node name="Pause" parent="." instance=ExtResource("24_kuxe4")]
 
 [connection signal="body_entered" from="Floor/Light toggle" to="." method="_on_light_toggle_body_entered"]
 [connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]
