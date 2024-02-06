@@ -82,6 +82,7 @@ points = PackedVector3Array(0.999847, 1, 1, 0.999847, -1, 1, 1.01576, 0.928152, 
 collision_layer = 3
 collision_mask = 3
 axis_lock_linear_z = true
+gravity_scale = 3.0
 max_contacts_reported = 5
 contact_monitor = true
 script = SubResource("GDScript_th7v8")

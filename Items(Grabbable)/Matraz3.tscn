@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ca5bajqin8wt2"]
 
-[ext_resource type="Texture2D" uid="uid://bbunfrj2jwy27" path="res://Models/Props/Matraz Var-3_Matraz 3.png" id="1_neise"]
+[ext_resource type="Texture2D" uid="uid://b1oktpnrgce5x" path="res://Models/Props/Matraz Var-3_Matraz 3.png" id="1_neise"]
 [ext_resource type="ArrayMesh" uid="uid://uak3b48q3mjt" path="res://Items(Grabbable)/Matraz3.tres" id="2_56vpu"]
 
 [sub_resource type="GDScript" id="GDScript_qvop3"]
@@ -63,6 +63,7 @@ radius = 1.0
 collision_layer = 6
 collision_mask = 6
 axis_lock_linear_z = true
+mass = 0.1
 script = SubResource("GDScript_qvop3")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]

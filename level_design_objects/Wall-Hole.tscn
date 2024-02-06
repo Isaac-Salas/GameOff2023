@@ -415,6 +415,7 @@ skeleton = NodePath("")
 collision_layer = 2
 collision_mask = 2
 mass = 2.0
+gravity_scale = 4.0
 
 [node name="Cube_cell_001" type="MeshInstance3D" parent="Objects/RigidBody3D"]
 transform = Transform3D(0.48791, 0, 0, 0, 0.48791, 0, 0, 0, 1.02795, 2.7197, -3.69412, 0.0848059)
@@ -429,6 +430,7 @@ shape = SubResource("BoxShape3D_wvp0x")
 collision_layer = 2
 collision_mask = 2
 mass = 2.0
+gravity_scale = 4.0
 
 [node name="Cube_cell_009" type="MeshInstance3D" parent="Objects/RigidBody3D2"]
 transform = Transform3D(0.48791, 0, 0, 0, 0.48791, 0, 0, 0, 1.02795, 3.21439, -5.30948, -0.00121258)
@@ -443,6 +445,7 @@ shape = SubResource("BoxShape3D_mf0vk")
 collision_layer = 2
 collision_mask = 2
 mass = 2.0
+gravity_scale = 4.0
 
 [node name="Cube_cell_004" type="MeshInstance3D" parent="Objects/RigidBody3D3"]
 transform = Transform3D(0.48791, 0, 0, 0, 0.48791, 0, 0, 0, 1.02795, 2.84144, -2.20314, 0.403348)

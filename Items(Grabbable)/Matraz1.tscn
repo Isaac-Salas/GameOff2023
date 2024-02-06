@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvnjsoconj0xe"]
 
 [ext_resource type="Material" uid="uid://d2auewsr76rio" path="res://Items(Grabbable)/OutlineMaterial.tres" id="1_1lssc"]
-[ext_resource type="Texture2D" uid="uid://gg1ru1q4ae7p" path="res://Models/Props/Matraz Var-1_Matraz 1.png" id="1_clauo"]
+[ext_resource type="Texture2D" uid="uid://w2jhi0xns0nt" path="res://Models/Props/Matraz Var-1_Matraz 1.png" id="1_clauo"]
 
 [sub_resource type="GDScript" id="GDScript_aa4ya"]
 script/source = "extends RigidBody3D
@@ -81,6 +81,7 @@ radius = 1.0
 collision_layer = 6
 collision_mask = 6
 axis_lock_linear_z = true
+mass = 0.1
 script = SubResource("GDScript_aa4ya")
 
 [node name="Matraz1" type="MeshInstance3D" parent="."]

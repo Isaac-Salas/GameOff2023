@@ -1,22 +1,28 @@
-[gd_scene load_steps=54 format=3 uid="uid://b338sncgcxvse"]
+[gd_scene load_steps=89 format=3 uid="uid://b338sncgcxvse"]
 
 [ext_resource type="PackedScene" uid="uid://cc8jo3lr7raon" path="res://level_design_objects/Floor.tscn" id="1_imyb6"]
 [ext_resource type="PackedScene" uid="uid://dfesb1kbd4d35" path="res://Player/PlayerTest.tscn" id="2_2hqgw"]
 [ext_resource type="PackedScene" uid="uid://jaucwmr63uae" path="res://level_design_objects/Breakables/Floor_(Player).tscn" id="2_r6qqp"]
 [ext_resource type="PackedScene" uid="uid://fnpej0g0wxwx" path="res://Player/camera_3d_2.tscn" id="3_bs0lo"]
+[ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="6_mqhfi"]
 [ext_resource type="PackedScene" uid="uid://bjeb8j21aase2" path="res://level_design_objects/Breakable-Light.tscn" id="6_p2evt"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="8_q0nxd"]
 [ext_resource type="Texture2D" uid="uid://co302w4pbhsio" path="res://2DProps/Dialog.png" id="9_6110e"]
-[ext_resource type="PackedScene" uid="uid://b10soqja17qq6" path="res://level_design_objects/Shrink-Ray/Shrink-Ray.tscn" id="10_nnktc"]
-[ext_resource type="PackedScene" uid="uid://dpc8a3wdpmp0e" path="res://level_design_objects/Grow-Ray/Grow-Ray.tscn" id="11_sr40c"]
+[ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/VisualLaser.gd" id="10_hmmn0"]
+[ext_resource type="Script" path="res://level_design_objects/Grow-Ray/VisualLaser-Grow.gd" id="11_yktyf"]
 [ext_resource type="PackedScene" uid="uid://wu2sa1fdi3bu" path="res://2DProps/Danger.tscn" id="13_qy2nb"]
 [ext_resource type="Script" path="res://level_design_objects/Red_Lamp.gd" id="14_m2km8"]
 [ext_resource type="PackedScene" uid="uid://ccusf8i7w1yll" path="res://2DProps/Arrow.tscn" id="14_oi7kj"]
 [ext_resource type="PackedScene" uid="uid://bbbo7im43lgbi" path="res://level_design_objects/box_stack.tscn" id="15_agbow"]
 [ext_resource type="PackedScene" uid="uid://dmae15ane87kj" path="res://level_design_objects/Wall-Hole.tscn" id="16_8jckr"]
 [ext_resource type="PackedScene" uid="uid://c1dk8fdbe5gee" path="res://level_design_objects/X-Marking.tscn" id="17_g4wd3"]
+[ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="19_41wk1"]
+[ext_resource type="PackedScene" uid="uid://cnuve53ey7qs4" path="res://Items(Grabbable)/Matraz2.tscn" id="20_o613x"]
+[ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
+[ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
+[ext_resource type="Texture2D" uid="uid://p7cxkinb3o0j" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -34,6 +40,7 @@ func _ready():
 		false:
 			pass
 		true:
+			$Player/Lights.queue_free()
 			$Player.global_position = $Places/End.global_position
 	match start:
 		false:
@@ -135,19 +142,19 @@ func _process(delta):
 			get_tree().paused = true
 			if Camera.size < 100:
 				Camera.size += 0.5
-			print(2)
-			print(Camera.size)
+			#print(2)
+			#print(Camera.size)
 			get_tree().paused = false
 
 		3:
-			print(3)
+			#print(3)
 			get_tree().paused = false
 			$AnimationPlayer.play(\"Run\")
 			await $AnimationPlayer.animation_finished
 			Camera.follow = true
 			self.queue_free()
-			print(\"Ending\")
-			print(Camera.size)
+			#print(\"Ending\")
+			#print(Camera.size)
 
 	
 	
@@ -264,6 +271,38 @@ _data = {
 "RESET": SubResource("Animation_46xnu")
 }
 
+[sub_resource type="Animation" id="Animation_1yeft"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.465, 0, 0), Vector3(-4.465, 0.08, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yf8g1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.465, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_32lou"]
 resource_name = "Run"
 tracks/0/type = "value"
@@ -316,38 +355,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 0.0716633, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1yeft"]
-resource_name = "Idle"
-length = 0.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cachetes, pies y manos:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-4.465, 0, 0), Vector3(-4.465, 0.08, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_yf8g1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cachetes, pies y manos:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-4.465, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pdv41"]
@@ -491,24 +498,9 @@ tracks/2/keys = {
 "values": [Vector3(-4.465, 0.396, 0), Vector3(40, 0.396, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xr708"]
-resource_name = "Turned"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cachetes, pies y manos:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 0.0716633, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_7jloj"]
 resource_name = "Runscale"
-length = 2.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -558,6 +550,21 @@ tracks/3/keys = {
 "values": [Vector3(-4.465, 0, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, 1.06, 0), Vector3(-4.465, -0.422155, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_xr708"]
+resource_name = "Turned"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0.0716633, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tj2ya"]
 _data = {
 "RESET": SubResource("Animation_bb0vh"),
@@ -569,11 +576,268 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lxjd"]
 size = Vector3(20, 20, 50)
 
+[sub_resource type="GDScript" id="GDScript_dwgt7"]
+script/source = "extends Node3D
+@export var target_size = 2.5
+signal shrink_player(target_size)
+
+@onready var shrink_ray = $RayCast3D
+
+func _process(_delta):
+	if shrink_ray.is_colliding():
+		var collider = shrink_ray.get_collider()
+		match collider.name:
+			'Player':
+				$\"../Player\"._on_ray_collided(target_size)
+				GlobalVar.MinCap = target_size
+				GlobalVar.MaxCap = target_size
+				GlobalVar.sizefactor = target_size
+				GlobalVar.sizestandard = 1
+			
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_btoij"]
+height = 0.1
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q83oa"]
+albedo_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2qebq"]
+material = SubResource("StandardMaterial3D_q83oa")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.1
+radial_segments = 8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_id384"]
+height = 0.3
+radius = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i311r"]
+albedo_color = Color(0.415686, 0.415686, 0.258824, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8vm4h"]
+material = SubResource("StandardMaterial3D_i311r")
+top_radius = 1.0
+bottom_radius = 1.5
+height = 0.25
+radial_segments = 8
+rings = 6
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1f18m"]
+height = 0.4
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ma5j1"]
+albedo_color = Color(0.313726, 0.713726, 0.305882, 1)
+emission_enabled = true
+emission = Color(0.313726, 0.713726, 0.305882, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2xvsk"]
+material = SubResource("StandardMaterial3D_ma5j1")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 6
+rings = 6
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqwsd"]
+albedo_color = Color(0, 0.717647, 0, 1)
+emission_enabled = true
+emission = Color(0.313726, 0.713726, 0.305882, 1)
+disable_receive_shadows = true
+
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_oaljt"]
 resource_local_to_scene = true
 
+[sub_resource type="GDScript" id="GDScript_a8743"]
+script/source = "extends Node3D
+@export var target_size = 2.5
+signal shrink_player(target_size)
+
+@onready var shrink_ray = $RayCast3D
+
+func _process(_delta):
+	if shrink_ray.is_colliding():
+		var collider = shrink_ray.get_collider()
+		match collider.name:
+			'Player':
+				$\"../Player\"._on_ray_collided(target_size)
+				GlobalVar.MinCap = target_size
+				GlobalVar.MaxCap = target_size
+				GlobalVar.sizefactor = target_size
+				GlobalVar.sizestandard = 1
+			
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ypt5y"]
+height = 0.1
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u835e"]
+albedo_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vkflr"]
+material = SubResource("StandardMaterial3D_u835e")
+top_radius = 2.2
+bottom_radius = 2.2
+height = 0.1
+radial_segments = 4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dyhjq"]
+height = 0.3
+radius = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xnrg"]
+albedo_color = Color(0.415686, 0.415686, 0.258824, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_20ejp"]
+material = SubResource("StandardMaterial3D_0xnrg")
+top_radius = 1.0
+bottom_radius = 1.5
+height = 0.25
+radial_segments = 4
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vvvof"]
+height = 0.4
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcpbd"]
+albedo_color = Color(0.380392, 0, 0.968627, 1)
+emission_enabled = true
+emission = Color(0.380392, 0, 0.968627, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ejxoj"]
+material = SubResource("StandardMaterial3D_jcpbd")
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 6
+rings = 6
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32v3k"]
+albedo_color = Color(0.380392, 0, 0.968627, 1)
+emission_enabled = true
+emission = Color(0.380392, 0, 0.968627, 1)
+
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_lrpp1"]
 resource_local_to_scene = true
+
+[sub_resource type="GDScript" id="GDScript_jjj0r"]
+script/source = "extends RigidBody3D
+@onready var countbig = false
+@onready var countsmall = false
+@onready var start = 0
+@onready var done = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	match done:
+		true:
+			#print(\"done\")
+			#print(GlobalVar.sizefactor)
+			match GlobalVar.sizefactor:
+				2.0:
+					countbig = true
+					#print(\"Bigcap\")
+					
+				0.5:
+					countsmall = true
+					#print(\"Smallcap\")
+		false:
+			pass
+
+	if countbig == true and countsmall == true:
+		start = 1
+
+	match start:
+		0:
+			pass
+		1:
+			print(\"Animate here\")
+			pass
+
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0b6hv"]
+size = Vector3(1.97313, 2.68315, 1)
+
+[sub_resource type="GDScript" id="GDScript_qpecu"]
+script/source = "extends Area3D
+var Handready = false
+var state = false
+@export var lines: Array[String] =[
+	\"Hey, you seem pretty strong!\",
+	\"Wanna spar?\",
+	\"Wait...\",
+	\"I shouldn't waste my energy before an important battle...\",
+	\"Well, I'll see you at the buffet!\",]
+	
+	
+
+func _unhandled_input(event):
+	if state and event.is_action_pressed(\"Talk\"):
+		Handready = true
+		$Sprite3D.hide()
+		DialogManager.start_dialog(global_position, lines)
+		state = false
+
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		$Sprite3D.show()
+		state = true
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		state = false
+		$Sprite3D.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rnjdr"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy0iu"]
+size = Vector3(30, 30, 30)
+
+[sub_resource type="GDScript" id="GDScript_l06su"]
+script/source = "extends Area3D
+@export var min_cap = 1.0
+@export var max_cap = 1.0
+@export var size_factor = 1.0
+@export var size_standard = 1.0
+
+func _on_body_entered(body):
+	match body.name:
+		\"Player\":
+			GlobalVar.MinCap = min_cap
+			GlobalVar.MaxCap = max_cap
+			GlobalVar.sizefactor = size_factor
+			GlobalVar.sizestandard = size_standard
+			$\"../Hamster3\".done = true
+			self.queue_free()
+	#GlobalVar.sizeM = Vector3(size_factor, size_factor, size_factor)
+	#$Player/PlayerRigid.mass = size_factor
+	#$Player.scale = Vector3(size_factor, size_factor, size_factor)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6owi"]
+size = Vector3(0.999207, 4.46408, 50)
 
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_8s11j")
@@ -809,6 +1073,53 @@ mesh = SubResource("TorusMesh_ban8v")
 transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.770977, -3.37005e-08, -0.68594)
 mesh = SubResource("CapsuleMesh_wf2et")
 
+[node name="Red-Lamp4" type="Node3D" parent="Lights"]
+transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 339.531, 33.6517, -12.7161)
+script = ExtResource("14_m2km8")
+
+[node name="LampBody" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+mesh = SubResource("CapsuleMesh_rqfkl")
+
+[node name="Ring" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring2" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.444, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Ring3" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 7.58352e-13, -0.44403, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Support" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 0.855098, -3.73754e-08, -0.688423)
+mesh = SubResource("BoxMesh_3qi8e")
+
+[node name="Cable" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.641)
+mesh = SubResource("BoxMesh_4w3h3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 1.21652e-31, 2.64698e-23, 1.21652e-31, 1, -2.64698e-23, 0, 0, 1, 0, 0, 9.83838)
+layers = 3
+light_color = Color(0.984314, 0, 0.0666667, 1)
+light_energy = 6.841
+shadow_enabled = true
+shadow_bias = 0.3
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = 8.454
+shadow_blur = 0.39
+omni_range = 60.0
+omni_attenuation = 0.812252
+
+[node name="LongRing" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(-9.17939e-08, 1, 4.18544e-16, -2.1, -4.37114e-08, -4.18544e-16, -7.32452e-16, -3.48787e-16, 1.2, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("TorusMesh_ban8v")
+
+[node name="Cableties" type="MeshInstance3D" parent="Lights/Red-Lamp4"]
+transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.770977, -3.37005e-08, -0.68594)
+mesh = SubResource("CapsuleMesh_wf2et")
+
 [node name="Red-Lamp3" type="Node3D" parent="Lights"]
 transform = Transform3D(-4.37114e-08, -1, 3.48787e-16, 1, -4.37114e-08, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 244.076, 47.0805, -12.7161)
 script = ExtResource("14_m2km8")
@@ -855,6 +1166,9 @@ mesh = SubResource("TorusMesh_ban8v")
 [node name="Cableties" type="MeshInstance3D" parent="Lights/Red-Lamp3"]
 transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.770977, -3.37005e-08, -0.68594)
 mesh = SubResource("CapsuleMesh_wf2et")
+
+[node name="Bouncylight" parent="Lights" instance=ExtResource("6_mqhfi")]
+transform = Transform3D(0.863448, 0.497941, -0.0806934, 0, 0.159967, 0.987122, 0.504437, -0.852329, 0.138123, 290.041, 21.4115, 0)
 
 [node name="Repisa-Tubes" parent="." instance=ExtResource("8_fdeah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7298, 23.8336, -17.0263)
@@ -981,23 +1295,144 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster2/Player"]
 shape = SubResource("BoxShape3D_3lxjd")
 
-[node name="Shrink-Ray" parent="." instance=ExtResource("10_nnktc")]
+[node name="Shrink-Ray" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252.089, 19.9662, 0)
+script = SubResource("GDScript_dwgt7")
+target_size = 0.5
 
-[node name="VisualLaser" parent="Shrink-Ray" index="4"]
+[node name="Base" type="RigidBody3D" parent="Shrink-Ray"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shrink-Ray/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_btoij")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shrink-Ray/Base/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_2qebq")
+skeleton = NodePath("../../..")
+
+[node name="Cone" type="RigidBody3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shrink-Ray/Cone"]
+shape = SubResource("CylinderShape3D_id384")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shrink-Ray/Cone/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_8vm4h")
+
+[node name="LaserCannon" type="RigidBody3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.556, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shrink-Ray/LaserCannon"]
+shape = SubResource("CylinderShape3D_1f18m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shrink-Ray/LaserCannon/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_2xvsk")
+
+[node name="RayCast3D" type="RayCast3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
+target_position = Vector3(0, 50, 0)
+collision_mask = 129
+debug_shape_custom_color = Color(0, 0.654902, 0, 1)
+debug_shape_thickness = 5
+
+[node name="VisualLaser" type="MeshInstance3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
+material_override = SubResource("StandardMaterial3D_jqwsd")
+cast_shadow = 0
 mesh = SubResource("ImmediateMesh_oaljt")
+script = ExtResource("10_hmmn0")
 
-[node name="OmniLight3D" parent="Shrink-Ray" index="6"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.772501, 4.37114e-08)
+light_color = Color(0, 0.717647, 0, 1)
+light_energy = 14.375
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+shadow_enabled = true
+spot_range = 36.1298
+spot_attenuation = 0.0206173
+spot_angle = 0.936471
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Shrink-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05544, 0)
+light_color = Color(0, 0.717647, 0, 1)
+light_energy = 5.125
+light_indirect_energy = 7.75
+light_bake_mode = 1
+shadow_enabled = true
 omni_range = 8.0
 
-[node name="Grow-Ray" parent="." instance=ExtResource("11_sr40c")]
+[node name="Grow-Ray" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.589, 20, 0)
+script = SubResource("GDScript_a8743")
 target_size = 3.0
 
-[node name="VisualLaser" parent="Grow-Ray" index="4"]
-mesh = SubResource("ImmediateMesh_lrpp1")
+[node name="Base" type="RigidBody3D" parent="Grow-Ray"]
+freeze = true
 
-[node name="OmniLight3D" parent="Grow-Ray" index="6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grow-Ray/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_ypt5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grow-Ray/Base/CollisionShape3D"]
+transform = Transform3D(0.707107, 1.60554e-24, 0.707107, 3.48787e-16, 1, -3.48787e-16, -0.707107, 4.93259e-16, 0.707107, 0, 0, 0)
+mesh = SubResource("CylinderMesh_vkflr")
+skeleton = NodePath("../../..")
+
+[node name="Cone" type="RigidBody3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grow-Ray/Cone"]
+shape = SubResource("CylinderShape3D_dyhjq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grow-Ray/Cone/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_20ejp")
+
+[node name="LaserCannon" type="RigidBody3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.556, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grow-Ray/LaserCannon"]
+shape = SubResource("CylinderShape3D_vvvof")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grow-Ray/LaserCannon/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_ejxoj")
+
+[node name="RayCast3D" type="RayCast3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
+target_position = Vector3(0, 50, 0)
+debug_shape_custom_color = Color(0.647059, 0.00392157, 0.94902, 1)
+debug_shape_thickness = 5
+
+[node name="VisualLaser" type="MeshInstance3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735042, 0)
+material_override = SubResource("StandardMaterial3D_32v3k")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_lrpp1")
+script = ExtResource("11_yktyf")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.772501, 4.37114e-08)
+light_color = Color(0.380392, 0, 0.968627, 1)
+light_energy = 14.375
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+shadow_enabled = true
+spot_range = 36.1298
+spot_attenuation = 0.0206173
+spot_angle = 0.936471
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Grow-Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05544, 0)
+light_color = Color(0.380392, 0, 0.968627, 1)
+light_energy = 5.125
+light_indirect_energy = 7.75
+light_bake_mode = 1
+shadow_enabled = true
 omni_range = 8.0
 
 [node name="Danger" parent="." instance=ExtResource("13_qy2nb")]
@@ -1068,6 +1503,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 166.28
 [node name="Node3D" parent="." instance=ExtResource("17_g4wd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 246.887, 31.1342, -14.2682)
 
+[node name="Node3D5" parent="." instance=ExtResource("17_g4wd3")]
+transform = Transform3D(0.982616, -0.185649, 0, 0.185649, 0.982616, 0, 0, 0, 1, 332.82, 40.358, -13.3756)
+
+[node name="Node3D6" parent="." instance=ExtResource("17_g4wd3")]
+transform = Transform3D(0.851178, -0.524878, 0, 0.524878, 0.851178, 0, 0, 0, 1, 319.495, 39.2697, -14.922)
+
+[node name="Node3D7" parent="." instance=ExtResource("17_g4wd3")]
+transform = Transform3D(0.62317, 0.782086, 0, -0.782086, 0.62317, 0, 0, 0, 1, 325.249, 47.7475, -14.922)
+
 [node name="Node3D2" parent="." instance=ExtResource("17_g4wd3")]
 transform = Transform3D(0.687379, 0.726299, 0, -0.726299, 0.687379, 0, 0, 0, 1, 253.537, 39.1046, -14.2682)
 
@@ -1077,12 +1521,134 @@ transform = Transform3D(0.432904, -0.90144, 0, 0.90144, 0.432904, 0, 0, 0, 1, 23
 [node name="Node3D4" parent="." instance=ExtResource("17_g4wd3")]
 transform = Transform3D(0.986774, 0.162103, 0, -0.162103, 0.986774, 0, 0, 0, 1, 240.661, 42.3469, -14.2682)
 
+[node name="Tube" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, -8.45313)
+
+[node name="Tube2" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, 3.78723)
+
+[node name="Tube3" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.701121, 0.713042, 0, -0.713042, 0.701121, 0, 0, 0, 1, 320.674, 21.9608, 3.78723)
+
+[node name="Tube4" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.674, 21.9608, -7.74182)
+
+[node name="Tube5" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.977, 21.9608, -3.43274)
+
+[node name="Tube6" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, -3.43274)
+
+[node name="Tube7" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, 4.21167)
+
+[node name="Tube8" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 0.856799, -0.515651, 0, 0.515651, 0.856799, 327.693, 21.9608, 4.21167)
+
+[node name="Tube9" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.756676, 0.65379, 0, -0.65379, 0.756676, 0, 0, 0, 1, 327.693, 21.9608, 13.5551)
+
+[node name="Tube10" parent="." instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.391968, -0.919979, 0, 0.919979, 0.391968, 0, 0, 0, 1, 322.981, 21.9608, 13.5551)
+
+[node name="Tube11" parent="." instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 323.182, 21.4489, 6.40466)
+
+[node name="Tube12" parent="." instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.539, 21.4489, 0.681152)
+
+[node name="Tube13" parent="." instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 322.854, 21.4489, 0.681152)
+
+[node name="Tube14" parent="." instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
+
+[node name="Tube15" parent="." instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
+
+[node name="Tube16" parent="." instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.588, 21.5294, 6.73413)
+
+[node name="Tube17" parent="." instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 332.112, 21.5294, 6.73413)
+
+[node name="Tube18" parent="." instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.442, 21.5294, 6.73413)
+
+[node name="Tube19" parent="." instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
+
+[node name="Tube20" parent="." instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
+
+[node name="Bench-tubes" parent="." instance=ExtResource("22_0rnhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.295, 20.46, 0)
+
+[node name="Hamster3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.397, 20.8406, 1.20131)
+can_sleep = false
+freeze = true
+script = SubResource("GDScript_jjj0r")
+
+[node name="Cachetes, pies y manos" type="MeshInstance3D" parent="Hamster3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0610237, 0)
+mesh = ExtResource("8_q0nxd")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513186, 0)
+shape = SubResource("BoxShape3D_0b6hv")
+
+[node name="Dialogue_box2" type="Area3D" parent="Hamster3"]
+process_mode = 3
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+visible = false
+script = SubResource("GDScript_qpecu")
+lines = Array[String](["What?", "I tought I lost you back there", "...", "See ya!"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3/Dialogue_box2"]
+shape = SubResource("BoxShape3D_rnjdr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Hamster3/Dialogue_box2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_6110e")
+
+[node name="Playertoggle" type="Area3D" parent="Hamster3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3/Playertoggle"]
+shape = SubResource("BoxShape3D_xy0iu")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.714, 31.254, -14.4818)
+pixel_size = 0.08
+shaded = true
+texture_filter = 0
+texture = ExtResource("24_ivlag")
+
+[node name="Bouncylight" parent="." instance=ExtResource("6_mqhfi")]
+transform = Transform3D(0.317652, -0.936775, -0.146796, -0.948207, -0.313823, -0.049177, -1.03147e-08, 0.154814, -0.987944, 317.884, 35.2207, -9.38304)
+
+[node name="Unlock" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309.028, 20.9984, 0)
+script = SubResource("GDScript_l06su")
+min_cap = 0.5
+max_cap = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Unlock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
+shape = SubResource("BoxShape3D_u6owi")
+
 [connection signal="body_entered" from="Floor/Light toggle" to="." method="_on_light_toggle_body_entered"]
 [connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_exited" flags=18]
 [connection signal="body_entered" from="Hamster/Playertoggle" to="Hamster" method="_on_playertoggle_body_entered" flags=18]
 [connection signal="body_entered" from="Hamster2/Player" to="Hamster2" method="_on_player_body_entered"]
+[connection signal="body_entered" from="Hamster3/Dialogue_box2" to="Hamster3/Dialogue_box2" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="Hamster3/Dialogue_box2" to="Hamster3/Dialogue_box2" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="Hamster3/Playertoggle" to="Hamster3" method="_on_playertoggle_body_entered" flags=18]
+[connection signal="body_entered" from="Unlock" to="Unlock" method="_on_body_entered"]
 
-[editable path="Shrink-Ray"]
-[editable path="Grow-Ray"]
 [editable path="F-Camera"]
