@@ -43,6 +43,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_flfew")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q75bq"]
+margin = 0.1
 size = Vector3(50, 40, 33)
 
 [node name="Floor-Un" type="StaticBody3D"]

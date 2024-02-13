@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b6inaoqalf0at"]
 
 [ext_resource type="PackedScene" uid="uid://c0qcjnxkblhyb" path="res://level_design_objects/Breakables/Resources/Floor_Brk.tscn" id="1_35g1f"]
-[ext_resource type="Texture2D" uid="uid://bceqksnuuouw5" path="res://Models/Props/Floor-Un_Pisote.png" id="1_ugp1f"]
+[ext_resource type="Texture2D" uid="uid://2ew64k57grb8" path="res://Models/Props/Floor-Un_Pisote.png" id="1_ugp1f"]
 
 [sub_resource type="GDScript" id="GDScript_ahusk"]
 script/source = "extends StaticBody3D
@@ -20,7 +20,7 @@ func break_object():
 	#Setting the breakable's translation and rotation to the Area node.
 	breakable.transform = self.transform
 	breakable.rotation_degrees = self.rotation_degrees
-	print(breakable.get_children())
+	#print(breakable.get_children())
 	
 	# Deleting the Area node.
 	self.queue_free()
@@ -28,8 +28,8 @@ func break_object():
 
 
 func _on_area_3d_body_entered(body):
-	print(body.name)
-	if body.name == \"Hand\" or body.name == \"Player\":
+	#print(body.name)
+	if body.name == \"Hand\":
 		break_object()
 	
 "

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://jaucwmr63uae"]
 
 [ext_resource type="PackedScene" uid="uid://c0qcjnxkblhyb" path="res://level_design_objects/Breakables/Resources/Floor_Brk.tscn" id="1_cp4fk"]
-[ext_resource type="Texture2D" uid="uid://2ew64k57grb8" path="res://Models/Props/Floor-Un_Pisote.png" id="2_j4nub"]
+[ext_resource type="Texture2D" uid="uid://bceqksnuuouw5" path="res://Models/Props/Floor-Un_Pisote.png" id="2_j4nub"]
 
 [sub_resource type="GDScript" id="GDScript_jbmje"]
 script/source = "extends StaticBody3D

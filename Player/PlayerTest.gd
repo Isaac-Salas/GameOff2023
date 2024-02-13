@@ -177,26 +177,7 @@ func touching_wall():
 	return wall_cast.is_colliding()
 
 func dyn_music():
-	if GlobalVar.CURRENT == "NORMAL":
-		AudioServer.set_bus_volume_db(SMALL, 0)
-		AudioServer.set_bus_volume_db(SMALL, 0)
-	
-	if GlobalVar.CURRENT == "SMALL":
-		GlobalVar.VolBig -= 0.05
-		AudioServer.set_bus_volume_db(BIG,GlobalVar.VolBig)
-		
-		if AudioServer.get_bus_volume_db(SMALL) < 0:
-			GlobalVar.VolSmall += 0.05
-			AudioServer.set_bus_volume_db(SMALL, GlobalVar.VolSmall)
-		
-	if GlobalVar.CURRENT == "BIG":
-		GlobalVar.VolSmall -= 0.05
-		AudioServer.set_bus_volume_db(SMALL,GlobalVar.VolSmall)
-		
-	if AudioServer.get_bus_volume_db(BIG) < 0:
-		GlobalVar.VolBig += 0.05
-		AudioServer.set_bus_volume_db(BIG, GlobalVar.VolBig)
-
+	pass
 func try_pickup():
 	if pickedobject.size() > 0:
 		pickupinst = load(String(pickedobject[0].scene_file_path))

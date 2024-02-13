@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://b6bs6nbv7d12w"]
 
-[ext_resource type="Texture2D" uid="uid://bnbka41p18ocr" path="res://Models/NPC/Hamster_hamster.png" id="1_umd6q"]
+[ext_resource type="Texture2D" uid="uid://cxt1c8kdsjibp" path="res://Models/NPC/Hamster_hamster.png" id="1_umd6q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk6oj"]
 resource_name = "Material.001"

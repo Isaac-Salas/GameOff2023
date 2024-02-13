@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=3 uid="uid://c0qcjnxkblhyb"]
 
-[ext_resource type="Texture2D" uid="uid://cbnkk0bansmbx" path="res://Models/Props/Floor-Brk_Pisote.png" id="1_1eu23"]
+[ext_resource type="Texture2D" uid="uid://cbcats41qf88p" path="res://Models/Props/Floor-Brk_Pisote.png" id="1_1eu23"]
 
 [sub_resource type="GDScript" id="GDScript_rsmsw"]
 script/source = "extends Node3D

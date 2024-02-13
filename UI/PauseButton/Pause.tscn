@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdvj2tbalmcjq"]
 
-[ext_resource type="Texture2D" uid="uid://y35u7evxy1pv" path="res://UI/PauseButton/Normal.png" id="1_8gocc"]
-[ext_resource type="Texture2D" uid="uid://bnsd57llwpbbs" path="res://UI/PauseButton/Clicked.png" id="2_ibgna"]
-[ext_resource type="Texture2D" uid="uid://ckmduaoxpgkgr" path="res://UI/PauseButton/Hover.png" id="2_vxdr7"]
+[ext_resource type="Texture2D" uid="uid://h6ic6fd05mrq" path="res://UI/PauseButton/Normal.png" id="1_8gocc"]
+[ext_resource type="Texture2D" uid="uid://dgamui0skgyck" path="res://UI/PauseButton/Clicked.png" id="2_ibgna"]
+[ext_resource type="Texture2D" uid="uid://rp2k31uew3mw" path="res://UI/PauseButton/Hover.png" id="2_vxdr7"]
 
 [sub_resource type="GDScript" id="GDScript_cxdej"]
 script/source = "extends Control

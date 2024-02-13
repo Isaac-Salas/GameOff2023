@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnuve53ey7qs4"]
 
 [ext_resource type="ArrayMesh" uid="uid://cbufycij056fv" path="res://Items(Grabbable)/Matraz2.tres" id="1_rb1ns"]
-[ext_resource type="Texture2D" uid="uid://dlhal15phf1ew" path="res://Models/Props/Matraz Var-2_MAt2-norm.png" id="1_uxr5v"]
+[ext_resource type="Texture2D" uid="uid://cewjxu4igving" path="res://Models/Props/Matraz Var-2_MAt2-norm.png" id="1_uxr5v"]
 
 [sub_resource type="GDScript" id="GDScript_5xxhd"]
 script/source = "extends RigidBody3D
@@ -9,10 +9,6 @@ script/source = "extends RigidBody3D
 @onready var resizeable = false
 func _ready():
 	set_disable_scale(true)
-
-func _process(delta):
-	pass
-
 
 func resize():
 	pass
@@ -59,8 +55,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vo5ei")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y0ylv"]
-points = PackedVector3Array(-0.000191808, 0.195008, 0.980785, -0.693538, 0.195008, 0.693347, -0.588125, -0.55557, 0.587933, -0.000191808, -0.55557, 0.831402, 0.587934, -0.55557, 0.587933, 0.693347, 0.195008, 0.693347, 0.0777641, 3.31907, 0.379603, -0.0779557, 3.31907, 0.379603, -0.980785, 0.195008, -0.000192106, -0.332176, 3.31907, 0.209866, -0.831593, -0.55557, -0.000192106, 0.831402, -0.55557, -5.96046e-08, 0.980785, 0.195008, -5.96046e-08, 0.331985, 3.31907, 0.209866, -0.693538, 0.195008, -0.693539, -0.588125, -0.55557, -0.588126, -0.391699, 3.31907, -0.0898606, 0.587934, -0.55557, -0.588126, 0.693347, 0.195008, -0.693539, 0.391508, 3.31907, -0.0898606, -0.000191808, 0.195008, -0.980785, -0.221963, 3.31907, -0.344081, -0.000191808, -0.55557, -0.831594, 0.221771, 3.31907, -0.344081)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t03pj"]
+height = 1.5
+radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0efeb"]
 
@@ -68,6 +65,7 @@ points = PackedVector3Array(-0.000191808, 0.195008, 0.980785, -0.693538, 0.19500
 collision_layer = 6
 collision_mask = 6
 axis_lock_linear_z = true
+mass = 0.1
 script = SubResource("GDScript_5xxhd")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
@@ -82,8 +80,8 @@ visible = false
 mesh = ExtResource("1_rb1ns")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_y0ylv")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0879907, 0)
+shape = SubResource("CylinderShape3D_t03pj")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 4

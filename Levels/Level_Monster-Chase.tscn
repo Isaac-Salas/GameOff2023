@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://v8f8fuepq5r3" path="res://level_design_objects/Breakables/Wall-Un.tscn" id="5_h2blc"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_2vuet"]
 [ext_resource type="PackedScene" uid="uid://dkirhggfyjeqp" path="res://Enemies/Hand-Chase.tscn" id="6_yolky"]
-[ext_resource type="Texture2D" uid="uid://d2eqmm8845aq2" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
+[ext_resource type="Texture2D" uid="uid://bv3dp82jq8lh0" path="res://Models/Props/Paredzota_Texture-wall.png" id="7_xkx4b"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="8_bwc21"]
-[ext_resource type="Texture2D" uid="uid://bb5rm8a03cl6u" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
+[ext_resource type="Texture2D" uid="uid://d0ivuocwexrnq" path="res://Backgrounds/Fondomano.png" id="9_1x7rp"]
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_46bws"]
 [ext_resource type="PackedScene" uid="uid://b501yhw6wicao" path="res://level_design_objects/RedFluoLight.tscn" id="11_nk1y1"]
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="12_potvo"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://10wkwnw1ie5d" path="res://NPCs/Hamster.tscn" id="20_ply3q"]
 [ext_resource type="PackedScene" uid="uid://bbbo7im43lgbi" path="res://level_design_objects/box_stack.tscn" id="20_w0a2a"]
 [ext_resource type="PackedScene" uid="uid://chh3bt1gql45s" path="res://level_design_objects/Breakables/Metal_Crate.tscn" id="23_b2f62"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_kwe1p"]
 
 [sub_resource type="GDScript" id="GDScript_6a5mg"]
 script/source = "extends Node3D
@@ -42,6 +41,7 @@ var player
 
 
 func _ready():
+	
 	
 	match checkpoint:
 		true:
@@ -109,7 +109,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 agent_max_slope = 90.0
 vertices_per_polygon = 10.0
 
-[sub_resource type="GDScript" id="GDScript_tn1ub"]
+[sub_resource type="GDScript" id="GDScript_c6rf6"]
 script/source = "extends StaticBody3D
 
 #It doesn't have to be an Area node it can be a Rigidbody as well.
@@ -119,7 +119,7 @@ var breaking = false
  
 func break_object():
 	breaking = true
-	print(\"StartBreaking\")
+	#print(\"StartBreaking\")
 	# Instancing the breakable.
 	var breakable = resource.instantiate()
 	# Getting the parent of the Area node.
@@ -195,9 +195,6 @@ shadow_mesh = SubResource("ArrayMesh_jolfb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc5eu"]
 size = Vector3(50, 30, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qho6q"]
-size = Vector3(50, 30, 2.1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o7oe"]
 size = Vector3(50.695, 47.915, 13.646)
 
@@ -260,6 +257,9 @@ _data = {
 "Down": SubResource("Animation_7y5eq"),
 "RESET": SubResource("Animation_3xngx")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mfeok"]
+size = Vector3(50.25, 30.25, 2.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhyq6"]
 albedo_texture = ExtResource("9_1x7rp")
@@ -508,9 +508,35 @@ _data = {
 "RESET": SubResource("Animation_v13hn")
 }
 
+[sub_resource type="GDScript" id="GDScript_cxdej"]
+script/source = "extends Control
+@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
+@onready var Escinst
+
+
+func _input(event):
+	
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().paused = true
+		Escinst = Esc.instantiate()
+		get_parent().add_child(Escinst)
+		GlobalVar.Escswitch = 1
+		self.queue_free()
+		
+
+
+
+func _on_pause_game_pressed():
+	get_tree().paused = true
+	Escinst = Esc.instantiate()
+	get_parent().add_child(Escinst)
+	GlobalVar.Escswitch = 1
+	self.queue_free()
+	
+"
+
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_6a5mg")
-checkpoint = true
 player_path = NodePath("Player")
 min_cap = 2.0
 max_cap = 2.0
@@ -640,9 +666,6 @@ player_path = NodePath("../Player")
 hamster_path = NodePath("../Hamster")
 target_size = 2.0
 
-[node name="Wall-Unbreak" parent="." instance=ExtResource("5_h2blc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -464.897, 14.6033, -10)
-
 [node name="Obstacles" type="Node3D" parent="."]
 
 [node name="Wall-Unbreak2" type="StaticBody3D" parent="Obstacles"]
@@ -652,7 +675,7 @@ collision_mask = 3
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
-script = SubResource("GDScript_tn1ub")
+script = SubResource("GDScript_c6rf6")
 resource = ExtResource("6_2vuet")
 
 [node name="Cube" type="MeshInstance3D" parent="Obstacles/Wall-Unbreak2"]
@@ -662,13 +685,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2"]
 shape = SubResource("BoxShape3D_rc5eu")
-
-[node name="Area3D" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/Area3D"]
-shape = SubResource("BoxShape3D_qho6q")
 
 [node name="DetectPlayer" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.8397, 0)
@@ -681,6 +697,14 @@ shape = SubResource("BoxShape3D_2o7oe")
 libraries = {
 "": SubResource("AnimationLibrary_3wsff")
 }
+
+[node name="Area3D" type="Area3D" parent="Obstacles/Wall-Unbreak2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall-Unbreak2/Area3D"]
+shape = SubResource("BoxShape3D_mfeok")
+
+[node name="Wall-Unbreak" parent="Obstacles" instance=ExtResource("5_h2blc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -464.897, 14.6033, -10)
 
 [node name="Morado" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.994522, 0.0109262, -0.103955, 0, 0.994522, 0.104529, 0.104528, -0.103956, 0.989074, -234.404, 0, 64.6736)
@@ -939,14 +963,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.074, 0, 0)
 [node name="Checkpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -452.989, 1.64207, 0)
 
-[node name="Pause" parent="." instance=ExtResource("24_kwe1p")]
-
 [node name="Blanco" type="DirectionalLight3D" parent="."]
 light_energy = 0.01
 light_bake_mode = 1
 
-[connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered" flags=18]
+[node name="Pause2" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cxdej")
+
 [connection signal="body_entered" from="Obstacles/Wall-Unbreak2/DetectPlayer" to="Obstacles/Wall-Unbreak2" method="_on_detect_player_body_entered"]
+[connection signal="body_entered" from="Obstacles/Wall-Unbreak2/Area3D" to="Obstacles/Wall-Unbreak2" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Hamster2/Area3D" to="Hamster2" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_entered" from="Hamster4/Area3D" to="Hamster4" method="_on_area_3d_body_entered" flags=18]
 [connection signal="body_exited" from="End" to="." method="_on_end_body_exited"]

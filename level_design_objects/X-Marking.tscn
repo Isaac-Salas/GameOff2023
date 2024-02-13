@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1dk8fdbe5gee"]
 
-[ext_resource type="Texture2D" uid="uid://6xwt22kcidow" path="res://2DProps/Marking.png" id="1_n243e"]
+[ext_resource type="Texture2D" uid="uid://cpu1kk7j4ccdy" path="res://2DProps/Marking.png" id="1_n243e"]
 
 [node name="Node3D" type="Node3D"]
 

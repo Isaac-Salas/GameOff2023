@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd0j70spbw5h0"]
 
-[ext_resource type="Texture2D" uid="uid://c4majseiidqqh" path="res://Models/Props/Cajita_cajotota.png" id="1_305hy"]
+[ext_resource type="Texture2D" uid="uid://howsv1okpjno" path="res://Models/Props/Cajita_cajotota.png" id="1_305hy"]
 [ext_resource type="PackedScene" uid="uid://bvefett6rmq5u" path="res://level_design_objects/Breakables/Resources/W-Box-Broken.tscn" id="1_bh0vm"]
 
 [sub_resource type="GDScript" id="GDScript_th7v8"]
@@ -30,10 +30,10 @@ func break_object():
 
 
 func _on_body_entered(body):
-	print(body.name)
-	if body.find_child(\"Pickable\"):
-		break_object()
-	if body.name == \"Pickup\" or body.name== \"HandBreak\" :
+	#print(body.name)
+#	if body.find_child(\"Pickable\"):
+#		break_object()
+	if body.name == \"Pickup\" or body.name== \"HandBreak\" or body.find_child(\"Pickable\") :
 		break_object()
 	
 "
@@ -75,13 +75,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8qp7o")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m5a21"]
-points = PackedVector3Array(0.999847, 1, 1, 0.999847, -1, 1, 1.01576, 0.928152, -0.490799, 1.01536, 0.949883, -0.892717, 0.999847, 1, -1, -1.00012, 1, 1, 0.999847, -1, -1, -1.00012, -1, 1, -1.00012, 1, -1, -1.01165, 0.969264, -0.890564, -1.01145, 0.947533, -0.488841, -1.01603, 0.566954, -0.891738, -1.00012, -1, -1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdu8n"]
+size = Vector3(2, 2, 2)
 
 [node name="Cajita" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
 axis_lock_linear_z = true
+gravity_scale = 3.0
 max_contacts_reported = 5
 contact_monitor = true
 script = SubResource("GDScript_th7v8")
@@ -92,6 +93,6 @@ mesh = SubResource("ArrayMesh_0a2qc")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_m5a21")
+shape = SubResource("BoxShape3D_vdu8n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
