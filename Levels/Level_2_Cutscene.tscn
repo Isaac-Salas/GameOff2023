@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="8_q0nxd"]
-[ext_resource type="Texture2D" uid="uid://d3mw20pnhvait" path="res://2DProps/Dialog.png" id="9_6110e"]
+[ext_resource type="Texture2D" uid="uid://bt3mawh37j46q" path="res://2DProps/Dialog.png" id="9_6110e"]
 [ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/VisualLaser.gd" id="10_hmmn0"]
 [ext_resource type="Script" path="res://level_design_objects/Grow-Ray/VisualLaser-Grow.gd" id="11_yktyf"]
 [ext_resource type="PackedScene" uid="uid://wu2sa1fdi3bu" path="res://2DProps/Danger.tscn" id="13_qy2nb"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cnuve53ey7qs4" path="res://Items(Grabbable)/Matraz2.tscn" id="20_o613x"]
 [ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
-[ext_resource type="Texture2D" uid="uid://d1s4ii6ci773w" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
+[ext_resource type="Texture2D" uid="uid://cj86vknuws6na" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
 [ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_rxo8w"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
@@ -830,6 +830,21 @@ func _on_body_exited(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_rnjdr"]
 size = Vector3(5, 5, 5)
 
+[sub_resource type="Animation" id="Animation_1tata"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(340.397, 20.8406, 1.20131)]
+}
+
 [sub_resource type="Animation" id="Animation_13gwx"]
 resource_name = "jUMP!"
 length = 0.4
@@ -845,21 +860,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(340.397, 20.8406, 1.20131), Vector3(340.397, 22.1636, 1.20131), Vector3(340.397, 20.8406, 1.20131)]
-}
-
-[sub_resource type="Animation" id="Animation_1tata"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(340.397, 20.8406, 1.20131)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vreqq"]
@@ -1586,66 +1586,6 @@ transform = Transform3D(0.432904, -0.90144, 0, 0.90144, 0.432904, 0, 0, 0, 1, 23
 [node name="Node3D4" parent="." instance=ExtResource("17_g4wd3")]
 transform = Transform3D(0.986774, 0.162103, 0, -0.162103, 0.986774, 0, 0, 0, 1, 240.661, 42.3469, -14.2682)
 
-[node name="Tube" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, -8.45313)
-
-[node name="Tube2" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, 3.78723)
-
-[node name="Tube3" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(0.701121, 0.713042, 0, -0.713042, 0.701121, 0, 0, 0, 1, 320.674, 21.9608, 3.78723)
-
-[node name="Tube4" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.674, 21.9608, -7.74182)
-
-[node name="Tube5" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.977, 21.9608, -3.43274)
-
-[node name="Tube6" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, -3.43274)
-
-[node name="Tube7" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, 4.21167)
-
-[node name="Tube8" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(1, 0, 0, 0, 0.856799, -0.515651, 0, 0.515651, 0.856799, 327.693, 21.9608, 4.21167)
-
-[node name="Tube9" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(0.756676, 0.65379, 0, -0.65379, 0.756676, 0, 0, 0, 1, 327.693, 21.9608, 13.5551)
-
-[node name="Tube10" parent="." instance=ExtResource("19_41wk1")]
-transform = Transform3D(0.391968, -0.919979, 0, 0.919979, 0.391968, 0, 0, 0, 1, 322.981, 21.9608, 13.5551)
-
-[node name="Tube11" parent="." instance=ExtResource("20_o613x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 323.182, 21.4489, 6.40466)
-
-[node name="Tube12" parent="." instance=ExtResource("20_o613x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.539, 21.4489, 0.681152)
-
-[node name="Tube13" parent="." instance=ExtResource("20_o613x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 322.854, 21.4489, 0.681152)
-
-[node name="Tube14" parent="." instance=ExtResource("20_o613x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
-
-[node name="Tube15" parent="." instance=ExtResource("20_o613x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
-
-[node name="Tube16" parent="." instance=ExtResource("21_m0jgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.588, 21.5294, 6.73413)
-
-[node name="Tube17" parent="." instance=ExtResource("21_m0jgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 332.112, 21.5294, 6.73413)
-
-[node name="Tube18" parent="." instance=ExtResource("21_m0jgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.442, 21.5294, 6.73413)
-
-[node name="Tube19" parent="." instance=ExtResource("21_m0jgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
-
-[node name="Tube20" parent="." instance=ExtResource("21_m0jgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
-
 [node name="Bench-tubes" parent="." instance=ExtResource("22_0rnhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340.125, 20.46, 0)
 
@@ -1707,6 +1647,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
 shape = SubResource("BoxShape3D_u6owi")
 
 [node name="Pause" parent="." instance=ExtResource("24_rxo8w")]
+
+[node name="Topotubos" type="Node3D" parent="."]
+visible = false
+
+[node name="Tube" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, -8.45313)
+
+[node name="Tube2" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.97, 21.9608, 3.78723)
+
+[node name="Tube3" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.701121, 0.713042, 0, -0.713042, 0.701121, 0, 0, 0, 1, 320.674, 21.9608, 3.78723)
+
+[node name="Tube4" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.674, 21.9608, -7.74182)
+
+[node name="Tube5" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.977, 21.9608, -3.43274)
+
+[node name="Tube6" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, -3.43274)
+
+[node name="Tube7" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324.693, 21.9608, 4.21167)
+
+[node name="Tube8" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(1, 0, 0, 0, 0.856799, -0.515651, 0, 0.515651, 0.856799, 327.693, 21.9608, 4.21167)
+
+[node name="Tube9" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.756676, 0.65379, 0, -0.65379, 0.756676, 0, 0, 0, 1, 327.693, 21.9608, 13.5551)
+
+[node name="Tube10" parent="Topotubos" instance=ExtResource("19_41wk1")]
+transform = Transform3D(0.391968, -0.919979, 0, 0.919979, 0.391968, 0, 0, 0, 1, 322.981, 21.9608, 13.5551)
+
+[node name="Tube11" parent="Topotubos" instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 323.182, 21.4489, 6.40466)
+
+[node name="Tube12" parent="Topotubos" instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.539, 21.4489, 0.681152)
+
+[node name="Tube13" parent="Topotubos" instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 322.854, 21.4489, 0.681152)
+
+[node name="Tube14" parent="Topotubos" instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
+
+[node name="Tube15" parent="Topotubos" instance=ExtResource("20_o613x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.049, 21.4489, 0.681152)
+
+[node name="Tube16" parent="Topotubos" instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 318.588, 21.5294, 6.73413)
+
+[node name="Tube17" parent="Topotubos" instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 332.112, 21.5294, 6.73413)
+
+[node name="Tube18" parent="Topotubos" instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.442, 21.5294, 6.73413)
+
+[node name="Tube19" parent="Topotubos" instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
+
+[node name="Tube20" parent="Topotubos" instance=ExtResource("21_m0jgg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 320.539, 21.5294, 6.73413)
 
 [connection signal="body_entered" from="Floor/Light toggle" to="." method="_on_light_toggle_body_entered"]
 [connection signal="body_entered" from="Hamster/Dialogue_box2" to="Hamster/Dialogue_box2" method="_on_body_entered" flags=18]

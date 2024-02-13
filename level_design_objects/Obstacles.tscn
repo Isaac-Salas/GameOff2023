@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlq3ntaakekhs" path="res://level_design_objects/Bouncy light.tscn" id="4_mc8al"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="5_0wq1u"]
 [ext_resource type="PackedScene" uid="uid://ckrmb0o3y5k1n" path="res://level_design_objects/Breakables/Resources/Wall_Brk.tscn" id="6_fpiok"]
-[ext_resource type="Texture2D" uid="uid://lgm8hkwem4dh" path="res://Models/Props/Paredzota_Texture-wall.png" id="6_ih44h"]
+[ext_resource type="Texture2D" uid="uid://bv3dp82jq8lh0" path="res://Models/Props/Paredzota_Texture-wall.png" id="6_ih44h"]
 [ext_resource type="PackedScene" uid="uid://bd0j70spbw5h0" path="res://level_design_objects/Breakables/W-Box-Unbroken.tscn" id="8_vhnjl"]
 [ext_resource type="PackedScene" uid="uid://c1dk8fdbe5gee" path="res://level_design_objects/X-Marking.tscn" id="10_xcn1v"]
 [ext_resource type="PackedScene" uid="uid://dii8yy3l7leva" path="res://level_design_objects/Props/Mesita.tscn" id="11_v5xqb"]
