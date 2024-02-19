@@ -1,20 +1,20 @@
 [gd_scene load_steps=29 format=3 uid="uid://jryh4i7dmnye"]
 
-[ext_resource type="Texture2D" uid="uid://cyh0cdiore3qg" path="res://Menu/Box_Test.png" id="1_kov18"]
+[ext_resource type="Texture2D" uid="uid://dtstu1rad66tc" path="res://Menu/Box_Test.png" id="1_kov18"]
 [ext_resource type="Animation" uid="uid://dqjavnosxkxdk" path="res://ShrinkLoop.res" id="2_k504v"]
-[ext_resource type="Texture2D" uid="uid://de02f2yowwe3p" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
-[ext_resource type="Texture2D" uid="uid://0i4sep6j33mj" path="res://Menu/Play/Click.png" id="3_ql5t1"]
-[ext_resource type="Texture2D" uid="uid://bc52awnspxjfw" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
-[ext_resource type="Texture2D" uid="uid://dxibjqv5v8s7k" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
-[ext_resource type="Texture2D" uid="uid://76cfqx08f05f" path="res://Menu/Credits/Click.png" id="6_clw3w"]
-[ext_resource type="Texture2D" uid="uid://dfp74e6k53rfl" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
-[ext_resource type="Texture2D" uid="uid://caalji5jpsyoo" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
-[ext_resource type="Texture2D" uid="uid://cl65o5mguo2rc" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
-[ext_resource type="FontFile" uid="uid://7hcgxrs1bcof" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
-[ext_resource type="Texture2D" uid="uid://cmkg2jo6h3mkb" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
-[ext_resource type="Texture2D" uid="uid://dch7mkgnfh61j" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
-[ext_resource type="Texture2D" uid="uid://cm8nj184nn0l4" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
-[ext_resource type="Texture2D" uid="uid://dnhr6gecf45h1" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
+[ext_resource type="Texture2D" uid="uid://deg1iqxu1v7n6" path="res://Menu/Play/Sprite-0006.png" id="2_rfpsy"]
+[ext_resource type="Texture2D" uid="uid://wqndr88gm2uu" path="res://Menu/Play/Click.png" id="3_ql5t1"]
+[ext_resource type="Texture2D" uid="uid://c7poiykjem3nn" path="res://Menu/Play/Hover.png" id="4_q3r5g"]
+[ext_resource type="Texture2D" uid="uid://bjtbmc8i5j7j8" path="res://Menu/Credits/Normal.png" id="5_bbytu"]
+[ext_resource type="Texture2D" uid="uid://os2jym5832fy" path="res://Menu/Credits/Click.png" id="6_clw3w"]
+[ext_resource type="Texture2D" uid="uid://bqe1biwehstm6" path="res://Menu/Credits/Hover.png" id="7_lb0k2"]
+[ext_resource type="Texture2D" uid="uid://dd22pr8tlrih3" path="res://Menu/Level-Select/Normal.png" id="8_2cwrs"]
+[ext_resource type="Texture2D" uid="uid://cje872mbjfesf" path="res://Menu/Secrets/Normal.png" id="8_u6ky7"]
+[ext_resource type="FontFile" uid="uid://cm05pd1u30pw1" path="res://Fonts/retro_computer_personal_use.ttf" id="8_vtpms"]
+[ext_resource type="Texture2D" uid="uid://b85pa5rndijbq" path="res://Menu/Level-Select/Click.png" id="9_s5wu6"]
+[ext_resource type="Texture2D" uid="uid://eitva7puc6ys" path="res://Menu/Secrets/Click.png" id="9_x3xrl"]
+[ext_resource type="Texture2D" uid="uid://cnem6wraea2lp" path="res://Menu/Level-Select/Hover.png" id="10_1alyk"]
+[ext_resource type="Texture2D" uid="uid://d1bgw8qhekbsg" path="res://Menu/Secrets/Hover.png" id="10_a11pn"]
 
 [sub_resource type="GDScript" id="GDScript_hy2iu"]
 script/source = "extends Node3D
@@ -134,6 +134,8 @@ func _on_level_select_pressed():
 
 [sub_resource type="Environment" id="Environment_clc0f"]
 background_mode = 1
+adjustment_enabled = true
+adjustment_brightness = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86l4a"]
 resource_name = "Material"

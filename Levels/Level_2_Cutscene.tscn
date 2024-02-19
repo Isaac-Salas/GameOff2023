@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="7_dwmgy"]
 [ext_resource type="PackedScene" uid="uid://cjk1a4uw1q0ft" path="res://level_design_objects/ShelfWBeakers.tscn" id="8_fdeah"]
 [ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="8_q0nxd"]
-[ext_resource type="Texture2D" uid="uid://bt3mawh37j46q" path="res://2DProps/Dialog.png" id="9_6110e"]
+[ext_resource type="Texture2D" uid="uid://b1sa4i4aravsf" path="res://2DProps/Dialog.png" id="9_6110e"]
 [ext_resource type="Script" path="res://level_design_objects/Shrink-Ray/VisualLaser.gd" id="10_hmmn0"]
 [ext_resource type="Script" path="res://level_design_objects/Grow-Ray/VisualLaser-Grow.gd" id="11_yktyf"]
 [ext_resource type="PackedScene" uid="uid://wu2sa1fdi3bu" path="res://2DProps/Danger.tscn" id="13_qy2nb"]
@@ -22,8 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cnuve53ey7qs4" path="res://Items(Grabbable)/Matraz2.tscn" id="20_o613x"]
 [ext_resource type="PackedScene" uid="uid://ca5bajqin8wt2" path="res://Items(Grabbable)/Matraz3.tscn" id="21_m0jgg"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="22_0rnhk"]
-[ext_resource type="Texture2D" uid="uid://cj86vknuws6na" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
-[ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_rxo8w"]
+[ext_resource type="Texture2D" uid="uid://lxslc3tf0j2w" path="res://Sprites/Grow&Shrink.png" id="24_ivlag"]
 
 [sub_resource type="GDScript" id="GDScript_8s11j"]
 script/source = "extends Node3D
@@ -69,6 +68,8 @@ func _on_light_toggle_body_entered(body):
 background_mode = 1
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
+adjustment_enabled = true
+adjustment_brightness = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o305n"]
 size = Vector3(61.856, 3.34, 50)
@@ -892,13 +893,40 @@ func _on_body_entered(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6owi"]
 size = Vector3(0.999207, 4.46408, 50)
 
+[sub_resource type="GDScript" id="GDScript_cxdej"]
+script/source = "extends Control
+@onready var Esc = preload(\"res://UI/PauseButton/Overlay/Paused.tscn\")
+@onready var Escinst
+
+
+func _input(event):
+	
+	if Input.is_action_just_pressed(\"Escaping\"):
+		get_tree().paused = true
+		Escinst = Esc.instantiate()
+		get_parent().add_child(Escinst)
+		GlobalVar.Escswitch = 1
+		self.queue_free()
+		
+
+
+
+func _on_pause_game_pressed():
+	get_tree().paused = true
+	Escinst = Esc.instantiate()
+	get_parent().add_child(Escinst)
+	GlobalVar.Escswitch = 1
+	self.queue_free()
+	
+"
+
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_8s11j")
 min_cap = 2.0
 max_cap = 2.0
 size_factor = 2.0
 size_standard = 2.0
-start = true
+end = true
 
 [node name="World" type="Node3D" parent="."]
 
@@ -1230,7 +1258,7 @@ transform = Transform3D(1, 1.21652e-31, 0, 1.21652e-31, 1, 0, 0, 0, 0.5, 0.77097
 mesh = SubResource("CapsuleMesh_wf2et")
 
 [node name="Bouncylight" parent="Lights" instance=ExtResource("6_mqhfi")]
-transform = Transform3D(0.863448, 0.497941, -0.0806934, 0, 0.159967, 0.987122, 0.504437, -0.852329, 0.138123, 290.041, 21.4115, 0)
+transform = Transform3D(1, 0, 0, 0, 0.159881, 0.987136, 0, -0.987136, 0.159881, 290.041, 21.4115, 0)
 
 [node name="Repisa-Tubes" parent="." instance=ExtResource("8_fdeah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7298, 23.8336, -17.0263)
@@ -1609,7 +1637,7 @@ process_mode = 3
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 visible = false
 script = SubResource("GDScript_qpecu")
-lines = Array[String](["Hasta aqui llevo!"])
+lines = Array[String](["Hasta aqui llega el demo!"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hamster3/Dialogue_box2"]
 shape = SubResource("BoxShape3D_rnjdr")
@@ -1630,6 +1658,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 326.714, 31.254, -14.4818)
 pixel_size = 0.08
 shaded = true
+double_sided = false
 texture_filter = 0
 texture = ExtResource("24_ivlag")
 
@@ -1646,7 +1675,15 @@ max_cap = 3.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36838, 0, 0)
 shape = SubResource("BoxShape3D_u6owi")
 
-[node name="Pause" parent="." instance=ExtResource("24_rxo8w")]
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cxdej")
 
 [node name="Topotubos" type="Node3D" parent="."]
 visible = false

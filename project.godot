@@ -99,7 +99,6 @@ Escaping={
 
 occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
-driver/threads/thread_model=0
 environment/ssao/quality=1
 environment/ssil/quality=1
 textures/decals/filter=0

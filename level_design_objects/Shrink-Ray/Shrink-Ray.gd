@@ -7,6 +7,10 @@ signal shrink_player( target_size)
 func _process(_delta):
 	if shrink_ray.is_colliding():
 		var collider = shrink_ray.get_collider()
-		if collider.name == 'Player':
-			emit_signal("shrink_player", target_size)
-			
+		match collider.name:
+			'Player':
+				$"../Player"._on_ray_collided(target_size)
+				GlobalVar.MinCap = target_size
+				GlobalVar.MaxCap = target_size
+				GlobalVar.sizefactor = target_size
+
