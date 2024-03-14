@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvyde1mq5pin4"]
+
+[sub_resource type="GDScript" id="GDScript_8denq"]
+script/source = "extends Control
+@export var Enviroment : WorldEnvironment
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Bright.value = Enviroment.environment.adjustment_brightness
+	$Saturation.value = Enviroment.environment.adjustment_saturation
+	$Contrast.value = Enviroment.environment.adjustment_contrast
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	Enviroment.environment.adjustment_brightness = $Bright.value 
+	Enviroment.environment.adjustment_contrast = $Contrast.value  
+	Enviroment.environment.adjustment_saturation = $Saturation.value
+"
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_8denq")
+
+[node name="Bright" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 296.0
+offset_right = 584.0
+offset_bottom = 312.0
+max_value = 5.0
+step = 0.01
+tick_count = 10
+
+[node name="Contrast" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 264.0
+offset_right = 584.0
+offset_bottom = 280.0
+max_value = 5.0
+step = 0.01
+tick_count = 10
+
+[node name="Saturation" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 232.0
+offset_right = 584.0
+offset_bottom = 248.0
+max_value = 5.0
+step = 0.01
+tick_count = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

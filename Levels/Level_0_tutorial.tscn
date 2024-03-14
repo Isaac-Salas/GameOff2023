@@ -9,20 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://dsg7odw1y5gtq" path="res://level_design_objects/Red_Lamp.tscn" id="9_f4su8"]
 [ext_resource type="PackedScene" uid="uid://b06is8e3j18mu" path="res://level_design_objects/Area_Trigger.tscn" id="10_2w7g2"]
 [ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="10_inqw2"]
-[ext_resource type="Texture2D" uid="uid://us2d2xubn1fe" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
+[ext_resource type="Texture2D" uid="uid://cswapto5xq65v" path="res://Sprites/Controls-Movement.png" id="14_f4t3l"]
 [ext_resource type="PackedScene" uid="uid://ctux5gsecjtlv" path="res://UI/TextBox/dialogue area.tscn" id="14_gvmxk"]
-[ext_resource type="Texture2D" uid="uid://d3mw20pnhvait" path="res://2DProps/Dialog.png" id="14_jcnol"]
+[ext_resource type="Texture2D" uid="uid://b1sa4i4aravsf" path="res://2DProps/Dialog.png" id="14_jcnol"]
 [ext_resource type="PackedScene" uid="uid://ojo4m5e7twb" path="res://2DProps/id_card.tscn" id="14_waje6"]
-[ext_resource type="Texture2D" uid="uid://ds0clh6sv61wc" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
+[ext_resource type="Texture2D" uid="uid://phv5gmjknomr" path="res://Sprites/throw-sprite.png" id="15_8jbbk"]
 [ext_resource type="PackedScene" uid="uid://b11wl7ud7qyku" path="res://level_design_objects/Fluorescent light.tscn" id="15_ndddx"]
-[ext_resource type="Texture2D" uid="uid://bokh41l1io5av" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
-[ext_resource type="Texture2D" uid="uid://bol6gxohlqe26" path="res://Sprites/push.png" id="17_qq1nl"]
+[ext_resource type="Texture2D" uid="uid://diaggl1euhhq" path="res://Sprites/pickup-sprite.png" id="16_vlv7r"]
+[ext_resource type="Texture2D" uid="uid://hb53bhjva6nh" path="res://Sprites/push.png" id="17_qq1nl"]
 [ext_resource type="PackedScene" uid="uid://dvnjsoconj0xe" path="res://Items(Grabbable)/Matraz1.tscn" id="20_87bia"]
 [ext_resource type="PackedScene" uid="uid://bmglen4avdnsk" path="res://level_design_objects/BenchWBeakers.tscn" id="20_ltglb"]
-[ext_resource type="Texture2D" uid="uid://dxcc6c7c8qkew" path="res://Sprites/Interactions.png" id="20_ohgud"]
-[ext_resource type="Texture2D" uid="uid://lef4td5tbjg5" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
-[ext_resource type="Texture2D" uid="uid://bemq2eogvr47t" path="res://Sprites/Npcthing.png" id="22_nujfq"]
-[ext_resource type="Texture2D" uid="uid://sugtong6ougd" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
+[ext_resource type="Texture2D" uid="uid://fbp3gefbgs84" path="res://Sprites/Interactions.png" id="20_ohgud"]
+[ext_resource type="Texture2D" uid="uid://blcot7fi561lq" path="res://Sprites/Scientist dead.png" id="21_kb4et"]
+[ext_resource type="Texture2D" uid="uid://42eet8uqj7vj" path="res://Sprites/Npcthing.png" id="22_nujfq"]
+[ext_resource type="Texture2D" uid="uid://1chiqlji5euv" path="res://Models/Props/id card_idcard.png" id="23_n5iq2"]
 [ext_resource type="PackedScene" uid="uid://cdvj2tbalmcjq" path="res://UI/PauseButton/Pause.tscn" id="24_ungc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2g5"]
@@ -67,6 +67,8 @@ size = Vector3(5, 5, 5)
 background_mode = 1
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
+adjustment_enabled = true
+adjustment_brightness = 1.5
 
 [sub_resource type="GDScript" id="GDScript_8ykrp"]
 script/source = "extends Area3D

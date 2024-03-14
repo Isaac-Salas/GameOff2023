@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://chh3bt1gql45s"]
 
-[ext_resource type="Texture2D" uid="uid://qis6hw8lvsdc" path="res://Models/Props/Metal Crate_MetalCrate.png" id="1_7ot2l"]
+[ext_resource type="Texture2D" uid="uid://b433ewpp3wmre" path="res://Models/Props/Metal Crate_MetalCrate.png" id="1_7ot2l"]
 [ext_resource type="PackedScene" uid="uid://o5kbibywxfmn" path="res://level_design_objects/Breakables/Metal_Crate-Crumple.tscn" id="1_c1ekd"]
 
 [sub_resource type="GDScript" id="GDScript_0eubb"]
